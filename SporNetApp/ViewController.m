@@ -16,12 +16,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+<<<<<<< Updated upstream
     NSLog(@"caonima");
+=======
+
+    NSLog(@"caonima");
+
+>>>>>>> Stashed changes
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    NSLog(@"北京草泥马");
     // Dispose of any resources that can be recreated.
 }
 
