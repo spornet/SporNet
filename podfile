@@ -1,0 +1,5 @@
+target 'SporNetApp' do 
+pod 'AVOSCloud'
+pod 'AVOSCloudIM'
+pod 'AVOSCloudCrashReporting'
+end

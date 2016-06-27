@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
 		B82FED1F1D21A57D00292ECC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED1E1D21A57D00292ECC /* main.m */; };
 		B82FED221D21A57D00292ECC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED211D21A57D00292ECC /* AppDelegate.m */; };
 		B82FED251D21A57D00292ECC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED241D21A57D00292ECC /* ViewController.m */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SporNetApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B525F8F8A3E7344BD9B7C2D7 /* Pods-SporNetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B82FED1A1D21A57D00292ECC /* SporNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SporNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82FED1E1D21A57D00292ECC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B82FED201D21A57D00292ECC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		B82FED3E1D21A57D00292ECC /* SporNetAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SporNetAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82FED421D21A57D00292ECC /* SporNetAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SporNetAppUITests.m; sourceTree = "<group>"; };
 		B82FED441D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20D4F1F3ADD21C753495316D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BA382E6F131953302015FD1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B525F8F8A3E7344BD9B7C2D7 /* Pods-SporNetApp.debug.xcconfig */,
+				D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B82FED111D21A57D00292ECC = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +107,8 @@
 				B82FED361D21A57D00292ECC /* SporNetAppTests */,
 				B82FED411D21A57D00292ECC /* SporNetAppUITests */,
 				B82FED1B1D21A57D00292ECC /* Products */,
+				3BA382E6F131953302015FD1 /* Pods */,
+				20D4F1F3ADD21C753495316D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,9 +171,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B82FED471D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetApp" */;
 			buildPhases = (
+				8BB2347470EADF26F2B10420 /* [CP] Check Pods Manifest.lock */,
 				B82FED161D21A57D00292ECC /* Sources */,
 				B82FED171D21A57D00292ECC /* Frameworks */,
 				B82FED181D21A57D00292ECC /* Resources */,
+				F9C0C5474812FAD090FB6144 /* [CP] Embed Pods Frameworks */,
+				B83724AB4CB4C596B0918809 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -264,6 +291,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8BB2347470EADF26F2B10420 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B83724AB4CB4C596B0918809 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9C0C5474812FAD090FB6144 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B82FED161D21A57D00292ECC /* Sources */ = {
@@ -411,6 +486,7 @@
 		};
 		B82FED481D21A57D00292ECC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B525F8F8A3E7344BD9B7C2D7 /* Pods-SporNetApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SporNetApp/Info.plist;
@@ -422,6 +498,7 @@
 		};
 		B82FED491D21A57D00292ECC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SporNetApp/Info.plist;
@@ -496,6 +573,7 @@
 				B82FED491D21A57D00292ECC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B82FED4A1D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetAppTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +582,7 @@
 				B82FED4C1D21A57D00292ECC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B82FED4D1D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +591,7 @@
 				B82FED4F1D21A57D00292ECC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
