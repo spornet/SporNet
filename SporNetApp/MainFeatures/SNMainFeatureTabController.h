@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SNMainFeatureTabController.h
 //  SporNetApp
 //
 //  Created by Peng on 6/27/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface SNMainFeatureTabController : UITabBarController
 
 @end
-

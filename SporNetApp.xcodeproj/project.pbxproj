@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
-		B82FED1F1D21A57D00292ECC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED1E1D21A57D00292ECC /* main.m */; };
-		B82FED221D21A57D00292ECC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED211D21A57D00292ECC /* AppDelegate.m */; };
-		B82FED251D21A57D00292ECC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED241D21A57D00292ECC /* ViewController.m */; };
-		B82FED281D21A57D00292ECC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82FED261D21A57D00292ECC /* Main.storyboard */; };
 		B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B82FED291D21A57D00292ECC /* Assets.xcassets */; };
 		B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */; };
 		B82FED381D21A57D00292ECC /* SporNetAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED371D21A57D00292ECC /* SporNetAppTests.m */; };
 		B82FED431D21A57D00292ECC /* SporNetAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED421D21A57D00292ECC /* SporNetAppUITests.m */; };
+		B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */; };
+		B8CFCCE41D21ADEA0006495E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCE11D21ADEA0006495E /* main.m */; };
+		B8CFCCE61D21AE540006495E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCE51D21AE540006495E /* Info.plist */; };
+		B8CFCCE91D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */; };
+		B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,21 +40,21 @@
 		9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SporNetApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B525F8F8A3E7344BD9B7C2D7 /* Pods-SporNetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B82FED1A1D21A57D00292ECC /* SporNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SporNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B82FED1E1D21A57D00292ECC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B82FED201D21A57D00292ECC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B82FED211D21A57D00292ECC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B82FED231D21A57D00292ECC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B82FED241D21A57D00292ECC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B82FED271D21A57D00292ECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B82FED291D21A57D00292ECC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B82FED2C1D21A57D00292ECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B82FED2E1D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B82FED331D21A57D00292ECC /* SporNetAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SporNetAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82FED371D21A57D00292ECC /* SporNetAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SporNetAppTests.m; sourceTree = "<group>"; };
 		B82FED391D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B82FED3E1D21A57D00292ECC /* SporNetAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SporNetAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82FED421D21A57D00292ECC /* SporNetAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SporNetAppUITests.m; sourceTree = "<group>"; };
 		B82FED441D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8CFCCDE1D21ADEA0006495E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B8CFCCE11D21ADEA0006495E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B8CFCCE51D21AE540006495E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Login&RegisterStoryBoard.storyboard"; sourceTree = "<group>"; };
+		B8CFCCEE1D21CD200006495E /* SNMainFeatureTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMainFeatureTabController.h; sourceTree = "<group>"; };
+		B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMainFeatureTabController.m; sourceTree = "<group>"; };
 		D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,14 +126,11 @@
 		B82FED1C1D21A57D00292ECC /* SporNetApp */ = {
 			isa = PBXGroup;
 			children = (
-				B82FED201D21A57D00292ECC /* AppDelegate.h */,
-				B82FED211D21A57D00292ECC /* AppDelegate.m */,
-				B82FED231D21A57D00292ECC /* ViewController.h */,
-				B82FED241D21A57D00292ECC /* ViewController.m */,
-				B82FED261D21A57D00292ECC /* Main.storyboard */,
+				B8CFCCE51D21AE540006495E /* Info.plist */,
+				B8CFCCE71D21AEC50006495E /* Login&Register */,
 				B82FED291D21A57D00292ECC /* Assets.xcassets */,
-				B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */,
-				B82FED2E1D21A57D00292ECC /* Info.plist */,
+				B8CFCCEB1D21C66F0006495E /* MainFeatures */,
+				B8CFCCDD1D21ADEA0006495E /* Others */,
 				B82FED1D1D21A57D00292ECC /* Supporting Files */,
 			);
 			path = SporNetApp;
@@ -141,7 +139,7 @@
 		B82FED1D1D21A57D00292ECC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B82FED1E1D21A57D00292ECC /* main.m */,
+				B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -162,6 +160,73 @@
 				B82FED441D21A57D00292ECC /* Info.plist */,
 			);
 			path = SporNetAppUITests;
+			sourceTree = "<group>";
+		};
+		B8CFCCDD1D21ADEA0006495E /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				B8CFCCDE1D21ADEA0006495E /* AppDelegate.h */,
+				B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */,
+				B8CFCCE11D21ADEA0006495E /* main.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		B8CFCCE71D21AEC50006495E /* Login&Register */ = {
+			isa = PBXGroup;
+			children = (
+				B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */,
+			);
+			path = "Login&Register";
+			sourceTree = "<group>";
+		};
+		B8CFCCEB1D21C66F0006495E /* MainFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				B8CFCCF51D21CE7F0006495E /* Tag */,
+				B8CFCCF11D21CE640006495E /* Message */,
+				B8CFCCF21D21CE640006495E /* Ranking */,
+				B8CFCCF31D21CE640006495E /* SearchNearBy */,
+				B8CFCCF41D21CE640006495E /* Setting */,
+				B8CFCCEE1D21CD200006495E /* SNMainFeatureTabController.h */,
+				B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */,
+			);
+			path = MainFeatures;
+			sourceTree = "<group>";
+		};
+		B8CFCCF11D21CE640006495E /* Message */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		B8CFCCF21D21CE640006495E /* Ranking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Ranking;
+			sourceTree = "<group>";
+		};
+		B8CFCCF31D21CE640006495E /* SearchNearBy */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchNearBy;
+			sourceTree = "<group>";
+		};
+		B8CFCCF41D21CE640006495E /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		B8CFCCF51D21CE7F0006495E /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +335,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
 				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
-				B82FED281D21A57D00292ECC /* Main.storyboard in Resources */,
+				B8CFCCE91D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,9 +411,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82FED251D21A57D00292ECC /* ViewController.m in Sources */,
-				B82FED221D21A57D00292ECC /* AppDelegate.m in Sources */,
-				B82FED1F1D21A57D00292ECC /* main.m in Sources */,
+				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
+				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
+				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,14 +449,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B82FED261D21A57D00292ECC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B82FED271D21A57D00292ECC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
