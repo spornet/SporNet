@@ -16,13 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-<<<<<<< Updated upstream
-    NSLog(@"caonima");
-=======
 
-    NSLog(@"caonima");
-
->>>>>>> Stashed changes
     // Do any additional setup after loading the view, typically from a nib.
 }
 
