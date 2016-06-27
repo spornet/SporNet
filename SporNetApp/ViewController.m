@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog("caonima");
+    NSLog(@"caonima");
     // Do any additional setup after loading the view, typically from a nib.
 }
 
