@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B82FED1F1D21A57D00292ECC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED1E1D21A57D00292ECC /* main.m */; };
+		B82FED221D21A57D00292ECC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED211D21A57D00292ECC /* AppDelegate.m */; };
+		B82FED251D21A57D00292ECC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED241D21A57D00292ECC /* ViewController.m */; };
+		B82FED281D21A57D00292ECC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82FED261D21A57D00292ECC /* Main.storyboard */; };
+		B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B82FED291D21A57D00292ECC /* Assets.xcassets */; };
+		B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */; };
+		B82FED381D21A57D00292ECC /* SporNetAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED371D21A57D00292ECC /* SporNetAppTests.m */; };
+		B82FED431D21A57D00292ECC /* SporNetAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED421D21A57D00292ECC /* SporNetAppUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B82FED341D21A57D00292ECC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B82FED121D21A57D00292ECC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B82FED191D21A57D00292ECC;
+			remoteInfo = SporNetApp;
+		};
+		B82FED3F1D21A57D00292ECC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B82FED121D21A57D00292ECC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B82FED191D21A57D00292ECC;
+			remoteInfo = SporNetApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B82FED1A1D21A57D00292ECC /* SporNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SporNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B82FED1E1D21A57D00292ECC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B82FED201D21A57D00292ECC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B82FED211D21A57D00292ECC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B82FED231D21A57D00292ECC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B82FED241D21A57D00292ECC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B82FED271D21A57D00292ECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B82FED291D21A57D00292ECC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B82FED2C1D21A57D00292ECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B82FED2E1D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B82FED331D21A57D00292ECC /* SporNetAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SporNetAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B82FED371D21A57D00292ECC /* SporNetAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SporNetAppTests.m; sourceTree = "<group>"; };
+		B82FED391D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B82FED3E1D21A57D00292ECC /* SporNetAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SporNetAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B82FED421D21A57D00292ECC /* SporNetAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SporNetAppUITests.m; sourceTree = "<group>"; };
+		B82FED441D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B82FED171D21A57D00292ECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82FED301D21A57D00292ECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82FED3B1D21A57D00292ECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B82FED111D21A57D00292ECC = {
+			isa = PBXGroup;
+			children = (
+				B82FED1C1D21A57D00292ECC /* SporNetApp */,
+				B82FED361D21A57D00292ECC /* SporNetAppTests */,
+				B82FED411D21A57D00292ECC /* SporNetAppUITests */,
+				B82FED1B1D21A57D00292ECC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B82FED1B1D21A57D00292ECC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B82FED1A1D21A57D00292ECC /* SporNetApp.app */,
+				B82FED331D21A57D00292ECC /* SporNetAppTests.xctest */,
+				B82FED3E1D21A57D00292ECC /* SporNetAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B82FED1C1D21A57D00292ECC /* SporNetApp */ = {
+			isa = PBXGroup;
+			children = (
+				B82FED201D21A57D00292ECC /* AppDelegate.h */,
+				B82FED211D21A57D00292ECC /* AppDelegate.m */,
+				B82FED231D21A57D00292ECC /* ViewController.h */,
+				B82FED241D21A57D00292ECC /* ViewController.m */,
+				B82FED261D21A57D00292ECC /* Main.storyboard */,
+				B82FED291D21A57D00292ECC /* Assets.xcassets */,
+				B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */,
+				B82FED2E1D21A57D00292ECC /* Info.plist */,
+				B82FED1D1D21A57D00292ECC /* Supporting Files */,
+			);
+			path = SporNetApp;
+			sourceTree = "<group>";
+		};
+		B82FED1D1D21A57D00292ECC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B82FED1E1D21A57D00292ECC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B82FED361D21A57D00292ECC /* SporNetAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				B82FED371D21A57D00292ECC /* SporNetAppTests.m */,
+				B82FED391D21A57D00292ECC /* Info.plist */,
+			);
+			path = SporNetAppTests;
+			sourceTree = "<group>";
+		};
+		B82FED411D21A57D00292ECC /* SporNetAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B82FED421D21A57D00292ECC /* SporNetAppUITests.m */,
+				B82FED441D21A57D00292ECC /* Info.plist */,
+			);
+			path = SporNetAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B82FED191D21A57D00292ECC /* SporNetApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B82FED471D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetApp" */;
+			buildPhases = (
+				B82FED161D21A57D00292ECC /* Sources */,
+				B82FED171D21A57D00292ECC /* Frameworks */,
+				B82FED181D21A57D00292ECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SporNetApp;
+			productName = SporNetApp;
+			productReference = B82FED1A1D21A57D00292ECC /* SporNetApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B82FED321D21A57D00292ECC /* SporNetAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B82FED4A1D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetAppTests" */;
+			buildPhases = (
+				B82FED2F1D21A57D00292ECC /* Sources */,
+				B82FED301D21A57D00292ECC /* Frameworks */,
+				B82FED311D21A57D00292ECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B82FED351D21A57D00292ECC /* PBXTargetDependency */,
+			);
+			name = SporNetAppTests;
+			productName = SporNetAppTests;
+			productReference = B82FED331D21A57D00292ECC /* SporNetAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B82FED3D1D21A57D00292ECC /* SporNetAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B82FED4D1D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetAppUITests" */;
+			buildPhases = (
+				B82FED3A1D21A57D00292ECC /* Sources */,
+				B82FED3B1D21A57D00292ECC /* Frameworks */,
+				B82FED3C1D21A57D00292ECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B82FED401D21A57D00292ECC /* PBXTargetDependency */,
+			);
+			name = SporNetAppUITests;
+			productName = SporNetAppUITests;
+			productReference = B82FED3E1D21A57D00292ECC /* SporNetAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B82FED121D21A57D00292ECC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Peng Wang";
+				TargetAttributes = {
+					B82FED191D21A57D00292ECC = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					B82FED321D21A57D00292ECC = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = B82FED191D21A57D00292ECC;
+					};
+					B82FED3D1D21A57D00292ECC = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = B82FED191D21A57D00292ECC;
+					};
+				};
+			};
+			buildConfigurationList = B82FED151D21A57D00292ECC /* Build configuration list for PBXProject "SporNetApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B82FED111D21A57D00292ECC;
+			productRefGroup = B82FED1B1D21A57D00292ECC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B82FED191D21A57D00292ECC /* SporNetApp */,
+				B82FED321D21A57D00292ECC /* SporNetAppTests */,
+				B82FED3D1D21A57D00292ECC /* SporNetAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B82FED181D21A57D00292ECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
+				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
+				B82FED281D21A57D00292ECC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82FED311D21A57D00292ECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82FED3C1D21A57D00292ECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B82FED161D21A57D00292ECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82FED251D21A57D00292ECC /* ViewController.m in Sources */,
+				B82FED221D21A57D00292ECC /* AppDelegate.m in Sources */,
+				B82FED1F1D21A57D00292ECC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82FED2F1D21A57D00292ECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82FED381D21A57D00292ECC /* SporNetAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82FED3A1D21A57D00292ECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82FED431D21A57D00292ECC /* SporNetAppUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B82FED351D21A57D00292ECC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B82FED191D21A57D00292ECC /* SporNetApp */;
+			targetProxy = B82FED341D21A57D00292ECC /* PBXContainerItemProxy */;
+		};
+		B82FED401D21A57D00292ECC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B82FED191D21A57D00292ECC /* SporNetApp */;
+			targetProxy = B82FED3F1D21A57D00292ECC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B82FED261D21A57D00292ECC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B82FED271D21A57D00292ECC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B82FED2C1D21A57D00292ECC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B82FED451D21A57D00292ECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B82FED461D21A57D00292ECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B82FED481D21A57D00292ECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SporNetApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B82FED491D21A57D00292ECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SporNetApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B82FED4B1D21A57D00292ECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SporNetAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SporNetApp.app/SporNetApp";
+			};
+			name = Debug;
+		};
+		B82FED4C1D21A57D00292ECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SporNetAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SporNetApp.app/SporNetApp";
+			};
+			name = Release;
+		};
+		B82FED4E1D21A57D00292ECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SporNetAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SporNetApp;
+			};
+			name = Debug;
+		};
+		B82FED4F1D21A57D00292ECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SporNetAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SporNetApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B82FED151D21A57D00292ECC /* Build configuration list for PBXProject "SporNetApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B82FED451D21A57D00292ECC /* Debug */,
+				B82FED461D21A57D00292ECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B82FED471D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B82FED481D21A57D00292ECC /* Debug */,
+				B82FED491D21A57D00292ECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B82FED4A1D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B82FED4B1D21A57D00292ECC /* Debug */,
+				B82FED4C1D21A57D00292ECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B82FED4D1D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B82FED4E1D21A57D00292ECC /* Debug */,
+				B82FED4F1D21A57D00292ECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B82FED121D21A57D00292ECC /* Project object */;
+}
