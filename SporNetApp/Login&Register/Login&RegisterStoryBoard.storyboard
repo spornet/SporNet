@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2jt-kS-bcA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WKN-Ya-Lzq">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Launch Page-->
@@ -100,7 +100,6 @@
         <!--Register Page-->
         <scene sceneID="HaO-Iy-Ilc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fEJ-3s-1Di" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="FvK-Ex-Hgm" userLabel="Register Page" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xYa-yd-Xr2"/>
@@ -154,22 +153,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fEJ-3s-1Di" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="817" y="860"/>
         </scene>
         <!--User Profile Page-->
         <scene sceneID="PmL-TP-WHy">
             <objects>
-                <viewController id="WKN-Ya-Lzq" userLabel="User Profile Page" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mLg-1X-ybq"/>
-                        <viewControllerLayoutGuide type="bottom" id="Moh-X1-BoP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Klu-yQ-YcO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                <viewController id="WKN-Ya-Lzq" userLabel="User Profile Page" customClass="SNUserProfileViewController" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TS7-cB-sJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -212,10 +204,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6Z-iv-irH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1535" y="511"/>
+            <point key="canvasLocation" x="1555" y="386"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WeU-b3-I0L"/>
+        <segue reference="MFR-cN-mD5"/>
     </inferredMetricsTieBreakers>
 </document>
