@@ -5,6 +5,22 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="GYG-ZF-ubU">
+            <objects>
+                <navigationController id="zgz-2r-zfz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I21-vl-DtA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2jt-kS-bcA" kind="relationship" relationship="rootViewController" id="Oza-HE-qQm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zx4-kh-alp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-624" y="30"/>
+        </scene>
         <!--Launch Page-->
         <scene sceneID="DPZ-cN-eus">
             <objects>
@@ -27,6 +43,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Drr-q5-o0X"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MU7-ya-R1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
