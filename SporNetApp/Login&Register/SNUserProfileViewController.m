@@ -9,6 +9,8 @@
 #import "SNUserProfileViewController.h"
 #import <AVObject+Subclass.h>
 @interface SNUserProfileViewController ()
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottonConstraint;
 @property (strong, nonatomic) IBOutlet UITableView     *tableView;
 @property (strong, nonatomic) IBOutlet UITableViewCell *nameCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *genderCell;
@@ -62,6 +64,10 @@
         UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:2];
     [imageView addGestureRecognizer:tapRecognizer];
     self.aboutmeTextView.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillChange:)
+                                                 name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
     //    for(int i = 1; i <= 4; i++) {
 //        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
 // 
@@ -164,6 +170,7 @@
 }
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
+    self.bottonConstraint.constant = 0;
 }
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
@@ -205,12 +212,32 @@
         }
     }];
 }
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self dismissKeyboard];
+}
 - (void)sportTapped:(UIImageView*)sender {
     //UIImageView *image = (UIImageView*)sender;
     sender.image = [UIImage imageNamed:@"yoga"];
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView {
-    NSLog(@"吼吼吼");
-    [self.view setCenter:CGPointMake(self.view.center.x, self.view.center.y-100)];
+//    self.topConstraint.constant -= 400;
+//    self.bottonConstraint.constant -= 400;
+}
+
+
+- (void)keyboardWillChange:(NSNotification *)notification {
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    if([self.aboutmeTextView isFirstResponder]) {
+        //start animation for poping up keyboard
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.2];
+        self.bottonConstraint.constant = keyboardSize.height;
+        [self.view layoutIfNeeded];
+        [UIView commitAnimations];
+    }
+//    //self.topConstraint.constant = -keyboardSize.height-100;
+    
+    //好的
+//    self.bottonConstraint.constant = keyboardSize.height;
 }
 @end
