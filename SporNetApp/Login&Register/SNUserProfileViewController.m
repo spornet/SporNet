@@ -20,6 +20,8 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *picCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *doneCell;
 
+
+
 @property (strong, nonatomic) IBOutlet UILabel *sexLabel;
 @property (strong, nonatomic) IBOutlet UILabel *birthdayLabel;
 
@@ -32,6 +34,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *sexTextField;
 
 @property (strong, nonatomic) IBOutlet UITextField *gradTextField;
+@property (strong, nonatomic) IBOutlet UITextView *aboutmeTextView;
 
 @property NSArray *gradYears;
 @property NSArray *sex;
@@ -55,6 +58,17 @@
     self.sexTextField.inputView = self.sexPicker;
 
     self.gradTextField.inputView = self.graduationYearPicker;
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
+        UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:2];
+    [imageView addGestureRecognizer:tapRecognizer];
+    self.aboutmeTextView.delegate = self;
+    //    for(int i = 1; i <= 4; i++) {
+//        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
+// 
+//        UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:i];
+//        [imageView addGestureRecognizer:tapRecognizer];
+//    }
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -135,6 +149,9 @@
             NSLog(@"Select graduation");
             [self.gradTextField becomeFirstResponder];
             break;
+        case UserProfileRowBestSport:
+            NSLog(@"Select best sport");
+            break;
         case UserProfileRowSportTime:
             NSLog(@"select sport time");
             break;
@@ -187,5 +204,13 @@
             NSLog(@"存储失败");
         }
     }];
+}
+- (void)sportTapped:(UIImageView*)sender {
+    //UIImageView *image = (UIImageView*)sender;
+    sender.image = [UIImage imageNamed:@"yoga"];
+}
+-(void)textViewDidBeginEditing:(UITextView *)textView {
+    NSLog(@"吼吼吼");
+    [self.view setCenter:CGPointMake(self.view.center.x, self.view.center.y-100)];
 }
 @end
