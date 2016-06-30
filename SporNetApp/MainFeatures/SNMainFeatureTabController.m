@@ -8,11 +8,38 @@
 
 #import "SNMainFeatureTabController.h"
 
+
 @interface SNMainFeatureTabController ()
 
 @end
 
 @implementation SNMainFeatureTabController
+
+- (instancetype)init {
+    
+    self = [super init];
+    
+    if (self) {
+        
+        UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
+        UIStoryboard *message = [UIStoryboard storyboardWithName:@"MessageStoryboard" bundle:nil];
+        UIStoryboard *ranking = [UIStoryboard storyboardWithName:@"RankingStoryboard" bundle:nil];
+        UIStoryboard *search = [UIStoryboard storyboardWithName:@"SearchingStoryboard" bundle:nil];
+        UIStoryboard *setting = [UIStoryboard storyboardWithName:@"SettingStoryboard" bundle:nil];
+        
+        UIViewController *tagController = [tag instantiateInitialViewController];
+        UIViewController *messageController = [message instantiateInitialViewController];
+        UIViewController *rankingController = [ranking instantiateInitialViewController];
+        UIViewController *searchController = [search instantiateInitialViewController];
+        UIViewController *settingController = [setting instantiateInitialViewController];
+        
+        self.viewControllers = @[tagController, messageController, rankingController, searchController, settingController];
+        
+        
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,14 +51,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

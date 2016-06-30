@@ -19,6 +19,11 @@
 		B8CFCCE61D21AE540006495E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCE51D21AE540006495E /* Info.plist */; };
 		B8CFCCE91D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */; };
 		B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */; };
+		B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */; };
+		B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */; };
+		B8CFCCFB1D2415FD0006495E /* RankingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCFA1D2415FD0006495E /* RankingStoryboard.storyboard */; };
+		B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */; };
+		B8CFCCFF1D2416270006495E /* SettingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCFE1D2416270006495E /* SettingStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +65,11 @@
 		B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Login&RegisterStoryBoard.storyboard"; sourceTree = "<group>"; };
 		B8CFCCEE1D21CD200006495E /* SNMainFeatureTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMainFeatureTabController.h; sourceTree = "<group>"; };
 		B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMainFeatureTabController.m; sourceTree = "<group>"; };
+		B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagStoryboard.storyboard; sourceTree = "<group>"; };
+		B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageStoryboard.storyboard; sourceTree = "<group>"; };
+		B8CFCCFA1D2415FD0006495E /* RankingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RankingStoryboard.storyboard; sourceTree = "<group>"; };
+		B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchingStoryboard.storyboard; sourceTree = "<group>"; };
+		B8CFCCFE1D2416270006495E /* SettingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingStoryboard.storyboard; sourceTree = "<group>"; };
 		D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +215,7 @@
 		B8CFCCF11D21CE640006495E /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -212,6 +223,7 @@
 		B8CFCCF21D21CE640006495E /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
+				B8CFCCFA1D2415FD0006495E /* RankingStoryboard.storyboard */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -219,6 +231,7 @@
 		B8CFCCF31D21CE640006495E /* SearchNearBy */ = {
 			isa = PBXGroup;
 			children = (
+				B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */,
 			);
 			path = SearchNearBy;
 			sourceTree = "<group>";
@@ -226,6 +239,7 @@
 		B8CFCCF41D21CE640006495E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B8CFCCFE1D2416270006495E /* SettingStoryboard.storyboard */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -233,6 +247,7 @@
 		B8CFCCF51D21CE7F0006495E /* Tag */ = {
 			isa = PBXGroup;
 			children = (
+				B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -343,11 +358,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CFCCFF1D2416270006495E /* SettingStoryboard.storyboard in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
 				6D4454BF1D2417F700F7B51A /* SNUserProfileViewController.xib in Resources */,
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
+				B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */,
+				B8CFCCFB1D2415FD0006495E /* RankingStoryboard.storyboard in Resources */,
+				B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */,
 				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
 				B8CFCCE91D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard in Resources */,
+				B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Debug;
 		};
@@ -575,6 +596,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Release;
 		};
