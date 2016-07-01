@@ -5,6 +5,10 @@
 //  Created by 浦明晖 on 6/29/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
+#import "SNUser.h"
+
+
+
 
 #import "SNUserProfileViewController.h"
 #import <AVObject+Subclass.h>
@@ -163,7 +167,9 @@
             break;
         case  UserProfileRowDone:
             NSLog(@"save action");
-            [self saveData];
+            [self demoCreateObject];
+            break;
+            //[self saveData];
         default:
             break;
     }
@@ -235,9 +241,24 @@
         [self.view layoutIfNeeded];
         [UIView commitAnimations];
     }
-//    //self.topConstraint.constant = -keyboardSize.height-100;
-    
-    //好的
-//    self.bottonConstraint.constant = keyboardSize.height;
 }
+
+- (void)demoCreateObject {
+    SNUser *user = [[SNUser alloc] init];
+    user.name = @"Emma Pu";
+    user.gender = GenderFamale;
+    user.gradYear = 2016;
+    user.bestSport = BestSportsBasketball;
+    user.sportTimeSlot = SportTimeSlotNight;
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"存储成功");
+        } else {
+            NSLog(@"存储失败");
+            
+        }
+    }];
+
+}
+
 @end

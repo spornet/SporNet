@@ -7,13 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef NS_ENUM(NSInteger, BestSports) {
-    BestSportsJogging = 0,
-    BestSportsMuscle,
-    BestSportsSoccer,
-    BestSportsBasketball,
-    BestSportsYoga
-};
 typedef NS_ENUM(NSInteger, UserProfileRow) {
     UserProfileRowPic = 0,
     UserProfileRowName,

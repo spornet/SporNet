@@ -7,7 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import "SNUser.h"
 
+#define AVOSCloudAppID  @"bYghX9Pf0wA9lzJadbk1raUQ-MdYXbMMI"
+#define AVOSCloudAppKey @"WswwpF648108VKr59UgtJIBX"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +20,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [SNUser registerSubclass];
+    [AVOSCloud setApplicationId:AVOSCloudAppID
+                      clientKey:AVOSCloudAppKey];
     return YES;
 }
 
