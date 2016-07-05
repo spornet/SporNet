@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A7872BF1D26EC08006205CF /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872BE1D26EC08006205CF /* PageContentViewController.m */; };
-		1A7872C21D26EE0A006205CF /* LaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C11D26EE0A006205CF /* LaunchPageViewController.m */; };
+		1A7872BF1D26EC08006205CF /* SNPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */; };
+		1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */; };
+		1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */; };
 		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
 		6D4454BE1D2417F700F7B51A /* SNUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */; };
 		6D4454BF1D2417F700F7B51A /* SNUserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */; };
@@ -47,10 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A7872BD1D26EC08006205CF /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
-		1A7872BE1D26EC08006205CF /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
-		1A7872C01D26EE0A006205CF /* LaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchPageViewController.h; sourceTree = "<group>"; };
-		1A7872C11D26EE0A006205CF /* LaunchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchPageViewController.m; sourceTree = "<group>"; };
+		1A7872BD1D26EC08006205CF /* SNPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPageContentViewController.h; sourceTree = "<group>"; };
+		1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPageContentViewController.m; sourceTree = "<group>"; };
+		1A7872C01D26EE0A006205CF /* SNLaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLaunchPageViewController.h; sourceTree = "<group>"; };
+		1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLaunchPageViewController.m; sourceTree = "<group>"; };
+		1A7872C31D2C08C8006205CF /* SNRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNRegisterViewController.h; sourceTree = "<group>"; };
+		1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNRegisterViewController.m; sourceTree = "<group>"; };
 		6D4454BB1D2417F700F7B51A /* SNUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNUserProfileViewController.h; sourceTree = "<group>"; };
 		6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNUserProfileViewController.m; sourceTree = "<group>"; };
 		6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNUserProfileViewController.xib; sourceTree = "<group>"; };
@@ -213,10 +216,12 @@
 				6D4454BB1D2417F700F7B51A /* SNUserProfileViewController.h */,
 				6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */,
 				6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */,
-				1A7872BD1D26EC08006205CF /* PageContentViewController.h */,
-				1A7872BE1D26EC08006205CF /* PageContentViewController.m */,
-				1A7872C01D26EE0A006205CF /* LaunchPageViewController.h */,
-				1A7872C11D26EE0A006205CF /* LaunchPageViewController.m */,
+				1A7872BD1D26EC08006205CF /* SNPageContentViewController.h */,
+				1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */,
+				1A7872C01D26EE0A006205CF /* SNLaunchPageViewController.h */,
+				1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */,
+				1A7872C31D2C08C8006205CF /* SNRegisterViewController.h */,
+				1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
@@ -466,11 +471,12 @@
 			files = (
 				6D4454BE1D2417F700F7B51A /* SNUserProfileViewController.m in Sources */,
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
-				1A7872C21D26EE0A006205CF /* LaunchPageViewController.m in Sources */,
+				1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
 				6DB85C241D25B951008C3DC4 /* SNUser.m in Sources */,
-				1A7872BF1D26EC08006205CF /* PageContentViewController.m in Sources */,
+				1A7872BF1D26EC08006205CF /* SNPageContentViewController.m in Sources */,
+				1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

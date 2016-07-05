@@ -1,19 +1,19 @@
 //
-//  LaunchPageViewController.m
+//  SNLaunchPageViewController.m
 //  SporNetApp
 //
 //  Created by ZhengYang on 16/7/1.
 //  Copyright © 2016年 Peng Wang. All rights reserved.
 //
 
-#import "LaunchPageViewController.h"
-#import "PageContentViewController.h"
+#import "SNLaunchPageViewController.h"
+#import "SNPageContentViewController.h"
 
-@interface LaunchPageViewController ()
+@interface SNLaunchPageViewController ()
 
 @end
 
-@implementation LaunchPageViewController
+@implementation SNLaunchPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +23,7 @@
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    SNPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
@@ -41,7 +41,7 @@
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSInteger index = ((PageContentViewController*) viewController).pageIndex;
+    NSInteger index = ((SNPageContentViewController*) viewController).pageIndex;
     if ((index == 0)||(index == NSNotFound)) {
         return nil;
     }
@@ -51,7 +51,7 @@
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSInteger index = ((PageContentViewController*) viewController).pageIndex;
+    NSInteger index = ((SNPageContentViewController*) viewController).pageIndex;
     if (index == NSNotFound) {
         return nil;
     }
@@ -63,11 +63,11 @@
     
 }
 
--(PageContentViewController *)viewControllerAtIndex:(NSInteger)index{
+-(SNPageContentViewController *)viewControllerAtIndex:(NSInteger)index{
     if ((self.pageTitles.count == 0)||(index == self.pageTitles.count)) {
         return nil;
     }
-    PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    SNPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
     pageContentViewController.imageFile = self.pageImages[index];
     pageContentViewController.titleText = self.pageTitles[index];
     

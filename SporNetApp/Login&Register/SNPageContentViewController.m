@@ -1,18 +1,18 @@
 //
-//  PageContentViewController.m
+//  SNPageContentViewController.m
 //  SporNetApp
 //
 //  Created by ZhengYang on 16/7/1.
 //  Copyright © 2016年 Peng Wang. All rights reserved.
 //
 
-#import "PageContentViewController.h"
+#import "SNPageContentViewController.h"
 
-@interface PageContentViewController ()
+@interface SNPageContentViewController ()
 
 @end
 
-@implementation PageContentViewController
+@implementation SNPageContentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
