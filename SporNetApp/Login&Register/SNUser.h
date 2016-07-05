@@ -22,7 +22,7 @@ typedef enum{
     GenderFamale
 }GenderType;
 typedef NS_ENUM(NSInteger, BestSports) {
-    BestSportsJogging = 0,
+    BestSportsJogging = 1,
     BestSportsMuscle,
     BestSportsSoccer,
     BestSportsBasketball,
@@ -42,4 +42,5 @@ typedef NS_ENUM(NSInteger, SportTimeSlot) {
 @property(nonatomic, assign) AVUser *user;
 @property(nonatomic, assign) BestSports bestSport;
 @property(nonatomic, assign) SportTimeSlot sportTimeSlot;
+@property(nonatomic, assign) NSString *aboutMe;
 @end

@@ -9,7 +9,7 @@
 #import "SNUser.h"
 
 @implementation SNUser
-@dynamic name,gender, gradYear, bestSport, sportTimeSlot;
+@dynamic name,gender, gradYear, bestSport, sportTimeSlot, aboutMe;
 
 + (NSString *)parseClassName {
     return @"SNUser";
