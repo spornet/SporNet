@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A7872BF1D26EC08006205CF /* SNPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */; };
+		1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */; };
+		1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */; };
 		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
 		6D4454BE1D2417F700F7B51A /* SNUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */; };
 		6D4454BF1D2417F700F7B51A /* SNUserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */; };
@@ -45,6 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A7872BD1D26EC08006205CF /* SNPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPageContentViewController.h; sourceTree = "<group>"; };
+		1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPageContentViewController.m; sourceTree = "<group>"; };
+		1A7872C01D26EE0A006205CF /* SNLaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLaunchPageViewController.h; sourceTree = "<group>"; };
+		1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLaunchPageViewController.m; sourceTree = "<group>"; };
+		1A7872C31D2C08C8006205CF /* SNRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNRegisterViewController.h; sourceTree = "<group>"; };
+		1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNRegisterViewController.m; sourceTree = "<group>"; };
 		6D4454BB1D2417F700F7B51A /* SNUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNUserProfileViewController.h; sourceTree = "<group>"; };
 		6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNUserProfileViewController.m; sourceTree = "<group>"; };
 		6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNUserProfileViewController.xib; sourceTree = "<group>"; };
@@ -207,6 +216,12 @@
 				6D4454BB1D2417F700F7B51A /* SNUserProfileViewController.h */,
 				6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */,
 				6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */,
+				1A7872BD1D26EC08006205CF /* SNPageContentViewController.h */,
+				1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */,
+				1A7872C01D26EE0A006205CF /* SNLaunchPageViewController.h */,
+				1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */,
+				1A7872C31D2C08C8006205CF /* SNRegisterViewController.h */,
+				1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
@@ -335,6 +350,7 @@
 				TargetAttributes = {
 					B82FED191D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Z57DAJWH52;
 					};
 					B82FED321D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -455,9 +471,12 @@
 			files = (
 				6D4454BE1D2417F700F7B51A /* SNUserProfileViewController.m in Sources */,
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
+				1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
 				6DB85C241D25B951008C3DC4 /* SNUser.m in Sources */,
+				1A7872BF1D26EC08006205CF /* SNPageContentViewController.m in Sources */,
+				1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +541,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -566,6 +586,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -591,11 +612,14 @@
 			baseConfigurationReference = B525F8F8A3E7344BD9B7C2D7 /* Pods-SporNetApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SporNetApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Debug;
@@ -605,11 +629,14 @@
 			baseConfigurationReference = D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SporNetApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Release;
