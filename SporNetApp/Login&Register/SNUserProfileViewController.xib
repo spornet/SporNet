@@ -16,11 +16,13 @@
                 <outlet property="birthdayLabel" destination="94V-TL-p4g" id="W58-gH-e9Z"/>
                 <outlet property="bottonConstraint" destination="TZj-Md-N0h" id="a3f-tq-Ta7"/>
                 <outlet property="doneCell" destination="lJC-cG-B9h" id="86K-5Z-mlv"/>
+                <outlet property="firstNameTextField" destination="UhV-GJ-jM0" id="mlk-MZ-Ryl"/>
                 <outlet property="genderCell" destination="ylw-RH-NCF" id="JCZ-F4-Cva"/>
                 <outlet property="gradLabel" destination="6lD-t0-agA" id="DVs-BQ-Io2"/>
                 <outlet property="gradTextField" destination="zlT-X1-MIp" id="bx1-pv-sry"/>
                 <outlet property="graduationCell" destination="E71-Ws-kt8" id="ryA-WR-Sb2"/>
                 <outlet property="graduationYearPicker" destination="BXD-gE-xOE" id="1AU-xU-HnS"/>
+                <outlet property="lastNameTextField" destination="afE-Xx-gO0" id="xW1-7P-Orl"/>
                 <outlet property="nameCell" destination="XCU-NV-pvO" id="emC-uz-NVW"/>
                 <outlet property="picCell" destination="a36-DJ-s77" id="C2R-yA-QIL"/>
                 <outlet property="sexLabel" destination="8r8-Yg-arI" id="kqg-0b-nTI"/>
@@ -212,19 +214,19 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jogging" translatesAutoresizingMaskIntoConstraints="NO" id="vWe-Ne-R1B">
+                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jogging" translatesAutoresizingMaskIntoConstraints="NO" id="vWe-Ne-R1B">
                         <rect key="frame" x="20" y="36" width="34" height="35"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="muscle" translatesAutoresizingMaskIntoConstraints="NO" id="AXM-Nc-Atx">
+                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="muscle" translatesAutoresizingMaskIntoConstraints="NO" id="AXM-Nc-Atx">
                         <rect key="frame" x="80" y="37" width="34" height="35"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="soccer" translatesAutoresizingMaskIntoConstraints="NO" id="0v0-ej-Nfa">
+                    <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="soccer" translatesAutoresizingMaskIntoConstraints="NO" id="0v0-ej-Nfa">
                         <rect key="frame" x="141" y="36" width="34" height="35"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="basketball" translatesAutoresizingMaskIntoConstraints="NO" id="yBh-2z-U0w">
+                    <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="basketball" translatesAutoresizingMaskIntoConstraints="NO" id="yBh-2z-U0w">
                         <rect key="frame" x="210" y="36" width="34" height="35"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yoga" translatesAutoresizingMaskIntoConstraints="NO" id="efe-Rj-jlw">
+                    <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yoga" translatesAutoresizingMaskIntoConstraints="NO" id="efe-Rj-jlw">
                         <rect key="frame" x="271" y="36" width="34" height="35"/>
                     </imageView>
                 </subviews>

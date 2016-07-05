@@ -6,44 +6,40 @@
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 #import "SNUser.h"
-
-
-
-
 #import "SNUserProfileViewController.h"
 #import <AVObject+Subclass.h>
 @interface SNUserProfileViewController ()
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottonConstraint;
-@property (strong, nonatomic) IBOutlet UITableView     *tableView;
-@property (strong, nonatomic) IBOutlet UITableViewCell *nameCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *genderCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *birthdayCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *graduationCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *bestSportCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *sportTimeCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *aboutMeCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *picCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *doneCell;
+@property (strong, nonatomic) IBOutlet UITableView        *tableView;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *nameCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *genderCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *birthdayCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *graduationCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *bestSportCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *sportTimeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *aboutMeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *picCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell    *doneCell;
 
-
-
-@property (strong, nonatomic) IBOutlet UILabel *sexLabel;
-@property (strong, nonatomic) IBOutlet UILabel *birthdayLabel;
-
-@property (strong, nonatomic) IBOutlet UILabel *gradLabel;
-
-@property (strong, nonatomic) IBOutlet UIPickerView *sexPicker;
-@property (strong, nonatomic) IBOutlet UIPickerView *graduationYearPicker;
-@property(weak, nonatomic) UIPickerView *birthdayPiker;
-
-@property (strong, nonatomic) IBOutlet UITextField *sexTextField;
-
-@property (strong, nonatomic) IBOutlet UITextField *gradTextField;
-@property (strong, nonatomic) IBOutlet UITextView *aboutmeTextView;
+@property (strong, nonatomic) IBOutlet UITextField        *firstNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField        *lastNameTextField;
+@property (strong, nonatomic) IBOutlet UILabel            *sexLabel;
+@property (strong, nonatomic) IBOutlet UILabel            *birthdayLabel;
+@property (strong, nonatomic) IBOutlet UILabel            *gradLabel;
+@property (strong, nonatomic) IBOutlet UIPickerView       *sexPicker;
+@property (strong, nonatomic) IBOutlet UIPickerView       *graduationYearPicker;
+@property (weak, nonatomic  ) UIPickerView                *birthdayPiker;
+@property (strong, nonatomic) IBOutlet UITextField        *sexTextField;
+@property (strong, nonatomic) IBOutlet UITextField        *gradTextField;
+@property (strong, nonatomic) IBOutlet UITextView         *aboutmeTextView;
 
 @property NSArray *gradYears;
 @property NSArray *sex;
+@property GenderType selectedGender;
+@property BestSports selectedBestSport;
+@property int selectedGradYear;
+
 @end
 
 @implementation SNUserProfileViewController
@@ -64,20 +60,22 @@
     self.sexTextField.inputView = self.sexPicker;
 
     self.gradTextField.inputView = self.graduationYearPicker;
+    
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
-        UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:2];
+    UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:2];
     [imageView addGestureRecognizer:tapRecognizer];
+    
     self.aboutmeTextView.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
-    //    for(int i = 1; i <= 4; i++) {
-//        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
-// 
-//        UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:i];
-//        [imageView addGestureRecognizer:tapRecognizer];
-//    }
+    for(int i = 1; i <= 5; i++) {
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
+ 
+        UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:i];
+        [imageView addGestureRecognizer:tapRecognizer];
+    }
     
 }
 
@@ -200,36 +198,22 @@
       inComponent:(NSInteger)component {
     if([pickerView isEqual:self.sexPicker]) {
         self.sexLabel.text = self.sex[row];
+        self.selectedGender = (GenderType)row;
     } else {
         self.gradLabel.text = self.gradYears[row];
+        self.selectedGradYear = [self.gradLabel.text intValue];
     }
 }
 
--(void)saveData {
-    AVObject *user1 = [AVObject objectWithClassName:@"User"];
-    [user1 setObject:@"Emma" forKey:@"name"];
-    [user1 setObject:@"Female" forKey:@"gender"];
-    [user1 setObject:@"gradYear" forKey:@"2016"];
-    [user1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"存储成功");
-        } else {
-            NSLog(@"存储失败");
-        }
-    }];
-}
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self dismissKeyboard];
 }
-- (void)sportTapped:(UIImageView*)sender {
-    //UIImageView *image = (UIImageView*)sender;
-    sender.image = [UIImage imageNamed:@"yoga"];
-}
--(void)textViewDidBeginEditing:(UITextView *)textView {
-//    self.topConstraint.constant -= 400;
-//    self.bottonConstraint.constant -= 400;
-}
 
+- (void)sportTapped:(UITapGestureRecognizer *)tapGesture {
+    UIImageView *image = (UIImageView*)tapGesture.view;
+    image.image = [UIImage imageNamed:@"yoga"];
+    self.selectedBestSport = (BestSports)image.tag;
+}
 
 - (void)keyboardWillChange:(NSNotification *)notification {
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
@@ -244,21 +228,22 @@
 }
 
 - (void)demoCreateObject {
-    SNUser *user = [[SNUser alloc] init];
-    user.name = @"Emma Pu";
-    user.gender = GenderFamale;
-    user.gradYear = 2016;
-    user.bestSport = BestSportsBasketball;
-    user.sportTimeSlot = SportTimeSlotNight;
+    //更新的时候，得把NSInteger值转为NSNumber
+    //AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:@"5776986f5e10720046e19002"];
+    AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
+    [user setObject:[NSString stringWithFormat:@"%@ %@", self.firstNameTextField.text, self.lastNameTextField.text] forKey:@"name"];
+    [user setObject:[NSNumber numberWithInteger:self.selectedGradYear] forKey:@"gradYear"];
+    [user setObject:[NSNumber numberWithInt:self.selectedGender] forKey:@"gender"];
+    [user setObject:[NSNumber numberWithInteger:self.selectedBestSport] forKey:@"bestSport"];
+    [user setObject:[NSNumber numberWithInteger:SportTimeSlotNight] forKey:@"sportTimeSlot"];
+    [user setObject:self.aboutmeTextView.text forKey:@"aboutMe"];
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            NSLog(@"存储成功");
+            NSLog(@"存储成功哈哈哈");
         } else {
             NSLog(@"存储失败");
             
         }
     }];
-
 }
-
 @end
