@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="rankingCell" rowHeight="77" id="KGk-i7-Jjw" customClass="rankingCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="medalGold" translatesAutoresizingMaskIntoConstraints="NO" id="cVB-yO-0rC">
+                        <rect key="frame" x="23" y="18" width="30" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="Q5f-VP-hsC"/>
+                            <constraint firstAttribute="height" constant="40" id="rhJ-Eb-sz2"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbq-xo-oYR">
+                        <rect key="frame" x="68" y="10" width="56" height="56"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user1" translatesAutoresizingMaskIntoConstraints="NO" id="h6t-aE-mTd">
+                                <rect key="frame" x="5" y="5" width="46" height="46"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.68587458053691275" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="h6t-aE-mTd" secondAttribute="trailing" constant="5" id="5IA-7c-lLg"/>
+                            <constraint firstAttribute="height" constant="56" id="MlH-xp-ozA"/>
+                            <constraint firstItem="h6t-aE-mTd" firstAttribute="leading" secondItem="Xbq-xo-oYR" secondAttribute="leading" constant="5" id="N6X-ob-bCn"/>
+                            <constraint firstAttribute="bottom" secondItem="h6t-aE-mTd" secondAttribute="bottom" constant="5" id="dDI-6s-t5f"/>
+                            <constraint firstAttribute="width" constant="56" id="k8b-eU-JEg"/>
+                            <constraint firstItem="h6t-aE-mTd" firstAttribute="top" secondItem="Xbq-xo-oYR" secondAttribute="top" constant="5" id="rSE-Gx-xZS"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yamada Ryosuke" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCk-GZ-wlB">
+                        <rect key="frame" x="139" y="15" width="130" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boston University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qni-Bn-9T1">
+                        <rect key="frame" x="139" y="44" width="114" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.56470588239999997" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccerSelected" translatesAutoresizingMaskIntoConstraints="NO" id="LmI-QB-aUi">
+                        <rect key="frame" x="104" y="10" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="5k0-SX-Le3"/>
+                            <constraint firstAttribute="height" constant="20" id="DMT-EX-ede"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Xbq-xo-oYR" firstAttribute="leading" secondItem="cVB-yO-0rC" secondAttribute="trailing" constant="15" id="0M7-xS-gbd"/>
+                    <constraint firstItem="jCk-GZ-wlB" firstAttribute="leading" secondItem="Xbq-xo-oYR" secondAttribute="trailing" constant="15" id="7JX-dg-tIB"/>
+                    <constraint firstItem="qni-Bn-9T1" firstAttribute="leading" secondItem="jCk-GZ-wlB" secondAttribute="leading" id="Cug-uc-SZf"/>
+                    <constraint firstItem="Xbq-xo-oYR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="0.6" id="ZWN-qk-jx1"/>
+                    <constraint firstItem="Xbq-xo-oYR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZcV-tA-NV6"/>
+                    <constraint firstItem="qni-Bn-9T1" firstAttribute="bottom" secondItem="Xbq-xo-oYR" secondAttribute="bottom" constant="-5" id="fuO-Sx-P7O"/>
+                    <constraint firstItem="jCk-GZ-wlB" firstAttribute="top" secondItem="Xbq-xo-oYR" secondAttribute="top" constant="5" id="hSi-XW-ThM"/>
+                    <constraint firstItem="cVB-yO-0rC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="ips-m3-qjz"/>
+                    <constraint firstItem="cVB-yO-0rC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="w1n-8u-xuk"/>
+                    <constraint firstItem="Xbq-xo-oYR" firstAttribute="top" secondItem="LmI-QB-aUi" secondAttribute="bottom" constant="-20" id="wLq-kv-NoW"/>
+                    <constraint firstItem="LmI-QB-aUi" firstAttribute="leading" secondItem="Xbq-xo-oYR" secondAttribute="trailing" constant="-20" id="zNP-8t-mSc"/>
+                    <constraint firstItem="jCk-GZ-wlB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="0.7" id="zlb-fc-8s7"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ZWN-qk-jx1"/>
+                        <exclude reference="zlb-fc-8s7"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="bestSportImageView" destination="LmI-QB-aUi" id="GRS-Sc-m4X"/>
+                <outlet property="medalImageView" destination="cVB-yO-0rC" id="qQP-J3-3cN"/>
+                <outlet property="userBestSportColorView" destination="Xbq-xo-oYR" id="pX4-to-0Mg"/>
+                <outlet property="userImageView" destination="h6t-aE-mTd" id="ZSs-eF-0Ab"/>
+                <outlet property="userNameLabel" destination="jCk-GZ-wlB" id="Eqe-dd-FV1"/>
+                <outlet property="userSchoolLabel" destination="qni-Bn-9T1" id="pUQ-Ms-pBd"/>
+            </connections>
+            <point key="canvasLocation" x="296" y="350.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="medalGold" width="30" height="48"/>
+        <image name="soccerSelected" width="126" height="126"/>
+        <image name="user1" width="720" height="450"/>
+    </resources>
+</document>

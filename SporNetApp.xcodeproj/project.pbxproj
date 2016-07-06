@@ -17,6 +17,11 @@
 		6D65F3BE1D2C4C930043B59C /* SNSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D65F3BD1D2C4C930043B59C /* SNSettingViewController.xib */; };
 		6D65F3CB1D2C57770043B59C /* SNPreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65F3C91D2C57770043B59C /* SNPreferenceViewController.m */; };
 		6D65F3CC1D2C57770043B59C /* SNPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D65F3CA1D2C57770043B59C /* SNPreferenceViewController.xib */; };
+		6D65F3D01D2D50DA0043B59C /* SNRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65F3CE1D2D50DA0043B59C /* SNRankingViewController.m */; };
+		6D65F3D11D2D50DA0043B59C /* SNRankingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D65F3CF1D2D50DA0043B59C /* SNRankingViewController.xib */; };
+		6D65F3D51D2D51F30043B59C /* rankingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65F3D31D2D51F30043B59C /* rankingCell.m */; };
+		6D65F3D61D2D51F30043B59C /* rankingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D65F3D41D2D51F30043B59C /* rankingCell.xib */; };
+		6D65F3D91D2D66400043B59C /* MockUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65F3D81D2D66400043B59C /* MockUser.m */; };
 		6DB85C241D25B951008C3DC4 /* SNUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB85C231D25B951008C3DC4 /* SNUser.m */; };
 		B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B82FED291D21A57D00292ECC /* Assets.xcassets */; };
 		B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */; };
@@ -67,6 +72,14 @@
 		6D65F3C81D2C57770043B59C /* SNPreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPreferenceViewController.h; sourceTree = "<group>"; };
 		6D65F3C91D2C57770043B59C /* SNPreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPreferenceViewController.m; sourceTree = "<group>"; };
 		6D65F3CA1D2C57770043B59C /* SNPreferenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNPreferenceViewController.xib; sourceTree = "<group>"; };
+		6D65F3CD1D2D50DA0043B59C /* SNRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNRankingViewController.h; sourceTree = "<group>"; };
+		6D65F3CE1D2D50DA0043B59C /* SNRankingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNRankingViewController.m; sourceTree = "<group>"; };
+		6D65F3CF1D2D50DA0043B59C /* SNRankingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNRankingViewController.xib; sourceTree = "<group>"; };
+		6D65F3D21D2D51F30043B59C /* rankingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rankingCell.h; sourceTree = "<group>"; };
+		6D65F3D31D2D51F30043B59C /* rankingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rankingCell.m; sourceTree = "<group>"; };
+		6D65F3D41D2D51F30043B59C /* rankingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = rankingCell.xib; sourceTree = "<group>"; };
+		6D65F3D71D2D66400043B59C /* MockUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockUser.h; sourceTree = "<group>"; };
+		6D65F3D81D2D66400043B59C /* MockUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockUser.m; sourceTree = "<group>"; };
 		6DB85C221D25B951008C3DC4 /* SNUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNUser.h; path = "Login&Register/SNUser.h"; sourceTree = "<group>"; };
 		6DB85C231D25B951008C3DC4 /* SNUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNUser.m; path = "Login&Register/SNUser.m"; sourceTree = "<group>"; };
 		9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SporNetApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,6 +275,14 @@
 			isa = PBXGroup;
 			children = (
 				B8CFCCFA1D2415FD0006495E /* RankingStoryboard.storyboard */,
+				6D65F3CD1D2D50DA0043B59C /* SNRankingViewController.h */,
+				6D65F3CE1D2D50DA0043B59C /* SNRankingViewController.m */,
+				6D65F3CF1D2D50DA0043B59C /* SNRankingViewController.xib */,
+				6D65F3D21D2D51F30043B59C /* rankingCell.h */,
+				6D65F3D31D2D51F30043B59C /* rankingCell.m */,
+				6D65F3D41D2D51F30043B59C /* rankingCell.xib */,
+				6D65F3D71D2D66400043B59C /* MockUser.h */,
+				6D65F3D81D2D66400043B59C /* MockUser.m */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -403,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D65F3D61D2D51F30043B59C /* rankingCell.xib in Resources */,
 				B8CFCCFF1D2416270006495E /* SettingStoryboard.storyboard in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
 				6D65F3CC1D2C57770043B59C /* SNPreferenceViewController.xib in Resources */,
@@ -411,6 +433,7 @@
 				B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */,
 				B8CFCCFB1D2415FD0006495E /* RankingStoryboard.storyboard in Resources */,
 				6D65F3BE1D2C4C930043B59C /* SNSettingViewController.xib in Resources */,
+				6D65F3D11D2D50DA0043B59C /* SNRankingViewController.xib in Resources */,
 				B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */,
 				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
 				B8CFCCE91D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard in Resources */,
@@ -489,6 +512,7 @@
 			files = (
 				6D4454BE1D2417F700F7B51A /* SNUserProfileViewController.m in Sources */,
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
+				6D65F3D51D2D51F30043B59C /* rankingCell.m in Sources */,
 				1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
@@ -497,6 +521,8 @@
 				6D65F3BB1D2C4C7E0043B59C /* SNSettingViewController.m in Sources */,
 				6D65F3CB1D2C57770043B59C /* SNPreferenceViewController.m in Sources */,
 				1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */,
+				6D65F3D91D2D66400043B59C /* MockUser.m in Sources */,
+				6D65F3D01D2D50DA0043B59C /* SNRankingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
