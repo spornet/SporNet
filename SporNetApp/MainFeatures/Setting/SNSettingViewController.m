@@ -7,6 +7,8 @@
 //
 
 #import "SNSettingViewController.h"
+#import "SNPreferenceViewController.h"
+#import "SNUserProfileViewController.h"
 // 账户相关Row
 typedef NS_ENUM(NSInteger, SettingRow) {
     SettingRowSearchPreference= 0,
@@ -33,6 +35,11 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     self.userImageView.clipsToBounds = YES;
     [self.userImageView.layer setCornerRadius:50];
     [self setBlurTopImage:self.userImageView.image];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                       initWithTarget:self
+                                   action:@selector(userImageTapped)];
+    
+    [self.userImageView addGestureRecognizer:tap];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -49,6 +56,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
     switch (indexPath.row) {
         case SettingRowSearchPreference:
@@ -85,5 +93,32 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     CGImageRelease(cgImage);
     self.userBlurImageView.image = blurImage;
     self.userBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case SettingRowSearchPreference:{
+            SNPreferenceViewController *preferenceVC = [[SNPreferenceViewController alloc] init];
+            [self.navigationController pushViewController:preferenceVC animated:YES];
+        }
+        break;
+        case SettingRowChangePassword:
+            NSLog(@"%@", @"Go to change password!");
+            break;
+        case SettingRowContactUs:
+            NSLog(@"%@", @"Contact us");
+            break;
+        case SettingRowRateUs:
+            NSLog(@"%@", @"Rate us");
+            break;
+        default:
+            break;
+    }
+}
+-(void)userImageTapped {
+    SNUserProfileViewController *profileVC = [[SNUserProfileViewController alloc] init];
+    [self.navigationController pushViewController:profileVC animated:YES];
+}
+- (IBAction)logOutAction:(id)sender {
+    NSLog(@"%@", @"Log Out");
 }
 @end

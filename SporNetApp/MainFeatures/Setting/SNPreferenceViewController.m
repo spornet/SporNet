@@ -7,31 +7,61 @@
 //
 
 #import "SNPreferenceViewController.h"
-
+typedef NS_ENUM(NSInteger, PreferenceRow) {
+    PreferenceRowGender= 0,
+    PreferenceRowRadius,
+    PreferenceRowSchool,
+    PreferenceRowGraduationYear,
+    PreferenceRowNumber
+};
+typedef NS_ENUM(NSInteger, PreferenceSwitch) {
+    PreferenceSwitchMale= 1,
+    PreferenceSwitchFemale,
+    PreferenceSwitchSchool
+};
 @interface SNPreferenceViewController ()
-
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableViewCell *genderCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *radiusCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *schoolCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *graduationCell;
+@property NSArray *cellArray;
 @end
 
 @implementation SNPreferenceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.cellArray = @[self.genderCell, self.radiusCell, self.schoolCell, self.graduationCell];
+    
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.cellArray.count;
 }
-*/
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.cellArray[indexPath.row];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = self.cellArray[indexPath.row];
+    return cell.frame.size.height;
+}
+- (IBAction)switchValueChanged:(UISwitch *)sender {
+    switch (sender.tag) {
+        case PreferenceSwitchMale:
+            [[NSUserDefaults standardUserDefaults]setObject:sender.isOn?[NSNumber numberWithBool:YES]:[NSNumber numberWithBool:NO] forKey:@"searchPreferenceMale"];
+            break;
+        case PreferenceSwitchFemale:
+            [[NSUserDefaults standardUserDefaults]setObject:sender.isOn?[NSNumber numberWithBool:YES]:[NSNumber numberWithBool:NO] forKey:@"searchPreferenceFemale"];
+            break;
+        case PreferenceSwitchSchool:
+            [[NSUserDefaults standardUserDefaults]setObject:sender.isOn?[NSNumber numberWithBool:YES]:[NSNumber numberWithBool:NO] forKey:@"searchPreferenceOnlyMySchool"];
+            break;
+        default:
+            break;
+    }
+}
 
 @end
