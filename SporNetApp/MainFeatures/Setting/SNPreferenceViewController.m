@@ -19,22 +19,26 @@ typedef NS_ENUM(NSInteger, PreferenceSwitch) {
     PreferenceSwitchFemale,
     PreferenceSwitchSchool
 };
+
 @interface SNPreferenceViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITableViewCell *genderCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *radiusCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *schoolCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *graduationCell;
-@property NSArray *cellArray;
+
+//array of cells for preference table.
+@property (nonatomic) NSArray *cellArray;
 @end
 
 @implementation SNPreferenceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //set cell array
     self.cellArray = @[self.genderCell, self.radiusCell, self.schoolCell, self.graduationCell];
-    
 }
+#pragma mark - table view delegate & datasource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -48,6 +52,7 @@ typedef NS_ENUM(NSInteger, PreferenceSwitch) {
     UITableViewCell *cell = self.cellArray[indexPath.row];
     return cell.frame.size.height;
 }
+//IBOutlet for three switches.
 - (IBAction)switchValueChanged:(UISwitch *)sender {
     switch (sender.tag) {
         case PreferenceSwitchMale:
@@ -63,5 +68,4 @@ typedef NS_ENUM(NSInteger, PreferenceSwitch) {
             break;
     }
 }
-
 @end

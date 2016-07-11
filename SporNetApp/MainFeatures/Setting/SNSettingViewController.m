@@ -9,7 +9,7 @@
 #import "SNSettingViewController.h"
 #import "SNPreferenceViewController.h"
 #import "SNUserProfileViewController.h"
-// 账户相关Row
+
 typedef NS_ENUM(NSInteger, SettingRow) {
     SettingRowSearchPreference= 0,
     SettingRowChangePassword,
@@ -23,31 +23,34 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 @property (strong, nonatomic) IBOutlet UIView *sportColorView;
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *userBlurImageView;
-
+//Text array for setting view.
+@property(nonatomic) NSArray *settingTextArray;
 @end
 
 @implementation SNSettingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //set user photo to round shape
     self.sportColorView.clipsToBounds = YES;
     [self.sportColorView.layer setCornerRadius:55];
     self.userImageView.clipsToBounds = YES;
     [self.userImageView.layer setCornerRadius:50];
+    //blur the background image
     [self setBlurTopImage:self.userImageView.image];
+    //add tap gesture to user photo. When tapped, go to user profile page.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                        initWithTarget:self
                                    action:@selector(userImageTapped)];
-    
     [self.userImageView addGestureRecognizer:tap];
 }
+#pragma mark- table view delegate & datasource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return SettingRowNumber;
 }
-
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"simpleTableIdentifier"];
@@ -58,27 +61,35 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.text = self.settingTextArray[indexPath.row];
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 54;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
-        case SettingRowSearchPreference:
-            cell.textLabel.text = @"Search Preference";
+        case SettingRowSearchPreference:{
+            SNPreferenceViewController *preferenceVC = [[SNPreferenceViewController alloc] init];
+            [self.navigationController pushViewController:preferenceVC animated:YES];
+        }
             break;
         case SettingRowChangePassword:
-            cell.textLabel.text = @"Change Password";
+            NSLog(@"%@", @"Go to change password!");
             break;
         case SettingRowContactUs:
-            cell.textLabel.text = @"Contact Us";
+            NSLog(@"%@", @"Contact us");
             break;
         case SettingRowRateUs:
-            cell.textLabel.text = @"Rate Us";
+            NSLog(@"%@", @"Rate us");
             break;
         default:
             break;
     }
-    return cell;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 54;
-}
+
+// blur the top background image
 -(void)setBlurTopImage:(UIImage*)image {
     CIContext *context = [CIContext contextWithOptions:nil];
     CIImage *inputImage = [[CIImage alloc] initWithImage:image];
@@ -94,30 +105,19 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     self.userBlurImageView.image = blurImage;
     self.userBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.row) {
-        case SettingRowSearchPreference:{
-            SNPreferenceViewController *preferenceVC = [[SNPreferenceViewController alloc] init];
-            [self.navigationController pushViewController:preferenceVC animated:YES];
-        }
-        break;
-        case SettingRowChangePassword:
-            NSLog(@"%@", @"Go to change password!");
-            break;
-        case SettingRowContactUs:
-            NSLog(@"%@", @"Contact us");
-            break;
-        case SettingRowRateUs:
-            NSLog(@"%@", @"Rate us");
-            break;
-        default:
-            break;
+//setter for text array
+-(NSArray*)settingTextArray {
+    if(_settingTextArray == nil) {
+        _settingTextArray = @[@"Search Preference",@"Change Password", @"Contact Us", @"Rate Us"];
     }
+    return _settingTextArray;
 }
+//go to user profile page when image tapped
 -(void)userImageTapped {
     SNUserProfileViewController *profileVC = [[SNUserProfileViewController alloc] init];
     [self.navigationController pushViewController:profileVC animated:YES];
 }
+
 - (IBAction)logOutAction:(id)sender {
     NSLog(@"%@", @"Log Out");
 }

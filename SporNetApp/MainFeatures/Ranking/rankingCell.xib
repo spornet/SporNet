@@ -96,7 +96,7 @@
     </objects>
     <resources>
         <image name="medalGold" width="30" height="48"/>
-        <image name="soccerSelected" width="126" height="126"/>
+        <image name="soccerSelected" width="77" height="77"/>
         <image name="user1" width="720" height="450"/>
     </resources>
 </document>

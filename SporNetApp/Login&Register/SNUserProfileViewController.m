@@ -10,7 +10,8 @@
 #import <AVObject+Subclass.h>
 @interface SNUserProfileViewController ()
 
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottonConstraint;
+
+
 @property (strong, nonatomic) IBOutlet UITableView        *tableView;
 @property (strong, nonatomic) IBOutlet UITableViewCell    *nameCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell    *genderCell;
@@ -21,51 +22,54 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell    *aboutMeCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell    *picCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell    *doneCell;
-
+//These two textfield are used to pop picker view. No use for data.
 @property (strong, nonatomic) IBOutlet UITextField        *firstNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField        *lastNameTextField;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottonConstraint;
 @property (strong, nonatomic) IBOutlet UILabel            *sexLabel;
 @property (strong, nonatomic) IBOutlet UILabel            *birthdayLabel;
 @property (strong, nonatomic) IBOutlet UILabel            *gradLabel;
 @property (strong, nonatomic) IBOutlet UIPickerView       *sexPicker;
 @property (strong, nonatomic) IBOutlet UIPickerView       *graduationYearPicker;
-@property (weak, nonatomic  ) UIPickerView                *birthdayPiker;
 @property (strong, nonatomic) IBOutlet UITextField        *sexTextField;
 @property (strong, nonatomic) IBOutlet UITextField        *gradTextField;
 @property (strong, nonatomic) IBOutlet UITextView         *aboutmeTextView;
 
-@property NSArray *gradYears;
-@property NSArray *sex;
+//gender selected by user
 @property GenderType selectedGender;
+//best sport selected by user
 @property BestSports selectedBestSport;
+//graduation year selected by user
 @property int selectedGradYear;
 
+@property (weak, nonatomic  ) UIPickerView                *birthdayPiker;
 @end
 
 @implementation SNUserProfileViewController
-
+//select options of gradYears
+NSArray *gradYears;
+//select options for gender
+NSArray *genderArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-//                                   initWithTarget:self
-//                                   action:@selector(dismissKeyboard)];
-//    
-//    [self.view addGestureRecognizer:tap];
+    //set delegates
     self.sexPicker.delegate = self;
     self.sexPicker.dataSource = self;
     self.graduationYearPicker.delegate = self;
     self.graduationYearPicker.dataSource = self;
-    self.gradYears = @[@"2010",@"2011",@"2012",@"2013",@"2014",@"2015",@"2016",@"2017",@"2018",@"2019",@"2020",@"2021"];
-    self.sex = @[@"Male", @"Female"];
+    self.aboutmeTextView.delegate = self;
+    //set constant arrays
+    gradYears = @[@"2010",@"2011",@"2012",@"2013",@"2014",@"2015",@"2016",@"2017",@"2018",@"2019",@"2020",@"2021"];
+    genderArray = @[@"Male", @"Female"];
+    //set pickers as input views of textfields.
     self.sexTextField.inputView = self.sexPicker;
-
     self.gradTextField.inputView = self.graduationYearPicker;
-    
+    //add tap gestures to 5 sport images.
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
     UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:2];
     [imageView addGestureRecognizer:tapRecognizer];
     
-    self.aboutmeTextView.delegate = self;
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
@@ -76,16 +80,14 @@
         UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:i];
         [imageView addGestureRecognizer:tapRecognizer];
     }
-    
 }
-
+#pragma mark - Table view delegate & datasource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return UserProfileRowNumber;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat height;
     switch (indexPath.row) {
@@ -105,7 +107,6 @@
     }
     return height;
 }
-
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     switch (indexPath.row) {
@@ -142,14 +143,11 @@
     }
     return  cell;
 }
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self dismissKeyboard];
     switch (indexPath.row) {
         case UserProfileRowGender:
             NSLog(@"select gender");
-            //[self.view addSubview:self.sexPicker];
             [self.sexTextField becomeFirstResponder];
             break;
         case UserProfileRowBirthday:
@@ -174,10 +172,16 @@
             break;
     }
 }
+//dismiss keyboard with animation
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
     self.bottonConstraint.constant = 0;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
 }
+#pragma mark - Picker view delegate & datasource
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
@@ -185,50 +189,52 @@
     if([pickerView isEqual:self.sexPicker]) {
         return 2;
     } else {
-        return self.gradYears.count;
+        return gradYears.count;
     }
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     if([pickerView isEqual:self.sexPicker]) {
-        return self.sex[row];
+        return genderArray[row];
     } else {
-        return self.gradYears[row];
+        return gradYears[row];
     }
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
       inComponent:(NSInteger)component {
     if([pickerView isEqual:self.sexPicker]) {
-        self.sexLabel.text = self.sex[row];
+        self.sexLabel.text = genderArray[row];
         self.selectedGender = (GenderType)row;
     } else {
-        self.gradLabel.text = self.gradYears[row];
+        self.gradLabel.text = gradYears[row];
         self.selectedGradYear = [self.gradLabel.text intValue];
     }
 }
 
+
+#pragma mark - Scroll view delegate.
+//dismiss keyboard when the table view start scrolling
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self dismissKeyboard];
 }
 
+
+//When the best sport image is tapped, reset that image.
 - (void)sportTapped:(UITapGestureRecognizer *)tapGesture {
     UIImageView *image = (UIImageView*)tapGesture.view;
     image.image = [UIImage imageNamed:@"yoga"];
     self.selectedBestSport = (BestSports)image.tag;
 }
-
+#pragma mark - move about me textview with animation when keyboard popping up.
 - (void)keyboardWillChange:(NSNotification *)notification {
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    if([self.aboutmeTextView isFirstResponder]) {
-        //start animation for poping up keyboard
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.2];
-        self.bottonConstraint.constant = keyboardSize.height;
-        [self.view layoutIfNeeded];
-        [UIView commitAnimations];
-    }
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.bottonConstraint.constant = [self.aboutmeTextView isFirstResponder]? keyboardSize.height:0;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
 }
-
+//save user information
 - (void)demoCreateObject {
     //更新的时候，得把NSInteger值转为NSNumber
     //AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:@"5776986f5e10720046e19002"];
@@ -244,7 +250,6 @@
             NSLog(@"存储成功哈哈哈");
         } else {
             NSLog(@"存储失败");
-            
         }
     }];
 }

@@ -24,7 +24,9 @@ typedef NS_ENUM(NSInteger, SportTimeSlot) {
 @property NSString *name;
 @property NSString *school;
 @property enum BestSports bestSport;
+@property enum BestSports todaySport;
 @property enum SportTimeSlot sportTimeSlot;
 @property NSData *photo;
 +(id)initWithName:(NSString*)name school:(NSString*)school bestSport:(BestSports)bestSport spotTimeSlot:(SportTimeSlot)sportTimeSlot photo:(NSData*)photo;
++(id)initWithName:(NSString*)name school:(NSString*)school todasySport:(BestSports)todaySport spotTimeSlot:(SportTimeSlot)sportTimeSlot photo:(NSData*)photo;
 @end

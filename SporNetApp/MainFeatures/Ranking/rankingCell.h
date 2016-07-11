@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *bestSportImageView;
 @property(strong) UILabel *rankLabel;
 
-@property NSArray *sportTimeColorArray;
-@property NSArray *sportPicArray;
+
+
 -(void)configureCellWithUser:(MockUser*)user Ranking:(NSInteger)ranking;
 @end

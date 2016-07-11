@@ -158,10 +158,10 @@
         </view>
     </objects>
     <resources>
-        <image name="basketball" width="512" height="512"/>
-        <image name="jogging" width="512" height="512"/>
-        <image name="muscle" width="512" height="512"/>
-        <image name="soccer" width="512" height="512"/>
-        <image name="yoga" width="512" height="512"/>
+        <image name="basketball" width="60" height="60"/>
+        <image name="jogging" width="60" height="60"/>
+        <image name="muscle" width="58" height="58"/>
+        <image name="soccer" width="60" height="60"/>
+        <image name="yoga" width="60" height="60"/>
     </resources>
 </document>
