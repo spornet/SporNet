@@ -33,6 +33,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+//method for login button
 - (IBAction)login:(id)sender {
     //判断是否同时输入了邮箱和密码
     if (_userEmailTextfield.text.length != 0 && _passwordTextfield.text.length !=0) {
@@ -52,15 +53,17 @@
     }
 }
 
+//method for forget password button
 - (IBAction)forgetPassword {
     [self performSegueWithIdentifier:@"fpSegue" sender:nil];
 }
 
-
+//method for dont receive email
 - (IBAction)dontRE {
     [self performSegueWithIdentifier:@"dreSegue" sender:nil];
 }
 
+//pass the segue condition in next view controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     SNFpDreViewController *destination = segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"fpSegue"]) {
@@ -71,6 +74,7 @@
     
 }
 
+//method for signup button
 - (IBAction)signup:(id)sender {
    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login&RegisterStoryBoard" bundle:nil];

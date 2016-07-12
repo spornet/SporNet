@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SNFpDreViewController : UIViewController
+//if condition for which method call: (isFP)?[forget password]:[didnt receive email]
 @property BOOL isFp;
 @end

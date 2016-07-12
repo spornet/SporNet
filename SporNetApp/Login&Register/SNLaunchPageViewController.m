@@ -39,6 +39,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+//previous page
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     NSInteger index = ((SNPageContentViewController*) viewController).pageIndex;
@@ -49,6 +50,7 @@
     return [self viewControllerAtIndex:index];
 }
 
+//next page
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSInteger index = ((SNPageContentViewController*) viewController).pageIndex;
@@ -63,6 +65,7 @@
     
 }
 
+//current page
 -(SNPageContentViewController *)viewControllerAtIndex:(NSInteger)index{
     if ((self.pageTitles.count == 0)||(index == self.pageTitles.count)) {
         return nil;
@@ -82,6 +85,7 @@
 
 }
 
+//which index for the first page
 -(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
 {
     return 0;

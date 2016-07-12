@@ -36,12 +36,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//method for tip button
 - (IBAction)tipClick {
 
     UIAlertView *tip = [[UIAlertView alloc]initWithTitle:@"Tip !" message:@"Please use your school email !" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [tip show];
 
 }
+
+//method for submit
 - (IBAction)submitClick {
 
     BOOL *validE = [self validateEmail:_emailTextfield.text];
