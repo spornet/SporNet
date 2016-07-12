@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SNPreferenceViewController : UIViewController
+@interface SNPreferenceViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end

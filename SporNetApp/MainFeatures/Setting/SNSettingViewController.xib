@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ho1-2K-fvJ">
-                    <rect key="frame" x="0.0" y="60" width="375" height="200"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8qh-yx-NfY">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -29,7 +29,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lg3-pF-9HQ">
                             <rect key="frame" x="133" y="45" width="110" height="110"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exp" translatesAutoresizingMaskIntoConstraints="NO" id="B2j-02-D7i">
+                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user2" translatesAutoresizingMaskIntoConstraints="NO" id="B2j-02-D7i">
                                     <rect key="frame" x="5" y="5" width="100" height="100"/>
                                 </imageView>
                             </subviews>
@@ -63,8 +63,8 @@
                         <constraint firstItem="Lg3-pF-9HQ" firstAttribute="centerX" secondItem="ho1-2K-fvJ" secondAttribute="centerX" id="wZM-CL-Lez"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qfK-9d-wHO">
-                    <rect key="frame" x="0.0" y="260" width="375" height="233"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qfK-9d-wHO">
+                    <rect key="frame" x="0.0" y="200" width="375" height="267"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ALQ-nx-gJg"/>
@@ -84,7 +84,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOj-kq-7Xq">
-                    <rect key="frame" x="88" y="513" width="200" height="30"/>
+                    <rect key="frame" x="88" y="487" width="200" height="30"/>
                     <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="EpV-Pc-f2F"/>
@@ -92,15 +92,18 @@
                     <state key="normal" title="LOG OUT">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="logOutAction:" destination="-1" eventType="touchUpInside" id="FWN-rT-SR0"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="q4a-To-a7y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="13" id="BBG-LR-PzZ"/>
                 <constraint firstItem="qfK-9d-wHO" firstAttribute="top" secondItem="ho1-2K-fvJ" secondAttribute="bottom" id="Dqy-mE-flC"/>
-                <constraint firstItem="ho1-2K-fvJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="E6F-wn-0bW"/>
+                <constraint firstItem="ho1-2K-fvJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="E6F-wn-0bW"/>
                 <constraint firstItem="TOj-kq-7Xq" firstAttribute="top" secondItem="qfK-9d-wHO" secondAttribute="bottom" constant="20" id="IfF-qY-AgM"/>
-                <constraint firstItem="qfK-9d-wHO" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.35" id="LD6-8S-byc"/>
+                <constraint firstItem="qfK-9d-wHO" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.4" id="LD6-8S-byc"/>
                 <constraint firstAttribute="trailing" secondItem="ho1-2K-fvJ" secondAttribute="trailing" id="Ohm-54-RNk"/>
                 <constraint firstItem="ho1-2K-fvJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TZX-rO-bYI"/>
                 <constraint firstItem="qfK-9d-wHO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Zsy-B8-yJf"/>
@@ -115,7 +118,7 @@
         </view>
     </objects>
     <resources>
-        <image name="exp" width="400" height="400"/>
-        <image name="muscleSelected" width="496" height="478"/>
+        <image name="muscleSelected" width="78" height="78"/>
+        <image name="user2" width="620" height="620"/>
     </resources>
 </document>

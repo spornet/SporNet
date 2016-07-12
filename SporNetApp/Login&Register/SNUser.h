@@ -34,13 +34,20 @@ typedef NS_ENUM(NSInteger, SportTimeSlot) {
     SportTimeSlotAfternoon,
     SportTimeSlotNight
 };
+//store all user information provided in profile page.
 @interface SNUser : AVObject<AVSubclassing>
-
-@property (nonatomic, copy)   NSString *name;
-@property (nonatomic, assign) GenderType gender;
-@property (nonatomic, assign) NSInteger gradYear;
-@property(nonatomic, assign) AVUser *user;
-@property(nonatomic, assign) BestSports bestSport;
-@property(nonatomic, assign) SportTimeSlot sportTimeSlot;
-@property(nonatomic, assign) NSString *aboutMe;
+//user's name
+@property (nonatomic, copy  ) NSString      *name;
+//user's gender
+@property (nonatomic, assign) GenderType    gender;
+//user's year of graduation
+@property (nonatomic, assign) NSInteger     gradYear;
+//user's account information including email and password.
+@property (nonatomic, assign) AVUser        *user;
+//user's best sport
+@property (nonatomic, assign) enum BestSports    bestSport;
+//user's sport time splot
+@property (nonatomic, assign) enum SportTimeSlot sportTimeSlot;
+//user's self introduction
+@property (nonatomic, assign) NSString      *aboutMe;
 @end
