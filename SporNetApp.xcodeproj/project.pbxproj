@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A30E3151D341C6000DCB7D2 /* SNLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30E3141D341C6000DCB7D2 /* SNLoginViewController.m */; };
+		1A46B6711D3531B6009AAF9C /* SNFpDreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46B6701D3531B6009AAF9C /* SNFpDreViewController.m */; };
 		1A7872BF1D26EC08006205CF /* SNPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */; };
 		1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */; };
 		1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */; };
@@ -48,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A30E3131D341C6000DCB7D2 /* SNLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLoginViewController.h; sourceTree = "<group>"; };
+		1A30E3141D341C6000DCB7D2 /* SNLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLoginViewController.m; sourceTree = "<group>"; };
+		1A46B66F1D3531B6009AAF9C /* SNFpDreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFpDreViewController.h; sourceTree = "<group>"; };
+		1A46B6701D3531B6009AAF9C /* SNFpDreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNFpDreViewController.m; sourceTree = "<group>"; };
 		1A7872BD1D26EC08006205CF /* SNPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPageContentViewController.h; sourceTree = "<group>"; };
 		1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPageContentViewController.m; sourceTree = "<group>"; };
 		1A7872C01D26EE0A006205CF /* SNLaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLaunchPageViewController.h; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */,
+				1A46B66F1D3531B6009AAF9C /* SNFpDreViewController.h */,
+				1A46B6701D3531B6009AAF9C /* SNFpDreViewController.m */,
 				6D4454BB1D2417F700F7B51A /* SNUserProfileViewController.h */,
 				6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */,
 				6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */,
@@ -222,6 +230,8 @@
 				1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */,
 				1A7872C31D2C08C8006205CF /* SNRegisterViewController.h */,
 				1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */,
+				1A30E3131D341C6000DCB7D2 /* SNLoginViewController.h */,
+				1A30E3141D341C6000DCB7D2 /* SNLoginViewController.m */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
@@ -473,8 +483,10 @@
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
 				1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
+				1A30E3151D341C6000DCB7D2 /* SNLoginViewController.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
 				6DB85C241D25B951008C3DC4 /* SNUser.m in Sources */,
+				1A46B6711D3531B6009AAF9C /* SNFpDreViewController.m in Sources */,
 				1A7872BF1D26EC08006205CF /* SNPageContentViewController.m in Sources */,
 				1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */,
 			);
