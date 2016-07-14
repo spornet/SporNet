@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, SportTimeSlot) {
     SportTimeSlotAfternoon,
     SportTimeSlotNight
 };
+//Generate mock user data for ranking page
 @interface MockUser : NSObject
 @property NSString *name;
 @property NSString *school;
