@@ -7,25 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A30E3151D341C6000DCB7D2 /* SNLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30E3141D341C6000DCB7D2 /* SNLoginViewController.m */; };
-		1A46B6711D3531B6009AAF9C /* SNFpDreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46B6701D3531B6009AAF9C /* SNFpDreViewController.m */; };
-		1A7872BF1D26EC08006205CF /* SNPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */; };
-		1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */; };
-		1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */; };
 		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
-		6D4454BE1D2417F700F7B51A /* SNUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */; };
-		6D4454BF1D2417F700F7B51A /* SNUserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */; };
-		6D65F3BB1D2C4C7E0043B59C /* SNSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65F3BA1D2C4C7E0043B59C /* SNSettingViewController.m */; };
-		6D65F3BE1D2C4C930043B59C /* SNSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D65F3BD1D2C4C930043B59C /* SNSettingViewController.xib */; };
-		6D65F3CB1D2C57770043B59C /* SNPreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D65F3C91D2C57770043B59C /* SNPreferenceViewController.m */; };
-		6D65F3CC1D2C57770043B59C /* SNPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D65F3CA1D2C57770043B59C /* SNPreferenceViewController.xib */; };
-		6DB85C241D25B951008C3DC4 /* SNUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB85C231D25B951008C3DC4 /* SNUser.m */; };
 		6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C51D37E6D700F622F6 /* rankingCell.m */; };
 		6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C71D37E6D700F622F6 /* SNRankingViewController.m */; };
 		6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CA1D37E6E700F622F6 /* rankingCell.xib */; };
 		6DD9D5CE1D37E6E700F622F6 /* RankingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CB1D37E6E700F622F6 /* RankingStoryboard.storyboard */; };
 		6DD9D5CF1D37E6E700F622F6 /* SNRankingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CC1D37E6E700F622F6 /* SNRankingViewController.xib */; };
 		6DD9D5D21D37E6F700F622F6 /* MockUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5D11D37E6F700F622F6 /* MockUser.m */; };
+		6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5D81D37E8E600F622F6 /* SNPreferenceViewController.m */; };
+		6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5DA1D37E8E600F622F6 /* SNSettingViewController.m */; };
+		6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5DD1D37E8F700F622F6 /* SettingStoryboard.storyboard */; };
+		6DD9D5E11D37E8F700F622F6 /* SNPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5DE1D37E8F700F622F6 /* SNPreferenceViewController.xib */; };
+		6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5DF1D37E8F700F622F6 /* SNSettingViewController.xib */; };
+		6DD9D5F21D37E95200F622F6 /* SNFpDreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5E71D37E95200F622F6 /* SNFpDreViewController.m */; };
+		6DD9D5F31D37E95200F622F6 /* SNLaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5E91D37E95200F622F6 /* SNLaunchPageViewController.m */; };
+		6DD9D5F41D37E95200F622F6 /* SNLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5EB1D37E95200F622F6 /* SNLoginViewController.m */; };
+		6DD9D5F51D37E95200F622F6 /* SNPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5ED1D37E95200F622F6 /* SNPageContentViewController.m */; };
+		6DD9D5F61D37E95200F622F6 /* SNRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5EF1D37E95200F622F6 /* SNRegisterViewController.m */; };
+		6DD9D5F71D37E95200F622F6 /* SNUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5F11D37E95200F622F6 /* SNUserProfileViewController.m */; };
+		6DD9D5FA1D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5F81D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard */; };
+		6DD9D5FB1D37E96000F622F6 /* SNUserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5F91D37E96000F622F6 /* SNUserProfileViewController.xib */; };
+		6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5FD1D37E96F00F622F6 /* SNUser.m */; };
 		B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B82FED291D21A57D00292ECC /* Assets.xcassets */; };
 		B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */; };
 		B82FED381D21A57D00292ECC /* SporNetAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED371D21A57D00292ECC /* SporNetAppTests.m */; };
@@ -33,12 +35,10 @@
 		B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */; };
 		B8CFCCE41D21ADEA0006495E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCE11D21ADEA0006495E /* main.m */; };
 		B8CFCCE61D21AE540006495E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCE51D21AE540006495E /* Info.plist */; };
-		B8CFCCE91D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */; };
 		B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */; };
 		B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */; };
 		B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */; };
 		B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */; };
-		B8CFCCFF1D2416270006495E /* SettingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCFE1D2416270006495E /* SettingStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,27 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A30E3131D341C6000DCB7D2 /* SNLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLoginViewController.h; sourceTree = "<group>"; };
-		1A30E3141D341C6000DCB7D2 /* SNLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLoginViewController.m; sourceTree = "<group>"; };
-		1A46B66F1D3531B6009AAF9C /* SNFpDreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFpDreViewController.h; sourceTree = "<group>"; };
-		1A46B6701D3531B6009AAF9C /* SNFpDreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNFpDreViewController.m; sourceTree = "<group>"; };
-		1A7872BD1D26EC08006205CF /* SNPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPageContentViewController.h; sourceTree = "<group>"; };
-		1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPageContentViewController.m; sourceTree = "<group>"; };
-		1A7872C01D26EE0A006205CF /* SNLaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLaunchPageViewController.h; sourceTree = "<group>"; };
-		1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLaunchPageViewController.m; sourceTree = "<group>"; };
-		1A7872C31D2C08C8006205CF /* SNRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNRegisterViewController.h; sourceTree = "<group>"; };
-		1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNRegisterViewController.m; sourceTree = "<group>"; };
-		6D4454BB1D2417F700F7B51A /* SNUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNUserProfileViewController.h; sourceTree = "<group>"; };
-		6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNUserProfileViewController.m; sourceTree = "<group>"; };
-		6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNUserProfileViewController.xib; sourceTree = "<group>"; };
-		6D65F3BA1D2C4C7E0043B59C /* SNSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSettingViewController.m; sourceTree = "<group>"; };
-		6D65F3BC1D2C4C890043B59C /* SNSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNSettingViewController.h; sourceTree = "<group>"; };
-		6D65F3BD1D2C4C930043B59C /* SNSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSettingViewController.xib; sourceTree = "<group>"; };
-		6D65F3C81D2C57770043B59C /* SNPreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPreferenceViewController.h; sourceTree = "<group>"; };
-		6D65F3C91D2C57770043B59C /* SNPreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPreferenceViewController.m; sourceTree = "<group>"; };
-		6D65F3CA1D2C57770043B59C /* SNPreferenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNPreferenceViewController.xib; sourceTree = "<group>"; };
-		6DB85C221D25B951008C3DC4 /* SNUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNUser.h; path = "Login&Register/SNUser.h"; sourceTree = "<group>"; };
-		6DB85C231D25B951008C3DC4 /* SNUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNUser.m; path = "Login&Register/SNUser.m"; sourceTree = "<group>"; };
 		6DD9D5C41D37E6D700F622F6 /* rankingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rankingCell.h; path = Controller/rankingCell.h; sourceTree = "<group>"; };
 		6DD9D5C51D37E6D700F622F6 /* rankingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = rankingCell.m; path = Controller/rankingCell.m; sourceTree = "<group>"; };
 		6DD9D5C61D37E6D700F622F6 /* SNRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNRankingViewController.h; path = Controller/SNRankingViewController.h; sourceTree = "<group>"; };
@@ -89,6 +68,29 @@
 		6DD9D5CC1D37E6E700F622F6 /* SNRankingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SNRankingViewController.xib; path = View/SNRankingViewController.xib; sourceTree = "<group>"; };
 		6DD9D5D01D37E6F700F622F6 /* MockUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockUser.h; path = Model/MockUser.h; sourceTree = "<group>"; };
 		6DD9D5D11D37E6F700F622F6 /* MockUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockUser.m; path = Model/MockUser.m; sourceTree = "<group>"; };
+		6DD9D5D71D37E8E600F622F6 /* SNPreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNPreferenceViewController.h; path = Controller/SNPreferenceViewController.h; sourceTree = "<group>"; };
+		6DD9D5D81D37E8E600F622F6 /* SNPreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNPreferenceViewController.m; path = Controller/SNPreferenceViewController.m; sourceTree = "<group>"; };
+		6DD9D5D91D37E8E600F622F6 /* SNSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNSettingViewController.h; path = Controller/SNSettingViewController.h; sourceTree = "<group>"; };
+		6DD9D5DA1D37E8E600F622F6 /* SNSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNSettingViewController.m; path = Controller/SNSettingViewController.m; sourceTree = "<group>"; };
+		6DD9D5DD1D37E8F700F622F6 /* SettingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SettingStoryboard.storyboard; path = View/SettingStoryboard.storyboard; sourceTree = "<group>"; };
+		6DD9D5DE1D37E8F700F622F6 /* SNPreferenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SNPreferenceViewController.xib; path = View/SNPreferenceViewController.xib; sourceTree = "<group>"; };
+		6DD9D5DF1D37E8F700F622F6 /* SNSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SNSettingViewController.xib; path = View/SNSettingViewController.xib; sourceTree = "<group>"; };
+		6DD9D5E61D37E95200F622F6 /* SNFpDreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNFpDreViewController.h; path = Controller/SNFpDreViewController.h; sourceTree = "<group>"; };
+		6DD9D5E71D37E95200F622F6 /* SNFpDreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNFpDreViewController.m; path = Controller/SNFpDreViewController.m; sourceTree = "<group>"; };
+		6DD9D5E81D37E95200F622F6 /* SNLaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNLaunchPageViewController.h; path = Controller/SNLaunchPageViewController.h; sourceTree = "<group>"; };
+		6DD9D5E91D37E95200F622F6 /* SNLaunchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNLaunchPageViewController.m; path = Controller/SNLaunchPageViewController.m; sourceTree = "<group>"; };
+		6DD9D5EA1D37E95200F622F6 /* SNLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNLoginViewController.h; path = Controller/SNLoginViewController.h; sourceTree = "<group>"; };
+		6DD9D5EB1D37E95200F622F6 /* SNLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNLoginViewController.m; path = Controller/SNLoginViewController.m; sourceTree = "<group>"; };
+		6DD9D5EC1D37E95200F622F6 /* SNPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNPageContentViewController.h; path = Controller/SNPageContentViewController.h; sourceTree = "<group>"; };
+		6DD9D5ED1D37E95200F622F6 /* SNPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNPageContentViewController.m; path = Controller/SNPageContentViewController.m; sourceTree = "<group>"; };
+		6DD9D5EE1D37E95200F622F6 /* SNRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNRegisterViewController.h; path = Controller/SNRegisterViewController.h; sourceTree = "<group>"; };
+		6DD9D5EF1D37E95200F622F6 /* SNRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNRegisterViewController.m; path = Controller/SNRegisterViewController.m; sourceTree = "<group>"; };
+		6DD9D5F01D37E95200F622F6 /* SNUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNUserProfileViewController.h; path = Controller/SNUserProfileViewController.h; sourceTree = "<group>"; };
+		6DD9D5F11D37E95200F622F6 /* SNUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNUserProfileViewController.m; path = Controller/SNUserProfileViewController.m; sourceTree = "<group>"; };
+		6DD9D5F81D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Login&RegisterStoryBoard.storyboard"; path = "View/Login&RegisterStoryBoard.storyboard"; sourceTree = "<group>"; };
+		6DD9D5F91D37E96000F622F6 /* SNUserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SNUserProfileViewController.xib; path = View/SNUserProfileViewController.xib; sourceTree = "<group>"; };
+		6DD9D5FC1D37E96F00F622F6 /* SNUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNUser.h; path = Model/SNUser.h; sourceTree = "<group>"; };
+		6DD9D5FD1D37E96F00F622F6 /* SNUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNUser.m; path = Model/SNUser.m; sourceTree = "<group>"; };
 		9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SporNetApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B525F8F8A3E7344BD9B7C2D7 /* Pods-SporNetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B82FED1A1D21A57D00292ECC /* SporNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SporNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,13 +106,11 @@
 		B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B8CFCCE11D21ADEA0006495E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B8CFCCE51D21AE540006495E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Login&RegisterStoryBoard.storyboard"; sourceTree = "<group>"; };
 		B8CFCCEE1D21CD200006495E /* SNMainFeatureTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMainFeatureTabController.h; sourceTree = "<group>"; };
 		B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMainFeatureTabController.m; sourceTree = "<group>"; };
 		B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagStoryboard.storyboard; sourceTree = "<group>"; };
 		B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageStoryboard.storyboard; sourceTree = "<group>"; };
 		B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchingStoryboard.storyboard; sourceTree = "<group>"; };
-		B8CFCCFE1D2416270006495E /* SettingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingStoryboard.storyboard; sourceTree = "<group>"; };
 		D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,15 +157,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		6DD90B2B1D26C43700CDC670 /* SNModel */ = {
-			isa = PBXGroup;
-			children = (
-				6DB85C221D25B951008C3DC4 /* SNUser.h */,
-				6DB85C231D25B951008C3DC4 /* SNUser.m */,
-			);
-			name = SNModel;
-			sourceTree = "<group>";
-		};
 		6DD9D5C11D37E63800F622F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +187,71 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		6DD9D5D41D37E8C800F622F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6DD9D5D51D37E8CF00F622F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6DD9D5DD1D37E8F700F622F6 /* SettingStoryboard.storyboard */,
+				6DD9D5DE1D37E8F700F622F6 /* SNPreferenceViewController.xib */,
+				6DD9D5DF1D37E8F700F622F6 /* SNSettingViewController.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6DD9D5D61D37E8D500F622F6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6DD9D5D71D37E8E600F622F6 /* SNPreferenceViewController.h */,
+				6DD9D5D81D37E8E600F622F6 /* SNPreferenceViewController.m */,
+				6DD9D5D91D37E8E600F622F6 /* SNSettingViewController.h */,
+				6DD9D5DA1D37E8E600F622F6 /* SNSettingViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6DD9D5E31D37E93500F622F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6DD9D5FC1D37E96F00F622F6 /* SNUser.h */,
+				6DD9D5FD1D37E96F00F622F6 /* SNUser.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6DD9D5E41D37E93E00F622F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6DD9D5F81D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard */,
+				6DD9D5F91D37E96000F622F6 /* SNUserProfileViewController.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6DD9D5E51D37E94500F622F6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6DD9D5E61D37E95200F622F6 /* SNFpDreViewController.h */,
+				6DD9D5E71D37E95200F622F6 /* SNFpDreViewController.m */,
+				6DD9D5E81D37E95200F622F6 /* SNLaunchPageViewController.h */,
+				6DD9D5E91D37E95200F622F6 /* SNLaunchPageViewController.m */,
+				6DD9D5EA1D37E95200F622F6 /* SNLoginViewController.h */,
+				6DD9D5EB1D37E95200F622F6 /* SNLoginViewController.m */,
+				6DD9D5EC1D37E95200F622F6 /* SNPageContentViewController.h */,
+				6DD9D5ED1D37E95200F622F6 /* SNPageContentViewController.m */,
+				6DD9D5EE1D37E95200F622F6 /* SNRegisterViewController.h */,
+				6DD9D5EF1D37E95200F622F6 /* SNRegisterViewController.m */,
+				6DD9D5F01D37E95200F622F6 /* SNUserProfileViewController.h */,
+				6DD9D5F11D37E95200F622F6 /* SNUserProfileViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		B82FED111D21A57D00292ECC = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +277,6 @@
 		B82FED1C1D21A57D00292ECC /* SporNetApp */ = {
 			isa = PBXGroup;
 			children = (
-				6DD90B2B1D26C43700CDC670 /* SNModel */,
 				B8CFCCE51D21AE540006495E /* Info.plist */,
 				B8CFCCE71D21AEC50006495E /* Login&Register */,
 				B8CFCCEB1D21C66F0006495E /* MainFeatures */,
@@ -271,20 +326,9 @@
 		B8CFCCE71D21AEC50006495E /* Login&Register */ = {
 			isa = PBXGroup;
 			children = (
-				B8CFCCE81D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard */,
-				1A46B66F1D3531B6009AAF9C /* SNFpDreViewController.h */,
-				1A46B6701D3531B6009AAF9C /* SNFpDreViewController.m */,
-				6D4454BB1D2417F700F7B51A /* SNUserProfileViewController.h */,
-				6D4454BC1D2417F700F7B51A /* SNUserProfileViewController.m */,
-				6D4454BD1D2417F700F7B51A /* SNUserProfileViewController.xib */,
-				1A7872BD1D26EC08006205CF /* SNPageContentViewController.h */,
-				1A7872BE1D26EC08006205CF /* SNPageContentViewController.m */,
-				1A7872C01D26EE0A006205CF /* SNLaunchPageViewController.h */,
-				1A7872C11D26EE0A006205CF /* SNLaunchPageViewController.m */,
-				1A7872C31D2C08C8006205CF /* SNRegisterViewController.h */,
-				1A7872C41D2C08C8006205CF /* SNRegisterViewController.m */,
-				1A30E3131D341C6000DCB7D2 /* SNLoginViewController.h */,
-				1A30E3141D341C6000DCB7D2 /* SNLoginViewController.m */,
+				6DD9D5E51D37E94500F622F6 /* Controller */,
+				6DD9D5E41D37E93E00F622F6 /* View */,
+				6DD9D5E31D37E93500F622F6 /* Model */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
@@ -332,13 +376,9 @@
 		B8CFCCF41D21CE640006495E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				6D65F3BD1D2C4C930043B59C /* SNSettingViewController.xib */,
-				6D65F3BC1D2C4C890043B59C /* SNSettingViewController.h */,
-				6D65F3BA1D2C4C7E0043B59C /* SNSettingViewController.m */,
-				B8CFCCFE1D2416270006495E /* SettingStoryboard.storyboard */,
-				6D65F3C81D2C57770043B59C /* SNPreferenceViewController.h */,
-				6D65F3C91D2C57770043B59C /* SNPreferenceViewController.m */,
-				6D65F3CA1D2C57770043B59C /* SNPreferenceViewController.xib */,
+				6DD9D5D61D37E8D500F622F6 /* Controller */,
+				6DD9D5D51D37E8CF00F622F6 /* View */,
+				6DD9D5D41D37E8C800F622F6 /* Model */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -458,19 +498,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8CFCCFF1D2416270006495E /* SettingStoryboard.storyboard in Resources */,
+				6DD9D5FB1D37E96000F622F6 /* SNUserProfileViewController.xib in Resources */,
+				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
+				6DD9D5FA1D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard in Resources */,
 				6DD9D5CF1D37E6E700F622F6 /* SNRankingViewController.xib in Resources */,
-				6D65F3CC1D2C57770043B59C /* SNPreferenceViewController.xib in Resources */,
-				6D4454BF1D2417F700F7B51A /* SNUserProfileViewController.xib in Resources */,
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
+				6DD9D5E11D37E8F700F622F6 /* SNPreferenceViewController.xib in Resources */,
 				6DD9D5CE1D37E6E700F622F6 /* RankingStoryboard.storyboard in Resources */,
 				B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */,
+				6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */,
 				6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */,
-				6D65F3BE1D2C4C930043B59C /* SNSettingViewController.xib in Resources */,
 				B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */,
 				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
-				B8CFCCE91D21AF1B0006495E /* Login&RegisterStoryBoard.storyboard in Resources */,
 				B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,21 +584,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D4454BE1D2417F700F7B51A /* SNUserProfileViewController.m in Sources */,
 				6DD9D5D21D37E6F700F622F6 /* MockUser.m in Sources */,
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
+				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
+				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,
+				6DD9D5F31D37E95200F622F6 /* SNLaunchPageViewController.m in Sources */,
 				6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */,
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
-				1A7872C21D26EE0A006205CF /* SNLaunchPageViewController.m in Sources */,
+				6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */,
+				6DD9D5F41D37E95200F622F6 /* SNLoginViewController.m in Sources */,
+				6DD9D5F61D37E95200F622F6 /* SNRegisterViewController.m in Sources */,
+				6DD9D5F71D37E95200F622F6 /* SNUserProfileViewController.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
-				1A30E3151D341C6000DCB7D2 /* SNLoginViewController.m in Sources */,
+				6DD9D5F21D37E95200F622F6 /* SNFpDreViewController.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
-				6DB85C241D25B951008C3DC4 /* SNUser.m in Sources */,
-				1A46B6711D3531B6009AAF9C /* SNFpDreViewController.m in Sources */,
-				1A7872BF1D26EC08006205CF /* SNPageContentViewController.m in Sources */,
-				6D65F3BB1D2C4C7E0043B59C /* SNSettingViewController.m in Sources */,
-				6D65F3CB1D2C57770043B59C /* SNPreferenceViewController.m in Sources */,
-				1A7872C51D2C08C8006205CF /* SNRegisterViewController.m in Sources */,
+				6DD9D5F51D37E95200F622F6 /* SNPageContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
