@@ -9,10 +9,12 @@
 #import "SNLoginViewController.h"
 #import "SNRegisterViewController.h"
 #import "SNFpDreViewController.h"
-
 @interface SNLoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userEmailTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewConstrainatBottom;
+
+
 
 @end
 
@@ -22,9 +24,10 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    _userEmailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your school email" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your password" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-
+    _userEmailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your school email" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
 }
 
@@ -68,7 +71,7 @@
     SNFpDreViewController *destination = segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"fpSegue"]) {
         destination.isFp = YES;
-    } else {
+    } else if([segue.identifier isEqualToString:@"dreSegue"]){
         destination.isFp = NO;
     }
     
@@ -76,7 +79,7 @@
 
 //method for signup button
 - (IBAction)signup:(id)sender {
-   
+    NSLog(@"did sign up");
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login&RegisterStoryBoard" bundle:nil];
     SNRegisterViewController *regVc = [storyboard instantiateViewControllerWithIdentifier:@"RegisterPage"];
     
@@ -91,4 +94,24 @@
     return YES;
     
 }
+
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.inputViewConstrainatBottom.constant = 280;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
+}
+- (void)keyboardWillHide:(NSNotification *)notification {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.inputViewConstrainatBottom.constant = 200;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
+}
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
 @end

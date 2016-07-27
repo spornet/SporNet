@@ -11,13 +11,18 @@
 @interface SNFpDreViewController ()<UITextFieldDelegate>
 //textfield for email
 @property (weak, nonatomic) IBOutlet UITextField *emailTextfield;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewBottom;
 @end
 
 @implementation SNFpDreViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+     _emailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"input your school email" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +46,24 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     return YES;
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.viewBottom.constant = 100;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
+}
+- (void)keyboardWillHide:(NSNotification *)notification {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.viewBottom.constant = 0;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
+}
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 @end

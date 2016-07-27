@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPwTextfield;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewBottom;
 
 @end
 
@@ -24,6 +25,9 @@
     _emailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your school email" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your password" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     _confirmPwTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"confirm your password" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
    
 }
 
@@ -100,6 +104,24 @@
 {
     NSLog(@"%@,%@",NSStringFromRange(range),string);
     return YES;
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.viewBottom.constant = 200;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
+}
+- (void)keyboardWillHide:(NSNotification *)notification {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.viewBottom.constant = 0;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
+}
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 @end
