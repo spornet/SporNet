@@ -253,4 +253,10 @@ NSArray *genderArray;
         }
     }];
 }
+
+- (IBAction)picButtonClicked:(UIButton *)sender {
+    
+    
+}
+
 @end

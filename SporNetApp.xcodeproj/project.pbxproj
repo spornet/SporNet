@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
+		6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */; };
+		6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01ACF81D48FB7300E98E6F /* ProgressHUD.m */; };
 		6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C51D37E6D700F622F6 /* rankingCell.m */; };
 		6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C71D37E6D700F622F6 /* SNRankingViewController.m */; };
 		6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CA1D37E6E700F622F6 /* rankingCell.xib */; };
@@ -59,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		6D01ACF71D48FB7300E98E6F /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		6D01ACF81D48FB7300E98E6F /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		6DD9D5C41D37E6D700F622F6 /* rankingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rankingCell.h; path = Controller/rankingCell.h; sourceTree = "<group>"; };
 		6DD9D5C51D37E6D700F622F6 /* rankingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = rankingCell.m; path = Controller/rankingCell.m; sourceTree = "<group>"; };
 		6DD9D5C61D37E6D700F622F6 /* SNRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNRankingViewController.h; path = Controller/SNRankingViewController.h; sourceTree = "<group>"; };
@@ -155,6 +160,16 @@
 				D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		6D01ACF51D48FB7300E98E6F /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */,
+				6D01ACF71D48FB7300E98E6F /* ProgressHUD.h */,
+				6D01ACF81D48FB7300E98E6F /* ProgressHUD.m */,
+			);
+			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
 		6DD9D5C11D37E63800F622F6 /* Model */ = {
@@ -255,6 +270,7 @@
 		B82FED111D21A57D00292ECC = {
 			isa = PBXGroup;
 			children = (
+				6D01ACF51D48FB7300E98E6F /* ProgressHUD */,
 				B82FED1C1D21A57D00292ECC /* SporNetApp */,
 				B82FED361D21A57D00292ECC /* SporNetAppTests */,
 				B82FED411D21A57D00292ECC /* SporNetAppUITests */,
@@ -461,7 +477,7 @@
 				TargetAttributes = {
 					B82FED191D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Z57DAJWH52;
+						DevelopmentTeam = 2EUUYRUR88;
 					};
 					B82FED321D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -506,6 +522,7 @@
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
 				6DD9D5E11D37E8F700F622F6 /* SNPreferenceViewController.xib in Resources */,
 				6DD9D5CE1D37E6E700F622F6 /* RankingStoryboard.storyboard in Resources */,
+				6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */,
 				B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */,
 				6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */,
 				6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */,
@@ -598,6 +615,7 @@
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
 				6DD9D5F21D37E95200F622F6 /* SNFpDreViewController.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
+				6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */,
 				6DD9D5F51D37E95200F622F6 /* SNPageContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,8 @@
 #import "SNLoginViewController.h"
 #import "SNRegisterViewController.h"
 #import "SNFpDreViewController.h"
+#import "ProgressHUD.h"
+#import "AVUser.h"
 @interface SNLoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userEmailTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
@@ -38,22 +40,40 @@
 
 //method for login button
 - (IBAction)login:(id)sender {
-    //判断是否同时输入了邮箱和密码
-    if (_userEmailTextfield.text.length != 0 && _passwordTextfield.text.length !=0) {
-        //判断后台是否有用户数据
-        if (NO) {
-            //上面的if里如果有用户信息则值为YES，然后初始化search near by VC，改为NO是因为测试第一次登录时userProfile
-        }else
-        {
-        //第一次输入信息
-            [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
-        }
+    if([_userEmailTextfield.text isEqual:@""]) {
+        [ProgressHUD showError:@"Please input username!"];
+    } else if([_passwordTextfield.text isEqual:@""]) {
+        [ProgressHUD showError:@"Please input password!"];
+    } else {
+        [ProgressHUD show:@"Logging now..."];
+        [AVUser logInWithUsernameInBackground:_userEmailTextfield.text password:_passwordTextfield.text block:^(AVUser *user, NSError *error) {
+            if(error.code == 211)  {
+                [ProgressHUD showError:@"Email doesn't exist!"];
+            } else if (error.code == 210) {
+                [ProgressHUD showError:@"Wrong password!"];
+            } else{
+                [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back, %@!", user.username]];
+                [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
+            }
+        }];
     }
-    else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert !" message:@"Please fill all infomation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        
-    }
+//    
+//    //判断是否同时输入了邮箱和密码
+//    if (_userEmailTextfield.text.length != 0 && _passwordTextfield.text.length !=0) {
+//        //判断后台是否有用户数据
+//        if (NO) {
+//            //上面的if里如果有用户信息则值为YES，然后初始化search near by VC，改为NO是因为测试第一次登录时userProfile
+//        }else
+//        {
+//        //第一次输入信息
+//            [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
+//        }
+//    }
+//    else{
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert !" message:@"Please fill all infomation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alert show];
+//        
+//    }
 }
 
 //method for forget password button

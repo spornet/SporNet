@@ -7,7 +7,8 @@
 //
 
 #import "SNFpDreViewController.h"
-
+#import "AVUser.h"
+#import "ProgressHUD.h"
 @interface SNFpDreViewController ()<UITextFieldDelegate>
 //textfield for email
 @property (weak, nonatomic) IBOutlet UITextField *emailTextfield;
@@ -39,6 +40,11 @@
 - (IBAction)resend:(id)sender {
     if (_isFp) {
         NSLog(@"Send a link for forget password");
+        [AVUser requestPasswordResetForEmailInBackground:_emailTextfield.text block:^(BOOL succeeded, NSError *error) {
+            NSLog(@"%@", error);
+            if(error.code == 205) [ProgressHUD showError:@"Email not found."];
+            else [ProgressHUD showSuccess:@"Please check your email to reset password."];
+        }];
     } else {
         NSLog(@"Send another confirm email");
     }
