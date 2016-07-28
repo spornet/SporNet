@@ -25,6 +25,9 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell    *aboutMeCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell    *picCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell    *doneCell;
+
+@property (weak, nonatomic) IBOutlet UILabel *placeHolder;
+
 //These two textfield are used to pop picker view. No use for data.
 @property (strong, nonatomic) IBOutlet UITextField        *firstNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField        *lastNameTextField;
@@ -99,6 +102,8 @@ NSInteger selectedImageTag;
     self.gradTextField.inputView = self.graduationYearPicker;
     self.sportTimeTextField.inputView = self.sportTimePicker;
     self.birthdayTextField.inputView = self.birthdayPicker;
+    self.lastNameTextField.adjustsFontSizeToFitWidth = YES;
+    self.lastNameTextField.minimumFontSize = 8;
     //add tap gestures to 5 sport images.
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillChange:)
@@ -121,6 +126,9 @@ NSInteger selectedImageTag;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat height;
     switch (indexPath.row) {
+        case UserProfileRowName:
+            height = 80;
+            break;
         case UserProfileRowPic:
             height = 200;
             break;
@@ -378,5 +386,12 @@ NSInteger selectedImageTag;
     UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:selectedBestSport];
     _selectedBestSportImageView.frame = CGRectMake(imageView.frame.origin.x - 5, imageView.frame.origin.y - 5, imageView.frame.size.width + 10, imageView.frame.size.height + 10);
     _selectedBestSportImageView.image = [UIImage imageNamed: bestSportsPicArraySelected[selectedBestSport-1]];
+}
+-(void)textViewDidChange:(UITextView *)textView {
+    if([textView.text isEqual:@""]) {
+        _placeHolder.hidden = NO;
+    } else {
+        _placeHolder.hidden = YES;
+    }
 }
 @end
