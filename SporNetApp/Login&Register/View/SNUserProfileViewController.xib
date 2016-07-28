@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -214,25 +215,53 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jogging" translatesAutoresizingMaskIntoConstraints="NO" id="vWe-Ne-R1B">
-                        <rect key="frame" x="20" y="36" width="34" height="35"/>
+                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jogging" translatesAutoresizingMaskIntoConstraints="NO" id="vWe-Ne-R1B">
+                        <rect key="frame" x="15" y="31" width="35" height="35"/>
                     </imageView>
-                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="muscle" translatesAutoresizingMaskIntoConstraints="NO" id="AXM-Nc-Atx">
-                        <rect key="frame" x="80" y="37" width="34" height="35"/>
+                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="muscle" translatesAutoresizingMaskIntoConstraints="NO" id="AXM-Nc-Atx">
+                        <rect key="frame" x="80" y="31" width="35" height="35"/>
                     </imageView>
-                    <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="soccer" translatesAutoresizingMaskIntoConstraints="NO" id="0v0-ej-Nfa">
-                        <rect key="frame" x="141" y="36" width="34" height="35"/>
+                    <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccer" translatesAutoresizingMaskIntoConstraints="NO" id="0v0-ej-Nfa">
+                        <rect key="frame" x="144" y="31" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="nCN-V3-IVY"/>
+                            <constraint firstAttribute="height" constant="35" id="xlg-LA-HT2"/>
+                            <constraint firstAttribute="width" secondItem="0v0-ej-Nfa" secondAttribute="height" multiplier="1:1" id="y2V-Gg-atx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="xlg-LA-HT2"/>
+                            </mask>
+                        </variation>
                     </imageView>
-                    <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="basketball" translatesAutoresizingMaskIntoConstraints="NO" id="yBh-2z-U0w">
-                        <rect key="frame" x="210" y="36" width="34" height="35"/>
+                    <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basketball" translatesAutoresizingMaskIntoConstraints="NO" id="yBh-2z-U0w">
+                        <rect key="frame" x="209" y="31" width="35" height="35"/>
                     </imageView>
-                    <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yoga" translatesAutoresizingMaskIntoConstraints="NO" id="efe-Rj-jlw">
-                        <rect key="frame" x="271" y="36" width="34" height="35"/>
+                    <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yoga" translatesAutoresizingMaskIntoConstraints="NO" id="efe-Rj-jlw">
+                        <rect key="frame" x="273" y="31" width="35" height="35"/>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Vrm-Ch-UFT" firstAttribute="leading" secondItem="64L-Ux-xO8" secondAttribute="leadingMargin" id="0Cc-LJ-Up9"/>
+                    <constraint firstItem="0v0-ej-Nfa" firstAttribute="centerX" secondItem="64L-Ux-xO8" secondAttribute="centerX" id="0jO-zD-vAw"/>
+                    <constraint firstItem="vWe-Ne-R1B" firstAttribute="centerX" secondItem="64L-Ux-xO8" secondAttribute="centerX" multiplier="0.2" id="5zA-3J-wrY"/>
                     <constraint firstItem="Vrm-Ch-UFT" firstAttribute="top" secondItem="64L-Ux-xO8" secondAttribute="topMargin" id="AES-el-SAZ"/>
+                    <constraint firstItem="yBh-2z-U0w" firstAttribute="centerX" secondItem="64L-Ux-xO8" secondAttribute="centerX" multiplier="1.4" id="BdW-sI-ebb"/>
+                    <constraint firstItem="vWe-Ne-R1B" firstAttribute="height" secondItem="0v0-ej-Nfa" secondAttribute="height" id="C4H-Xh-cwj"/>
+                    <constraint firstItem="efe-Rj-jlw" firstAttribute="height" secondItem="0v0-ej-Nfa" secondAttribute="height" id="JXr-vw-tCP"/>
+                    <constraint firstItem="AXM-Nc-Atx" firstAttribute="centerY" secondItem="0v0-ej-Nfa" secondAttribute="centerY" id="LBe-uF-u6u"/>
+                    <constraint firstItem="yBh-2z-U0w" firstAttribute="width" secondItem="0v0-ej-Nfa" secondAttribute="width" id="MDB-Gw-3IT"/>
+                    <constraint firstItem="AXM-Nc-Atx" firstAttribute="centerX" secondItem="64L-Ux-xO8" secondAttribute="centerX" multiplier="0.6" id="Mmf-FZ-uYW"/>
+                    <constraint firstItem="vWe-Ne-R1B" firstAttribute="centerY" secondItem="0v0-ej-Nfa" secondAttribute="centerY" id="Nhl-Rx-Umr"/>
+                    <constraint firstItem="AXM-Nc-Atx" firstAttribute="width" secondItem="0v0-ej-Nfa" secondAttribute="width" id="Zmj-zn-0HR"/>
+                    <constraint firstItem="efe-Rj-jlw" firstAttribute="centerX" secondItem="64L-Ux-xO8" secondAttribute="centerX" multiplier="1.8" id="aTa-y3-RgT"/>
+                    <constraint firstItem="efe-Rj-jlw" firstAttribute="centerY" secondItem="0v0-ej-Nfa" secondAttribute="centerY" id="aeM-TP-pCd"/>
+                    <constraint firstItem="AXM-Nc-Atx" firstAttribute="height" secondItem="0v0-ej-Nfa" secondAttribute="height" id="h0q-1S-Sjl"/>
+                    <constraint firstItem="yBh-2z-U0w" firstAttribute="height" secondItem="0v0-ej-Nfa" secondAttribute="height" id="jDe-Aj-32X"/>
+                    <constraint firstItem="yBh-2z-U0w" firstAttribute="centerY" secondItem="0v0-ej-Nfa" secondAttribute="centerY" id="mYd-AT-VfA"/>
+                    <constraint firstItem="efe-Rj-jlw" firstAttribute="width" secondItem="0v0-ej-Nfa" secondAttribute="width" id="oQu-3z-Rre"/>
+                    <constraint firstItem="vWe-Ne-R1B" firstAttribute="width" secondItem="0v0-ej-Nfa" secondAttribute="width" id="ofU-KV-PyT"/>
+                    <constraint firstItem="0v0-ej-Nfa" firstAttribute="centerY" secondItem="64L-Ux-xO8" secondAttribute="centerY" multiplier="1.3" id="tct-si-hI9"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="310.5" y="1167"/>
@@ -301,18 +330,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="326" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-RC-Tsa">
-                        <rect key="frame" x="-1" y="10" width="80" height="80"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="80" id="h2m-2F-tkZ"/>
-                            <constraint firstAttribute="height" constant="80" id="z2R-nD-D7j"/>
-                        </constraints>
-                        <state key="normal" backgroundImage="profile"/>
-                        <connections>
-                            <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="gOr-P9-0L6"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WlJ-A0-jh9">
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WlJ-A0-jh9">
                         <rect key="frame" x="123" y="10" width="80" height="80"/>
                         <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -324,7 +342,7 @@
                             <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="c8s-AE-KK8"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qa3-u6-fya">
+                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qa3-u6-fya">
                         <rect key="frame" x="123" y="109" width="80" height="80"/>
                         <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -336,7 +354,7 @@
                             <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="lIC-Zc-RrO"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Luy-vK-h38">
+                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Luy-vK-h38">
                         <rect key="frame" x="246" y="109" width="80" height="80"/>
                         <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -348,7 +366,7 @@
                             <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="yao-0o-6kj"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfl-12-4RO">
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfl-12-4RO">
                         <rect key="frame" x="246" y="10" width="80" height="80"/>
                         <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -360,7 +378,7 @@
                             <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="t1G-kB-mbx"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fv-Qg-TGa">
+                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fv-Qg-TGa">
                         <rect key="frame" x="-1" y="109" width="80" height="80"/>
                         <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -370,6 +388,17 @@
                         <state key="normal" backgroundImage="add"/>
                         <connections>
                             <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="PbK-Hj-60d"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-RC-Tsa">
+                        <rect key="frame" x="-1" y="10" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="h2m-2F-tkZ"/>
+                            <constraint firstAttribute="height" constant="80" id="z2R-nD-D7j"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="profile"/>
+                        <connections>
+                            <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="gOr-P9-0L6"/>
                         </connections>
                     </button>
                 </subviews>

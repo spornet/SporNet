@@ -8,6 +8,9 @@
 #import "SNUser.h"
 #import "SNUserProfileViewController.h"
 #import <AVObject+Subclass.h>
+
+#define PROFILE_IMAGE [UIImage imageNamed:@"profile"]
+#define ADD_IMAGE [UIImage imageNamed:@"add"]
 @interface SNUserProfileViewController ()
 
 
@@ -34,15 +37,22 @@
 @property (strong, nonatomic) IBOutlet UITextField        *sexTextField;
 @property (strong, nonatomic) IBOutlet UITextField        *gradTextField;
 @property (strong, nonatomic) IBOutlet UITextView         *aboutmeTextView;
-
+@property UIImageView *selectedBestSportImageView;
 //gender selected by user
 @property GenderType selectedGender;
 //best sport selected by user
-@property BestSports selectedBestSport;
+@property(nonatomic) BestSports selectedBestSport;
 //graduation year selected by user
 @property int selectedGradYear;
+//profile images selected by user
+@property NSMutableArray *selectedProfileImageArray;
 
 @property (weak, nonatomic  ) UIPickerView                *birthdayPiker;
+
+//image picker controller
+@property(nonatomic) UIImagePickerController *imagePicker;
+//alert controller
+@property(nonatomic) UIAlertController *alert;
 @end
 
 @implementation SNUserProfileViewController
@@ -50,6 +60,9 @@
 NSArray *gradYears;
 //select options for gender
 NSArray *genderArray;
+NSArray *bestSportsPicArray;
+NSArray *bestSportsPicArraySelected;
+NSInteger selectedImageTag;
 - (void)viewDidLoad {
     [super viewDidLoad];
     //set delegates
@@ -61,25 +74,22 @@ NSArray *genderArray;
     //set constant arrays
     gradYears = @[@"2010",@"2011",@"2012",@"2013",@"2014",@"2015",@"2016",@"2017",@"2018",@"2019",@"2020",@"2021"];
     genderArray = @[@"Male", @"Female"];
+    bestSportsPicArray = @[@"jogging", @"muscle", @"soccer", @"basketball", @"yoga"];
+    bestSportsPicArraySelected = @[@"joggingSelected", @"muscleSelected", @"soccerSelected", @"basketballSelected", @"yogaSelected"];
     //set pickers as input views of textfields.
     self.sexTextField.inputView = self.sexPicker;
     self.gradTextField.inputView = self.graduationYearPicker;
     //add tap gestures to 5 sport images.
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
-    UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:2];
-    [imageView addGestureRecognizer:tapRecognizer];
-    
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
     for(int i = 1; i <= 5; i++) {
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
- 
         UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:i];
         [imageView addGestureRecognizer:tapRecognizer];
     }
+    self.selectedProfileImageArray = [[NSMutableArray alloc]initWithCapacity:6];
 }
 #pragma mark - Table view delegate & datasource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -222,7 +232,6 @@ NSArray *genderArray;
 //When the best sport image is tapped, reset that image.
 - (void)sportTapped:(UITapGestureRecognizer *)tapGesture {
     UIImageView *image = (UIImageView*)tapGesture.view;
-    image.image = [UIImage imageNamed:@"yoga"];
     self.selectedBestSport = (BestSports)image.tag;
 }
 #pragma mark - move about me textview with animation when keyboard popping up.
@@ -238,13 +247,25 @@ NSArray *genderArray;
 - (void)demoCreateObject {
     //更新的时候，得把NSInteger值转为NSNumber
     //AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:@"5776986f5e10720046e19002"];
-    AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
+    
+    [AVUser logInWithUsername:@"zheng.yang2@husky.neu.edu" password:@"123456" error:nil];
+    AVQuery *query = [SNUser query];
+    //选取当前登陆用户的所有记录
+    [query whereKey:@"userID" equalTo:[AVUser currentUser].objectId];
+    //[query includeKey:@"photoes"];
+    NSArray *fetchedPrayers = [query findObjects];
+    SNUser *user;
+    if(fetchedPrayers.count) user = fetchedPrayers[0];
+    else user = [[SNUser alloc]init];
+//    AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
+    
     [user setObject:[NSString stringWithFormat:@"%@ %@", self.firstNameTextField.text, self.lastNameTextField.text] forKey:@"name"];
     [user setObject:[NSNumber numberWithInteger:self.selectedGradYear] forKey:@"gradYear"];
     [user setObject:[NSNumber numberWithInt:self.selectedGender] forKey:@"gender"];
     [user setObject:[NSNumber numberWithInteger:self.selectedBestSport] forKey:@"bestSport"];
     [user setObject:[NSNumber numberWithInteger:SportTimeSlotNight] forKey:@"sportTimeSlot"];
     [user setObject:self.aboutmeTextView.text forKey:@"aboutMe"];
+    [user setObject:[AVUser currentUser].objectId forKey:@"userID"];
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"存储成功哈哈哈");
@@ -255,8 +276,58 @@ NSArray *genderArray;
 }
 
 - (IBAction)picButtonClicked:(UIButton *)sender {
-    
-    
+    selectedImageTag = sender.tag;
+    if(!_imagePicker) {
+        _imagePicker = [[UIImagePickerController alloc]init];
+        _imagePicker.delegate = self;
+    }
+    if([sender.currentBackgroundImage isEqual:PROFILE_IMAGE] | [sender.currentBackgroundImage isEqual:ADD_IMAGE]) {
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        _imagePicker.allowsEditing = YES;
+        [self presentViewController:_imagePicker animated:true completion:nil];
+    } else {
+        [self presentViewController:self.alert animated:YES completion:nil];
+    }
 }
 
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    UIButton *selectedButton = (UIButton*)[self.picCell viewWithTag:selectedImageTag];
+    [selectedButton setBackgroundImage:chosenImage forState:normal];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+/**
+ *  initiate action sheet for when there are photos in picCell.
+ *
+ *  @return alert
+ */
+-(UIAlertController*)alert {
+    if(_alert == nil) {
+        _alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        [_alert addAction:[UIAlertAction actionWithTitle:@"Change Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self presentViewController:self.imagePicker animated:YES completion:nil];
+        }]];
+        [_alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            UIButton *selectedButton = (UIButton*)[self.picCell viewWithTag:selectedImageTag];
+            if(selectedImageTag == 1) {
+                [selectedButton setBackgroundImage:PROFILE_IMAGE forState:normal];
+            } else {
+                [selectedButton setBackgroundImage:ADD_IMAGE forState:normal];
+            }
+        }]];
+        [_alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        }]];
+    }
+    return _alert;
+}
+-(void)setSelectedBestSport:(BestSports)selectedBestSport {
+    if(!_selectedBestSportImageView){
+        _selectedBestSportImageView = [[UIImageView alloc]init];
+        [self.bestSportCell addSubview:_selectedBestSportImageView];
+    }
+    _selectedBestSport = selectedBestSport;
+    UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:selectedBestSport];
+    _selectedBestSportImageView.frame = CGRectMake(imageView.frame.origin.x - 5, imageView.frame.origin.y - 5, imageView.frame.size.width + 10, imageView.frame.size.height + 10);
+    _selectedBestSportImageView.image = [UIImage imageNamed: bestSportsPicArraySelected[selectedBestSport-1]];
+}
 @end

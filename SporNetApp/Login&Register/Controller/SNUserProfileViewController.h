@@ -19,6 +19,6 @@ typedef NS_ENUM(NSInteger, UserProfileRow) {
     UserProfileRowDone,
     UserProfileRowNumber
 };
-@interface SNUserProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>
+@interface SNUserProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
