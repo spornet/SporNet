@@ -21,6 +21,7 @@ typedef enum{
     GenderMale = 1,
     GenderFamale
 }GenderType;
+
 typedef NS_ENUM(NSInteger, BestSports) {
     BestSportsJogging = 1,
     BestSportsMuscle,

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -14,6 +14,8 @@
                 <outlet property="bestSportCell" destination="Ml4-0q-zBV" id="lCC-Kj-2cc"/>
                 <outlet property="birthdayCell" destination="bsr-d7-YJg" id="p6J-3W-chM"/>
                 <outlet property="birthdayLabel" destination="94V-TL-p4g" id="W58-gH-e9Z"/>
+                <outlet property="birthdayPicker" destination="hXF-eY-Y9P" id="g9D-zw-tGE"/>
+                <outlet property="birthdayTextField" destination="RFd-bD-9wE" id="fEv-RH-6yd"/>
                 <outlet property="bottonConstraint" destination="TZj-Md-N0h" id="a3f-tq-Ta7"/>
                 <outlet property="doneCell" destination="lJC-cG-B9h" id="86K-5Z-mlv"/>
                 <outlet property="firstNameTextField" destination="UhV-GJ-jM0" id="mlk-MZ-Ryl"/>
@@ -29,6 +31,9 @@
                 <outlet property="sexPicker" destination="XyF-yN-yoS" id="ENs-0f-2EL"/>
                 <outlet property="sexTextField" destination="6HS-Ce-p0B" id="v0r-Oe-sjj"/>
                 <outlet property="sportTimeCell" destination="M45-ww-Zrr" id="6zo-M6-kKU"/>
+                <outlet property="sportTimeLabel" destination="0BJ-VV-EmH" id="TDt-se-smb"/>
+                <outlet property="sportTimePicker" destination="Ifn-Ov-CyU" id="5BN-df-CN4"/>
+                <outlet property="sportTimeTextField" destination="9lD-by-gbX" id="FyJ-sb-NrR"/>
                 <outlet property="tableView" destination="VZw-IJ-4aA" id="xHQ-uU-Wk0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -62,6 +67,16 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lD-by-gbX" userLabel="Sport Time Field">
+                    <rect key="frame" x="419" y="357" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RFd-bD-9wE" userLabel="Birthday Text Field">
+                    <rect key="frame" x="405" y="410" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -79,7 +94,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XCU-NV-pvO" id="4GN-qV-ivP">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Firts Name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UhV-GJ-jM0">
@@ -118,7 +133,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ylw-RH-NCF" id="TfB-VQ-URW">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXv-BA-BvF">
@@ -147,7 +162,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bsr-d7-YJg" id="XSl-8l-lT4">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIRTHDAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1N-ZQ-hDZ">
@@ -176,7 +191,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E71-Ws-kt8" id="7N5-Ma-AxP">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GRADUATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbD-sg-QPc">
@@ -205,7 +220,7 @@
             <rect key="frame" x="0.0" y="0.0" width="323" height="76"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ml4-0q-zBV" id="64L-Ux-xO8">
-                <rect key="frame" x="0.0" y="0.0" width="323" height="75"/>
+                <rect key="frame" x="0.0" y="0.0" width="323" height="75.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEST SPORTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrm-Ch-UFT">
@@ -241,7 +256,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M45-ww-Zrr" id="oBu-pg-cuD">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPORT TIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aum-o8-qvj">
@@ -270,7 +285,7 @@
             <rect key="frame" x="0.0" y="0.0" width="326" height="114"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7rV-SO-0Yx" id="8Uq-xS-GF8">
-                <rect key="frame" x="0.0" y="0.0" width="326" height="113"/>
+                <rect key="frame" x="0.0" y="0.0" width="326" height="113.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABOUT ME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unE-6u-Jfe">
@@ -298,7 +313,7 @@
             <rect key="frame" x="0.0" y="0.0" width="326" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a36-DJ-s77" id="j0T-Wg-HBJ">
-                <rect key="frame" x="0.0" y="0.0" width="326" height="199"/>
+                <rect key="frame" x="0.0" y="0.0" width="326" height="199.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-RC-Tsa">
@@ -394,7 +409,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lJC-cG-B9h" id="TNx-Fe-a7a">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-BQ-aGy">
@@ -419,6 +434,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <point key="canvasLocation" x="321" y="2337"/>
         </pickerView>
+        <pickerView contentMode="scaleToFill" id="Ifn-Ov-CyU" userLabel="Sport Time Picker">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+            <point key="canvasLocation" x="321" y="2124.5"/>
+        </pickerView>
+        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" id="hXF-eY-Y9P" userLabel="Birthday Picker">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+            <date key="date" timeIntervalSinceReferenceDate="491412024.98174399">
+                <!--2016-07-28 15:20:24 +0000-->
+            </date>
+            <date key="minimumDate" timeIntervalSinceReferenceDate="-3187256400">
+                <!--1900-01-01 11:00:00 +0000-->
+            </date>
+            <date key="maximumDate" timeIntervalSinceReferenceDate="473335200">
+                <!--2016-01-01 10:00:00 +0000-->
+            </date>
+            <point key="canvasLocation" x="312" y="1478"/>
+        </datePicker>
     </objects>
     <resources>
         <image name="add" width="201" height="201"/>

@@ -29,10 +29,15 @@
 @property (strong, nonatomic) IBOutlet UILabel            *sexLabel;
 @property (strong, nonatomic) IBOutlet UILabel            *birthdayLabel;
 @property (strong, nonatomic) IBOutlet UILabel            *gradLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sportTimeLabel;
 @property (strong, nonatomic) IBOutlet UIPickerView       *sexPicker;
 @property (strong, nonatomic) IBOutlet UIPickerView       *graduationYearPicker;
+@property (strong, nonatomic) IBOutlet UIPickerView       *sportTimePicker;
+@property (strong, nonatomic) IBOutlet UIDatePicker *birthdayPicker;
 @property (strong, nonatomic) IBOutlet UITextField        *sexTextField;
 @property (strong, nonatomic) IBOutlet UITextField        *gradTextField;
+@property (weak, nonatomic) IBOutlet UITextField *sportTimeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
 @property (strong, nonatomic) IBOutlet UITextView         *aboutmeTextView;
 
 //gender selected by user
@@ -41,8 +46,10 @@
 @property BestSports selectedBestSport;
 //graduation year selected by user
 @property int selectedGradYear;
-
-@property (weak, nonatomic  ) UIPickerView                *birthdayPiker;
+//sport time selected by user
+@property SportTimeSlot selectedSpotrTime;
+//birthday of user selected
+@property NSDate* selectedBirthday;
 @end
 
 @implementation SNUserProfileViewController
@@ -50,6 +57,9 @@
 NSArray *gradYears;
 //select options for gender
 NSArray *genderArray;
+//select options for sport time
+NSArray *sportTime;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //set delegates
@@ -57,13 +67,20 @@ NSArray *genderArray;
     self.sexPicker.dataSource = self;
     self.graduationYearPicker.delegate = self;
     self.graduationYearPicker.dataSource = self;
+    self.sportTimePicker.delegate = self;
+    self.sportTimePicker.dataSource = self;
     self.aboutmeTextView.delegate = self;
+    [self.birthdayPicker addTarget:self action:@selector(dateSelected:) forControlEvents:UIControlEventValueChanged];
     //set constant arrays
     gradYears = @[@"2010",@"2011",@"2012",@"2013",@"2014",@"2015",@"2016",@"2017",@"2018",@"2019",@"2020",@"2021"];
     genderArray = @[@"Male", @"Female"];
+    sportTime = @[@"Morning",@"Noon",@"Afternoon",@"Evening"];
+    
     //set pickers as input views of textfields.
     self.sexTextField.inputView = self.sexPicker;
     self.gradTextField.inputView = self.graduationYearPicker;
+    self.sportTimeTextField.inputView = self.sportTimePicker;
+    self.birthdayTextField.inputView = self.birthdayPicker;
     //add tap gestures to 5 sport images.
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
     UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:2];
@@ -152,6 +169,7 @@ NSArray *genderArray;
             break;
         case UserProfileRowBirthday:
             NSLog(@"select birthday");
+            [self.birthdayTextField becomeFirstResponder];
             break;
         case UserProfileRowGraduation:
             NSLog(@"Select graduation");
@@ -162,6 +180,8 @@ NSArray *genderArray;
             break;
         case UserProfileRowSportTime:
             NSLog(@"select sport time");
+            [self.sportTimeTextField becomeFirstResponder];
+            [self pickerViewWillShow];
             break;
         case  UserProfileRowDone:
             NSLog(@"save action");
@@ -188,26 +208,34 @@ NSArray *genderArray;
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if([pickerView isEqual:self.sexPicker]) {
         return 2;
-    } else {
+    } else if([pickerView isEqual:self.graduationYearPicker]){
         return gradYears.count;
+    } else{
+        return sportTime.count;
     }
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     if([pickerView isEqual:self.sexPicker]) {
         return genderArray[row];
-    } else {
+    } else if([pickerView isEqual:self.graduationYearPicker]){
         return gradYears[row];
+    }else{
+        return sportTime[row];
     }
 }
+
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
       inComponent:(NSInteger)component {
     if([pickerView isEqual:self.sexPicker]) {
         self.sexLabel.text = genderArray[row];
         self.selectedGender = (GenderType)row;
-    } else {
+    } else if([pickerView isEqual:self.graduationYearPicker]){
         self.gradLabel.text = gradYears[row];
         self.selectedGradYear = [self.gradLabel.text intValue];
+    }else{
+        self.sportTimeLabel.text = sportTime[row];
+        self.selectedSpotrTime = (SportTimeSlot)row;
     }
 }
 
@@ -215,7 +243,9 @@ NSArray *genderArray;
 #pragma mark - Scroll view delegate.
 //dismiss keyboard when the table view start scrolling
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self dismissKeyboard];
+    if ([scrollView isKindOfClass:[UITableView class]]) {
+        [self dismissKeyboard];
+    }
 }
 
 
@@ -225,6 +255,15 @@ NSArray *genderArray;
     image.image = [UIImage imageNamed:@"yoga"];
     self.selectedBestSport = (BestSports)image.tag;
 }
+
+-(void)pickerViewWillShow{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.bottonConstraint.constant = [self.sportTimeTextField isFirstResponder]? 150:0;
+    [self.view layoutIfNeeded];
+    [UIView commitAnimations];
+}
+
 #pragma mark - move about me textview with animation when keyboard popping up.
 - (void)keyboardWillChange:(NSNotification *)notification {
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
@@ -254,6 +293,13 @@ NSArray *genderArray;
     }];
 }
 
+-(void)dateSelected:(id)sender{
+    UIDatePicker* control = (UIDatePicker*)sender;
+    NSDate* date = control.date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+    self.birthdayLabel.text = [dateFormatter stringFromDate:date];
+}
 - (IBAction)picButtonClicked:(UIButton *)sender {
     
     
