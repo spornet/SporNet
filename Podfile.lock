@@ -1,20 +1,31 @@
 PODS:
-  - AVOSCloud (3.3.4)
-  - AVOSCloudCrashReporting (3.3.4):
+  - AVOSCloud (3.3.5)
+  - AVOSCloudCrashReporting (3.3.5):
     - AVOSCloud
-  - AVOSCloudIM (3.3.4):
+  - AVOSCloudIM (3.3.5):
     - AVOSCloud
+  - DXPopover (0.1.1)
+  - MJRefresh (3.1.12)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
 
 DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudCrashReporting
   - AVOSCloudIM
+  - DXPopover
+  - MJRefresh
+  - SDWebImage (~> 3.8)
 
 SPEC CHECKSUMS:
-  AVOSCloud: d501e7f43719884b748214d3cb5a3da18a20fb46
-  AVOSCloudCrashReporting: d554b9505a772bce33dac69030bc9b3ae160b566
-  AVOSCloudIM: 6bcb080d9238e1de32a0ac1d6fe855225620feaa
+  AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
+  AVOSCloudCrashReporting: 7ad087db785a25d6ef03cb54c2c0b460eb32dabb
+  AVOSCloudIM: dc307c48e951fcd861f4ae6db6d807e7b40639c8
+  DXPopover: 13e6bbd1a0da4e62b2190de51f43a94850769e0f
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 2e5caf1612bd2f2b8f8ab73b3704d3fa6ee13e7f
+PODFILE CHECKSUM: 49ee388d759a3469dabd8870512b69422f3c0182
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.0.0

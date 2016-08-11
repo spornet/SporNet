@@ -4,15 +4,55 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DXPopover-DXPopover.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DXPopover.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SporNetApp.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>E7DFB494F925C22637E6B27D358079E8</key>
+		<key>15E71DC389AF81EB7D768EBA0F13A0C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D0C9C4F29C26D4D6E2F34B673A57379</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>70BC44266C6FFE30D2C57129458E070B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9D41D36AAA7E76A784E111EC36535325</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD25B2157D8BCA944D6FF3EC2B073ECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

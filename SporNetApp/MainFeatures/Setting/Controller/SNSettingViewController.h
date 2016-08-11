@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AVObject.h"
 @interface SNSettingViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
-
+@property(strong) AVObject *basicInfo;
 @end

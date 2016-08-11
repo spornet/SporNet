@@ -7,7 +7,7 @@
 //
 
 #import "SNMainFeatureTabController.h"
-
+#import "SNSettingViewController.h"
 
 @interface SNMainFeatureTabController ()
 
@@ -21,21 +21,6 @@
     
     if (self) {
         
-        UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
-        UIStoryboard *message = [UIStoryboard storyboardWithName:@"MessageStoryboard" bundle:nil];
-        UIStoryboard *ranking = [UIStoryboard storyboardWithName:@"RankingStoryboard" bundle:nil];
-        UIStoryboard *search = [UIStoryboard storyboardWithName:@"SearchingStoryboard" bundle:nil];
-        UIStoryboard *setting = [UIStoryboard storyboardWithName:@"SettingStoryboard" bundle:nil];
-        
-        UIViewController *tagController = [tag instantiateInitialViewController];
-        UIViewController *messageController = [message instantiateInitialViewController];
-        UIViewController *rankingController = [ranking instantiateInitialViewController];
-        UIViewController *searchController = [search instantiateInitialViewController];
-        UIViewController *settingController = [setting instantiateInitialViewController];
-        
-        self.viewControllers = @[tagController, messageController, rankingController, searchController, settingController];
-        
-        
     }
     
     return self;
@@ -43,6 +28,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
+    UIStoryboard *message = [UIStoryboard storyboardWithName:@"MessageStoryboard" bundle:nil];
+    UIStoryboard *ranking = [UIStoryboard storyboardWithName:@"RankingStoryboard" bundle:nil];
+    UIStoryboard *search = [UIStoryboard storyboardWithName:@"SearchingStoryboard" bundle:nil];
+    UIStoryboard *setting = [UIStoryboard storyboardWithName:@"SettingStoryboard" bundle:nil];
+    
+    UIViewController *tagController = [tag instantiateInitialViewController];
+    tagController.tabBarItem.title = @"Tag";
+    UIViewController *messageController = [message instantiateInitialViewController];
+    UIViewController *rankingController = [ranking instantiateInitialViewController];
+    rankingController.tabBarItem.title = @"Rank";
+    UIViewController *searchController = [search instantiateInitialViewController];
+    SNSettingViewController *settingController = [setting instantiateInitialViewController];
+    settingController.tabBarItem.title = @"Setting";
+    self.viewControllers = @[tagController,rankingController, settingController];
+    
+
     // Do any additional setup after loading the view.
 }
 

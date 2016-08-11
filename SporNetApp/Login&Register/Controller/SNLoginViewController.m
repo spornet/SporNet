@@ -11,6 +11,9 @@
 #import "SNFpDreViewController.h"
 #import "ProgressHUD.h"
 #import "AVUser.h"
+#import "AVFile.h"
+#import "SNMainFeatureTabController.h"
+#import "LocalDataManager.h"
 @interface SNLoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userEmailTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
@@ -53,28 +56,21 @@
                 [ProgressHUD showError:@"Wrong password!"];
             } else{
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back, %@!", user.username]];
-                [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
+                if([[NSUserDefaults standardUserDefaults]objectForKey:@"alreadySignIn"]) {
+                    [LocalDataManager fetchProfileInfoFromCloud];
+                    SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
+                    [self presentViewController:tabVC animated:YES completion:nil];
+                } else {
+                    [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
+                    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithBool:YES] forKey:@"alreadySignIn"];
+                }
+
             }
         }];
     }
-//    
-//    //判断是否同时输入了邮箱和密码
-//    if (_userEmailTextfield.text.length != 0 && _passwordTextfield.text.length !=0) {
-//        //判断后台是否有用户数据
-//        if (NO) {
-//            //上面的if里如果有用户信息则值为YES，然后初始化search near by VC，改为NO是因为测试第一次登录时userProfile
-//        }else
-//        {
-//        //第一次输入信息
-//            [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
-//        }
-//    }
-//    else{
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert !" message:@"Please fill all infomation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        [alert show];
-//        
-//    }
 }
+
+
 
 //method for forget password button
 - (IBAction)forgetPassword {

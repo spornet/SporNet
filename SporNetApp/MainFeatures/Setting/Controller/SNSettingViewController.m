@@ -9,7 +9,10 @@
 #import "SNSettingViewController.h"
 #import "SNPreferenceViewController.h"
 #import "SNUserProfileViewController.h"
-
+#import "globalMacros.h"
+#import "AVUser.h"
+#import "AVFile.h"
+#import "ProgressHUD.h"
 typedef NS_ENUM(NSInteger, SettingRow) {
     SettingRowSearchPreference= 0,
     SettingRowChangePassword,
@@ -23,6 +26,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 @property (strong, nonatomic) IBOutlet UIView *sportColorView;
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *userBlurImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *bestSportImageView;
 //Text array for setting view.
 @property(nonatomic) NSArray *settingTextArray;
 @end
@@ -36,8 +40,8 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     [self.sportColorView.layer setCornerRadius:55];
     self.userImageView.clipsToBounds = YES;
     [self.userImageView.layer setCornerRadius:50];
-    //blur the background image
-    [self setBlurTopImage:self.userImageView.image];
+    //load profile image
+    [self loadProfileView];
     //add tap gesture to user photo. When tapped, go to user profile page.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                        initWithTarget:self
@@ -71,8 +75,10 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case SettingRowSearchPreference:{
-            SNPreferenceViewController *preferenceVC = [[SNPreferenceViewController alloc] init];
-            [self.navigationController pushViewController:preferenceVC animated:YES];
+//            SNPreferenceViewController *preferenceVC = [[SNPreferenceViewController alloc] init];
+//            [self.navigationController pushViewController:preferenceVC animated:YES];
+                [self performSegueWithIdentifier:@"toPreferenceSegue" sender:nil];
+            
         }
             break;
         case SettingRowChangePassword:
@@ -99,11 +105,20 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     [filter setValue:[NSNumber numberWithFloat:10.0] forKey:@"inputRadius"];
     // blur image
     CIImage *result = [filter valueForKey:kCIOutputImageKey];
-    CGImageRef cgImage = [context createCGImage:result fromRect:CGRectMake(0, 130, 375, 200)];
+    self.userBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
+//    CGImageRef cgImage = [context createCGImage:result fromRect:CGRectMake(0, 100, 50, 100)];
+    CGImageRef cgImage = [context createCGImage:result fromRect:CGRectMake(75, 375, SCREEN_WIDTH+150, self.userBlurImageView.frame.size.height + 150)];
     UIImage *blurImage = [UIImage imageWithCGImage:cgImage];
     CGImageRelease(cgImage);
     self.userBlurImageView.image = blurImage;
     self.userBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
+}
+
+//load setting profile
+-(void)loadProfileView {
+    if([[AVUser currentUser]objectForKey:@"icon"]) self.userImageView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
+    [self setBlurTopImage:self.userImageView.image];
+    self.sportColorView.backgroundColor = SPORTSLOT_COLOR_ARRAY[[[[AVUser currentUser]objectForKey:@"sportTimeSlot"]integerValue]];
 }
 //setter for text array
 -(NSArray*)settingTextArray {
@@ -119,6 +134,8 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 }
 
 - (IBAction)logOutAction:(id)sender {
-    NSLog(@"%@", @"Log Out");
+    UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login&RegisterStoryBoard" bundle:nil];
+    UIViewController *loginVC = [login instantiateInitialViewController];
+    [self presentViewController:loginVC animated:YES completion:nil];
 }
 @end

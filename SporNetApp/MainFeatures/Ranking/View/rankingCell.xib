@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="medalGold" translatesAutoresizingMaskIntoConstraints="NO" id="cVB-yO-0rC">
@@ -26,29 +26,29 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbq-xo-oYR">
                         <rect key="frame" x="68" y="10" width="56" height="56"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user1" translatesAutoresizingMaskIntoConstraints="NO" id="h6t-aE-mTd">
-                                <rect key="frame" x="5" y="5" width="46" height="46"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="h6t-aE-mTd">
+                                <rect key="frame" x="2" y="2" width="52" height="52"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.68587458053691275" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="h6t-aE-mTd" secondAttribute="trailing" constant="5" id="5IA-7c-lLg"/>
+                            <constraint firstAttribute="trailing" secondItem="h6t-aE-mTd" secondAttribute="trailing" constant="2" id="5IA-7c-lLg"/>
                             <constraint firstAttribute="height" constant="56" id="MlH-xp-ozA"/>
-                            <constraint firstItem="h6t-aE-mTd" firstAttribute="leading" secondItem="Xbq-xo-oYR" secondAttribute="leading" constant="5" id="N6X-ob-bCn"/>
-                            <constraint firstAttribute="bottom" secondItem="h6t-aE-mTd" secondAttribute="bottom" constant="5" id="dDI-6s-t5f"/>
+                            <constraint firstItem="h6t-aE-mTd" firstAttribute="leading" secondItem="Xbq-xo-oYR" secondAttribute="leading" constant="2" id="N6X-ob-bCn"/>
+                            <constraint firstAttribute="bottom" secondItem="h6t-aE-mTd" secondAttribute="bottom" constant="2" id="dDI-6s-t5f"/>
                             <constraint firstAttribute="width" constant="56" id="k8b-eU-JEg"/>
-                            <constraint firstItem="h6t-aE-mTd" firstAttribute="top" secondItem="Xbq-xo-oYR" secondAttribute="top" constant="5" id="rSE-Gx-xZS"/>
+                            <constraint firstItem="h6t-aE-mTd" firstAttribute="top" secondItem="Xbq-xo-oYR" secondAttribute="top" constant="2" id="rSE-Gx-xZS"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yamada Ryosuke" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCk-GZ-wlB">
-                        <rect key="frame" x="139" y="15" width="130" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="139" y="15" width="129" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boston University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qni-Bn-9T1">
-                        <rect key="frame" x="139" y="44" width="114" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="139" y="44" width="112" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                         <color key="textColor" red="0.56470588239999997" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -96,7 +96,7 @@
     </objects>
     <resources>
         <image name="medalGold" width="30" height="48"/>
+        <image name="profile" width="202" height="202"/>
         <image name="soccerSelected" width="77" height="77"/>
-        <image name="user1" width="720" height="450"/>
     </resources>
 </document>

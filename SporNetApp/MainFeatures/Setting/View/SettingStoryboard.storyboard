@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zgD-nc-mVU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="34W-JZ-U5N">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -36,8 +36,13 @@
         <scene sceneID="yq9-nM-3S5">
             <objects>
                 <viewController id="xIf-GJ-Wpi" customClass="SNSettingViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Setting" id="ziv-xH-0hj"/>
+                    <navigationItem key="navigationItem" title="Setting" id="ziv-xH-0hj">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="l6I-f8-owl"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="zgD-nc-mVU" kind="show" identifier="toPreferenceSegue" id="L3J-cu-JD0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jz-co-pf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -47,6 +52,9 @@
         <scene sceneID="gtY-yG-NFt">
             <objects>
                 <viewController title="Preference" id="zgD-nc-mVU" customClass="SNPreferenceViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Search Preference" id="UIU-0S-xf2">
+                        <barButtonItem key="backBarButtonItem" id="EFK-6G-kqK"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfI-Dh-TEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
