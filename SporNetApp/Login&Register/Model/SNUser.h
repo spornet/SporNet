@@ -15,6 +15,7 @@ static NSString *const kStudentKeyGradYear = @"gradYear";
 static NSString *const kBestSport = @"bestSport";
 static NSString *const kSportTimeSlot =@"sportTimeSlot";
 static NSString *const kAboutMe = @"aboutMe";
+static NSString *const kDateOfBirth = @"dateOfBirth";
 
 typedef enum{
     GenderUnkonwn = 0,
@@ -41,6 +42,8 @@ typedef NS_ENUM(NSInteger, SportTimeSlot) {
 @property (nonatomic, copy  ) NSString      *name;
 //user's gender
 @property (nonatomic, assign) GenderType    gender;
+//user's gender
+@property (nonatomic, assign) NSDate    *dateOfBirth;
 //user's year of graduation
 @property (nonatomic, assign) NSInteger     gradYear;
 //user's account information including email and password.
@@ -51,4 +54,5 @@ typedef NS_ENUM(NSInteger, SportTimeSlot) {
 @property (nonatomic, assign) enum SportTimeSlot sportTimeSlot;
 //user's self introduction
 @property (nonatomic, assign) NSString      *aboutMe;
+@property(nonatomic, assign) NSInteger voteNumber;
 @end

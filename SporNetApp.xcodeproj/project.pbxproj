@@ -10,12 +10,26 @@
 		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
 		6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */; };
 		6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01ACF81D48FB7300E98E6F /* ProgressHUD.m */; };
+		6D01AD011D4A94A300E98E6F /* SNTagMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01ACFF1D4A94A300E98E6F /* SNTagMainViewController.m */; };
+		6D01AD021D4A94A300E98E6F /* SNTagMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D01AD001D4A94A300E98E6F /* SNTagMainViewController.xib */; };
+		6D01AD061D4AA5B400E98E6F /* SNTagSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01AD041D4AA5B400E98E6F /* SNTagSecondViewController.m */; };
+		6D01AD071D4AA5B400E98E6F /* SNTagSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D01AD051D4AA5B400E98E6F /* SNTagSecondViewController.xib */; };
+		6D01AD0B1D4AAA0900E98E6F /* SNTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01AD091D4AAA0900E98E6F /* SNTagCell.m */; };
+		6D01AD0C1D4AAA0900E98E6F /* SNTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D01AD0A1D4AAA0900E98E6F /* SNTagCell.xib */; };
+		6D15F9301D52395F00B8F011 /* SNSearchNearbyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F92E1D52395F00B8F011 /* SNSearchNearbyProfileViewController.m */; };
+		6D15F9311D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F92F1D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib */; };
+		6D15F9331D529DBE00B8F011 /* emailToSchool.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9321D529DBD00B8F011 /* emailToSchool.plist */; };
+		6D15F9371D55312B00B8F011 /* ViewBigPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F9351D55312B00B8F011 /* ViewBigPhotoViewController.m */; };
+		6D15F9381D55312B00B8F011 /* ViewBigPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9361D55312B00B8F011 /* ViewBigPhotoViewController.xib */; };
+		6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9391D5A782000B8F011 /* basicInfo.plist */; };
+		6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */; };
+		6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2803931D4FC50D00267B18 /* TimeManager.m */; };
+		6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */; };
 		6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C51D37E6D700F622F6 /* rankingCell.m */; };
 		6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C71D37E6D700F622F6 /* SNRankingViewController.m */; };
 		6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CA1D37E6E700F622F6 /* rankingCell.xib */; };
 		6DD9D5CE1D37E6E700F622F6 /* RankingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CB1D37E6E700F622F6 /* RankingStoryboard.storyboard */; };
 		6DD9D5CF1D37E6E700F622F6 /* SNRankingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CC1D37E6E700F622F6 /* SNRankingViewController.xib */; };
-		6DD9D5D21D37E6F700F622F6 /* MockUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5D11D37E6F700F622F6 /* MockUser.m */; };
 		6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5D81D37E8E600F622F6 /* SNPreferenceViewController.m */; };
 		6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5DA1D37E8E600F622F6 /* SNSettingViewController.m */; };
 		6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5DD1D37E8F700F622F6 /* SettingStoryboard.storyboard */; };
@@ -64,6 +78,30 @@
 		6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		6D01ACF71D48FB7300E98E6F /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		6D01ACF81D48FB7300E98E6F /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		6D01ACFE1D4A94A300E98E6F /* SNTagMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagMainViewController.h; sourceTree = "<group>"; };
+		6D01ACFF1D4A94A300E98E6F /* SNTagMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagMainViewController.m; sourceTree = "<group>"; };
+		6D01AD001D4A94A300E98E6F /* SNTagMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagMainViewController.xib; sourceTree = "<group>"; };
+		6D01AD031D4AA5B300E98E6F /* SNTagSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagSecondViewController.h; sourceTree = "<group>"; };
+		6D01AD041D4AA5B400E98E6F /* SNTagSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagSecondViewController.m; sourceTree = "<group>"; };
+		6D01AD051D4AA5B400E98E6F /* SNTagSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagSecondViewController.xib; sourceTree = "<group>"; };
+		6D01AD081D4AAA0900E98E6F /* SNTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagCell.h; sourceTree = "<group>"; };
+		6D01AD091D4AAA0900E98E6F /* SNTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagCell.m; sourceTree = "<group>"; };
+		6D01AD0A1D4AAA0900E98E6F /* SNTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagCell.xib; sourceTree = "<group>"; };
+		6D15F92D1D52395F00B8F011 /* SNSearchNearbyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSearchNearbyProfileViewController.h; sourceTree = "<group>"; };
+		6D15F92E1D52395F00B8F011 /* SNSearchNearbyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSearchNearbyProfileViewController.m; sourceTree = "<group>"; };
+		6D15F92F1D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSearchNearbyProfileViewController.xib; sourceTree = "<group>"; };
+		6D15F9321D529DBD00B8F011 /* emailToSchool.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emailToSchool.plist; sourceTree = "<group>"; };
+		6D15F9341D55312B00B8F011 /* ViewBigPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBigPhotoViewController.h; sourceTree = "<group>"; };
+		6D15F9351D55312B00B8F011 /* ViewBigPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBigPhotoViewController.m; sourceTree = "<group>"; };
+		6D15F9361D55312B00B8F011 /* ViewBigPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewBigPhotoViewController.xib; sourceTree = "<group>"; };
+		6D15F9391D5A782000B8F011 /* basicInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = basicInfo.plist; sourceTree = "<group>"; };
+		6D15F93B1D5A977D00B8F011 /* LocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDataManager.h; sourceTree = "<group>"; };
+		6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDataManager.m; sourceTree = "<group>"; };
+		6D2803921D4FC50D00267B18 /* TimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeManager.h; sourceTree = "<group>"; };
+		6D2803931D4FC50D00267B18 /* TimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeManager.m; sourceTree = "<group>"; };
+		6D2803951D4FEC1C00267B18 /* globalMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = globalMacros.h; path = ../globalMacros.h; sourceTree = "<group>"; };
+		6D2B32DB1D5BFCCA009C606D /* CheckInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInManager.h; sourceTree = "<group>"; };
+		6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInManager.m; sourceTree = "<group>"; };
 		6DD9D5C41D37E6D700F622F6 /* rankingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rankingCell.h; path = Controller/rankingCell.h; sourceTree = "<group>"; };
 		6DD9D5C51D37E6D700F622F6 /* rankingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = rankingCell.m; path = Controller/rankingCell.m; sourceTree = "<group>"; };
 		6DD9D5C61D37E6D700F622F6 /* SNRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNRankingViewController.h; path = Controller/SNRankingViewController.h; sourceTree = "<group>"; };
@@ -71,8 +109,6 @@
 		6DD9D5CA1D37E6E700F622F6 /* rankingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = rankingCell.xib; path = View/rankingCell.xib; sourceTree = "<group>"; };
 		6DD9D5CB1D37E6E700F622F6 /* RankingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RankingStoryboard.storyboard; path = View/RankingStoryboard.storyboard; sourceTree = "<group>"; };
 		6DD9D5CC1D37E6E700F622F6 /* SNRankingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SNRankingViewController.xib; path = View/SNRankingViewController.xib; sourceTree = "<group>"; };
-		6DD9D5D01D37E6F700F622F6 /* MockUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockUser.h; path = Model/MockUser.h; sourceTree = "<group>"; };
-		6DD9D5D11D37E6F700F622F6 /* MockUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockUser.m; path = Model/MockUser.m; sourceTree = "<group>"; };
 		6DD9D5D71D37E8E600F622F6 /* SNPreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNPreferenceViewController.h; path = Controller/SNPreferenceViewController.h; sourceTree = "<group>"; };
 		6DD9D5D81D37E8E600F622F6 /* SNPreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNPreferenceViewController.m; path = Controller/SNPreferenceViewController.m; sourceTree = "<group>"; };
 		6DD9D5D91D37E8E600F622F6 /* SNSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNSettingViewController.h; path = Controller/SNSettingViewController.h; sourceTree = "<group>"; };
@@ -172,11 +208,20 @@
 			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
+		6D2803911D4FC4F000267B18 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6D2803921D4FC50D00267B18 /* TimeManager.h */,
+				6D2803931D4FC50D00267B18 /* TimeManager.m */,
+				6D2B32DB1D5BFCCA009C606D /* CheckInManager.h */,
+				6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		6DD9D5C11D37E63800F622F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6DD9D5D01D37E6F700F622F6 /* MockUser.h */,
-				6DD9D5D11D37E6F700F622F6 /* MockUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -235,6 +280,8 @@
 			children = (
 				6DD9D5FC1D37E96F00F622F6 /* SNUser.h */,
 				6DD9D5FD1D37E96F00F622F6 /* SNUser.m */,
+				6D15F93B1D5A977D00B8F011 /* LocalDataManager.h */,
+				6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -293,7 +340,9 @@
 		B82FED1C1D21A57D00292ECC /* SporNetApp */ = {
 			isa = PBXGroup;
 			children = (
+				6D15F9321D529DBD00B8F011 /* emailToSchool.plist */,
 				B8CFCCE51D21AE540006495E /* Info.plist */,
+				6D15F9391D5A782000B8F011 /* basicInfo.plist */,
 				B8CFCCE71D21AEC50006495E /* Login&Register */,
 				B8CFCCEB1D21C66F0006495E /* MainFeatures */,
 				B8CFCCDD1D21ADEA0006495E /* Others */,
@@ -331,6 +380,7 @@
 		B8CFCCDD1D21ADEA0006495E /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				6D2803951D4FEC1C00267B18 /* globalMacros.h */,
 				B8CFCCDE1D21ADEA0006495E /* AppDelegate.h */,
 				B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */,
 				B8CFCCE11D21ADEA0006495E /* main.m */,
@@ -385,6 +435,12 @@
 			isa = PBXGroup;
 			children = (
 				B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */,
+				6D15F92D1D52395F00B8F011 /* SNSearchNearbyProfileViewController.h */,
+				6D15F92E1D52395F00B8F011 /* SNSearchNearbyProfileViewController.m */,
+				6D15F92F1D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib */,
+				6D15F9341D55312B00B8F011 /* ViewBigPhotoViewController.h */,
+				6D15F9351D55312B00B8F011 /* ViewBigPhotoViewController.m */,
+				6D15F9361D55312B00B8F011 /* ViewBigPhotoViewController.xib */,
 			);
 			path = SearchNearBy;
 			sourceTree = "<group>";
@@ -402,7 +458,17 @@
 		B8CFCCF51D21CE7F0006495E /* Tag */ = {
 			isa = PBXGroup;
 			children = (
+				6D2803911D4FC4F000267B18 /* Model */,
 				B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */,
+				6D01ACFE1D4A94A300E98E6F /* SNTagMainViewController.h */,
+				6D01ACFF1D4A94A300E98E6F /* SNTagMainViewController.m */,
+				6D01AD001D4A94A300E98E6F /* SNTagMainViewController.xib */,
+				6D01AD031D4AA5B300E98E6F /* SNTagSecondViewController.h */,
+				6D01AD041D4AA5B400E98E6F /* SNTagSecondViewController.m */,
+				6D01AD051D4AA5B400E98E6F /* SNTagSecondViewController.xib */,
+				6D01AD081D4AAA0900E98E6F /* SNTagCell.h */,
+				6D01AD091D4AAA0900E98E6F /* SNTagCell.m */,
+				6D01AD0A1D4AAA0900E98E6F /* SNTagCell.xib */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -414,12 +480,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B82FED471D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetApp" */;
 			buildPhases = (
+				6CD24A8E00E7EFBFF6AA447E /* 📦 Check Pods Manifest.lock */,
 				8BB2347470EADF26F2B10420 /* [CP] Check Pods Manifest.lock */,
 				B82FED161D21A57D00292ECC /* Sources */,
 				B82FED171D21A57D00292ECC /* Frameworks */,
 				B82FED181D21A57D00292ECC /* Resources */,
 				F9C0C5474812FAD090FB6144 /* [CP] Embed Pods Frameworks */,
 				B83724AB4CB4C596B0918809 /* [CP] Copy Pods Resources */,
+				F81A6C6773B3AA973FAEE104 /* 📦 Embed Pods Frameworks */,
+				A0AB8BAD8C50DA2A9691C821 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -518,15 +587,22 @@
 				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
 				6DD9D5FA1D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard in Resources */,
+				6D15F9331D529DBE00B8F011 /* emailToSchool.plist in Resources */,
+				6D15F9311D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib in Resources */,
 				6DD9D5CF1D37E6E700F622F6 /* SNRankingViewController.xib in Resources */,
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
 				6DD9D5E11D37E8F700F622F6 /* SNPreferenceViewController.xib in Resources */,
+				6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */,
 				6DD9D5CE1D37E6E700F622F6 /* RankingStoryboard.storyboard in Resources */,
 				6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */,
+				6D01AD071D4AA5B400E98E6F /* SNTagSecondViewController.xib in Resources */,
 				B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */,
+				6D01AD021D4A94A300E98E6F /* SNTagMainViewController.xib in Resources */,
 				6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */,
+				6D01AD0C1D4AAA0900E98E6F /* SNTagCell.xib in Resources */,
 				6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */,
 				B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */,
+				6D15F9381D55312B00B8F011 /* ViewBigPhotoViewController.xib in Resources */,
 				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
 				B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */,
 			);
@@ -549,6 +625,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6CD24A8E00E7EFBFF6AA447E /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		8BB2347470EADF26F2B10420 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -564,6 +655,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		A0AB8BAD8C50DA2A9691C821 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B83724AB4CB4C596B0918809 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -577,6 +683,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F81A6C6773B3AA973FAEE104 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9C0C5474812FAD090FB6144 /* [CP] Embed Pods Frameworks */ = {
@@ -601,22 +722,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DD9D5D21D37E6F700F622F6 /* MockUser.m in Sources */,
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
+				6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
 				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,
 				6DD9D5F31D37E95200F622F6 /* SNLaunchPageViewController.m in Sources */,
+				6D15F9371D55312B00B8F011 /* ViewBigPhotoViewController.m in Sources */,
 				6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */,
+				6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */,
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
+				6D01AD061D4AA5B400E98E6F /* SNTagSecondViewController.m in Sources */,
 				6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */,
 				6DD9D5F41D37E95200F622F6 /* SNLoginViewController.m in Sources */,
 				6DD9D5F61D37E95200F622F6 /* SNRegisterViewController.m in Sources */,
 				6DD9D5F71D37E95200F622F6 /* SNUserProfileViewController.m in Sources */,
+				6D15F9301D52395F00B8F011 /* SNSearchNearbyProfileViewController.m in Sources */,
+				6D01AD0B1D4AAA0900E98E6F /* SNTagCell.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
 				6DD9D5F21D37E95200F622F6 /* SNFpDreViewController.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
+				6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */,
 				6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */,
 				6DD9D5F51D37E95200F622F6 /* SNPageContentViewController.m in Sources */,
+				6D01AD011D4A94A300E98E6F /* SNTagMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

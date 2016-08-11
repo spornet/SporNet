@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AVObject.h"
 @interface SNMainFeatureTabController : UITabBarController
-
+@property(strong) AVObject *currentBasicInfo;
 @end

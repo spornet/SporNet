@@ -143,9 +143,9 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="4dx-2R-yj7"/>
                         <exclude reference="Ywb-Q1-BIS"/>
                         <exclude reference="dh5-wr-r4H"/>
+                        <exclude reference="4dx-2R-yj7"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

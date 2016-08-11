@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MockUser.h"
+#import "SNUser.h"
 @interface rankingCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *medalImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
@@ -19,5 +19,5 @@
 
 
 
--(void)configureCellWithUser:(MockUser*)user Ranking:(NSInteger)ranking;
+-(void)configureCellWithUser:(SNUser*)user Ranking:(NSInteger)ranking;
 @end

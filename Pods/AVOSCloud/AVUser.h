@@ -90,7 +90,7 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  *  Mobile phone number verification flag. Read-only. if calling verifyMobilePhone:withBlock: succeeds, the server will set this value YES.
  */
 @property (nonatomic, readonly) BOOL mobilePhoneVerified;
-@property (nonatomic, readonly) BOOL emailVerified;
+
 /**
  *  请求重发验证邮件
  *  如果用户邮箱没有得到验证或者用户修改了邮箱, 通过本方法重新发送验证邮件.

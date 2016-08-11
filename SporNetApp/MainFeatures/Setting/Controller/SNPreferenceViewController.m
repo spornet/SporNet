@@ -21,11 +21,15 @@ typedef NS_ENUM(NSInteger, PreferenceSwitch) {
 };
 
 @interface SNPreferenceViewController ()
+//IBOutlets of all cells
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITableViewCell *genderCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *radiusCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *schoolCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *graduationCell;
+
+@property (weak, nonatomic) IBOutlet UILabel *mileLabel;
+@property (weak, nonatomic) IBOutlet UISlider *mileSlider;
 
 //array of cells for preference table.
 @property (nonatomic) NSArray *cellArray;
@@ -68,4 +72,10 @@ typedef NS_ENUM(NSInteger, PreferenceSwitch) {
             break;
     }
 }
+
+- (IBAction)mileSliderValueDidChange:(UISlider *)sender {
+    _mileLabel.text = [NSString stringWithFormat:@"%.0f", sender.value];
+}
+
+
 @end

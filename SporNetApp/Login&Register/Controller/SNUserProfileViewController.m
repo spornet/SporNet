@@ -8,7 +8,12 @@
 #import "SNUser.h"
 #import "SNUserProfileViewController.h"
 #import <AVObject+Subclass.h>
-
+#import "SNMainFeatureTabController.h"
+#import "TimeManager.h"
+#import "globalMacros.h"
+#import "ProgressHUD.h"
+#import "LocalDataManager.h"
+#import "UIButton+WebCache.h"
 #define PROFILE_IMAGE [UIImage imageNamed:@"profile"]
 #define ADD_IMAGE [UIImage imageNamed:@"add"]
 @interface SNUserProfileViewController ()
@@ -65,6 +70,7 @@
 @property(nonatomic) UIImagePickerController *imagePicker;
 //alert controller
 @property(nonatomic) UIAlertController *alert;
+
 @end
 
 @implementation SNUserProfileViewController
@@ -79,6 +85,7 @@ NSArray *bestSportsPicArray;
 NSArray *bestSportsPicArraySelected;
 NSInteger selectedImageTag;
 
+BOOL imageDidChange;
 - (void)viewDidLoad {
     [super viewDidLoad];
     //set delegates
@@ -115,6 +122,13 @@ NSInteger selectedImageTag;
         [imageView addGestureRecognizer:tapRecognizer];
     }
     self.selectedProfileImageArray = [[NSMutableArray alloc]initWithCapacity:6];
+    //[self loadUserInfo];
+    [self loadUserInfoFromLocal];
+    imageDidChange = NO;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self setSelectedBestSport:_selectedBestSport];
 }
 #pragma mark - Table view delegate & datasource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -175,6 +189,7 @@ NSInteger selectedImageTag;
         case UserProfileRowDone:
             cell = self.doneCell;
             break;
+    
         default:
             cell = nil;
             break;
@@ -204,15 +219,41 @@ NSInteger selectedImageTag;
             [self.sportTimeTextField becomeFirstResponder];
             [self pickerViewWillShow];
             break;
-        case  UserProfileRowDone:
+        case  UserProfileRowDone:{
             NSLog(@"save action");
-            [self demoCreateObject];
+            [self setIcon];
+            [self saveOnLocal];
+            SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
+            [self presentViewController:tabVC animated:YES completion:nil];
+            [LocalDataManager updateProfileInfoOnCloudInBackground];
             break;
-            //[self saveData];
+        }
         default:
             break;
     }
 }
+-(void)saveOnLocal {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"basicInfo.plist"];
+    
+    NSMutableArray *imageDataArr = [[NSMutableArray alloc]init];
+    for(int i = 1; i <= 6; i++) {
+        UIButton *button = (UIButton*)[self.picCell viewWithTag:i];
+        if([button.currentBackgroundImage isEqual:PROFILE_IMAGE] | [button.currentBackgroundImage isEqual:ADD_IMAGE]) continue;
+        [imageDataArr addObject:UIImageJPEGRepresentation(button.currentBackgroundImage, 0.2)];
+    }
+
+    NSDictionary *plistDict = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects: self.firstNameTextField.text, self.lastNameTextField.text, [NSNumber numberWithInteger:self.selectedGender], self.selectedBirthday, [NSNumber numberWithInteger:self.selectedGradYear], [NSNumber numberWithInteger:self.selectedBestSport], [NSNumber numberWithInteger:self.selectedSpotrTime],self.aboutmeTextView.text, imageDataArr, nil] forKeys:[NSArray arrayWithObjects: @"firstName", @"lastName",@"gender", @"dateOfBirth",@"gradYear",@"bestSport",@"sportTimeSlot",@"aboutMe",@"photoes", nil]];
+    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
+    if(plistData) {
+        [plistData writeToFile:plistPath atomically:YES];
+        NSLog(@"plist writte successfully");
+    } else {
+        NSLog(@"plist failed");
+    }
+}
+
 //dismiss keyboard with animation
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
@@ -293,36 +334,79 @@ NSInteger selectedImageTag;
     [self.view layoutIfNeeded];
     [UIView commitAnimations];
 }
-//save user information
-- (void)demoCreateObject {
-    //更新的时候，得把NSInteger值转为NSNumber
-    //AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:@"5776986f5e10720046e19002"];
+
+
+//load user information if already has a user
+-(void)loadUserInfo {
+    NSLog(@"BEGIN LOADING");
+    self.firstNameTextField.text = [[[AVUser currentUser] objectForKey:@"name" ] componentsSeparatedByString:@" "][0];
+    self.lastNameTextField.text = [[[AVUser currentUser] objectForKey:@"name" ] componentsSeparatedByString:@" "][1];
+    self.sexLabel.text = (BOOL)[_user objectForKey:@"gender"]? @"Female":@"Male";
+    self.selectedGender = (BOOL)[_user objectForKey:@"gender"];
+    self.birthdayLabel.text = [TimeManager getDateString:[_user objectForKey:@"dateOfBirth"]];
+    self.selectedBirthday = [_user objectForKey:@"dateOfBirth"];
+
+    self.selectedGradYear = (int)[[_user objectForKey:@"gradYear"] integerValue];
+    self.gradLabel.text = [NSString stringWithFormat:@"%d", self.selectedGradYear];
+
+    self.selectedSpotrTime = [[[AVUser currentUser]objectForKey:@"sportTimeSlot"]integerValue];
+    self.sportTimeLabel.text = SPORTSLOT_ARRAY[self.selectedSpotrTime];
+    self.aboutmeTextView.text = [_user objectForKey:@"aboutMe"];
     
-    [AVUser logInWithUsername:@"zheng.yang2@husky.neu.edu" password:@"123456" error:nil];
-    AVQuery *query = [SNUser query];
-    //选取当前登陆用户的所有记录
-    [query whereKey:@"userID" equalTo:[AVUser currentUser].objectId];
-    //[query includeKey:@"photoes"];
-    NSArray *fetchedPrayers = [query findObjects];
-    SNUser *user;
-    if(fetchedPrayers.count) user = fetchedPrayers[0];
-    else user = [[SNUser alloc]init];
-//    AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
-    
-    [user setObject:[NSString stringWithFormat:@"%@ %@", self.firstNameTextField.text, self.lastNameTextField.text] forKey:@"name"];
-    [user setObject:[NSNumber numberWithInteger:self.selectedGradYear] forKey:@"gradYear"];
-    [user setObject:[NSNumber numberWithInt:self.selectedGender] forKey:@"gender"];
-    [user setObject:[NSNumber numberWithInteger:self.selectedBestSport] forKey:@"bestSport"];
-    [user setObject:[NSNumber numberWithInteger:SportTimeSlotNight] forKey:@"sportTimeSlot"];
-    [user setObject:self.aboutmeTextView.text forKey:@"aboutMe"];
-    [user setObject:[AVUser currentUser].objectId forKey:@"userID"];
-    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"存储成功哈哈哈");
-        } else {
-            NSLog(@"存储失败");
-        }
-    }];
+    if([[_user objectForKey:@"aboutMe"] isEqual:@""]) _placeHolder.hidden = NO;
+    else _placeHolder.hidden = YES;
+    _placeHolder.hidden = YES;
+    self.selectedBestSport = [[[AVUser currentUser]objectForKey:@"bestSport"]integerValue];
+    NSMutableArray *arr = [_user objectForKey:@"ProfilePhotoes"];
+    NSLog(@"count is %ld", arr.count);
+    int i = 1;
+    for (AVObject *obj in arr) {
+        NSLog(@"我就看看你执行不执行");
+        [AVFile getFileWithObjectId:obj.objectId withBlock:^(AVFile *file, NSError *error) {
+            [((UIButton*)[self.picCell viewWithTag:i]) setBackgroundImage:[UIImage imageWithData:[file getData]] forState:normal];
+        }];
+        i++;
+    }
+}
+-(void)loadUserInfoFromLocal {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"basicInfo.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        plistPath = [[NSBundle mainBundle] pathForResource:@"basicInfo" ofType:@"plist"];
+    }
+    NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    self.firstNameTextField.text = [dict objectForKey:@"firstName"];
+    self.lastNameTextField.text = [dict objectForKey:@"lastName"];
+    self.selectedGender = (BOOL)[dict objectForKey:@"gender"];
+    self.sexLabel.text = (BOOL)[dict objectForKey:@"gender"]? @"Female":@"Male";
+    self.selectedBirthday = [dict objectForKey:@"dateOfBirth"];
+    self.birthdayLabel.text = [TimeManager getDateString:self.selectedBirthday];
+    self.selectedSpotrTime = [[dict objectForKey:@"sportTimeSlot"]integerValue];
+    self.sportTimeLabel.text = SPORTSLOT_ARRAY[self.selectedSpotrTime];
+    self.selectedBestSport = [[dict objectForKey:@"bestSport"]integerValue];
+    self.selectedGradYear = (int)[[dict objectForKey:@"gradYear"]integerValue];
+    self.gradLabel.text = [NSString stringWithFormat:@"%d", self.selectedGradYear];
+    self.aboutmeTextView.text = [dict objectForKey:@"aboutMe"];
+    if([[dict objectForKey:@"aboutMe"] isEqual:@""]) _placeHolder.hidden = NO;
+    else _placeHolder.hidden = YES;
+    _placeHolder.hidden = YES;
+    NSMutableArray *imageDataArr = [dict objectForKey:@"photoes"];
+    int i = 1;
+    for (NSData *data in imageDataArr) {
+        [((UIButton*)[self.picCell viewWithTag:i]) setBackgroundImage:[UIImage imageWithData:data] forState:normal];
+        i++;
+    }
+}
+//save user icon
+- (void)setIcon {
+    //set icon image
+    UIButton *button = (UIButton*)[self.picCell viewWithTag:1];
+    [[[AVUser currentUser]objectForKey:@"icon"]deleteInBackground];
+    [[AVUser currentUser] setObject:[AVFile fileWithData:UIImagePNGRepresentation([self imageWithImage:button.currentBackgroundImage scaledToSize:CGSizeMake(100, 100)])] forKey:@"icon"];
+    [[AVUser currentUser]saveInBackground];
+    [_user setObject:[[AVUser currentUser] objectForKey:@"icon"] forKey:@"icon"];
+    [_user saveInBackground];
 }
 
 -(void)dateSelected:(id)sender{
@@ -331,16 +415,17 @@ NSInteger selectedImageTag;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     self.birthdayLabel.text = [dateFormatter stringFromDate:date];
+    self.selectedBirthday = date;
 }
 - (IBAction)picButtonClicked:(UIButton *)sender {
     selectedImageTag = sender.tag;
     if(!_imagePicker) {
         _imagePicker = [[UIImagePickerController alloc]init];
         _imagePicker.delegate = self;
-    }
-    if([sender.currentBackgroundImage isEqual:PROFILE_IMAGE] | [sender.currentBackgroundImage isEqual:ADD_IMAGE]) {
         _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         _imagePicker.allowsEditing = YES;
+    }
+    if([sender.currentBackgroundImage isEqual:PROFILE_IMAGE] | [sender.currentBackgroundImage isEqual:ADD_IMAGE]) {
         [self presentViewController:_imagePicker animated:true completion:nil];
     } else {
         [self presentViewController:self.alert animated:YES completion:nil];
@@ -348,6 +433,8 @@ NSInteger selectedImageTag;
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    imageDidChange = YES;
+    NSLog(@"哈哈哈哈啊哈");
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     UIButton *selectedButton = (UIButton*)[self.picCell viewWithTag:selectedImageTag];
     [selectedButton setBackgroundImage:chosenImage forState:normal];
@@ -393,5 +480,13 @@ NSInteger selectedImageTag;
     } else {
         _placeHolder.hidden = YES;
     }
+}
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size
+{
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 @end
