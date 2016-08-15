@@ -35,6 +35,7 @@
 @end
 
 @implementation SNSearchNearbyProfileViewController
+NSInteger width;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.scrollView setContentSize:CGSizeMake(0, self.scrollView.contentSize.height)];
@@ -69,20 +70,25 @@
     //set user profile images
     NSMutableArray *imagesUrls = [self.currentUserProfile objectForKey:@"PicUrls"];
     if(imagesUrls.count == 0) return;
-    self.contentImageScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * imagesUrls.count, self.contentImageScrollView.frame.size.height*0.2);
+    NSLog(@"width is %.f", self.view.frame.size.width);
+    self.contentImageScrollView.contentSize = CGSizeMake(280 * imagesUrls.count, self.contentImageScrollView.frame.size.height*0.2);
     CGFloat xPos = 0.0;
     self.currentImages = [[NSMutableArray alloc]init];
     for(NSString *url in imagesUrls) {
         NSLog(@"url is %@", url);
+    
         UIImageView *imageView = [[UIImageView alloc]init];
         [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholderImage"] options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             [self.currentImages addObject:imageView.image];
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
-            imageView.frame = CGRectMake(xPos, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT*0.33);
+            imageView.frame = CGRectMake(xPos, 0.0, self.view.frame.size.width, SCREEN_HEIGHT*0.33);
+            NSLog(@"HAHA WIDTH IS %.f", self.view.frame.size.width);
             [self.contentImageScrollView addSubview:imageView];
         }];
-        xPos += SCREEN_WIDTH;
+        xPos += 280;
+        NSLog(@"HAHA width is %.f", self.view.frame.size.width);
     }
+    
     self.pageControl.currentPage = 0;
     self.pageControl.numberOfPages = imagesUrls.count;
     
@@ -96,7 +102,7 @@
     self.voteButton.userInteractionEnabled = NO;
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    self.pageControl.currentPage = self.contentImageScrollView.contentOffset.x / SCREEN_WIDTH;
+    self.pageControl.currentPage = self.contentImageScrollView.contentOffset.x / self.view.frame.size.width;
 }
 -(void)viewBigPicture {
     ViewBigPhotoViewController *vc = [[ViewBigPhotoViewController alloc]init];
@@ -107,5 +113,8 @@
 
 - (IBAction)crossButtonClicked:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+    [self.delegate didClickCrossButton];
 }
 @end

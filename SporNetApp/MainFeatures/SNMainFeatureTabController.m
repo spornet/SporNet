@@ -41,9 +41,11 @@
     UIViewController *rankingController = [ranking instantiateInitialViewController];
     rankingController.tabBarItem.title = @"Rank";
     UIViewController *searchController = [search instantiateInitialViewController];
+    searchController.tabBarItem.title = @"Search";
+    
     SNSettingViewController *settingController = [setting instantiateInitialViewController];
     settingController.tabBarItem.title = @"Setting";
-    self.viewControllers = @[tagController,rankingController, settingController];
+    self.viewControllers = @[tagController, searchController, rankingController, settingController];
     
 
     // Do any additional setup after loading the view.

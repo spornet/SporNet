@@ -25,6 +25,10 @@
 		6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */; };
 		6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2803931D4FC50D00267B18 /* TimeManager.m */; };
 		6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */; };
+		6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DF1D5CCC0E009C606D /* WaterView.m */; };
+		6D2B32E31D5CCC29009C606D /* SNSearchNearbyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32E21D5CCC29009C606D /* SNSearchNearbyMainViewController.m */; };
+		6D2B32E91D5D11DF009C606D /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32E81D5D11DF009C606D /* UserView.m */; };
+		6D2B32EB1D5D1207009C606D /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2B32EA1D5D1207009C606D /* UserView.xib */; };
 		6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C51D37E6D700F622F6 /* rankingCell.m */; };
 		6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C71D37E6D700F622F6 /* SNRankingViewController.m */; };
 		6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CA1D37E6E700F622F6 /* rankingCell.xib */; };
@@ -102,6 +106,13 @@
 		6D2803951D4FEC1C00267B18 /* globalMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = globalMacros.h; path = ../globalMacros.h; sourceTree = "<group>"; };
 		6D2B32DB1D5BFCCA009C606D /* CheckInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInManager.h; sourceTree = "<group>"; };
 		6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInManager.m; sourceTree = "<group>"; };
+		6D2B32DE1D5CCC0E009C606D /* WaterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterView.h; sourceTree = "<group>"; };
+		6D2B32DF1D5CCC0E009C606D /* WaterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterView.m; sourceTree = "<group>"; };
+		6D2B32E11D5CCC29009C606D /* SNSearchNearbyMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSearchNearbyMainViewController.h; sourceTree = "<group>"; };
+		6D2B32E21D5CCC29009C606D /* SNSearchNearbyMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSearchNearbyMainViewController.m; sourceTree = "<group>"; };
+		6D2B32E71D5D11DF009C606D /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
+		6D2B32E81D5D11DF009C606D /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
+		6D2B32EA1D5D1207009C606D /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		6DD9D5C41D37E6D700F622F6 /* rankingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rankingCell.h; path = Controller/rankingCell.h; sourceTree = "<group>"; };
 		6DD9D5C51D37E6D700F622F6 /* rankingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = rankingCell.m; path = Controller/rankingCell.m; sourceTree = "<group>"; };
 		6DD9D5C61D37E6D700F622F6 /* SNRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNRankingViewController.h; path = Controller/SNRankingViewController.h; sourceTree = "<group>"; };
@@ -434,6 +445,13 @@
 		B8CFCCF31D21CE640006495E /* SearchNearBy */ = {
 			isa = PBXGroup;
 			children = (
+				6D2B32E11D5CCC29009C606D /* SNSearchNearbyMainViewController.h */,
+				6D2B32E21D5CCC29009C606D /* SNSearchNearbyMainViewController.m */,
+				6D2B32EA1D5D1207009C606D /* UserView.xib */,
+				6D2B32E71D5D11DF009C606D /* UserView.h */,
+				6D2B32E81D5D11DF009C606D /* UserView.m */,
+				6D2B32DE1D5CCC0E009C606D /* WaterView.h */,
+				6D2B32DF1D5CCC0E009C606D /* WaterView.m */,
 				B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */,
 				6D15F92D1D52395F00B8F011 /* SNSearchNearbyProfileViewController.h */,
 				6D15F92E1D52395F00B8F011 /* SNSearchNearbyProfileViewController.m */,
@@ -593,6 +611,7 @@
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
 				6DD9D5E11D37E8F700F622F6 /* SNPreferenceViewController.xib in Resources */,
 				6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */,
+				6D2B32EB1D5D1207009C606D /* UserView.xib in Resources */,
 				6DD9D5CE1D37E6E700F622F6 /* RankingStoryboard.storyboard in Resources */,
 				6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */,
 				6D01AD071D4AA5B400E98E6F /* SNTagSecondViewController.xib in Resources */,
@@ -723,9 +742,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
+				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
 				6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
 				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,
+				6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */,
 				6DD9D5F31D37E95200F622F6 /* SNLaunchPageViewController.m in Sources */,
 				6D15F9371D55312B00B8F011 /* ViewBigPhotoViewController.m in Sources */,
 				6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */,
@@ -745,6 +766,7 @@
 				6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */,
 				6DD9D5F51D37E95200F622F6 /* SNPageContentViewController.m in Sources */,
 				6D01AD011D4A94A300E98E6F /* SNTagMainViewController.m in Sources */,
+				6D2B32E31D5CCC29009C606D /* SNSearchNearbyMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

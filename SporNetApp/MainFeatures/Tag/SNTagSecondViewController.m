@@ -28,12 +28,12 @@
 @property NSMutableArray *currentUserBasicInfos;
 @end
 
+
 @implementation SNTagSecondViewController
 DXPopover *popover;
 //NSMutableArray *currentCheckins;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"koukoukoukou");
     self.gymNameLabel.text = self.gymName;
     [_tableView registerNib:[UINib nibWithNibName:@"SNTagCell" bundle:nil] forCellReuseIdentifier:@"SNTagCell"];
     self.currentUserBasicInfos = [[NSMutableArray alloc]init];
@@ -61,6 +61,7 @@ DXPopover *popover;
         for(AVObject *checkin in self.currentCheckins) {
             AVQuery *query = [SNUser query];
             [query whereKey:@"userID" equalTo:[checkin objectForKey:@"userID"]];
+            
             [self.currentUserBasicInfos addObject:[query findObjects][0]];
         }
     });

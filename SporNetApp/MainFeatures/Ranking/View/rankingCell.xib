@@ -18,11 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="medalGold" translatesAutoresizingMaskIntoConstraints="NO" id="cVB-yO-0rC">
-                        <rect key="frame" x="23" y="18" width="30" height="40"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="medalGold" translatesAutoresizingMaskIntoConstraints="NO" id="cVB-yO-0rC">
+                        <rect key="frame" x="18" y="16" width="45" height="45"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Q5f-VP-hsC"/>
-                            <constraint firstAttribute="height" constant="40" id="rhJ-Eb-sz2"/>
+                            <constraint firstAttribute="width" constant="45" id="Q5f-VP-hsC"/>
+                            <constraint firstAttribute="height" constant="45" id="rhJ-Eb-sz2"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbq-xo-oYR">
@@ -64,14 +64,14 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="Xbq-xo-oYR" firstAttribute="leading" secondItem="cVB-yO-0rC" secondAttribute="trailing" constant="15" id="0M7-xS-gbd"/>
+                    <constraint firstItem="Xbq-xo-oYR" firstAttribute="leading" secondItem="cVB-yO-0rC" secondAttribute="trailing" constant="5" id="0M7-xS-gbd"/>
                     <constraint firstItem="jCk-GZ-wlB" firstAttribute="leading" secondItem="Xbq-xo-oYR" secondAttribute="trailing" constant="15" id="7JX-dg-tIB"/>
                     <constraint firstItem="qni-Bn-9T1" firstAttribute="leading" secondItem="jCk-GZ-wlB" secondAttribute="leading" id="Cug-uc-SZf"/>
                     <constraint firstItem="Xbq-xo-oYR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="0.6" id="ZWN-qk-jx1"/>
                     <constraint firstItem="Xbq-xo-oYR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZcV-tA-NV6"/>
                     <constraint firstItem="qni-Bn-9T1" firstAttribute="bottom" secondItem="Xbq-xo-oYR" secondAttribute="bottom" constant="-5" id="fuO-Sx-P7O"/>
                     <constraint firstItem="jCk-GZ-wlB" firstAttribute="top" secondItem="Xbq-xo-oYR" secondAttribute="top" constant="5" id="hSi-XW-ThM"/>
-                    <constraint firstItem="cVB-yO-0rC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="ips-m3-qjz"/>
+                    <constraint firstItem="cVB-yO-0rC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="ips-m3-qjz"/>
                     <constraint firstItem="cVB-yO-0rC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="w1n-8u-xuk"/>
                     <constraint firstItem="Xbq-xo-oYR" firstAttribute="top" secondItem="LmI-QB-aUi" secondAttribute="bottom" constant="-20" id="wLq-kv-NoW"/>
                     <constraint firstItem="LmI-QB-aUi" firstAttribute="leading" secondItem="Xbq-xo-oYR" secondAttribute="trailing" constant="-20" id="zNP-8t-mSc"/>
@@ -97,7 +97,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="medalGold" width="30" height="48"/>
+        <image name="medalGold" width="56" height="89"/>
         <image name="profile" width="202" height="202"/>
         <image name="soccerSelected" width="77" height="77"/>
     </resources>

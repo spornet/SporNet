@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "SNUser.h"
+@protocol SNSearchNearbyProfileVCDelegate <NSObject>
+- (void)didClickCrossButton;
+@end
 @interface SNSearchNearbyProfileViewController : UIViewController<UIScrollViewAccessibilityDelegate>
 @property(nonatomic) SNUser *currentUserProfile;
+@property id<SNSearchNearbyProfileVCDelegate> delegate;
 @end

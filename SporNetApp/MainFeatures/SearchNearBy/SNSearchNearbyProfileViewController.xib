@@ -249,7 +249,7 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-GU-3j6">
                                             <rect key="frame" x="25" y="36" width="280" height="970"/>
-                                            <mutableString key="text">Actually, it’s not. That’s a pseudonym, because my real name is something a little trailer-trashier, as befitting my cultural roots of possum-farmers from Colorado.  Actually, I’d rate my family as being about halfway between The Brady Bunch and Honey Boo Boo.  Maybe a tad closer to Honey Boo Boo.
+                                            <string key="text">Actually, it’s not. That’s a pseudonym, because my real name is something a little trailer-trashier, as befitting my cultural roots of possum-farmers from Colorado.  Actually, I’d rate my family as being about halfway between The Brady Bunch and Honey Boo Boo.  Maybe a tad closer to Honey Boo Boo.
 
 I grew up in lovely San Diego, California, and first clapped eyes on New York City in 1976 as a starry-eyed young idiot. I was the worst kind of young idiot, too– following a new boyfriend to his native land. Later on, he turned out to be gay, but I moved here permanently in 1980 and never looked back.
 
@@ -269,7 +269,7 @@ Current zip code:  nothing too exciting, but still Manhattan.
 
 Roommates: Two teen daughters, a husband, a dog, 2 guinea pigs (“Fatso” and “Squeekelina”, the pig formerly known as “Sugar Bon Bon”)
 
-Age Range: See Hills, comma, older than the.</mutableString>
+Age Range: See Hills, comma, older than the.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>

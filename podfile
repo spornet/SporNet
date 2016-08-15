@@ -5,4 +5,5 @@ pod 'AVOSCloudCrashReporting'
 pod 'MJRefresh'
 pod ‘DXPopover’
 pod ’SDWebImage’, ‘~>3.8’
+pod 'pop', '~> 1.0'
 end

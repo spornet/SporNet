@@ -134,6 +134,14 @@ static LocalDataManager *center = nil;
     if(_allUserInfo.count == 0) return [self refreshAndFetchAllUserInfo];
     else return _allUserInfo;
 }
+-(NSMutableArray*)fetchUserInfoBySportType:(NSInteger)sportType {
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
+        AVObject *user = (AVObject*)obj;
+        return [[user objectForKey:@"bestSport"]integerValue] == sportType;
+    }];
+    return [[_allUserInfo filteredArrayUsingPredicate:predicate]mutableCopy];
+
+}
 -(NSMutableArray*)refreshAndFetchAllUserInfo {
     [ProgressHUD show:@"Fetching Data. Please wait..."];
     AVQuery *query = [SNUser query];
