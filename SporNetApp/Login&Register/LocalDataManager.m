@@ -63,6 +63,7 @@ static LocalDataManager *center = nil;
         [plistData writeToFile:plistPath atomically:YES];
         NSLog(@"plist writte successfully");
     } else {
+        
         NSLog(@"plist failed");
     }
 
