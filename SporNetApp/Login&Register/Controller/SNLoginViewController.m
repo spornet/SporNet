@@ -62,7 +62,6 @@
                     [self presentViewController:tabVC animated:YES completion:nil];
                 } else {
                     [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
-
                 }
 
             }

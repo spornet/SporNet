@@ -154,18 +154,6 @@
                                                     <constraint firstAttribute="height" constant="3" id="XVA-9U-2In"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5G-br-r0t" userLabel="SignInButton">
-                                                <rect key="frame" x="93" y="237" width="228" height="40"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="228" id="928-d4-DS0"/>
-                                                    <constraint firstAttribute="height" constant="40" id="whU-i8-5W1"/>
-                                                </constraints>
-                                                <state key="normal" backgroundImage="loginBtn"/>
-                                                <connections>
-                                                    <action selector="login:" destination="PwG-M6-miL" eventType="touchUpInside" id="o7J-i8-7Wg"/>
-                                                </connections>
-                                            </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kfV-fV-Xfc" userLabel="UserPassword">
                                                 <rect key="frame" x="82" y="162" width="250" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -190,6 +178,18 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5G-br-r0t" userLabel="SignInButton">
+                                                <rect key="frame" x="93" y="237" width="228" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="228" id="928-d4-DS0"/>
+                                                    <constraint firstAttribute="height" constant="40" id="whU-i8-5W1"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="loginBtn"/>
+                                                <connections>
+                                                    <action selector="login:" destination="PwG-M6-miL" eventType="touchUpInside" id="o7J-i8-7Wg"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
