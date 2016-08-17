@@ -33,7 +33,6 @@ NSInteger checkinTimes;
     todaySportArraySelected = @[@"joggingSelected", @"muscleSelected", @"soccerSelected", @"basketballSelected", @"yogaSelected"];
     gymArray = @[@"Marino Center", @"Cabot Center", @"Badger & Rosen", @"NU Open Skate"];
     _whereLabel.text = gymArray[0];
-    self.todaySport = TodaySportJogging;
     
 }
 
@@ -41,7 +40,14 @@ NSInteger checkinTimes;
     self.tabBarController.tabBar.hidden = NO;
     self.relocatePanel.frame = self.checkinPanel.frame;
     if(checkinTimes > 0) [self.view addSubview:self.relocatePanel];
+
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+
+self.todaySport = TodaySportJogging;
+}
+
 #pragma mark - set sport button click event.
 - (IBAction)sportButtonClicked:(UIButton *)sender {
     self.todaySport = (TodaySport)sender.tag;
