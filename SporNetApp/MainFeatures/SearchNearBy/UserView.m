@@ -8,7 +8,6 @@
 
 #import "UserView.h"
 #import <AVObject.h>
-#import "globalMacros.h"
 @implementation UserView
 
 

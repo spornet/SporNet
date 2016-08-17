@@ -7,7 +7,6 @@
 //
 
 #import "SNSearchNearbyProfileViewController.h"
-#import "globalMacros.h"
 #import "TimeManager.h"
 #import "SNUser.h"
 #import "ViewBigPhotoViewController.h"

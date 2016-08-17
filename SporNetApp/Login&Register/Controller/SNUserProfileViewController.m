@@ -10,7 +10,6 @@
 #import <AVObject+Subclass.h>
 #import "SNMainFeatureTabController.h"
 #import "TimeManager.h"
-#import "globalMacros.h"
 #import "ProgressHUD.h"
 #import "LocalDataManager.h"
 #import "UIButton+WebCache.h"

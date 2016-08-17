@@ -7,7 +7,6 @@
 //
 
 #import "ViewBigPhotoViewController.h"
-#import "globalMacros.h"
 @interface ViewBigPhotoViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *contentImageScrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;

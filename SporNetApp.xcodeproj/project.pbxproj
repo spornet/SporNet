@@ -16,6 +16,11 @@
 		6D01AD071D4AA5B400E98E6F /* SNTagSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D01AD051D4AA5B400E98E6F /* SNTagSecondViewController.xib */; };
 		6D01AD0B1D4AAA0900E98E6F /* SNTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01AD091D4AAA0900E98E6F /* SNTagCell.m */; };
 		6D01AD0C1D4AAA0900E98E6F /* SNTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D01AD0A1D4AAA0900E98E6F /* SNTagCell.xib */; };
+		6D04135E1D64E20E00C0E6EF /* SNMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D04135C1D64E20E00C0E6EF /* SNMessageListViewController.m */; };
+		6D04135F1D64E20E00C0E6EF /* SNMessageListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D04135D1D64E20E00C0E6EF /* SNMessageListViewController.xib */; };
+		6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0413611D64E23600C0E6EF /* MessageListCell.m */; };
+		6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D0413621D64E23600C0E6EF /* MessageListCell.xib */; };
+		6D0413681D64E82E00C0E6EF /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0413671D64E82E00C0E6EF /* MessageManager.m */; };
 		6D15F9301D52395F00B8F011 /* SNSearchNearbyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F92E1D52395F00B8F011 /* SNSearchNearbyProfileViewController.m */; };
 		6D15F9311D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F92F1D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib */; };
 		6D15F9331D529DBE00B8F011 /* emailToSchool.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9321D529DBD00B8F011 /* emailToSchool.plist */; };
@@ -91,6 +96,15 @@
 		6D01AD081D4AAA0900E98E6F /* SNTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagCell.h; sourceTree = "<group>"; };
 		6D01AD091D4AAA0900E98E6F /* SNTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagCell.m; sourceTree = "<group>"; };
 		6D01AD0A1D4AAA0900E98E6F /* SNTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagCell.xib; sourceTree = "<group>"; };
+		6D04135B1D64E20E00C0E6EF /* SNMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMessageListViewController.h; sourceTree = "<group>"; };
+		6D04135C1D64E20E00C0E6EF /* SNMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMessageListViewController.m; sourceTree = "<group>"; };
+		6D04135D1D64E20E00C0E6EF /* SNMessageListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNMessageListViewController.xib; sourceTree = "<group>"; };
+		6D0413601D64E23600C0E6EF /* MessageListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListCell.h; sourceTree = "<group>"; };
+		6D0413611D64E23600C0E6EF /* MessageListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListCell.m; sourceTree = "<group>"; };
+		6D0413621D64E23600C0E6EF /* MessageListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageListCell.xib; sourceTree = "<group>"; };
+		6D0413661D64E82E00C0E6EF /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		6D0413671D64E82E00C0E6EF /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
+		6D04136A1D64EE9D00C0E6EF /* SporNetApp-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SporNetApp-PrefixHeader.pch"; sourceTree = "<group>"; };
 		6D15F92D1D52395F00B8F011 /* SNSearchNearbyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSearchNearbyProfileViewController.h; sourceTree = "<group>"; };
 		6D15F92E1D52395F00B8F011 /* SNSearchNearbyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSearchNearbyProfileViewController.m; sourceTree = "<group>"; };
 		6D15F92F1D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSearchNearbyProfileViewController.xib; sourceTree = "<group>"; };
@@ -219,6 +233,28 @@
 			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
+		6D04135A1D64E1F800C0E6EF /* MessageList */ = {
+			isa = PBXGroup;
+			children = (
+				6D04135B1D64E20E00C0E6EF /* SNMessageListViewController.h */,
+				6D04135C1D64E20E00C0E6EF /* SNMessageListViewController.m */,
+				6D04135D1D64E20E00C0E6EF /* SNMessageListViewController.xib */,
+				6D0413601D64E23600C0E6EF /* MessageListCell.h */,
+				6D0413611D64E23600C0E6EF /* MessageListCell.m */,
+				6D0413621D64E23600C0E6EF /* MessageListCell.xib */,
+			);
+			name = MessageList;
+			sourceTree = "<group>";
+		};
+		6D0413651D64E81700C0E6EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6D0413661D64E82E00C0E6EF /* MessageManager.h */,
+				6D0413671D64E82E00C0E6EF /* MessageManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		6D2803911D4FC4F000267B18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +364,7 @@
 		B82FED111D21A57D00292ECC = {
 			isa = PBXGroup;
 			children = (
+				6D04136A1D64EE9D00C0E6EF /* SporNetApp-PrefixHeader.pch */,
 				6D01ACF51D48FB7300E98E6F /* ProgressHUD */,
 				B82FED1C1D21A57D00292ECC /* SporNetApp */,
 				B82FED361D21A57D00292ECC /* SporNetAppTests */,
@@ -427,6 +464,8 @@
 		B8CFCCF11D21CE640006495E /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				6D0413651D64E81700C0E6EF /* Model */,
+				6D04135A1D64E1F800C0E6EF /* MessageList */,
 				B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */,
 			);
 			path = Message;
@@ -564,7 +603,7 @@
 				TargetAttributes = {
 					B82FED191D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Z57DAJWH52;
+						DevelopmentTeam = 2EUUYRUR88;
 					};
 					B82FED321D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -602,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DD9D5FB1D37E96000F622F6 /* SNUserProfileViewController.xib in Resources */,
+				6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */,
 				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
 				6DD9D5FA1D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard in Resources */,
@@ -610,6 +650,7 @@
 				6DD9D5CF1D37E6E700F622F6 /* SNRankingViewController.xib in Resources */,
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
 				6DD9D5E11D37E8F700F622F6 /* SNPreferenceViewController.xib in Resources */,
+				6D04135F1D64E20E00C0E6EF /* SNMessageListViewController.xib in Resources */,
 				6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */,
 				6D2B32EB1D5D1207009C606D /* UserView.xib in Resources */,
 				6DD9D5CE1D37E6E700F622F6 /* RankingStoryboard.storyboard in Resources */,
@@ -742,6 +783,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
+				6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */,
 				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
 				6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
@@ -756,10 +798,12 @@
 				6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */,
 				6DD9D5F41D37E95200F622F6 /* SNLoginViewController.m in Sources */,
 				6DD9D5F61D37E95200F622F6 /* SNRegisterViewController.m in Sources */,
+				6D04135E1D64E20E00C0E6EF /* SNMessageListViewController.m in Sources */,
 				6DD9D5F71D37E95200F622F6 /* SNUserProfileViewController.m in Sources */,
 				6D15F9301D52395F00B8F011 /* SNSearchNearbyProfileViewController.m in Sources */,
 				6D01AD0B1D4AAA0900E98E6F /* SNTagCell.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
+				6D0413681D64E82E00C0E6EF /* MessageManager.m in Sources */,
 				6DD9D5F21D37E95200F622F6 /* SNFpDreViewController.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
 				6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */,
@@ -904,6 +948,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SporNetApp-PrefixHeader.pch";
 				INFOPLIST_FILE = SporNetApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -921,6 +967,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SporNetApp-PrefixHeader.pch";
 				INFOPLIST_FILE = SporNetApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

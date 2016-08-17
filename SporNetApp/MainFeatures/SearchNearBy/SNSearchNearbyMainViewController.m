@@ -17,7 +17,6 @@
 #import <AVObject.h>
 #import "UserView.h"
 #import "ProgressHUD.h"
-#import "globalMacros.h"
 
 #define STATUS_BAR_HEIGHT [[UIApplication sharedApplication]statusBarFrame].size.height
 #define MAIN_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width

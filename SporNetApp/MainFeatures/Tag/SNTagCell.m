@@ -11,7 +11,6 @@
 #import <AVFile.h>
 #import <AVQuery.h>
 #import "TimeManager.h"
-#import "globalMacros.h"
 @implementation SNTagCell
 NSArray *todaySportImageArray;
 - (void)awakeFromNib {

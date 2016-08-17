@@ -9,7 +9,6 @@
 #import "SNSettingViewController.h"
 #import "SNPreferenceViewController.h"
 #import "SNUserProfileViewController.h"
-#import "globalMacros.h"
 #import "AVUser.h"
 #import "AVFile.h"
 #import "ProgressHUD.h"

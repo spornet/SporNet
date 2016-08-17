@@ -56,13 +56,13 @@
                 [ProgressHUD showError:@"Wrong password!"];
             } else{
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back, %@!", user.username]];
-                if([[NSUserDefaults standardUserDefaults]objectForKey:@"alreadySignIn"]) {
+                if([[AVUser currentUser]objectForKey:@"basicInfo"] != nil) {
                     [LocalDataManager fetchProfileInfoFromCloud];
                     SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
                     [self presentViewController:tabVC animated:YES completion:nil];
                 } else {
                     [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
-                    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithBool:YES] forKey:@"alreadySignIn"];
+
                 }
 
             }

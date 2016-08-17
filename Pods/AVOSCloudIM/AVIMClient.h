@@ -288,14 +288,3 @@ typedef NS_OPTIONS(uint64_t, AVIMConversationOption) {
 - (void)client:(AVIMClient *)client didOfflineWithError:(NSError *)error;
 
 @end
-
-@interface AVIMClient (AVDeprecated)
-
-- (void)openWithClientId:(NSString *)clientId
-                callback:(AVIMBooleanResultBlock)callback AVIM_DEPRECATED("Deprecated in AVOSCloudIM SDK 3.1.7.2. Use -[AVIMClient openWithCallback:] or -[AVIMClient openWithOption:callback:] instead.");
-
-- (void)openWithClientId:(NSString *)clientId
-                     tag:(NSString *)tag
-                callback:(AVIMBooleanResultBlock)callback AVIM_DEPRECATED("Deprecated in AVOSCloudIM SDK 3.1.7.2. Use -[AVIMClient openWithCallback:] or -[AVIMClient openWithOption:callback:] instead.");
-
-@end
