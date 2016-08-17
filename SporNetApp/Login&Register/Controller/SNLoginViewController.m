@@ -63,6 +63,7 @@
                 } else {
                     [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
                     [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithBool:YES] forKey:@"alreadySignIn"];
+
                 }
 
             }

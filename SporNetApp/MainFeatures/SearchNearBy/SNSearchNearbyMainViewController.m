@@ -864,7 +864,7 @@ NSInteger indexOfCurrentUser;
 
 -(void)refreshAnimation{
     
-    __block WaterView *waterView = [[WaterView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH / 2 - 20, MAIN_SCREEN_HEIGHT / 2 + 50, 40, 40)];
+    __block WaterView *waterView = [[WaterView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH / 2 - 20, MAIN_SCREEN_HEIGHT / 2 + 40, 40, 40)];
     
     waterView.backgroundColor = [UIColor clearColor];
     
