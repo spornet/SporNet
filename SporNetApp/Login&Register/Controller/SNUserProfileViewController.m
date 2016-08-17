@@ -472,7 +472,7 @@ BOOL imageDidChange;
     _selectedBestSport = selectedBestSport;
     UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:selectedBestSport];
     _selectedBestSportImageView.frame = CGRectMake(imageView.frame.origin.x - 5, imageView.frame.origin.y - 5, imageView.frame.size.width + 10, imageView.frame.size.height + 10);
-    _selectedBestSportImageView.image = [UIImage imageNamed: bestSportsPicArraySelected[selectedBestSport-1]];
+//    _selectedBestSportImageView.image = [UIImage imageNamed: bestSportsPicArraySelected[selectedBestSport-1]];
 }
 -(void)textViewDidChange:(UITextView *)textView {
     if([textView.text isEqual:@""]) {

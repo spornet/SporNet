@@ -117,4 +117,8 @@ NSInteger width;
     [self removeFromParentViewController];
     [self.delegate didClickCrossButton];
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = NO;
+}
 @end
