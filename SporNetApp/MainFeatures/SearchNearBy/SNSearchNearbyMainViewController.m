@@ -453,6 +453,7 @@ NSInteger indexOfCurrentUser;
     SNSearchNearbyProfileViewController *vc = [[SNSearchNearbyProfileViewController alloc]init];
     vc.delegate = self;
     vc.currentUserProfile = (SNUser*)userInfo;
+    vc.isSearchNearBy = YES;
         NSLog(@"A");
     [self addChildViewController:vc];
         vc.view.frame = CGRectMake(20, 50, SCREEN_WIDTH-40, SCREEN_HEIGHT-100);

@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *sportTimeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *voteButton;
 @property (weak, nonatomic) IBOutlet UILabel *gradYearLabel;
+@property (nonatomic,assign) CGFloat x;
+
 @property NSMutableArray *currentImages;
 @end
 
@@ -58,6 +60,13 @@ NSInteger width;
     self.contentViewBottomConstraint.constant = SCREEN_HEIGHT * 0.2 + 20 + _aboutMeLabel.frame.size.height;
 }
 -(void)loadUserProfile {
+    if (self.isSearchNearBy) {
+        self.x = SCREEN_WIDTH-40;
+    } else {
+        self.x = SCREEN_WIDTH;
+    }
+    
+    
     self.firstNameLabel.text = self.currentUserProfile.name;
     self.aboutMeLabel.text = self.currentUserProfile.aboutMe?self.currentUserProfile.aboutMe:@"No self introduction yet.";
     self.schoolButton.text = [self.currentUserProfile objectForKey:@"school"];
@@ -69,8 +78,7 @@ NSInteger width;
     //set user profile images
     NSMutableArray *imagesUrls = [self.currentUserProfile objectForKey:@"PicUrls"];
     if(imagesUrls.count == 0) return;
-    NSLog(@"width is %.f", self.view.frame.size.width);
-    self.contentImageScrollView.contentSize = CGSizeMake(280 * imagesUrls.count, self.contentImageScrollView.frame.size.height*0.2);
+    self.contentImageScrollView.contentSize = CGSizeMake(self.x * imagesUrls.count, self.contentImageScrollView.frame.size.height*0.2);
     CGFloat xPos = 0.0;
     self.currentImages = [[NSMutableArray alloc]init];
     for(NSString *url in imagesUrls) {
@@ -80,12 +88,10 @@ NSInteger width;
         [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholderImage"] options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             [self.currentImages addObject:imageView.image];
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
-            imageView.frame = CGRectMake(xPos, 0.0, self.view.frame.size.width, SCREEN_HEIGHT*0.33);
-            NSLog(@"HAHA WIDTH IS %.f", self.view.frame.size.width);
+            imageView.frame = CGRectMake(xPos, 0.0, self.x, SCREEN_HEIGHT*0.33);
             [self.contentImageScrollView addSubview:imageView];
         }];
-        xPos += 280;
-        NSLog(@"HAHA width is %.f", self.view.frame.size.width);
+        xPos += self.x;
     }
     
     self.pageControl.currentPage = 0;
@@ -101,7 +107,7 @@ NSInteger width;
     self.voteButton.userInteractionEnabled = NO;
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    self.pageControl.currentPage = self.contentImageScrollView.contentOffset.x / self.view.frame.size.width;
+    self.pageControl.currentPage = self.contentImageScrollView.contentOffset.x / self.x;
 }
 -(void)viewBigPicture {
     ViewBigPhotoViewController *vc = [[ViewBigPhotoViewController alloc]init];
