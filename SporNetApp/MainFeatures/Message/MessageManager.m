@@ -12,7 +12,7 @@ static MessageManager *center = nil;
 
 @interface MessageManager ()
 
-
+@property(nonatomic) NSMutableArray *allConversations;
 @end
 
 @implementation MessageManager
@@ -29,6 +29,7 @@ static MessageManager *center = nil;
     //        _allPrayers = [[NSMutableArray alloc]init];
     //        _prayerDic = [[NSMutableDictionary alloc]init];
     //    }
+    _allConversations = [[NSMutableArray alloc]init];
     NSString *str = (NSString *)center;
     if([str isKindOfClass:[NSString class]] & [str isEqualToString:@"MessageManager"]) {
         self = [super init];
@@ -36,8 +37,32 @@ static MessageManager *center = nil;
         return self;
     } else return nil;
 }
--(NSMutableArray*)fetchAllConversations {
-    return nil;
+
+-(void)refreshAllConversations {
+    AVIMConversationQuery *query = [_client conversationQuery];
+//    [query getConversationById:@"57b47aea0a2b580057f48855" callback:^(AVIMConversation *conversation, NSError *error) {
+//        [self.allConversations addObject:conversation];
+//    }];
+    [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
+        NSLog(@"%@", error);
+        for(AVIMConversation *conversation in objects) {
+            AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:@"57a4e327a3413100632ca7e0"];
+            NSLog(@"objectid is %@", conversation.members[1]);
+            [user fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
+                Conversation *c = [[Conversation alloc]init];
+                NSLog(@"这个人名字是 %@", [user objectForKey:@"name"]);
+                c.basicInfo = user;
+                c.conversation = conversation;
+                [self.allConversations addObject:c];
+            }];
+        }
+    }];
+}
+-(NSMutableArray*)fetchAllCurrentConversations {
+    [self refreshAllConversations];
+    
+    
+    return _allConversations;
 }
 -(void)startMessageService {
     _client = [[AVIMClient alloc] initWithClientId:[AVUser currentUser].objectId];

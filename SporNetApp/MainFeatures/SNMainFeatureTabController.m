@@ -38,6 +38,7 @@
     UIViewController *tagController = [tag instantiateInitialViewController];
     tagController.tabBarItem.title = @"Tag";
     UIViewController *messageController = [message instantiateInitialViewController];
+    messageController.tabBarItem.title = @"Message";
     UIViewController *rankingController = [ranking instantiateInitialViewController];
     rankingController.tabBarItem.title = @"Rank";
     UIViewController *searchController = [search instantiateInitialViewController];
@@ -45,7 +46,7 @@
     
     SNSettingViewController *settingController = [setting instantiateInitialViewController];
     settingController.tabBarItem.title = @"Setting";
-    self.viewControllers = @[tagController, searchController, rankingController, settingController];
+    self.viewControllers = @[messageController, tagController, searchController, rankingController, settingController];
     
 
     // Do any additional setup after loading the view.

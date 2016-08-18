@@ -28,16 +28,22 @@
     [MessageManager defaultManager].client.delegate = self;
     
 }
-
+-(void)viewWillAppear:(BOOL)animated {
+    self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
+    NSLog(@"len is %ld", self.conversationList.count);
+    [_tableView reloadData];
+}
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _conversationList.count;
     
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageListCell" forIndexPath:indexPath];
+    //cell.userNameLabel.text = [[_conversationList[indexPath.row] members]objectAtIndex:1];
+    cell.userNameLabel.text = [[_conversationList[indexPath.row] basicInfo] objectForKey:@"name"];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

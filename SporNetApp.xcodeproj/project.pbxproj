@@ -21,6 +21,7 @@
 		6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0413611D64E23600C0E6EF /* MessageListCell.m */; };
 		6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D0413621D64E23600C0E6EF /* MessageListCell.xib */; };
 		6D0413681D64E82E00C0E6EF /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0413671D64E82E00C0E6EF /* MessageManager.m */; };
+		6D04136D1D64FF6F00C0E6EF /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D04136C1D64FF6F00C0E6EF /* Conversation.m */; };
 		6D15F9301D52395F00B8F011 /* SNSearchNearbyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F92E1D52395F00B8F011 /* SNSearchNearbyProfileViewController.m */; };
 		6D15F9311D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F92F1D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib */; };
 		6D15F9331D529DBE00B8F011 /* emailToSchool.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9321D529DBD00B8F011 /* emailToSchool.plist */; };
@@ -105,6 +106,8 @@
 		6D0413661D64E82E00C0E6EF /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		6D0413671D64E82E00C0E6EF /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		6D04136A1D64EE9D00C0E6EF /* SporNetApp-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SporNetApp-PrefixHeader.pch"; sourceTree = "<group>"; };
+		6D04136B1D64FF6F00C0E6EF /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		6D04136C1D64FF6F00C0E6EF /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		6D15F92D1D52395F00B8F011 /* SNSearchNearbyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSearchNearbyProfileViewController.h; sourceTree = "<group>"; };
 		6D15F92E1D52395F00B8F011 /* SNSearchNearbyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSearchNearbyProfileViewController.m; sourceTree = "<group>"; };
 		6D15F92F1D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSearchNearbyProfileViewController.xib; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 			children = (
 				6D0413661D64E82E00C0E6EF /* MessageManager.h */,
 				6D0413671D64E82E00C0E6EF /* MessageManager.m */,
+				6D04136B1D64FF6F00C0E6EF /* Conversation.h */,
+				6D04136C1D64FF6F00C0E6EF /* Conversation.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -782,6 +787,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D04136D1D64FF6F00C0E6EF /* Conversation.m in Sources */,
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
 				6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */,
 				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
