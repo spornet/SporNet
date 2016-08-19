@@ -146,6 +146,7 @@ static LocalDataManager *center = nil;
 -(NSMutableArray*)refreshAndFetchAllUserInfo {
     [ProgressHUD show:@"Fetching Data. Please wait..."];
     AVQuery *query = [SNUser query];
+    [query includeKey:@"icon"];
     [query orderByDescending:@"voteNumber"];
     self.allUserInfo = [[query findObjects]mutableCopy];
     [ProgressHUD dismiss];

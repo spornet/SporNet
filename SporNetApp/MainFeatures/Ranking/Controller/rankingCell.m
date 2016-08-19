@@ -29,7 +29,10 @@ NSArray *sportPicArray;
     self.userNameLabel.text = user.name;
     self.userSchoolLabel.text = [user objectForKey:@"school"];
     [self.userBestSportColorView setBackgroundColor:SPORTSLOT_COLOR_ARRAY[(int)user.sportTimeSlot]];
-    if([user objectForKey:@"icon"]) self.userImageView.image = [UIImage imageWithData:[[user objectForKey:@"icon"]getData]];
+    AVFile *file = [user objectForKey:@"icon"];
+    if(file == nil) self.userImageView.image = [UIImage imageNamed:@"profile"];
+    else self.userImageView.image = [UIImage imageWithData:[file getData]];
+    
     self.bestSportImageView.image = sportPicArray[(int)user.bestSport-1];
     [self.rankLabel removeFromSuperview];
     if(ranking == 0) self.medalImageView.image = [UIImage imageNamed:@"medalGold"];

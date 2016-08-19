@@ -40,7 +40,7 @@
     UIViewController *messageController = [message instantiateInitialViewController];
     messageController.tabBarItem.title = @"Message";
     UIViewController *rankingController = [ranking instantiateInitialViewController];
-    rankingController.tabBarItem.title = @"Rank";
+    rankingController.tabBarItem.title = @"Ranking";
     UIViewController *searchController = [search instantiateInitialViewController];
     searchController.tabBarItem.title = @"Search";
     

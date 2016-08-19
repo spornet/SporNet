@@ -46,8 +46,8 @@
                                                 <constraint firstAttribute="width" constant="200" id="I1z-HY-cF7"/>
                                                 <constraint firstAttribute="height" constant="21" id="Mng-XK-t7E"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSx-0E-OxA">
@@ -56,8 +56,7 @@
                                                 <constraint firstAttribute="height" constant="21" id="AC5-ur-Yog"/>
                                                 <constraint firstAttribute="width" constant="64" id="d7L-rW-62Y"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -78,8 +77,7 @@
                                                 <constraint firstAttribute="width" constant="64" id="kT2-TZ-BqQ"/>
                                                 <constraint firstAttribute="height" constant="21" id="kTy-XO-uss"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXR-se-c0S">
@@ -88,8 +86,8 @@
                                                 <constraint firstAttribute="width" constant="50" id="I6F-tR-xTz"/>
                                                 <constraint firstAttribute="height" constant="21" id="NxL-Mn-3by"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -108,14 +106,13 @@
                                                 <constraint firstAttribute="width" constant="80" id="Q7B-kD-kWP"/>
                                                 <constraint firstAttribute="height" constant="21" id="TI5-Jp-vDF"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boston University" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9A-Kh-ezE">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Boston University" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9A-Kh-ezE">
                                             <rect key="frame" x="100" y="21" width="205" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -135,18 +132,17 @@
                                                 <constraint firstAttribute="width" constant="120" id="Lmu-ja-fQD"/>
                                                 <constraint firstAttribute="height" constant="21" id="X0i-s6-Jm2"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjX-k4-hWX">
                                             <rect key="frame" x="245" y="16" width="60" height="30"/>
-                                            <color key="backgroundColor" red="0.33604918020000002" green="0.76349806750000004" blue="0.3752569811" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.47450980390000003" green="0.74901960779999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="8PH-uN-rGh"/>
                                                 <constraint firstAttribute="height" constant="30" id="U8H-64-AcF"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                             <state key="normal" title="VOTE">
                                                 <color key="titleColor" red="0.97694310900000003" green="0.97694310900000003" blue="0.97694310900000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
@@ -160,8 +156,8 @@
                                                 <constraint firstAttribute="width" constant="42" id="SqO-Kd-DlG"/>
                                                 <constraint firstAttribute="height" constant="21" id="hxH-hL-uZW"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -213,8 +209,8 @@
                                                 <constraint firstAttribute="width" constant="97" id="R4Z-iv-QQY"/>
                                                 <constraint firstAttribute="height" constant="21" id="WhU-hn-BFb"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPORT TIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHN-sl-YiC">
@@ -223,8 +219,7 @@
                                                 <constraint firstAttribute="height" constant="21" id="s1j-hx-owr"/>
                                                 <constraint firstAttribute="width" constant="120" id="vd2-kA-wpe"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -243,11 +238,10 @@
                                                 <constraint firstAttribute="width" constant="120" id="ej5-X8-NiB"/>
                                                 <constraint firstAttribute="height" constant="21" id="i1r-xV-6rd"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-GU-3j6">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-GU-3j6">
                                             <rect key="frame" x="25" y="36" width="280" height="970"/>
                                             <string key="text">Actually, it’s not. That’s a pseudonym, because my real name is something a little trailer-trashier, as befitting my cultural roots of possum-farmers from Colorado.  Actually, I’d rate my family as being about halfway between The Brady Bunch and Honey Boo Boo.  Maybe a tad closer to Honey Boo Boo.
 
@@ -270,8 +264,8 @@ Current zip code:  nothing too exciting, but still Manhattan.
 Roommates: Two teen daughters, a husband, a dog, 2 guinea pigs (“Fatso” and “Squeekelina”, the pig formerly known as “Sugar Bon Bon”)
 
 Age Range: See Hills, comma, older than the.</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -293,8 +287,7 @@ Age Range: See Hills, comma, older than the.</string>
                                                 <constraint firstAttribute="width" constant="180" id="aXL-hk-x0a"/>
                                                 <constraint firstAttribute="height" constant="21" id="vPH-3I-DvZ"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -308,8 +301,8 @@ Age Range: See Hills, comma, older than the.</string>
                                                 <constraint firstAttribute="height" constant="21" id="Mlr-98-5gF"/>
                                                 <constraint firstAttribute="width" constant="100" id="iaN-cW-hn3"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -412,11 +405,11 @@ Age Range: See Hills, comma, older than the.</string>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYT-5Z-lUB">
                     <rect key="frame" x="0.0" y="517" width="320" height="51"/>
-                    <color key="backgroundColor" red="0.33604918020000002" green="0.76349806750000004" blue="0.3752569811" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.47450980390000003" green="0.74901960779999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="ud0-rY-Czz"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                     <state key="normal" title="MORE INFORMATION">
                         <color key="titleColor" red="0.97694310900000003" green="0.97694310900000003" blue="0.97694310900000003" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -448,7 +441,7 @@ Age Range: See Hills, comma, older than the.</string>
         </view>
     </objects>
     <resources>
-        <image name="devote" width="80" height="80"/>
-        <image name="vote" width="77" height="77"/>
+        <image name="devote" width="81" height="81"/>
+        <image name="vote" width="81" height="81"/>
     </resources>
 </document>
