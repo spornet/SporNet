@@ -29,6 +29,17 @@
 		6D15F9381D55312B00B8F011 /* ViewBigPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9361D55312B00B8F011 /* ViewBigPhotoViewController.xib */; };
 		6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9391D5A782000B8F011 /* basicInfo.plist */; };
 		6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */; };
+		6D1CF1B01D661B31008DECC1 /* SNChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1A81D661B30008DECC1 /* SNChatModel.m */; };
+		6D1CF1B11D661B31008DECC1 /* SNChatModelFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1AA1D661B31008DECC1 /* SNChatModelFrame.m */; };
+		6D1CF1B21D661B31008DECC1 /* SNInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1AC1D661B31008DECC1 /* SNInputView.m */; };
+		6D1CF1B31D661B31008DECC1 /* SNInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D1CF1AD1D661B31008DECC1 /* SNInputView.xib */; };
+		6D1CF1B41D661B31008DECC1 /* UIImage+YFResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1AF1D661B31008DECC1 /* UIImage+YFResizing.m */; };
+		6D1CF1B81D661C22008DECC1 /* SNMessageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1B51D661C22008DECC1 /* SNMessageViewCell.m */; };
+		6D1CF1B91D661C22008DECC1 /* SNMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1B71D661C22008DECC1 /* SNMessageViewController.m */; };
+		6D1CF1BD1D662070008DECC1 /* SNChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1BB1D662070008DECC1 /* SNChatViewController.m */; };
+		6D1CF1BE1D662070008DECC1 /* SNChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D1CF1BC1D662070008DECC1 /* SNChatViewController.xib */; };
+		6D1CF1C41D664F24008DECC1 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1C21D664F24008DECC1 /* ChatCell.m */; };
+		6D1CF1C51D664F24008DECC1 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D1CF1C31D664F24008DECC1 /* ChatCell.xib */; };
 		6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2803931D4FC50D00267B18 /* TimeManager.m */; };
 		6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */; };
 		6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DF1D5CCC0E009C606D /* WaterView.m */; };
@@ -118,6 +129,25 @@
 		6D15F9391D5A782000B8F011 /* basicInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = basicInfo.plist; sourceTree = "<group>"; };
 		6D15F93B1D5A977D00B8F011 /* LocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDataManager.h; sourceTree = "<group>"; };
 		6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDataManager.m; sourceTree = "<group>"; };
+		6D1CF1A71D661B30008DECC1 /* SNChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNChatModel.h; path = ChatInterface/SNChatModel.h; sourceTree = "<group>"; };
+		6D1CF1A81D661B30008DECC1 /* SNChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNChatModel.m; path = ChatInterface/SNChatModel.m; sourceTree = "<group>"; };
+		6D1CF1A91D661B31008DECC1 /* SNChatModelFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNChatModelFrame.h; path = ChatInterface/SNChatModelFrame.h; sourceTree = "<group>"; };
+		6D1CF1AA1D661B31008DECC1 /* SNChatModelFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNChatModelFrame.m; path = ChatInterface/SNChatModelFrame.m; sourceTree = "<group>"; };
+		6D1CF1AB1D661B31008DECC1 /* SNInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNInputView.h; path = ChatInterface/SNInputView.h; sourceTree = "<group>"; };
+		6D1CF1AC1D661B31008DECC1 /* SNInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNInputView.m; path = ChatInterface/SNInputView.m; sourceTree = "<group>"; };
+		6D1CF1AD1D661B31008DECC1 /* SNInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SNInputView.xib; path = ChatInterface/SNInputView.xib; sourceTree = "<group>"; };
+		6D1CF1AE1D661B31008DECC1 /* SNMessageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNMessageViewCell.h; path = ChatInterface/SNMessageViewCell.h; sourceTree = "<group>"; };
+		6D1CF1AF1D661B31008DECC1 /* UIImage+YFResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+YFResizing.m"; path = "ChatInterface/UIImage+YFResizing.m"; sourceTree = "<group>"; };
+		6D1CF1B51D661C22008DECC1 /* SNMessageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNMessageViewCell.m; path = ChatInterface/SNMessageViewCell.m; sourceTree = "<group>"; };
+		6D1CF1B61D661C22008DECC1 /* SNMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNMessageViewController.h; path = ChatInterface/SNMessageViewController.h; sourceTree = "<group>"; };
+		6D1CF1B71D661C22008DECC1 /* SNMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNMessageViewController.m; path = ChatInterface/SNMessageViewController.m; sourceTree = "<group>"; };
+		6D1CF1BA1D662070008DECC1 /* SNChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNChatViewController.h; sourceTree = "<group>"; };
+		6D1CF1BB1D662070008DECC1 /* SNChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNChatViewController.m; sourceTree = "<group>"; };
+		6D1CF1BC1D662070008DECC1 /* SNChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNChatViewController.xib; sourceTree = "<group>"; };
+		6D1CF1C01D662352008DECC1 /* UIImage+YFResizing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+YFResizing.h"; path = "ChatInterface/UIImage+YFResizing.h"; sourceTree = "<group>"; };
+		6D1CF1C11D664F24008DECC1 /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		6D1CF1C21D664F24008DECC1 /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		6D1CF1C31D664F24008DECC1 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		6D2803921D4FC50D00267B18 /* TimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeManager.h; sourceTree = "<group>"; };
 		6D2803931D4FC50D00267B18 /* TimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeManager.m; sourceTree = "<group>"; };
 		6D2803951D4FEC1C00267B18 /* globalMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = globalMacros.h; path = ../globalMacros.h; sourceTree = "<group>"; };
@@ -258,6 +288,32 @@
 				6D04136C1D64FF6F00C0E6EF /* Conversation.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		6D1CF1A61D661B1B008DECC1 /* Chat Interface */ = {
+			isa = PBXGroup;
+			children = (
+				6D1CF1AE1D661B31008DECC1 /* SNMessageViewCell.h */,
+				6D1CF1B51D661C22008DECC1 /* SNMessageViewCell.m */,
+				6D1CF1B61D661C22008DECC1 /* SNMessageViewController.h */,
+				6D1CF1B71D661C22008DECC1 /* SNMessageViewController.m */,
+				6D1CF1A71D661B30008DECC1 /* SNChatModel.h */,
+				6D1CF1A81D661B30008DECC1 /* SNChatModel.m */,
+				6D1CF1A91D661B31008DECC1 /* SNChatModelFrame.h */,
+				6D1CF1AA1D661B31008DECC1 /* SNChatModelFrame.m */,
+				6D1CF1AB1D661B31008DECC1 /* SNInputView.h */,
+				6D1CF1AC1D661B31008DECC1 /* SNInputView.m */,
+				6D1CF1AD1D661B31008DECC1 /* SNInputView.xib */,
+				6D1CF1C01D662352008DECC1 /* UIImage+YFResizing.h */,
+				6D1CF1AF1D661B31008DECC1 /* UIImage+YFResizing.m */,
+				6D1CF1BA1D662070008DECC1 /* SNChatViewController.h */,
+				6D1CF1BB1D662070008DECC1 /* SNChatViewController.m */,
+				6D1CF1BC1D662070008DECC1 /* SNChatViewController.xib */,
+				6D1CF1C11D664F24008DECC1 /* ChatCell.h */,
+				6D1CF1C21D664F24008DECC1 /* ChatCell.m */,
+				6D1CF1C31D664F24008DECC1 /* ChatCell.xib */,
+			);
+			name = "Chat Interface";
 			sourceTree = "<group>";
 		};
 		6D2803911D4FC4F000267B18 /* Model */ = {
@@ -469,6 +525,7 @@
 		B8CFCCF11D21CE640006495E /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				6D1CF1A61D661B1B008DECC1 /* Chat Interface */,
 				6D0413651D64E81700C0E6EF /* Model */,
 				6D04135A1D64E1F800C0E6EF /* MessageList */,
 				B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */,
@@ -649,6 +706,7 @@
 				6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */,
 				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
+				6D1CF1B31D661B31008DECC1 /* SNInputView.xib in Resources */,
 				6DD9D5FA1D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard in Resources */,
 				6D15F9331D529DBE00B8F011 /* emailToSchool.plist in Resources */,
 				6D15F9311D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib in Resources */,
@@ -665,8 +723,10 @@
 				6D01AD021D4A94A300E98E6F /* SNTagMainViewController.xib in Resources */,
 				6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */,
 				6D01AD0C1D4AAA0900E98E6F /* SNTagCell.xib in Resources */,
+				6D1CF1C51D664F24008DECC1 /* ChatCell.xib in Resources */,
 				6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */,
 				B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */,
+				6D1CF1BE1D662070008DECC1 /* SNChatViewController.xib in Resources */,
 				6D15F9381D55312B00B8F011 /* ViewBigPhotoViewController.xib in Resources */,
 				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
 				B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */,
@@ -790,12 +850,17 @@
 				6D04136D1D64FF6F00C0E6EF /* Conversation.m in Sources */,
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
 				6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */,
+				6D1CF1BD1D662070008DECC1 /* SNChatViewController.m in Sources */,
+				6D1CF1B01D661B31008DECC1 /* SNChatModel.m in Sources */,
 				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
 				6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */,
+				6D1CF1B81D661C22008DECC1 /* SNMessageViewCell.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
+				6D1CF1B41D661B31008DECC1 /* UIImage+YFResizing.m in Sources */,
 				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,
 				6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */,
 				6DD9D5F31D37E95200F622F6 /* SNLaunchPageViewController.m in Sources */,
+				6D1CF1B11D661B31008DECC1 /* SNChatModelFrame.m in Sources */,
 				6D15F9371D55312B00B8F011 /* ViewBigPhotoViewController.m in Sources */,
 				6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */,
 				6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */,
@@ -804,9 +869,12 @@
 				6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */,
 				6DD9D5F41D37E95200F622F6 /* SNLoginViewController.m in Sources */,
 				6DD9D5F61D37E95200F622F6 /* SNRegisterViewController.m in Sources */,
+				6D1CF1B21D661B31008DECC1 /* SNInputView.m in Sources */,
+				6D1CF1C41D664F24008DECC1 /* ChatCell.m in Sources */,
 				6D04135E1D64E20E00C0E6EF /* SNMessageListViewController.m in Sources */,
 				6DD9D5F71D37E95200F622F6 /* SNUserProfileViewController.m in Sources */,
 				6D15F9301D52395F00B8F011 /* SNSearchNearbyProfileViewController.m in Sources */,
+				6D1CF1B91D661C22008DECC1 /* SNMessageViewController.m in Sources */,
 				6D01AD0B1D4AAA0900E98E6F /* SNTagCell.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
 				6D0413681D64E82E00C0E6EF /* MessageManager.m in Sources */,

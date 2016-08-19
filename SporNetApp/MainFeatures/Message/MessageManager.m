@@ -8,6 +8,8 @@
 
 #import "MessageManager.h"
 #import <AVUser.h>
+#import "SNChatModelFrame.h"
+#import "SNChatModel.h"
 static MessageManager *center = nil;
 
 @interface MessageManager ()
@@ -39,15 +41,19 @@ static MessageManager *center = nil;
 }
 
 -(void)refreshAllConversations {
+    NSString *selfId = [[[AVUser currentUser] objectForKey:@"basicInfo"]objectId];
     AVIMConversationQuery *query = [_client conversationQuery];
-//    [query getConversationById:@"57b47aea0a2b580057f48855" callback:^(AVIMConversation *conversation, NSError *error) {
-//        [self.allConversations addObject:conversation];
-//    }];
+    [query whereKey:@"m" containsAllObjectsInArray:@[selfId]];
+    query.cachePolicy = kAVIMCachePolicyCacheElseNetwork;
     [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
         NSLog(@"%@", error);
         for(AVIMConversation *conversation in objects) {
-            AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:@"57a4e327a3413100632ca7e0"];
-            NSLog(@"objectid is %@", conversation.members[1]);
+            NSString *talkToId;
+            if([conversation.members[0] isEqualToString:selfId]) {
+                talkToId = conversation.members[1];
+            } else talkToId = conversation.members[0];
+            AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:talkToId];
+            NSLog(@"objectid is %@", talkToId);
             [user fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
                 Conversation *c = [[Conversation alloc]init];
                 NSLog(@"这个人名字是 %@", [user objectForKey:@"name"]);
@@ -56,19 +62,24 @@ static MessageManager *center = nil;
                 [self.allConversations addObject:c];
             }];
         }
+
     }];
 }
+
 -(NSMutableArray*)fetchAllCurrentConversations {
-    [self refreshAllConversations];
-    
-    
     return _allConversations;
 }
+
+-(NSMutableArray*)fetchMessagesWithUserId:(NSString*)userId {
+    
+    return nil;
+}
 -(void)startMessageService {
-    _client = [[AVIMClient alloc] initWithClientId:[AVUser currentUser].objectId];
+    _client = [[AVIMClient alloc] initWithClientId:[[[AVUser currentUser] objectForKey:@"basicInfo"]objectId]];
     [_client openWithCallback:^(BOOL succeeded, NSError *error) {
         NSLog(@"%@", error);
         NSLog(@"成功打开实时通讯功能");
+        [self refreshAllConversations];
     }];
 }
 @end

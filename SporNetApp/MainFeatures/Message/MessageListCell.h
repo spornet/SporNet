@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Conversation.h"
 @interface MessageListCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastTimeLabel;
+-(void)configureCellWithConversation:(Conversation*)c;
 @end

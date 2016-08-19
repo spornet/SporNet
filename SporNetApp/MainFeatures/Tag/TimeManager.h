@@ -13,4 +13,5 @@
 +(NSString*)getDateString:(NSDate*)date;
 +(NSString*)getTimeLabelString:(NSDate*)checkinTime refreshTime:(NSDate*)refreshTime;
 +(NSInteger)calculateAgeByBirthday:(NSDate*)birthday;
++(NSString *)getConvastionTimeStr:(NSDate *)sendDate;
 @end

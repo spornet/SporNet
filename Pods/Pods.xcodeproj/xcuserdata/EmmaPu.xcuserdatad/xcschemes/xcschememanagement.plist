@@ -14,6 +14,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DateTools.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JSBadgeView-JSBadgeView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JSBadgeView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +52,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>120AF7F6BC3A8BF9F6194A512BE511CC</key>
+		<key>15E71DC389AF81EB7D768EBA0F13A0C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>15E71DC389AF81EB7D768EBA0F13A0C2</key>
+		<key>25157C9F26A7C9C9C4495CEC0FA4C5F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>31FF44B5E2FF8CF00090950A8B67AFF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,17 +72,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8006F3BF323F8233FB922BA5756A5BBB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A3FBAFF78FAE971A68F9AB3DCD461863</key>
+		<key>BCCC0F4081C473B2448DD2FB829E748C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>BD25B2157D8BCA944D6FF3EC2B073ECB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BED94B93C0BAD699B48C0C750C2DF987</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C2ADBD787827A09060EB4721A7484DC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E63EA3FC3E0A88A11341641DBAC04F9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

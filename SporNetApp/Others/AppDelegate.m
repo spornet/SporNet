@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "SNUser.h"
-
 #define AVOSCloudAppID  @"qLvqUSrb3dziuUehRKvpr6Kc-gzGzoHsz"
 #define AVOSCloudAppKey @"aYaqxmFig7hp77IYIl1wJ6RU"
 @interface AppDelegate ()

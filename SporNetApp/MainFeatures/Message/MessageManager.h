@@ -18,4 +18,5 @@
 +(instancetype)defaultManager;
 -(void)startMessageService;
 -(NSMutableArray*)fetchAllCurrentConversations;
+-(void)refreshAllConversations;
 @end
