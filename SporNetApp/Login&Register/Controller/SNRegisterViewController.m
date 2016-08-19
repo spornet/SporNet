@@ -37,6 +37,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (IBAction)back {
     [self.navigationController popViewControllerAnimated:YES];
 }

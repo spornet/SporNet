@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
-
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -107,9 +106,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4WN-Tt-gq0" userLabel="top view">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPL-iX-2g3">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPL-iX-2g3">
                             <rect key="frame" x="167" y="48" width="42" height="21"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                             <color key="textColor" white="0.9661283557" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -173,10 +172,10 @@
         </view>
     </objects>
     <resources>
-        <image name="basketball" width="60" height="60"/>
-        <image name="jogging" width="60" height="60"/>
-        <image name="muscle" width="58" height="58"/>
-        <image name="soccer" width="60" height="60"/>
-        <image name="yoga" width="60" height="60"/>
+        <image name="basketball" width="58" height="58"/>
+        <image name="jogging" width="58" height="58"/>
+        <image name="muscle" width="59" height="59"/>
+        <image name="soccer" width="58" height="58"/>
+        <image name="yoga" width="58" height="58"/>
     </resources>
 </document>

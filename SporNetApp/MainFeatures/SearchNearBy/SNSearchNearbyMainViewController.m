@@ -779,9 +779,9 @@ NSInteger indexOfCurrentUser;
     self.user5Area.userInteractionEnabled = YES;
     [self.user5Area addGestureRecognizer:tapGesturRecognizer5];
     
-    UIButton *filterBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.circleView.frame.size.width/2 - 37.5, self.circleView.bounds.size.height/2 - 37.5, 75, 75)];
+    UIButton *filterBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.circleView.frame.size.width/2 - 37.5, self.circleView.bounds.size.height/2 - 37.5 + CGRectGetMaxY(self.topBtnView.frame), 75, 75)];
     [filterBtn setBackgroundImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
-    [self.circleView addSubview:filterBtn];
+    [self.view addSubview:filterBtn];
     self.filterBtn = filterBtn;
     [self.filterBtn addTarget:self action:@selector(sportFilterClick) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -820,6 +820,7 @@ NSInteger indexOfCurrentUser;
     
     UIImageView *radiusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -25, self.topBtnView.bounds.size.height/2 -30, 50, 50)];
     radiusImageView.backgroundColor = [UIColor clearColor];
+    radiusImageView.image = [UIImage imageNamed:@"radius"];
     [self.topBtnView addSubview:radiusImageView];
     
     UILabel *topLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 - 75, self.topBtnView.bounds.size.height/2 + 30, 150, 20)];
@@ -831,6 +832,7 @@ NSInteger indexOfCurrentUser;
     
     UIButton *refreshBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.topBtnView.frame) - 10 - 35, self.topBtnView.bounds.size.height/2 - 50, 35, 35)];
     refreshBtn.backgroundColor = [UIColor clearColor];
+    [refreshBtn setImage:[UIImage imageNamed:@"nearbyRefresh"] forState:UIControlStateNormal];
     _isFinishLoad = YES;
     [refreshBtn addTarget:self action:@selector(clickRefreshBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.topBtnView addSubview:refreshBtn];
@@ -864,11 +866,11 @@ NSInteger indexOfCurrentUser;
 
 -(void)refreshAnimation{
     
-    __block WaterView *waterView = [[WaterView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH / 2 - 20, MAIN_SCREEN_HEIGHT / 2 + 40, 40, 40)];
+    __block WaterView *waterView = [[WaterView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH / 2 - 20, MAIN_SCREEN_HEIGHT / 2 + 40 - CGRectGetMaxY(self.topBtnView.frame), 40, 40)];
     
     waterView.backgroundColor = [UIColor clearColor];
     
-    [self.view addSubview:waterView];
+    [self.circleView addSubview:waterView];
     
     [UIView animateWithDuration:4 animations:^{
         
@@ -996,11 +998,36 @@ NSInteger indexOfCurrentUser;
 -(void)bestSportSelected:(id)sender{
     self.allUsers = [[LocalDataManager defaultManager]fetchUserInfoBySportType:((UIView*)sender).tag];
     indexOfCurrentUser = 0;
+    
+    NSString *imageName = [[NSString alloc]init];
+    
+    switch (((UIButton*)sender).tag) {
+        case BestSportsBasketball:
+            imageName = @"basketballSelected";
+            break;
+        case BestSportsSoccer:
+            imageName = @"soccerSelected";
+            break;
+        case BestSportsMuscle:
+            imageName = @"muscleSelected";
+            break;
+        case BestSportsJogging:
+            imageName = @"joggingSelected";
+            break;
+        case BestSportsYoga:
+            imageName = @"yogaSelected";
+            break;
+        default:
+            break;
+    }
+    
+    [self.filterBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [self removeBlurView];
     [self clickRefreshBtn];
 }
 -(void)allSportSelected {
     [self removeBlurView];
+    [self.filterBtn setImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
     indexOfCurrentUser = 0;
     self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
     [self clickRefreshBtn];
