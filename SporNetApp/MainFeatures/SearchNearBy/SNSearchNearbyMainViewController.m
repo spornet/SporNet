@@ -823,6 +823,38 @@ NSInteger indexOfCurrentUser;
     radiusImageView.image = [UIImage imageNamed:@"radius"];
     [self.topBtnView addSubview:radiusImageView];
     
+    
+
+    /**
+     *  黑洞效果
+     */
+//    
+//    UIImageView *radiusBGImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -40, self.topBtnView.bounds.size.height/2 -40, 80, 80)];
+//    radiusBGImageView.image = [UIImage imageNamed:@"blackhole"];
+//    radiusBGImageView.layer.masksToBounds = YES;
+//    radiusBGImageView.layer.cornerRadius = radiusBGImageView.frame.size.width / 2.0;
+//    UIImageView *radiusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -30, self.topBtnView.bounds.size.height/2 -30, 60, 60)];
+//    radiusImageView.image = [UIImage imageNamed:@"blackhole2"];
+//    radiusImageView.layer.masksToBounds = YES;
+//    radiusImageView.layer.cornerRadius = radiusImageView.frame.size.width / 2.0;
+//    
+//    CGFloat angleBG = -M_1_PI;
+//    CGFloat angle = M_PI;
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:50];
+//    for (int i = 1; i<50; i++) {
+//        radiusImageView.transform = CGAffineTransformRotate(radiusImageView.transform, angle);
+//        radiusBGImageView.transform = CGAffineTransformRotate(radiusBGImageView.transform, angleBG);
+//    }
+//    [UIView commitAnimations];
+//    
+//    [self.topBtnView addSubview:radiusBGImageView];
+//    [self.topBtnView addSubview:radiusImageView];
+    
+    
+    
+
+    
     UILabel *topLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 - 75, self.topBtnView.bounds.size.height/2 + 30, 150, 20)];
     topLabel.text = @"我是距离";
     topLabel.textColor = [UIColor blueColor];
@@ -897,6 +929,7 @@ NSInteger indexOfCurrentUser;
 -(void)setBackgroundGalaxy{
     UIImageView *galaxyImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bgn"]];
     galaxyImageView.frame = CGRectMake(-50, -50, MAIN_SCREEN_WIDTH +100, MAIN_SCREEN_HEIGHT +100);
+//    galaxyImageView.contentMode = UIViewContentModeScaleAspectFill;
     
     UIInterpolatingMotionEffect *xEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
     xEffect.minimumRelativeValue = [NSNumber numberWithFloat:50.0];
