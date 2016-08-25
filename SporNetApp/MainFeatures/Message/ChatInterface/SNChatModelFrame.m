@@ -7,7 +7,6 @@
 //
 
 #import "SNChatModelFrame.h"
-#import "SNChatModel.h"
 @interface SNChatModelFrame ()
 
 /** timeLab */
@@ -29,11 +28,12 @@
 - (void)setChat:(AVIMMessage *)chat
 {
     _chat = chat;
+    self.alreadySent = YES;
     NSString *text = [(AVIMTextMessage*)_chat text];
     //NSString *text = @"what the fuck? Why should i do these shit.";
     CGSize contentStrSize = [text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 100, CGFLOAT_MAX)
                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                            attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Arial" size:15.0]}
+                                            attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Arial" size:17.0]}
                                                context:nil].size;
     
 //

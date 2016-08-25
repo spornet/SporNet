@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Conversation.h"
+#import <JSBadgeView.h>
 @interface MessageListCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *bestSportImage;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastTimeLabel;
+@property JSBadgeView *badgeView;
 -(void)configureCellWithConversation:(Conversation*)c;
 @end

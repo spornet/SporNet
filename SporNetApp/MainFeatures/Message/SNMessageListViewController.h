@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVIMClient.h>
-@interface SNMessageListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AVIMClientDelegate>
+#import "MessageManager.h"
+@interface SNMessageListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AVIMClientDelegate, MessageManagerDelegate>
 
 @end

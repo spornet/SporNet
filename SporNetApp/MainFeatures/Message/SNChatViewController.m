@@ -7,7 +7,6 @@
 //
 
 #import "SNChatViewController.h"
-#import "SNMessageViewCell.h"
 #import "ChatCell.h"
 #import "SNChatModelFrame.h"
 #import "MessageManager.h"
@@ -38,15 +37,18 @@
         frame.chat = message;
         [_frameArr addObject:frame];
     }
-    
-    //set message manager delegate
-    [MessageManager defaultManager].client.delegate = self;
+    [self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tableViewTapped)]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillChange:)
-                                                 name:UIKeyboardWillChangeFrameNotification
+                                                 name:UIKeyboardWillShowNotification
                                                object:nil];
+    [self scrollToBottom];
     
+}
+-(void)viewWillAppear:(BOOL)animated {
+    //set message manager delegate
+    [MessageManager defaultManager].client.delegate = self;
 }
 -(void)keyboardWillChange:(NSNotification *)notification {
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
@@ -54,8 +56,10 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     self.toolBoxBottomConstraint.constant = keyboardSize.height;
+        NSLog(@"keyboard size is %f", keyboardSize.height);
     [self.view layoutIfNeeded];
     [UIView commitAnimations];
+    [self.view bringSubviewToFront:[self.view viewWithTag:1]];
     }
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -65,15 +69,21 @@
     return self.messages.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"get cell");
     ChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ChatCell"];
-    if(indexPath.row == 0) [cell configureCellWithMessage:_messages[0] previousMessage:nil receiver:_conversation.basicInfo];
-    else [cell configureCellWithMessage:_messages[indexPath.row] previousMessage:_messages[indexPath.row - 1] receiver:_conversation.basicInfo];
+    if(indexPath.row == 0) [cell configureCellWithMessage:_messages[0] previousMessage:nil receiver:_conversation.basicInfo loadingStatus:[self.frameArr[indexPath.row] alreadySent]];
+    else [cell configureCellWithMessage:_messages[indexPath.row] previousMessage:_messages[indexPath.row - 1] receiver:_conversation.basicInfo loadingStatus:[self.frameArr[indexPath.row] alreadySent]];
     return cell;
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"scrolllinggggg!");
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    if([scrollView isKindOfClass:[UITableView class]]) {
+//        [self dismissKeyboard];
+//        NSLog(@"is table view scrolling");
+//    } else if ([scrollView isKindOfClass:[UITextView class]]) {
+//        NSLog(@"is text view scrolling");
+//    }
+//}
+-(void)tableViewTapped {
     [self dismissKeyboard];
 }
 //dismiss keyboard with animation
@@ -89,8 +99,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"get height");
-    NSLog(@"%f", [self.frameArr[indexPath.row] cellH]);
     return [self.frameArr[indexPath.row] cellH];
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -101,29 +109,75 @@
     }
     return YES;
 }
+
+//-(void)textViewDidChange:(UITextView *)textView{
+//    if([[textView.text substringFromIndex:[textView.text length] - 1]  isEqual: @"\n"]) {
+//        [self sendMessageWithMessage:_messageInputTextView.text];
+//    }
+//}
 -(void)sendMessageWithMessage:(NSString*)message {
     AVIMTextMessage *textMessage = [AVIMTextMessage messageWithText:message attributes:nil];
-
-    [self.conversation.conversation sendMessage:textMessage callback:^(BOOL succeeded, NSError *error) {
+    [self.messages addObject:textMessage];
+    
+    SNChatModelFrame *frame = [[SNChatModelFrame alloc]init];
+    frame.chat = textMessage;
+    frame.alreadySent = NO;
+    [_frameArr addObject:frame];
+    [self.tableView reloadData];
+    [self scrollToBottom];
+    self.messageInputTextView.text = @"";
+    
+    [self.conversation.conversation sendMessage:textMessage progressBlock:^(NSInteger percentDone) {
+        NSLog(@"看看你到底会不会执行");
+        
+    } callback:^(BOOL succeeded, NSError *error) {
         if (error) {
             // 此时聊天服务不可用。
             NSLog(@"聊天不可用");
             [ProgressHUD showError:@"聊天不可用"];
         }
         else{
-            [self.messages addObject:textMessage];
-            SNChatModelFrame *frame = [[SNChatModelFrame alloc]init];
-            frame.chat = textMessage;
-            [_frameArr addObject:frame];
+            frame.alreadySent = YES;
             [self.tableView reloadData];
-            NSLog(@"发送成功");
-            self.messageInputTextView.text = @"";
-            [ProgressHUD showSuccess:@"发送成功"];
-            [self dismissKeyboard];
         }
+
     }];
+    
+//    [self.conversation.conversation sendMessage:textMessage callback:^(BOOL succeeded, NSError *error) {
+//        if (error) {
+//            // 此时聊天服务不可用。
+//            NSLog(@"聊天不可用");
+//            [ProgressHUD showError:@"聊天不可用"];
+//        }
+//        else{
+//            [self.messages addObject:textMessage];
+//            SNChatModelFrame *frame = [[SNChatModelFrame alloc]init];
+//            frame.chat = textMessage;
+//            [_frameArr addObject:frame];
+//            [self.tableView reloadData];
+//            [self scrollToBottom];
+//            NSLog(@"发送成功");
+//            self.messageInputTextView.text = @"";
+//            [ProgressHUD showSuccess:@"发送成功"];
+//        }
+//    }];
 }
+
 -(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
-    NSLog(@"笑死我了");
+    [self.messages addObject:message];
+    SNChatModelFrame *frame = [[SNChatModelFrame alloc]init];
+    frame.chat = message;
+    [_frameArr addObject:frame];
+    [self.tableView reloadData];
+    [self scrollToBottom];
+}
+
+- (void)scrollToBottom {
+    if (!self.messages.count) return;
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow: self.messages.count - 1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath: lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = NO;
 }
 @end

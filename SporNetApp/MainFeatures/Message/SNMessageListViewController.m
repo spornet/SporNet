@@ -8,8 +8,10 @@
 
 #import "SNMessageListViewController.h"
 #import "MessageListCell.h"
-#import "MessageManager.h"
+
+#import "ProgressHUD.h"
 #import "SNChatViewController.h"
+#import "SNFriendRequestListViewController.h"
 @interface SNMessageListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *conversationList;
@@ -20,20 +22,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [ProgressHUD show:@"Loading your message box..."];
     self.navigationController.navigationBar.hidden = YES;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     //打开message功能
     [[MessageManager defaultManager] startMessageService];
     [MessageManager defaultManager].client.delegate = self;
-
-    
+    [MessageManager defaultManager].delegate = self;
 }
--(void)viewWillAppear:(BOOL)animated {
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [MessageManager defaultManager].client.delegate = self;
+    //[[MessageManager defaultManager]refreshAllConversations];
     self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
-    NSLog(@"len is %ld", self.conversationList.count);
     [_tableView reloadData];
+}
+-(void)didFinishRefreshing {
+    self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
+    [_tableView reloadData];
+    [ProgressHUD dismiss];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -51,9 +60,30 @@
     return 72;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Conversation *c = _conversationList[indexPath.row];
     SNChatViewController *vc = [[SNChatViewController alloc]init];
-    vc.conversation = _conversationList[indexPath.row];
+    vc.conversation = c;
+    c.unreadMessageNumber = 0;
 
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
+    NSLog(@"RECEIVED");
+    self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
+    for(Conversation *c in self.conversationList) {
+
+        if([c.conversation.conversationId isEqualToString:message.conversationId]) {
+            c.unreadMessageNumber++;
+            break;
+        }
+    }
+    [self.tableView reloadData];
+}
+-(void)conversation:(AVIMConversation *)conversation didReceiveUnread:(NSInteger)unread {
+    NSLog(@"UNREAD");
+}
+- (IBAction)bellButtonClicked:(UIButton *)sender {
+    SNFriendRequestListViewController *vc = [[SNFriendRequestListViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

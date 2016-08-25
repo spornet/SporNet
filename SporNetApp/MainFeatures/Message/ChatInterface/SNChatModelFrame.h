@@ -26,6 +26,7 @@
  *  Chat Model
  */
 @property (nonatomic, strong) AVIMMessage *chat;
+@property(nonatomic) BOOL alreadySent;
 //
 ///**
 // *  Time Label Frame

@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpE-Xr-4LK">
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpE-Xr-4LK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gabby" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNw-Yk-QYl">
@@ -91,7 +91,6 @@
                 <constraint firstItem="cpE-Xr-4LK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0ei-vA-fI8"/>
                 <constraint firstAttribute="trailing" secondItem="ekT-Ok-twF" secondAttribute="trailing" id="3kx-l9-inl"/>
                 <constraint firstItem="mWr-98-Igm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ESW-ka-Hao"/>
-                <constraint firstItem="ekT-Ok-twF" firstAttribute="top" secondItem="cpE-Xr-4LK" secondAttribute="bottom" constant="8" id="EUy-Xt-d3q"/>
                 <constraint firstItem="mWr-98-Igm" firstAttribute="top" secondItem="ekT-Ok-twF" secondAttribute="bottom" id="IxQ-bx-Lrt"/>
                 <constraint firstItem="cpE-Xr-4LK" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.12" id="K14-Rx-too"/>
                 <constraint firstItem="cpE-Xr-4LK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mag-36-EXb"/>
@@ -103,11 +102,6 @@
                 <constraint firstAttribute="bottom" secondItem="mWr-98-Igm" secondAttribute="bottom" id="teC-k2-y8U"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="EUy-Xt-d3q"/>
-                </mask>
-            </variation>
         </view>
     </objects>
     <resources>
