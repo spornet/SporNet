@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "SNUser.h"
-
+#import <AVIMUserOptions.h>
 #define AVOSCloudAppID  @"qLvqUSrb3dziuUehRKvpr6Kc-gzGzoHsz"
 #define AVOSCloudAppKey @"aYaqxmFig7hp77IYIl1wJ6RU"
 @interface AppDelegate ()
@@ -30,6 +30,7 @@
     [SNUser registerSubclass];
     [AVOSCloud setApplicationId:AVOSCloudAppID
                       clientKey:AVOSCloudAppKey];
+
     //获取当前版本号
     NSString *key = (NSString *)kCFBundleVersionKey;
     NSString *version = [NSBundle mainBundle].infoDictionary[key];
@@ -50,6 +51,7 @@
 
         
     }
+
     return YES;
 }
 

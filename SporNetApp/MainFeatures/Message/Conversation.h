@@ -11,4 +11,5 @@
 @interface Conversation : NSObject
 @property AVIMConversation *conversation;
 @property AVObject *basicInfo;
+@property NSInteger unreadMessageNumber;
 @end

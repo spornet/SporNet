@@ -7,6 +7,7 @@
 //
 
 #import "TimeManager.h"
+#import <NSDate+DateTools.h>
 static NSDateFormatter *timeFormatter = nil;
 static NSDateFormatter *dateFormatter = nil;
 @implementation TimeManager
@@ -32,6 +33,19 @@ static NSDateFormatter *dateFormatter = nil;
     else result = [NSString stringWithFormat:@"%ldhr ago", (long)distanceSeconds/3600];
     return result;
 }
+
+
++ (NSString *)getConvastionTimeStr:(NSDate *)sendDate
+{
+    NSString *timeString;
+    if([sendDate isToday]) timeString = [self getTimeStringFromNSDate:sendDate];
+    else if([sendDate isYesterday]) timeString = [NSString stringWithFormat:@"Yesterday %@", [self getTimeStringFromNSDate:sendDate]];
+    else if([[NSDate date]daysFrom:sendDate] <= 7) {
+        timeString = [NSString stringWithFormat:@"%@ %@", WEEKDAYS[[sendDate weekday]], [self getTimeStringFromNSDate:sendDate]];
+    } else timeString = [NSString stringWithFormat:@"%@ %@", [self getDateString:sendDate], [self getTimeStringFromNSDate:sendDate]];
+    return timeString;
+}
+
 +(NSInteger)calculateAgeByBirthday:(NSDate*)birthday {
     NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
                                        components:NSCalendarUnitYear

@@ -30,12 +30,21 @@
 		6D15F9381D55312B00B8F011 /* ViewBigPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9361D55312B00B8F011 /* ViewBigPhotoViewController.xib */; };
 		6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9391D5A782000B8F011 /* basicInfo.plist */; };
 		6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */; };
+		6D1CF1B11D661B31008DECC1 /* SNChatModelFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1AA1D661B31008DECC1 /* SNChatModelFrame.m */; };
+		6D1CF1BD1D662070008DECC1 /* SNChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1BB1D662070008DECC1 /* SNChatViewController.m */; };
+		6D1CF1BE1D662070008DECC1 /* SNChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D1CF1BC1D662070008DECC1 /* SNChatViewController.xib */; };
+		6D1CF1C41D664F24008DECC1 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1C21D664F24008DECC1 /* ChatCell.m */; };
+		6D1CF1C51D664F24008DECC1 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D1CF1C31D664F24008DECC1 /* ChatCell.xib */; };
 		6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2803931D4FC50D00267B18 /* TimeManager.m */; };
 		6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */; };
 		6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DF1D5CCC0E009C606D /* WaterView.m */; };
 		6D2B32E31D5CCC29009C606D /* SNSearchNearbyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32E21D5CCC29009C606D /* SNSearchNearbyMainViewController.m */; };
 		6D2B32E91D5D11DF009C606D /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32E81D5D11DF009C606D /* UserView.m */; };
 		6D2B32EB1D5D1207009C606D /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2B32EA1D5D1207009C606D /* UserView.xib */; };
+		6DB762551D6F4DB200DB92E3 /* SNFriendRequestListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB762531D6F4DB200DB92E3 /* SNFriendRequestListViewController.m */; };
+		6DB762561D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB762541D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib */; };
+		6DB7625A1D6F507D00DB92E3 /* SNFriendRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB762581D6F507D00DB92E3 /* SNFriendRequestCell.m */; };
+		6DB7625B1D6F507D00DB92E3 /* SNFriendRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB762591D6F507D00DB92E3 /* SNFriendRequestCell.xib */; };
 		6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C51D37E6D700F622F6 /* rankingCell.m */; };
 		6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C71D37E6D700F622F6 /* SNRankingViewController.m */; };
 		6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CA1D37E6E700F622F6 /* rankingCell.xib */; };
@@ -120,6 +129,14 @@
 		6D15F9391D5A782000B8F011 /* basicInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = basicInfo.plist; sourceTree = "<group>"; };
 		6D15F93B1D5A977D00B8F011 /* LocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDataManager.h; sourceTree = "<group>"; };
 		6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDataManager.m; sourceTree = "<group>"; };
+		6D1CF1A91D661B31008DECC1 /* SNChatModelFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNChatModelFrame.h; path = ChatInterface/SNChatModelFrame.h; sourceTree = "<group>"; };
+		6D1CF1AA1D661B31008DECC1 /* SNChatModelFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNChatModelFrame.m; path = ChatInterface/SNChatModelFrame.m; sourceTree = "<group>"; };
+		6D1CF1BA1D662070008DECC1 /* SNChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNChatViewController.h; sourceTree = "<group>"; };
+		6D1CF1BB1D662070008DECC1 /* SNChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNChatViewController.m; sourceTree = "<group>"; };
+		6D1CF1BC1D662070008DECC1 /* SNChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNChatViewController.xib; sourceTree = "<group>"; };
+		6D1CF1C11D664F24008DECC1 /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		6D1CF1C21D664F24008DECC1 /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		6D1CF1C31D664F24008DECC1 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		6D2803921D4FC50D00267B18 /* TimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeManager.h; sourceTree = "<group>"; };
 		6D2803931D4FC50D00267B18 /* TimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeManager.m; sourceTree = "<group>"; };
 		6D2803951D4FEC1C00267B18 /* globalMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = globalMacros.h; path = ../globalMacros.h; sourceTree = "<group>"; };
@@ -132,6 +149,12 @@
 		6D2B32E71D5D11DF009C606D /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		6D2B32E81D5D11DF009C606D /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		6D2B32EA1D5D1207009C606D /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
+		6DB762521D6F4DB200DB92E3 /* SNFriendRequestListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFriendRequestListViewController.h; sourceTree = "<group>"; };
+		6DB762531D6F4DB200DB92E3 /* SNFriendRequestListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNFriendRequestListViewController.m; sourceTree = "<group>"; };
+		6DB762541D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNFriendRequestListViewController.xib; sourceTree = "<group>"; };
+		6DB762571D6F507D00DB92E3 /* SNFriendRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFriendRequestCell.h; sourceTree = "<group>"; };
+		6DB762581D6F507D00DB92E3 /* SNFriendRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNFriendRequestCell.m; sourceTree = "<group>"; };
+		6DB762591D6F507D00DB92E3 /* SNFriendRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNFriendRequestCell.xib; sourceTree = "<group>"; };
 		6DD9D5C41D37E6D700F622F6 /* rankingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rankingCell.h; path = Controller/rankingCell.h; sourceTree = "<group>"; };
 		6DD9D5C51D37E6D700F622F6 /* rankingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = rankingCell.m; path = Controller/rankingCell.m; sourceTree = "<group>"; };
 		6DD9D5C61D37E6D700F622F6 /* SNRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNRankingViewController.h; path = Controller/SNRankingViewController.h; sourceTree = "<group>"; };
@@ -264,6 +287,21 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		6D1CF1A61D661B1B008DECC1 /* Chat Interface */ = {
+			isa = PBXGroup;
+			children = (
+				6D1CF1A91D661B31008DECC1 /* SNChatModelFrame.h */,
+				6D1CF1AA1D661B31008DECC1 /* SNChatModelFrame.m */,
+				6D1CF1BA1D662070008DECC1 /* SNChatViewController.h */,
+				6D1CF1BB1D662070008DECC1 /* SNChatViewController.m */,
+				6D1CF1BC1D662070008DECC1 /* SNChatViewController.xib */,
+				6D1CF1C11D664F24008DECC1 /* ChatCell.h */,
+				6D1CF1C21D664F24008DECC1 /* ChatCell.m */,
+				6D1CF1C31D664F24008DECC1 /* ChatCell.xib */,
+			);
+			name = "Chat Interface";
+			sourceTree = "<group>";
+		};
 		6D2803911D4FC4F000267B18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +311,19 @@
 				6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		6DB762511D6F4D8300DB92E3 /* Friend Request List */ = {
+			isa = PBXGroup;
+			children = (
+				6DB762521D6F4DB200DB92E3 /* SNFriendRequestListViewController.h */,
+				6DB762531D6F4DB200DB92E3 /* SNFriendRequestListViewController.m */,
+				6DB762541D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib */,
+				6DB762571D6F507D00DB92E3 /* SNFriendRequestCell.h */,
+				6DB762581D6F507D00DB92E3 /* SNFriendRequestCell.m */,
+				6DB762591D6F507D00DB92E3 /* SNFriendRequestCell.xib */,
+			);
+			name = "Friend Request List";
 			sourceTree = "<group>";
 		};
 		6DD9D5C11D37E63800F622F6 /* Model */ = {
@@ -473,6 +524,8 @@
 		B8CFCCF11D21CE640006495E /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				6DB762511D6F4D8300DB92E3 /* Friend Request List */,
+				6D1CF1A61D661B1B008DECC1 /* Chat Interface */,
 				6D0413651D64E81700C0E6EF /* Model */,
 				6D04135A1D64E1F800C0E6EF /* MessageList */,
 				B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */,
@@ -612,7 +665,7 @@
 				TargetAttributes = {
 					B82FED191D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Z57DAJWH52;
+						DevelopmentTeam = 2EUUYRUR88;
 					};
 					B82FED321D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -652,6 +705,7 @@
 				6DD9D5FB1D37E96000F622F6 /* SNUserProfileViewController.xib in Resources */,
 				6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */,
 				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
+				6DB762561D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
 				6DD9D5FA1D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard in Resources */,
 				6D15F9331D529DBE00B8F011 /* emailToSchool.plist in Resources */,
@@ -669,8 +723,11 @@
 				6D01AD021D4A94A300E98E6F /* SNTagMainViewController.xib in Resources */,
 				6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */,
 				6D01AD0C1D4AAA0900E98E6F /* SNTagCell.xib in Resources */,
+				6D1CF1C51D664F24008DECC1 /* ChatCell.xib in Resources */,
+				6DB7625B1D6F507D00DB92E3 /* SNFriendRequestCell.xib in Resources */,
 				6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */,
 				B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */,
+				6D1CF1BE1D662070008DECC1 /* SNChatViewController.xib in Resources */,
 				6D15F9381D55312B00B8F011 /* ViewBigPhotoViewController.xib in Resources */,
 				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
 				B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */,
@@ -794,20 +851,24 @@
 				6D04136D1D64FF6F00C0E6EF /* Conversation.m in Sources */,
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
 				6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */,
+				6D1CF1BD1D662070008DECC1 /* SNChatViewController.m in Sources */,
 				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
 				6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
 				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,
 				6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */,
 				6DD9D5F31D37E95200F622F6 /* SNLaunchPageViewController.m in Sources */,
+				6D1CF1B11D661B31008DECC1 /* SNChatModelFrame.m in Sources */,
 				6D15F9371D55312B00B8F011 /* ViewBigPhotoViewController.m in Sources */,
 				6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */,
 				6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */,
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
 				6D01AD061D4AA5B400E98E6F /* SNTagSecondViewController.m in Sources */,
+				6DB7625A1D6F507D00DB92E3 /* SNFriendRequestCell.m in Sources */,
 				6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */,
 				6DD9D5F41D37E95200F622F6 /* SNLoginViewController.m in Sources */,
 				6DD9D5F61D37E95200F622F6 /* SNRegisterViewController.m in Sources */,
+				6D1CF1C41D664F24008DECC1 /* ChatCell.m in Sources */,
 				6D04135E1D64E20E00C0E6EF /* SNMessageListViewController.m in Sources */,
 				6DD9D5F71D37E95200F622F6 /* SNUserProfileViewController.m in Sources */,
 				6D15F9301D52395F00B8F011 /* SNSearchNearbyProfileViewController.m in Sources */,
@@ -819,6 +880,7 @@
 				6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */,
 				6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */,
 				6DD9D5F51D37E95200F622F6 /* SNPageContentViewController.m in Sources */,
+				6DB762551D6F4DB200DB92E3 /* SNFriendRequestListViewController.m in Sources */,
 				6D01AD011D4A94A300E98E6F /* SNTagMainViewController.m in Sources */,
 				6D2B32E31D5CCC29009C606D /* SNSearchNearbyMainViewController.m in Sources */,
 			);

@@ -4,7 +4,9 @@ PODS:
     - AVOSCloud
   - AVOSCloudIM (3.3.5):
     - AVOSCloud
+  - DateTools (1.7.0)
   - DXPopover (0.1.1)
+  - JSBadgeView (1.4.1)
   - MJRefresh (3.1.12)
   - pop (1.0.9)
   - SDWebImage (3.8.1):
@@ -15,7 +17,9 @@ DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudCrashReporting
   - AVOSCloudIM
+  - DateTools
   - DXPopover
+  - JSBadgeView
   - MJRefresh
   - pop (~> 1.0)
   - SDWebImage (~> 3.8)
@@ -24,11 +28,13 @@ SPEC CHECKSUMS:
   AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
   AVOSCloudCrashReporting: 7ad087db785a25d6ef03cb54c2c0b460eb32dabb
   AVOSCloudIM: dc307c48e951fcd861f4ae6db6d807e7b40639c8
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DXPopover: 13e6bbd1a0da4e62b2190de51f43a94850769e0f
+  JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 6514be21e51f0169003d87c0cdbac48ba01c3e64
+PODFILE CHECKSUM: c7c99c189e43504e70f2973032ab22bbf0b0d6c2
 
 COCOAPODS: 1.0.0

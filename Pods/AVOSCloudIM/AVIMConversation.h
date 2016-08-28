@@ -59,7 +59,7 @@ enum : AVIMMessageSendOption {
 /**
  *  The name of this conversation. Can be changed by update:callback: .
  */
-@property (nonatomic, strong, readonly) NSString     *name;
+@property (nonatomic, strong) NSString     *name;
 
 /**
  *  The ids of the clients who join the conversation. Can be changed by addMembersWithClientIds:callback: or removeMembersWithClientIds:callback: .

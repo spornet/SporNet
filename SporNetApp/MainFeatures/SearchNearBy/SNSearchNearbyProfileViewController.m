@@ -11,6 +11,7 @@
 #import "SNUser.h"
 #import "ViewBigPhotoViewController.h"
 #import "UIImageView+WebCache.h"
+#import "MessageManager.h"
 @interface SNSearchNearbyProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *moreInfoButton;
@@ -126,4 +127,8 @@ NSInteger width;
 -(void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
 }
+- (IBAction)addFriendButtonClicked:(UIButton *)sender {
+    [[MessageManager defaultManager]sendAddFrendRequst:self.currentUserProfile.objectId];
+}
+
 @end
