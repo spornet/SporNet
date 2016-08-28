@@ -93,8 +93,12 @@
         [ProgressHUD showError:@"Please input your email address!"];
         return;
     }
-    if(![self validSchoolEmail:_emailTextfield.text]) {
+    if(![self validateEmail:_emailTextfield.text]) {
         [ProgressHUD showError:@"Invalid email address!"];
+        return;
+    }
+    if(![self validSchoolEmail:_emailTextfield.text]) {
+        [ProgressHUD showError:@"Your School is not on our list, coming soon!"];
         return;
     }
     if([_passwordTextfield.text isEqual:@""]) {
@@ -105,6 +109,7 @@
         [ProgressHUD showError:@"Two passwords mismatch."];
         return;
     }
+    
     AVUser *user = [AVUser user];
     user.username = _emailTextfield.text;
     user.email = _emailTextfield.text;
@@ -164,7 +169,19 @@
     [self.view endEditing:YES];
 }
 -(BOOL)validSchoolEmail:(NSString*)email {
-    return YES;
+    NSRange range = [email rangeOfString:@"@"];
+    NSString *userEmail = [email substringFromIndex:NSMaxRange(range)];
+    NSLog(@"%@",userEmail);
+    NSDictionary *school = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"emailToSchool" ofType:@"plist"]];
+    BOOL isInSchoolplist = [[school allKeys]containsObject:userEmail];
+    if (isInSchoolplist) {
+        return YES;
+    }else{
+        return NO;
+    }
+
+
+
 }
 -(void)sendAlert:(NSString*)message {
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault

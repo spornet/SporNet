@@ -17,13 +17,15 @@
 #import <AVObject.h>
 #import "UserView.h"
 #import "ProgressHUD.h"
+#import <CoreLocation/CoreLocation.h>
+#import "AVUser.h"
 
 #define STATUS_BAR_HEIGHT [[UIApplication sharedApplication]statusBarFrame].size.height
 #define MAIN_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define MAIN_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define R ([UIScreen mainScreen].bounds.size.width/2-50)
 
-@interface SNSearchNearbyMainViewController ()
+@interface SNSearchNearbyMainViewController ()<CLLocationManagerDelegate>
 @property (weak, nonatomic ) UIButton                         *filterBtnInBlurView;
 @property (weak, nonatomic ) UIButton                         *basketballBtn;
 @property (weak, nonatomic ) UIButton                         *footballBtn;
@@ -76,6 +78,16 @@
 //用户的半径，更确切的说是用户生成地点距离所在view的边距。用户按钮的大小主要有pop函数的toValue来控制，如果toValue是50，但是userR＝100则在view内边距为userR－toValue的范围内活动。
 @property (nonatomic,assign) CGFloat                          userR;
 
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *currlocation;
+//经度
+@property (nonatomic,assign) CGFloat                          longitude;
+//纬度
+@property (nonatomic,assign) CGFloat                          latitude;
+//本机用户地点
+@property AVGeoPoint *currentUserLocation;
+//其他用户到本用户的距离
+@property (nonatomic,assign) CGFloat                          dist;
 
 @property NSMutableArray *allUsers;
 @property NSMutableArray *currentUsers;
@@ -108,18 +120,23 @@ NSInteger indexOfCurrentUser;
     indexOfCurrentUser = 5;
     [self refreshAnimation];
     
-    
+
+    [self locationManager];
+
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 
     [self tapCircleView];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
 
     [self.blurView removeFromSuperview];
+    [self.locationManager startUpdatingLocation];
+
 }
 
 
@@ -1349,6 +1366,46 @@ NSInteger indexOfCurrentUser;
     allAnimationGroup.fillMode = kCAFillModeForwards;
     [self.allBtn.layer addAnimation:allAnimationGroup forKey:nil];
     
+}
+
+- (CLLocationManager *)locationManager{
+    
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;//精度设置
+        _locationManager.distanceFilter = 1.0f;//设备移动后获得位置信息的最小距离
+        _locationManager.delegate = self;
+        [_locationManager requestWhenInUseAuthorization];//弹出用户授权对话框，使用程序期间授权
+//        [_locationManager requestAlwaysAuthorization];//始终授权
+    }
+    return _locationManager;
+}
+
+//定位成功时调用
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    self.currlocation = [locations lastObject];//获取当前位置
+    self.longitude = self.currlocation.coordinate.longitude;//获取经度
+    self.latitude = self.currlocation.coordinate.latitude;//获取纬度
+    NSLog(@"%f %f",self.longitude, self.latitude);
+    self.currentUserLocation = [AVGeoPoint geoPointWithLatitude:self.latitude longitude:self.longitude];
+    [[[AVUser currentUser] objectForKey:@"basicInfo"] setObject:self.currentUserLocation forKey:@"GeoLocation"];
+//    [[AVUser currentUser] setObject:self.currentUserLocation forKey:@"GeoLocation"];
+    [[AVUser currentUser]saveInBackground];
+    [self.locationManager stopUpdatingLocation];
+}
+
+//定位失败调用
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"%@ 调用失败",error);
+}
+
+//授权状态发生变化调用
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    if (!status) {
+//        NSLog(@"请打开定位");
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    NSLog(@"change");
 }
 
 

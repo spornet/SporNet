@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *userEmailTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewConstrainatBottom;
+@property (weak, nonatomic) IBOutlet UIImageView *logoIcon;
 
 
 
@@ -33,6 +34,10 @@
     _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    self.logoIcon.layer.cornerRadius = self.logoIcon.frame.size.width/2;
+    self.logoIcon.layer.masksToBounds = YES;
+
 
 }
 

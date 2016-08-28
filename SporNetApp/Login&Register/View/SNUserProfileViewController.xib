@@ -527,7 +527,7 @@
     <resources>
         <image name="add" width="201" height="201"/>
         <image name="basketball" width="58" height="58"/>
-        <image name="jogging" width="58" height="58"/>
+        <image name="jogging" width="750" height="1334"/>
         <image name="muscle" width="59" height="59"/>
         <image name="profile" width="201" height="201"/>
         <image name="soccer" width="58" height="58"/>
