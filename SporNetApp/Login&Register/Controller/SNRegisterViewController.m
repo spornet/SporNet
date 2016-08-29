@@ -75,6 +75,11 @@
 
 }
 
+-(BOOL)validSchoolEmail:(NSString*)email {
+#warning 这里要加入对学校email的判断
+    return YES;
+}
+
 //method for submit
 - (IBAction)submitClick {
 
@@ -120,10 +125,7 @@
 
 }
 
--(BOOL)validSchoolEmail:(NSString*)email {
-#warning 这里要加入对学校email的判断
-    return YES;
-}
+
 -(void)sendAlert:(NSString*)message {
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {}];
