@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SNTagMainViewController">
             <connections>
+                <outlet property="checkInBtn" destination="JFb-Da-pdU" id="CVP-g1-Ek8"/>
                 <outlet property="checkinPanel" destination="884-OF-e4j" id="Zw3-Qe-bfi"/>
                 <outlet property="relocatePanel" destination="7Pp-BQ-WJD" id="l1I-kQ-m1i"/>
                 <outlet property="sportPanel" destination="Tsu-HQ-yhq" id="TZY-rf-Yvi"/>

@@ -75,11 +75,6 @@
 
 }
 
--(BOOL)validSchoolEmail:(NSString*)email {
-#warning 这里要加入对学校email的判断
-    return YES;
-}
-
 //method for submit
 - (IBAction)submitClick {
 
@@ -87,7 +82,7 @@
         [ProgressHUD showError:@"Please enter your email address!"];
         return;
     }
-    if(![self validateEmail:_emailTextfield.text]) {
+    if(![self validSchoolEmail:_emailTextfield.text]) {
         [ProgressHUD showError:@"Invalid email address!"];
         return;
     }
@@ -125,7 +120,10 @@
 
 }
 
-
+-(BOOL)validSchoolEmail:(NSString*)email {
+#warning 这里要加入对学校email的判断
+    return YES;
+}
 -(void)sendAlert:(NSString*)message {
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {}];
