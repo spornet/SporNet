@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NkF-bt-Gys">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NkF-bt-Gys">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -203,7 +203,7 @@
                                                     <constraint firstAttribute="width" constant="250" id="AIa-In-zZ8"/>
                                                     <constraint firstAttribute="height" constant="30" id="jM9-rI-wR4"/>
                                                 </constraints>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.039215686274509803" green="0.066666666666666666" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -228,6 +228,9 @@
                                             <constraint firstItem="3Xv-T9-9nh" firstAttribute="leading" secondItem="kfV-fV-Xfc" secondAttribute="leading" id="zym-x2-qPL"/>
                                         </constraints>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="SfJ-Ku-Bun">
+                                        <rect key="frame" x="106" y="99" width="200" height="200"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -259,6 +262,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="inputViewConstrainatBottom" destination="i76-yz-UwG" id="6mC-1Q-4RG"/>
+                        <outlet property="logoIcon" destination="SfJ-Ku-Bun" id="EGN-8O-RT1"/>
                         <outlet property="passwordTextfield" destination="kfV-fV-Xfc" id="0s6-kW-dSb"/>
                         <outlet property="userEmailTextfield" destination="5FF-lN-QS5" id="vrA-g7-RP3"/>
                         <segue destination="WKN-Ya-Lzq" kind="presentation" identifier="firstTimeLoginSegue" id="dgz-Q9-kPw"/>
@@ -335,7 +339,7 @@
                                             <constraint firstAttribute="height" constant="30" id="AUc-rd-r2v"/>
                                             <constraint firstAttribute="width" constant="250" id="NI8-PR-FAq"/>
                                         </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.20784313725490197" green="0.71764705882352942" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
@@ -500,7 +504,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                         <state key="normal" title="RESEND">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.40061346476510079" green="0.85075883751151471" blue="0.29836059843400448" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="resend:" destination="3tW-jq-SwR" eventType="touchUpInside" id="Udy-ca-GiJ"/>
@@ -547,6 +551,7 @@
         <image name="alertBtn" width="45" height="45"/>
         <image name="backBtn" width="68" height="68"/>
         <image name="textField" width="461" height="6"/>
+        <image name="transparentLogo" width="1800" height="1800"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ae3-1u-ZUA"/>

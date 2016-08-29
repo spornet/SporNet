@@ -15,9 +15,19 @@
 #import "SNMainFeatureTabController.h"
 #import "LocalDataManager.h"
 @interface SNLoginViewController ()<UITextFieldDelegate>
+/**
+ *  User Email Input
+ */
 @property (weak, nonatomic) IBOutlet UITextField *userEmailTextfield;
+/**
+ *  User Password Input
+ */
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
+/**
+ *  Autolayout Constraint
+ */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewConstrainatBottom;
+@property (weak, nonatomic) IBOutlet UIImageView *logoIcon;
 
 
 
@@ -27,22 +37,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Set NavigationBar Hidden
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    //Set Up UI
+    [self setUpAllUI];
+    
+    //Set Up Notification Center
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    self.logoIcon.layer.cornerRadius = self.logoIcon.frame.size.width/2;
+    self.logoIcon.layer.masksToBounds = YES;
+
+
+}
+
+#pragma marks - Init UI
+
+- (void)setUpAllUI {
     
     _userEmailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your school email" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 //method for login button
@@ -59,8 +79,10 @@
             } else if (error.code == 210) {
                 [ProgressHUD showError:@"Wrong password!"];
             } else{
+#warning 最好不要显示用户名的email
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back, %@!", user.username]];
                 if([[AVUser currentUser]objectForKey:@"basicInfo"] != nil) {
+#warning 需要先判断沙盒是否有值, 如果有值就跳转到Main（可以做一个对比），没有值就在注册的时候存储沙盒
                     [LocalDataManager fetchProfileInfoFromCloud];
                     SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
                     [self presentViewController:tabVC animated:YES completion:nil];
@@ -107,13 +129,7 @@
     
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSLog(@"%@,%@",NSStringFromRange(range),string);
-    return YES;
-    
-}
-
+#pragma marks -KeyBoard Show&Hidden
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     [UIView beginAnimations:nil context:nil];
