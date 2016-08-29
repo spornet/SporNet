@@ -111,15 +111,15 @@ static MessageManager *center = nil;
 }
 
 -(NSMutableArray*)fetchAllCurrentConversations {
-    NSLog(@"更新");
-    return [[_allConversations sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-//        NSDate *date1 = ((Conversation*)obj1).conversation.lastMessageAt;
-        NSDate *date1 = [NSDate dateWithTimeIntervalSince1970:[[((Conversation*)obj1).conversation queryMessagesFromCacheWithLimit:1][0] sendTimestamp]];
-        NSDate *date2 = [NSDate dateWithTimeIntervalSince1970:[[((Conversation*)obj2).conversation queryMessagesFromCacheWithLimit:1][0] sendTimestamp]];
-//        NSDate *date2 = ((Conversation*)obj2).conversation.lastMessageAt;
-        return [date2 compare:date1];
-    }]mutableCopy];
-    //return _allConversations;
+//    NSLog(@"更新");
+//    return [[_allConversations sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+////        NSDate *date1 = ((Conversation*)obj1).conversation.lastMessageAt;
+//        NSDate *date1 = [NSDate dateWithTimeIntervalSince1970:[[((Conversation*)obj1).conversation queryMessagesFromCacheWithLimit:1][0] sendTimestamp]];
+//        NSDate *date2 = [NSDate dateWithTimeIntervalSince1970:[[((Conversation*)obj2).conversation queryMessagesFromCacheWithLimit:1][0] sendTimestamp]];
+////        NSDate *date2 = ((Conversation*)obj2).conversation.lastMessageAt;
+//        return [date2 compare:date1];
+//    }]mutableCopy];
+    return _allConversations;
 }
 
 -(NSMutableArray*)fetchMessagesWithUserId:(NSString*)userId {
