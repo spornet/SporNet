@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *whereLabel;
 @property UIImageView *selectedSportImageView;
 @property (strong, nonatomic) IBOutlet UIView *relocatePanel;
+@property (weak, nonatomic) IBOutlet UIButton *checkInBtn;
 @property (weak, nonatomic) IBOutlet UIView *checkinPanel;
 @end
 
