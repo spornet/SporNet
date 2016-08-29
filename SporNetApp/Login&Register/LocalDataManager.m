@@ -45,6 +45,7 @@ static LocalDataManager *center = nil;
 +(void)fetchProfileInfoFromCloud {
     AVQuery *query = [SNUser query];
     [query whereKey:@"userID" equalTo:[AVUser currentUser].objectId];
+#warning 可以试试看在后台找寻数据，不堵住主线程
     NSArray *fetchObjects = [query findObjects];
     if(fetchObjects.count == 0) return;
     SNUser *basicInfo = fetchObjects[0];
@@ -69,6 +70,8 @@ static LocalDataManager *center = nil;
 
 }
 +(void)updateProfileInfoOnCloudInBackground {
+    
+#warning 需要重构代码，做一个从沙盒读取的工具类
         //更新的时候，得把NSInteger值转为NSNumber
     AVQuery *query = [SNUser query];
         //选取当前登陆用户的所有记录
@@ -103,7 +106,7 @@ static LocalDataManager *center = nil;
     [user setObject:[[AVUser currentUser]objectForKey:@"icon"] forKey:@"icon"];
     [[AVUser currentUser]setObject:[NSString stringWithFormat:@"%@ %@", dict[@"firstName"], dict[@"lastName"]] forKey:@"name"];
     [[AVUser currentUser]setObject:dict[@"sportTimeSlot"] forKey:@"sportTimeSlot"];
-    [[AVUser currentUser] setObject:dict[@"bestSport"] forKey:@"bestSport"];
+    [[AVUser currentUser]setObject:dict[@"bestSport"] forKey:@"bestSport"];
     [[AVUser currentUser]setObject:user forKey:@"basicInfo"];
     [[AVUser currentUser]saveInBackground];
     //delete all previous images

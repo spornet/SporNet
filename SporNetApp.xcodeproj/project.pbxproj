@@ -10,12 +10,6 @@
 		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
 		6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */; };
 		6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01ACF81D48FB7300E98E6F /* ProgressHUD.m */; };
-		6D01AD011D4A94A300E98E6F /* SNTagMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01ACFF1D4A94A300E98E6F /* SNTagMainViewController.m */; };
-		6D01AD021D4A94A300E98E6F /* SNTagMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D01AD001D4A94A300E98E6F /* SNTagMainViewController.xib */; };
-		6D01AD061D4AA5B400E98E6F /* SNTagSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01AD041D4AA5B400E98E6F /* SNTagSecondViewController.m */; };
-		6D01AD071D4AA5B400E98E6F /* SNTagSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D01AD051D4AA5B400E98E6F /* SNTagSecondViewController.xib */; };
-		6D01AD0B1D4AAA0900E98E6F /* SNTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D01AD091D4AAA0900E98E6F /* SNTagCell.m */; };
-		6D01AD0C1D4AAA0900E98E6F /* SNTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D01AD0A1D4AAA0900E98E6F /* SNTagCell.xib */; };
 		6D04135E1D64E20E00C0E6EF /* SNMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D04135C1D64E20E00C0E6EF /* SNMessageListViewController.m */; };
 		6D04135F1D64E20E00C0E6EF /* SNMessageListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D04135D1D64E20E00C0E6EF /* SNMessageListViewController.xib */; };
 		6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0413611D64E23600C0E6EF /* MessageListCell.m */; };
@@ -27,15 +21,12 @@
 		6D15F9331D529DBE00B8F011 /* emailToSchool.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9321D529DBD00B8F011 /* emailToSchool.plist */; };
 		6D15F9371D55312B00B8F011 /* ViewBigPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F9351D55312B00B8F011 /* ViewBigPhotoViewController.m */; };
 		6D15F9381D55312B00B8F011 /* ViewBigPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9361D55312B00B8F011 /* ViewBigPhotoViewController.xib */; };
-		6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D15F9391D5A782000B8F011 /* basicInfo.plist */; };
 		6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */; };
 		6D1CF1B11D661B31008DECC1 /* SNChatModelFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1AA1D661B31008DECC1 /* SNChatModelFrame.m */; };
 		6D1CF1BD1D662070008DECC1 /* SNChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1BB1D662070008DECC1 /* SNChatViewController.m */; };
 		6D1CF1BE1D662070008DECC1 /* SNChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D1CF1BC1D662070008DECC1 /* SNChatViewController.xib */; };
 		6D1CF1C41D664F24008DECC1 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1CF1C21D664F24008DECC1 /* ChatCell.m */; };
 		6D1CF1C51D664F24008DECC1 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D1CF1C31D664F24008DECC1 /* ChatCell.xib */; };
-		6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2803931D4FC50D00267B18 /* TimeManager.m */; };
-		6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */; };
 		6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32DF1D5CCC0E009C606D /* WaterView.m */; };
 		6D2B32E31D5CCC29009C606D /* SNSearchNearbyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32E21D5CCC29009C606D /* SNSearchNearbyMainViewController.m */; };
 		6D2B32E91D5D11DF009C606D /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B32E81D5D11DF009C606D /* UserView.m */; };
@@ -67,11 +58,20 @@
 		B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */; };
 		B82FED381D21A57D00292ECC /* SporNetAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED371D21A57D00292ECC /* SporNetAppTests.m */; };
 		B82FED431D21A57D00292ECC /* SporNetAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED421D21A57D00292ECC /* SporNetAppUITests.m */; };
+		B86E8B2A1D70E1CC009EC0D9 /* basicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B291D70E1CC009EC0D9 /* basicInfo.plist */; };
+		B86E8B301D74838D009EC0D9 /* SNTagMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B2D1D74838D009EC0D9 /* SNTagMainViewController.m */; };
+		B86E8B311D74838D009EC0D9 /* SNTagSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B2F1D74838D009EC0D9 /* SNTagSecondViewController.m */; };
+		B86E8B3E1D7483D6009EC0D9 /* CheckInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B341D7483D6009EC0D9 /* CheckInManager.m */; };
+		B86E8B3F1D7483D6009EC0D9 /* TimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B361D7483D6009EC0D9 /* TimeManager.m */; };
+		B86E8B401D7483D6009EC0D9 /* SNTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B391D7483D6009EC0D9 /* SNTagCell.m */; };
+		B86E8B411D7483D6009EC0D9 /* SNTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B3A1D7483D6009EC0D9 /* SNTagCell.xib */; };
+		B86E8B421D7483D6009EC0D9 /* SNTagMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B3B1D7483D6009EC0D9 /* SNTagMainViewController.xib */; };
+		B86E8B431D7483D6009EC0D9 /* SNTagSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B3C1D7483D6009EC0D9 /* SNTagSecondViewController.xib */; };
+		B86E8B441D7483D6009EC0D9 /* TagStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B3D1D7483D6009EC0D9 /* TagStoryboard.storyboard */; };
 		B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */; };
 		B8CFCCE41D21ADEA0006495E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCE11D21ADEA0006495E /* main.m */; };
 		B8CFCCE61D21AE540006495E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCE51D21AE540006495E /* Info.plist */; };
 		B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */; };
-		B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */; };
 		B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */; };
 		B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */; };
 /* End PBXBuildFile section */
@@ -97,15 +97,6 @@
 		6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		6D01ACF71D48FB7300E98E6F /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		6D01ACF81D48FB7300E98E6F /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
-		6D01ACFE1D4A94A300E98E6F /* SNTagMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagMainViewController.h; sourceTree = "<group>"; };
-		6D01ACFF1D4A94A300E98E6F /* SNTagMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagMainViewController.m; sourceTree = "<group>"; };
-		6D01AD001D4A94A300E98E6F /* SNTagMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagMainViewController.xib; sourceTree = "<group>"; };
-		6D01AD031D4AA5B300E98E6F /* SNTagSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagSecondViewController.h; sourceTree = "<group>"; };
-		6D01AD041D4AA5B400E98E6F /* SNTagSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagSecondViewController.m; sourceTree = "<group>"; };
-		6D01AD051D4AA5B400E98E6F /* SNTagSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagSecondViewController.xib; sourceTree = "<group>"; };
-		6D01AD081D4AAA0900E98E6F /* SNTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagCell.h; sourceTree = "<group>"; };
-		6D01AD091D4AAA0900E98E6F /* SNTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagCell.m; sourceTree = "<group>"; };
-		6D01AD0A1D4AAA0900E98E6F /* SNTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagCell.xib; sourceTree = "<group>"; };
 		6D04135B1D64E20E00C0E6EF /* SNMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMessageListViewController.h; sourceTree = "<group>"; };
 		6D04135C1D64E20E00C0E6EF /* SNMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMessageListViewController.m; sourceTree = "<group>"; };
 		6D04135D1D64E20E00C0E6EF /* SNMessageListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNMessageListViewController.xib; sourceTree = "<group>"; };
@@ -124,7 +115,6 @@
 		6D15F9341D55312B00B8F011 /* ViewBigPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBigPhotoViewController.h; sourceTree = "<group>"; };
 		6D15F9351D55312B00B8F011 /* ViewBigPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBigPhotoViewController.m; sourceTree = "<group>"; };
 		6D15F9361D55312B00B8F011 /* ViewBigPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewBigPhotoViewController.xib; sourceTree = "<group>"; };
-		6D15F9391D5A782000B8F011 /* basicInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = basicInfo.plist; sourceTree = "<group>"; };
 		6D15F93B1D5A977D00B8F011 /* LocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDataManager.h; sourceTree = "<group>"; };
 		6D15F93C1D5A977D00B8F011 /* LocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDataManager.m; sourceTree = "<group>"; };
 		6D1CF1A91D661B31008DECC1 /* SNChatModelFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNChatModelFrame.h; path = ChatInterface/SNChatModelFrame.h; sourceTree = "<group>"; };
@@ -135,11 +125,7 @@
 		6D1CF1C11D664F24008DECC1 /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		6D1CF1C21D664F24008DECC1 /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		6D1CF1C31D664F24008DECC1 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
-		6D2803921D4FC50D00267B18 /* TimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeManager.h; sourceTree = "<group>"; };
-		6D2803931D4FC50D00267B18 /* TimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeManager.m; sourceTree = "<group>"; };
 		6D2803951D4FEC1C00267B18 /* globalMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = globalMacros.h; path = ../globalMacros.h; sourceTree = "<group>"; };
-		6D2B32DB1D5BFCCA009C606D /* CheckInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInManager.h; sourceTree = "<group>"; };
-		6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInManager.m; sourceTree = "<group>"; };
 		6D2B32DE1D5CCC0E009C606D /* WaterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterView.h; sourceTree = "<group>"; };
 		6D2B32DF1D5CCC0E009C606D /* WaterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterView.m; sourceTree = "<group>"; };
 		6D2B32E11D5CCC29009C606D /* SNSearchNearbyMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSearchNearbyMainViewController.h; sourceTree = "<group>"; };
@@ -194,13 +180,27 @@
 		B82FED3E1D21A57D00292ECC /* SporNetAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SporNetAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82FED421D21A57D00292ECC /* SporNetAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SporNetAppUITests.m; sourceTree = "<group>"; };
 		B82FED441D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B86E8B291D70E1CC009EC0D9 /* basicInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = basicInfo.plist; sourceTree = "<group>"; };
+		B86E8B2C1D74838D009EC0D9 /* SNTagMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagMainViewController.h; sourceTree = "<group>"; };
+		B86E8B2D1D74838D009EC0D9 /* SNTagMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagMainViewController.m; sourceTree = "<group>"; };
+		B86E8B2E1D74838D009EC0D9 /* SNTagSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagSecondViewController.h; sourceTree = "<group>"; };
+		B86E8B2F1D74838D009EC0D9 /* SNTagSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagSecondViewController.m; sourceTree = "<group>"; };
+		B86E8B331D7483D6009EC0D9 /* CheckInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInManager.h; sourceTree = "<group>"; };
+		B86E8B341D7483D6009EC0D9 /* CheckInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInManager.m; sourceTree = "<group>"; };
+		B86E8B351D7483D6009EC0D9 /* TimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeManager.h; sourceTree = "<group>"; };
+		B86E8B361D7483D6009EC0D9 /* TimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeManager.m; sourceTree = "<group>"; };
+		B86E8B381D7483D6009EC0D9 /* SNTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagCell.h; sourceTree = "<group>"; };
+		B86E8B391D7483D6009EC0D9 /* SNTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagCell.m; sourceTree = "<group>"; };
+		B86E8B3A1D7483D6009EC0D9 /* SNTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagCell.xib; sourceTree = "<group>"; };
+		B86E8B3B1D7483D6009EC0D9 /* SNTagMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagMainViewController.xib; sourceTree = "<group>"; };
+		B86E8B3C1D7483D6009EC0D9 /* SNTagSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNTagSecondViewController.xib; sourceTree = "<group>"; };
+		B86E8B3D1D7483D6009EC0D9 /* TagStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagStoryboard.storyboard; sourceTree = "<group>"; };
 		B8CFCCDE1D21ADEA0006495E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B8CFCCE11D21ADEA0006495E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B8CFCCE51D21AE540006495E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CFCCEE1D21CD200006495E /* SNMainFeatureTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMainFeatureTabController.h; sourceTree = "<group>"; };
 		B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMainFeatureTabController.m; sourceTree = "<group>"; };
-		B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagStoryboard.storyboard; sourceTree = "<group>"; };
 		B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageStoryboard.storyboard; sourceTree = "<group>"; };
 		B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchingStoryboard.storyboard; sourceTree = "<group>"; };
 		D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -296,17 +296,6 @@
 				6D1CF1C31D664F24008DECC1 /* ChatCell.xib */,
 			);
 			name = "Chat Interface";
-			sourceTree = "<group>";
-		};
-		6D2803911D4FC4F000267B18 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6D2803921D4FC50D00267B18 /* TimeManager.h */,
-				6D2803931D4FC50D00267B18 /* TimeManager.m */,
-				6D2B32DB1D5BFCCA009C606D /* CheckInManager.h */,
-				6D2B32DC1D5BFCCA009C606D /* CheckInManager.m */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		6DB762511D6F4D8300DB92E3 /* Friend Request List */ = {
@@ -444,9 +433,9 @@
 		B82FED1C1D21A57D00292ECC /* SporNetApp */ = {
 			isa = PBXGroup;
 			children = (
+				B86E8B291D70E1CC009EC0D9 /* basicInfo.plist */,
 				6D15F9321D529DBD00B8F011 /* emailToSchool.plist */,
 				B8CFCCE51D21AE540006495E /* Info.plist */,
-				6D15F9391D5A782000B8F011 /* basicInfo.plist */,
 				B8CFCCE71D21AEC50006495E /* Login&Register */,
 				B8CFCCEB1D21C66F0006495E /* MainFeatures */,
 				B8CFCCDD1D21ADEA0006495E /* Others */,
@@ -479,6 +468,43 @@
 				B82FED441D21A57D00292ECC /* Info.plist */,
 			);
 			path = SporNetAppUITests;
+			sourceTree = "<group>";
+		};
+		B86E8B2B1D74838D009EC0D9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B86E8B2C1D74838D009EC0D9 /* SNTagMainViewController.h */,
+				B86E8B2D1D74838D009EC0D9 /* SNTagMainViewController.m */,
+				B86E8B2E1D74838D009EC0D9 /* SNTagSecondViewController.h */,
+				B86E8B2F1D74838D009EC0D9 /* SNTagSecondViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B86E8B321D7483D6009EC0D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B86E8B331D7483D6009EC0D9 /* CheckInManager.h */,
+				B86E8B341D7483D6009EC0D9 /* CheckInManager.m */,
+				B86E8B351D7483D6009EC0D9 /* TimeManager.h */,
+				B86E8B361D7483D6009EC0D9 /* TimeManager.m */,
+			);
+			name = Model;
+			path = Controller/Model;
+			sourceTree = "<group>";
+		};
+		B86E8B371D7483D6009EC0D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B86E8B381D7483D6009EC0D9 /* SNTagCell.h */,
+				B86E8B391D7483D6009EC0D9 /* SNTagCell.m */,
+				B86E8B3A1D7483D6009EC0D9 /* SNTagCell.xib */,
+				B86E8B3B1D7483D6009EC0D9 /* SNTagMainViewController.xib */,
+				B86E8B3C1D7483D6009EC0D9 /* SNTagSecondViewController.xib */,
+				B86E8B3D1D7483D6009EC0D9 /* TagStoryboard.storyboard */,
+			);
+			name = View;
+			path = Controller/View;
 			sourceTree = "<group>";
 		};
 		B8CFCCDD1D21ADEA0006495E /* Others */ = {
@@ -573,17 +599,9 @@
 		B8CFCCF51D21CE7F0006495E /* Tag */ = {
 			isa = PBXGroup;
 			children = (
-				6D2803911D4FC4F000267B18 /* Model */,
-				B8CFCCF61D2415DA0006495E /* TagStoryboard.storyboard */,
-				6D01ACFE1D4A94A300E98E6F /* SNTagMainViewController.h */,
-				6D01ACFF1D4A94A300E98E6F /* SNTagMainViewController.m */,
-				6D01AD001D4A94A300E98E6F /* SNTagMainViewController.xib */,
-				6D01AD031D4AA5B300E98E6F /* SNTagSecondViewController.h */,
-				6D01AD041D4AA5B400E98E6F /* SNTagSecondViewController.m */,
-				6D01AD051D4AA5B400E98E6F /* SNTagSecondViewController.xib */,
-				6D01AD081D4AAA0900E98E6F /* SNTagCell.h */,
-				6D01AD091D4AAA0900E98E6F /* SNTagCell.m */,
-				6D01AD0A1D4AAA0900E98E6F /* SNTagCell.xib */,
+				B86E8B321D7483D6009EC0D9 /* Model */,
+				B86E8B371D7483D6009EC0D9 /* View */,
+				B86E8B2B1D74838D009EC0D9 /* Controller */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -595,7 +613,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B82FED471D21A57D00292ECC /* Build configuration list for PBXNativeTarget "SporNetApp" */;
 			buildPhases = (
-				6CD24A8E00E7EFBFF6AA447E /* 📦 Check Pods Manifest.lock */,
+				6CD24A8E00E7EFBFF6AA447E /* [CP] Check Pods Manifest.lock */,
 				8BB2347470EADF26F2B10420 /* [CP] Check Pods Manifest.lock */,
 				B82FED161D21A57D00292ECC /* Sources */,
 				B82FED171D21A57D00292ECC /* Frameworks */,
@@ -698,31 +716,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B86E8B441D7483D6009EC0D9 /* TagStoryboard.storyboard in Resources */,
 				6DD9D5FB1D37E96000F622F6 /* SNUserProfileViewController.xib in Resources */,
 				6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */,
 				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
 				6DB762561D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
 				6DD9D5FA1D37E96000F622F6 /* Login&RegisterStoryBoard.storyboard in Resources */,
+				B86E8B421D7483D6009EC0D9 /* SNTagMainViewController.xib in Resources */,
 				6D15F9331D529DBE00B8F011 /* emailToSchool.plist in Resources */,
 				6D15F9311D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib in Resources */,
 				6DD9D5CF1D37E6E700F622F6 /* SNRankingViewController.xib in Resources */,
+				B86E8B411D7483D6009EC0D9 /* SNTagCell.xib in Resources */,
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
 				6DD9D5E11D37E8F700F622F6 /* SNPreferenceViewController.xib in Resources */,
 				6D04135F1D64E20E00C0E6EF /* SNMessageListViewController.xib in Resources */,
-				6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */,
+				B86E8B431D7483D6009EC0D9 /* SNTagSecondViewController.xib in Resources */,
 				6D2B32EB1D5D1207009C606D /* UserView.xib in Resources */,
 				6DD9D5CE1D37E6E700F622F6 /* RankingStoryboard.storyboard in Resources */,
 				6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */,
-				6D01AD071D4AA5B400E98E6F /* SNTagSecondViewController.xib in Resources */,
 				B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */,
-				6D01AD021D4A94A300E98E6F /* SNTagMainViewController.xib in Resources */,
 				6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */,
-				6D01AD0C1D4AAA0900E98E6F /* SNTagCell.xib in Resources */,
+				B86E8B2A1D70E1CC009EC0D9 /* basicInfo.plist in Resources */,
 				6D1CF1C51D664F24008DECC1 /* ChatCell.xib in Resources */,
 				6DB7625B1D6F507D00DB92E3 /* SNFriendRequestCell.xib in Resources */,
 				6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */,
-				B8CFCCF71D2415DA0006495E /* TagStoryboard.storyboard in Resources */,
 				6D1CF1BE1D662070008DECC1 /* SNChatViewController.xib in Resources */,
 				6D15F9381D55312B00B8F011 /* ViewBigPhotoViewController.xib in Resources */,
 				B82FED2A1D21A57D00292ECC /* Assets.xcassets in Resources */,
@@ -747,14 +765,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6CD24A8E00E7EFBFF6AA447E /* 📦 Check Pods Manifest.lock */ = {
+		6CD24A8E00E7EFBFF6AA447E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,8 +866,8 @@
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
 				6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */,
 				6D1CF1BD1D662070008DECC1 /* SNChatViewController.m in Sources */,
+				B86E8B3E1D7483D6009EC0D9 /* CheckInManager.m in Sources */,
 				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
-				6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
 				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,
 				6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */,
@@ -859,7 +877,6 @@
 				6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */,
 				6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */,
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
-				6D01AD061D4AA5B400E98E6F /* SNTagSecondViewController.m in Sources */,
 				6DB7625A1D6F507D00DB92E3 /* SNFriendRequestCell.m in Sources */,
 				6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */,
 				6DD9D5F41D37E95200F622F6 /* SNLoginViewController.m in Sources */,
@@ -868,16 +885,17 @@
 				6D04135E1D64E20E00C0E6EF /* SNMessageListViewController.m in Sources */,
 				6DD9D5F71D37E95200F622F6 /* SNUserProfileViewController.m in Sources */,
 				6D15F9301D52395F00B8F011 /* SNSearchNearbyProfileViewController.m in Sources */,
-				6D01AD0B1D4AAA0900E98E6F /* SNTagCell.m in Sources */,
+				B86E8B311D74838D009EC0D9 /* SNTagSecondViewController.m in Sources */,
+				B86E8B401D7483D6009EC0D9 /* SNTagCell.m in Sources */,
+				B86E8B301D74838D009EC0D9 /* SNTagMainViewController.m in Sources */,
 				B8CFCCE41D21ADEA0006495E /* main.m in Sources */,
 				6D0413681D64E82E00C0E6EF /* MessageManager.m in Sources */,
 				6DD9D5F21D37E95200F622F6 /* SNFpDreViewController.m in Sources */,
 				B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */,
-				6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */,
 				6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */,
 				6DD9D5F51D37E95200F622F6 /* SNPageContentViewController.m in Sources */,
 				6DB762551D6F4DB200DB92E3 /* SNFriendRequestListViewController.m in Sources */,
-				6D01AD011D4A94A300E98E6F /* SNTagMainViewController.m in Sources */,
+				B86E8B3F1D7483D6009EC0D9 /* TimeManager.m in Sources */,
 				6D2B32E31D5CCC29009C606D /* SNSearchNearbyMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

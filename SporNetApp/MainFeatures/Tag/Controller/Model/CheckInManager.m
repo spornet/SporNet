@@ -40,12 +40,15 @@ static CheckInManager *center = nil;
     } else return nil;
 }
 -(void)checkinWithGymname:(NSString*)gymName sportType:(NSInteger)sportType viewController:(UIViewController*)vc {
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         AVObject *checkin;
-        if([[AVUser currentUser]objectForKey:@"CheckIn"]) checkin = [[AVUser currentUser]objectForKey:@"CheckIn"];
-        else  {
+        if([[AVUser currentUser]objectForKey:@"CheckIn"]){
+            
+            checkin = [[AVUser currentUser]objectForKey:@"CheckIn"];
+        }
+        else {
             checkin = [AVObject objectWithClassName:@"CheckIn"];
-            NSLog(@"嘎嘎嘎嘎");
         }
         
         [checkin setObject:[AVUser currentUser].objectId forKey:@"userID"];
