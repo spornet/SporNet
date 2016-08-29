@@ -452,6 +452,8 @@
             SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
             [self presentViewController:tabVC animated:YES completion:nil];
             [LocalDataManager updateProfileInfoOnCloudInBackground];
+            [[NSUserDefaults standardUserDefaults]setValue:@YES forKey:@"BasicInfo"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
             break;
         }
         default:

@@ -30,8 +30,28 @@
     [SNUser registerSubclass];
     [AVOSCloud setApplicationId:AVOSCloudAppID
                       clientKey:AVOSCloudAppKey];
-    //[AVIMClient setUserOptions:@{AVIMUserOptionUseUnread: @(YES)}];
-    
+
+    //获取当前版本号
+    NSString *key = (NSString *)kCFBundleVersionKey;
+    NSString *version = [NSBundle mainBundle].infoDictionary[key];
+    //获取之前的版本号
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults]valueForKey:@"LastVersion"];
+    if (![lastVersion isEqualToString:version]) {
+        NSLog(@"进入广告界面");
+        [[NSUserDefaults standardUserDefaults]setValue:version forKey:@"LastVersion"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }else{
+        BOOL haveBasicInfo = [[[NSUserDefaults standardUserDefaults]valueForKey:@"BasicInfo"]boolValue];
+        if (!haveBasicInfo) {
+            NSLog(@"进入Login填写BasicInfo");
+            
+        } else {
+            NSLog(@"进入message controller");
+        }
+
+        
+    }
+
     return YES;
 }
 

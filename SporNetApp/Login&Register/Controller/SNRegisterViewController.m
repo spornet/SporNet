@@ -82,8 +82,12 @@
         [ProgressHUD showError:@"Please enter your email address!"];
         return;
     }
-    if(![self validSchoolEmail:_emailTextfield.text]) {
+    if(![self validateEmail:_emailTextfield.text]) {
         [ProgressHUD showError:@"Invalid email address!"];
+        return;
+    }
+    if(![self validSchoolEmail:_emailTextfield.text]) {
+        [ProgressHUD showError:@"Your School is not on our list, coming soon!"];
         return;
     }
     if([_passwordTextfield.text isEqual:@""]) {
@@ -94,6 +98,7 @@
         [ProgressHUD showError:@"Two passwords mismatch."];
         return;
     }
+    
     AVUser *user = [AVUser user];
     user.username = _emailTextfield.text;
     user.email = _emailTextfield.text;

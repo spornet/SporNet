@@ -228,6 +228,9 @@
                                             <constraint firstItem="3Xv-T9-9nh" firstAttribute="leading" secondItem="kfV-fV-Xfc" secondAttribute="leading" id="zym-x2-qPL"/>
                                         </constraints>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="SfJ-Ku-Bun">
+                                        <rect key="frame" x="106" y="99" width="200" height="200"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -259,6 +262,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="inputViewConstrainatBottom" destination="i76-yz-UwG" id="6mC-1Q-4RG"/>
+                        <outlet property="logoIcon" destination="SfJ-Ku-Bun" id="EGN-8O-RT1"/>
                         <outlet property="passwordTextfield" destination="kfV-fV-Xfc" id="0s6-kW-dSb"/>
                         <outlet property="userEmailTextfield" destination="5FF-lN-QS5" id="vrA-g7-RP3"/>
                         <segue destination="WKN-Ya-Lzq" kind="presentation" identifier="firstTimeLoginSegue" id="dgz-Q9-kPw"/>
@@ -547,6 +551,7 @@
         <image name="alertBtn" width="45" height="45"/>
         <image name="backBtn" width="68" height="68"/>
         <image name="textField" width="461" height="6"/>
+        <image name="transparentLogo" width="1800" height="1800"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ae3-1u-ZUA"/>
