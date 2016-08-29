@@ -21,8 +21,6 @@
     NSArray  *_todaySportArraySelected;
     //School Gym Array
     NSArray  *_gymArray;
-    //Number of Times can CheckIn
-    NSInteger _checkinTimes;
     
 }
 
@@ -37,7 +35,7 @@
 /**
  *  User Relocate View
  */
-@property (weak, nonatomic) IBOutlet UIView *relocatePanel;
+@property (strong, nonatomic) IBOutlet UIView *relocatePanel;
 /**
  *  User Checkin View
  */
@@ -84,17 +82,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
-
     [self initialSetUp];
+    
+    
+    [[NSUserDefaults standardUserDefaults]setValue:@NO forKey:@"FirstTag"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    
+    [[NSUserDefaults standardUserDefaults]setValue:@NO forKey:@"UpdateTag"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
     
-    if(_checkinTimes > 0){
-        
+
+    BOOL firstTag = [[[NSUserDefaults standardUserDefaults]valueForKey:@"FirstTag"]boolValue];
+    if (!firstTag) {
+        NSLog(@"first time check in");
+    } else {
+        NSLog(@"update");
         self.relocatePanel.frame = self.checkinPanel.frame;
         [self.view addSubview:self.relocatePanel];
+        [self.view bringSubviewToFront:self.relocatePanel];
     }
 
 }
@@ -145,6 +156,10 @@
 - (IBAction)checkInButtonClicked:(UIButton *)sender {
     [ProgressHUD show:@"Checking in now. Please wait..."];
     [self checkInAction];
+
+    [[NSUserDefaults standardUserDefaults]setValue:@YES forKey:@"FirstTag"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
 }
 /**
  *  When User Update Location
@@ -153,6 +168,10 @@
 - (IBAction)updateButtonClicked:(UIButton *)sender {
     [ProgressHUD show:@"Updating in now. Please wait..."];
     [self checkInAction];
+    
+    [[NSUserDefaults standardUserDefaults]setValue:@YES forKey:@"UpdateTag"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
 }
 /**
  *  When User Select Cancel

@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *gymNameLabel;
 @property (strong, nonatomic) IBOutlet UIView *popPanel;
 @property (weak, nonatomic) IBOutlet UIButton *filterButton;
+@property (weak, nonatomic) IBOutlet UIButton *updateBtn;
 @property(strong) NSMutableArray *currentCheckins;
 @property NSMutableArray *currentUserBasicInfos;
 @end
@@ -43,7 +44,16 @@ DXPopover *popover;
     [self.tableView.mj_header beginRefreshing];
 }
 -(void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = YES;
+    self.tabBarController.tabBar.hidden = NO;
+    
+    BOOL updateTag = [[[NSUserDefaults standardUserDefaults]valueForKey:@"UpdateTag"]boolValue];
+    if (!updateTag) {
+        NSLog(@"显示更新按钮");
+    } else {
+        NSLog(@"隐藏更新按钮");
+        self.updateBtn.enabled = NO;
+    }
+
 }
 -(void)refresh {
     self.allCheckIns = [[CheckInManager defaultManager]refreshAndFetchAllCheckinsWithGymName:_gymName];
