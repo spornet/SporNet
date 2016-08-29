@@ -48,7 +48,7 @@ NSInteger width;
 }
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
-    self.voteNumberLabel.text = [NSString stringWithFormat:@"%ld",  self.currentUserProfile.voteNumber];
+    self.voteNumberLabel.text = [NSString stringWithFormat:@"%ld",  [[self.currentUserProfile objectForKey:@"voteNumber"]integerValue]];
     if([[[AVUser currentUser]objectForKey:@"votedPeople"]containsObject:[self.currentUserProfile objectForKey:@"userID"]]) {
         self.voteButton.backgroundColor = [UIColor lightGrayColor];
         self.voteButton.userInteractionEnabled = NO;
@@ -68,12 +68,13 @@ NSInteger width;
     }
     
     
-    self.firstNameLabel.text = self.currentUserProfile.name;
-    self.aboutMeLabel.text = self.currentUserProfile.aboutMe?self.currentUserProfile.aboutMe:@"No self introduction yet.";
+    self.firstNameLabel.text = [self.currentUserProfile objectForKey:@"name"];
+    NSString *aboutMe = [self.currentUserProfile objectForKey:@"aboutMe"];
+    self.aboutMeLabel.text = aboutMe?aboutMe:@"No self introduction yet.";
     self.schoolButton.text = [self.currentUserProfile objectForKey:@"school"];
-    self.ageLabel.text = [NSString stringWithFormat:@"%ld", [TimeManager calculateAgeByBirthday:self.currentUserProfile.dateOfBirth]];
-    self.sportTimeLabel.text = SPORTSLOT_ARRAY[self.currentUserProfile.sportTimeSlot];
-    self.gradYearLabel.text = [NSString stringWithFormat:@"%ld", (long)self.currentUserProfile.gradYear];
+    self.ageLabel.text = [NSString stringWithFormat:@"%ld", [TimeManager calculateAgeByBirthday:[self.currentUserProfile objectForKey:@"dateOfBirth"]]];
+    self.sportTimeLabel.text = SPORTSLOT_ARRAY[[[self.currentUserProfile objectForKey:@"sportTimeSlot"] integerValue]];
+    self.gradYearLabel.text = [NSString stringWithFormat:@"%ld", [[self.currentUserProfile objectForKey:@"gradYear"] integerValue]];
     self.imageConstraintHeight.constant = SCREEN_HEIGHT*0.33;
     
     //set user profile images
@@ -100,8 +101,12 @@ NSInteger width;
     
 }
 - (IBAction)voteButtonClicked:(UIButton *)sender {
-    self.voteNumberLabel.text = [NSString stringWithFormat:@"%ld", (long) ++self.currentUserProfile.voteNumber];
+    
+    NSInteger voteNumber = [[self.currentUserProfile objectForKey:@"voteNumber"]integerValue];
+    self.voteNumberLabel.text = [NSString stringWithFormat:@"%ld", (long)voteNumber];
+    [self.currentUserProfile setObject:[NSNumber numberWithInteger:voteNumber + 1] forKey:@"voteNumber"];
     [self.currentUserProfile saveInBackground];
+    
     [[AVUser currentUser]addObject:[self.currentUserProfile objectForKey:@"userID"] forKey:@"votedPeople"];
     [[AVUser currentUser]saveInBackground];
     self.voteButton.backgroundColor = [UIColor lightGrayColor];

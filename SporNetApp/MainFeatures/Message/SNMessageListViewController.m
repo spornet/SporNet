@@ -8,13 +8,16 @@
 
 #import "SNMessageListViewController.h"
 #import "MessageListCell.h"
-
 #import "ProgressHUD.h"
 #import "SNChatViewController.h"
 #import "SNFriendRequestListViewController.h"
+#import "SNContactViewController.h"
 @interface SNMessageListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *conversationList;
+@property (weak, nonatomic) IBOutlet UIButton *bellButton;
+@property (weak, nonatomic) IBOutlet UIView *bellBadgeView;
+
 
 @end
 
@@ -30,6 +33,10 @@
     [[MessageManager defaultManager] startMessageService];
     [MessageManager defaultManager].client.delegate = self;
     [MessageManager defaultManager].delegate = self;
+    //set badge view of notification icon (the bell)
+    self.bellBadgeView.layer.masksToBounds = YES;
+    self.bellBadgeView.layer.cornerRadius = self.bellBadgeView.frame.size.width / 2.0;
+    self.bellBadgeView.hidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -68,7 +75,18 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
-    NSLog(@"RECEIVED");
+    if([message.text isEqualToString:@"I'd love to add you as my friend"]) {
+        NSLog(@"收到一条好友请求");
+        
+        AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:conversation.creator];
+        [user fetch];
+        Conversation *c = [[Conversation alloc]init];
+        c.basicInfo = user;
+        c.conversation = conversation;
+        
+        [[[MessageManager defaultManager]fetchAllCurrentFriendRequests] addObject:c];
+        self.bellBadgeView.hidden = NO;
+    }
     self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
     for(Conversation *c in self.conversationList) {
 
@@ -84,6 +102,11 @@
 }
 - (IBAction)bellButtonClicked:(UIButton *)sender {
     SNFriendRequestListViewController *vc = [[SNFriendRequestListViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.bellBadgeView.hidden = YES;
+}
+- (IBAction)contactButtonClicked:(id)sender {
+    SNContactViewController *vc = [[SNContactViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

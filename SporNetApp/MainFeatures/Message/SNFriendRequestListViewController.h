@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SNFriendRequestListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+#import "MessageManager.h"
+@interface SNFriendRequestListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, MessageManagerDelegate, AVIMClientDelegate>
 
 @end

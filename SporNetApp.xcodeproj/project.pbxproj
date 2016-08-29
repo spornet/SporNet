@@ -44,6 +44,10 @@
 		6DB762561D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB762541D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib */; };
 		6DB7625A1D6F507D00DB92E3 /* SNFriendRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB762581D6F507D00DB92E3 /* SNFriendRequestCell.m */; };
 		6DB7625B1D6F507D00DB92E3 /* SNFriendRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB762591D6F507D00DB92E3 /* SNFriendRequestCell.xib */; };
+		6DB7625F1D71190100DB92E3 /* SNContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB7625D1D71190100DB92E3 /* SNContactViewController.m */; };
+		6DB762601D71190100DB92E3 /* SNContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB7625E1D71190100DB92E3 /* SNContactViewController.xib */; };
+		6DB762641D711F5000DB92E3 /* SNContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB762621D711F5000DB92E3 /* SNContactCell.m */; };
+		6DB762651D711F5000DB92E3 /* SNContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB762631D711F5000DB92E3 /* SNContactCell.xib */; };
 		6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C51D37E6D700F622F6 /* rankingCell.m */; };
 		6DD9D5C91D37E6D700F622F6 /* SNRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9D5C71D37E6D700F622F6 /* SNRankingViewController.m */; };
 		6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9D5CA1D37E6E700F622F6 /* rankingCell.xib */; };
@@ -153,6 +157,12 @@
 		6DB762571D6F507D00DB92E3 /* SNFriendRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFriendRequestCell.h; sourceTree = "<group>"; };
 		6DB762581D6F507D00DB92E3 /* SNFriendRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNFriendRequestCell.m; sourceTree = "<group>"; };
 		6DB762591D6F507D00DB92E3 /* SNFriendRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNFriendRequestCell.xib; sourceTree = "<group>"; };
+		6DB7625C1D71190100DB92E3 /* SNContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNContactViewController.h; sourceTree = "<group>"; };
+		6DB7625D1D71190100DB92E3 /* SNContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNContactViewController.m; sourceTree = "<group>"; };
+		6DB7625E1D71190100DB92E3 /* SNContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNContactViewController.xib; sourceTree = "<group>"; };
+		6DB762611D711F5000DB92E3 /* SNContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNContactCell.h; sourceTree = "<group>"; };
+		6DB762621D711F5000DB92E3 /* SNContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNContactCell.m; sourceTree = "<group>"; };
+		6DB762631D711F5000DB92E3 /* SNContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNContactCell.xib; sourceTree = "<group>"; };
 		6DD9D5C41D37E6D700F622F6 /* rankingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rankingCell.h; path = Controller/rankingCell.h; sourceTree = "<group>"; };
 		6DD9D5C51D37E6D700F622F6 /* rankingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = rankingCell.m; path = Controller/rankingCell.m; sourceTree = "<group>"; };
 		6DD9D5C61D37E6D700F622F6 /* SNRankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNRankingViewController.h; path = Controller/SNRankingViewController.h; sourceTree = "<group>"; };
@@ -320,6 +330,19 @@
 				6DB762591D6F507D00DB92E3 /* SNFriendRequestCell.xib */,
 			);
 			name = "Friend Request List";
+			sourceTree = "<group>";
+		};
+		6DB762661D7121D400DB92E3 /* Contact List */ = {
+			isa = PBXGroup;
+			children = (
+				6DB7625C1D71190100DB92E3 /* SNContactViewController.h */,
+				6DB7625D1D71190100DB92E3 /* SNContactViewController.m */,
+				6DB7625E1D71190100DB92E3 /* SNContactViewController.xib */,
+				6DB762611D711F5000DB92E3 /* SNContactCell.h */,
+				6DB762621D711F5000DB92E3 /* SNContactCell.m */,
+				6DB762631D711F5000DB92E3 /* SNContactCell.xib */,
+			);
+			name = "Contact List";
 			sourceTree = "<group>";
 		};
 		6DD9D5C11D37E63800F622F6 /* Model */ = {
@@ -520,6 +543,7 @@
 		B8CFCCF11D21CE640006495E /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				6DB762661D7121D400DB92E3 /* Contact List */,
 				6DB762511D6F4D8300DB92E3 /* Friend Request List */,
 				6D1CF1A61D661B1B008DECC1 /* Chat Interface */,
 				6D0413651D64E81700C0E6EF /* Model */,
@@ -708,6 +732,8 @@
 				6D15F9311D52395F00B8F011 /* SNSearchNearbyProfileViewController.xib in Resources */,
 				6DD9D5CF1D37E6E700F622F6 /* SNRankingViewController.xib in Resources */,
 				B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */,
+				6DB762601D71190100DB92E3 /* SNContactViewController.xib in Resources */,
+				6DB762651D711F5000DB92E3 /* SNContactCell.xib in Resources */,
 				6DD9D5E11D37E8F700F622F6 /* SNPreferenceViewController.xib in Resources */,
 				6D04135F1D64E20E00C0E6EF /* SNMessageListViewController.xib in Resources */,
 				6D15F93A1D5A782100B8F011 /* basicInfo.plist in Resources */,
@@ -850,6 +876,7 @@
 				6D1CF1BD1D662070008DECC1 /* SNChatViewController.m in Sources */,
 				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
 				6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */,
+				6DB762641D711F5000DB92E3 /* SNContactCell.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
 				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,
 				6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */,
@@ -876,6 +903,7 @@
 				6D2B32DD1D5BFCCA009C606D /* CheckInManager.m in Sources */,
 				6D01ACFA1D48FB7300E98E6F /* ProgressHUD.m in Sources */,
 				6DD9D5F51D37E95200F622F6 /* SNPageContentViewController.m in Sources */,
+				6DB7625F1D71190100DB92E3 /* SNContactViewController.m in Sources */,
 				6DB762551D6F4DB200DB92E3 /* SNFriendRequestListViewController.m in Sources */,
 				6D01AD011D4A94A300E98E6F /* SNTagMainViewController.m in Sources */,
 				6D2B32E31D5CCC29009C606D /* SNSearchNearbyMainViewController.m in Sources */,

@@ -13,8 +13,9 @@
 //- (void)didClickSavePhotosButton:(NSMutableArray *)selectedPhotos;
 //@end
 @protocol MessageManagerDelegate <NSObject>
-
+@optional
 -(void)didFinishRefreshing;
+-(void)didAcceptFriendRequest;
 
 @end
 @interface MessageManager : NSObject
@@ -24,7 +25,9 @@
 +(instancetype)defaultManager;
 -(void)startMessageService;
 -(NSMutableArray*)fetchAllCurrentConversations;
+-(NSMutableArray*)fetchAllCurrentFriendRequests;
+-(NSMutableDictionary*)fetchAllContacts;
 -(void)refreshAllConversations;
 -(void)sendAddFrendRequst:(NSString*)clientId;
--(void)acceptFriendRequest:(AVIMConversation*)conversation;
+-(void)acceptFriendRequest:(Conversation*)c;
 @end

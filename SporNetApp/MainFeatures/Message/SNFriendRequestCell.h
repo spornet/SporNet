@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Conversation.h"
 @interface SNFriendRequestCell : UITableViewCell
+@property Conversation *conversation;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *bestSportImageView;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 -(void)configureCellWithConversation:(Conversation*)conversation;

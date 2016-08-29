@@ -61,13 +61,22 @@
                             <action selector="removeButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WlJ-S4-j6r"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccer" translatesAutoresizingMaskIntoConstraints="NO" id="bj0-yr-bcR">
+                        <rect key="frame" x="53" y="9" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="0KY-id-ay2"/>
+                            <constraint firstAttribute="width" constant="18" id="mA4-xR-e9i"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ALM-wA-nPP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="0Xw-d4-H5u"/>
+                    <constraint firstItem="ALM-wA-nPP" firstAttribute="top" secondItem="bj0-yr-bcR" secondAttribute="bottom" constant="-12" id="1d6-rJ-Oku"/>
                     <constraint firstItem="Bel-ao-5Hg" firstAttribute="leading" secondItem="ALM-wA-nPP" secondAttribute="trailing" constant="18" id="4Nw-ix-CaF"/>
                     <constraint firstItem="ALM-wA-nPP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="5yk-Gl-0gi"/>
                     <constraint firstItem="du6-8J-JZV" firstAttribute="top" secondItem="3uq-Em-3rX" secondAttribute="top" id="KpH-Ai-b33"/>
                     <constraint firstItem="2KV-JG-mxS" firstAttribute="top" secondItem="Bel-ao-5Hg" secondAttribute="bottom" constant="5" id="Lfa-EY-Xn8"/>
+                    <constraint firstItem="bj0-yr-bcR" firstAttribute="leading" secondItem="ALM-wA-nPP" secondAttribute="trailing" constant="-14" id="Prh-Qv-oo8"/>
                     <constraint firstItem="Bel-ao-5Hg" firstAttribute="top" secondItem="ALM-wA-nPP" secondAttribute="top" id="Wwj-hn-8ne"/>
                     <constraint firstItem="du6-8J-JZV" firstAttribute="leading" secondItem="3uq-Em-3rX" secondAttribute="trailing" constant="30" id="gtu-mj-bFs"/>
                     <constraint firstItem="2KV-JG-mxS" firstAttribute="leading" secondItem="Bel-ao-5Hg" secondAttribute="leading" id="hlR-aJ-Zxl"/>
@@ -76,14 +85,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bestSportImageView" destination="bj0-yr-bcR" id="TLC-BL-JPj"/>
                 <outlet property="nameLabel" destination="Bel-ao-5Hg" id="M7p-SC-ZBy"/>
                 <outlet property="schoolLabel" destination="2KV-JG-mxS" id="EJe-4g-WhX"/>
-                <outlet property="userImageView" destination="ALM-wA-nPP" id="lur-4i-oGc"/>
+                <outlet property="userImageView" destination="ALM-wA-nPP" id="ZoX-Lk-kpb"/>
             </connections>
             <point key="canvasLocation" x="162" y="302"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="soccer" width="58" height="58"/>
         <image name="user4" width="400" height="400"/>
     </resources>
 </document>

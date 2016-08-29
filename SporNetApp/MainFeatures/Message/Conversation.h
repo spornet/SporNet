@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SNUser.h"
 @interface Conversation : NSObject
 @property AVIMConversation *conversation;
 @property AVObject *basicInfo;
