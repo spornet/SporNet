@@ -9,6 +9,8 @@
 #import "SNRegisterViewController.h"
 #import "ProgressHUD.h"
 #import "AVUser.h"
+
+
 @interface SNRegisterViewController ()<UITextFieldDelegate>
 /**
  *  New User Email Textfield
@@ -68,10 +70,8 @@
 
 //method for tip button
 - (IBAction)tipClick {
-#warning UIAlertView 过期
     
-    UIAlertView *tip = [[UIAlertView alloc]initWithTitle:@"Tip !" message:@"Please use your school email !" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [tip show];
+    [self sendAlert:@"Please Use Your School Email"];
 
 }
 
@@ -103,9 +103,8 @@
     user.username = _emailTextfield.text;
     user.email = _emailTextfield.text;
     user.password = _passwordTextfield.text;
-    [ProgressHUD show:@"Signing up now..."];
+    [ProgressHUD show:@"Signing Up Now..."];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"%@", error);
         if(error.code == 202) {
             [ProgressHUD showError:@"Username has already been taken!"];
             return;
@@ -115,6 +114,11 @@
             return;
         }
         [ProgressHUD showSuccess:[NSString stringWithFormat:@"Signed up successfully!"]];
+        
+        //Save to SandBox
+        
+        [[NSUserDefaults standardUserDefaults] setObject:self.emailTextfield.text forKey:KUSER_EMAIL];
+        [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextfield.text forKey:KUSER_PASSWORD];
     }];
     
 

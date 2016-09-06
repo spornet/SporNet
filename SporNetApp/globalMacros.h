@@ -18,4 +18,9 @@
 #define SPORT_IMAGE_DIC @{@"Running":@"joggingSelected", @"Fitness":@"muscleSelected",@"Soccer":@"soccerSelected", @"Basketball":@"basketballSelected", @"Yoga":@"yogaSelected"}
 #define SCREEN_WIDTH [[UIScreen mainScreen]bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen]bounds].size.height
+
+//SandBox for User Login
+#define KUSER_EMAIL @"USER_EMAIL"
+#define KUSER_PASSWORD @"USER_PASSWORD"
+
 #endif /* globalMacros_h */

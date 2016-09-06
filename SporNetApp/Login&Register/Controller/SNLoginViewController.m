@@ -27,6 +27,9 @@
  *  Autolayout Constraint
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewConstrainatBottom;
+/**
+ *  App Logo Icon ImageView
+ */
 @property (weak, nonatomic) IBOutlet UIImageView *logoIcon;
 
 
@@ -47,7 +50,10 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
+    //Set Up Logo Icon
+#warning 这几行代码测试后没有反应
     self.logoIcon.layer.cornerRadius = self.logoIcon.frame.size.width/2;
+    
     self.logoIcon.layer.masksToBounds = YES;
 
 
@@ -79,8 +85,8 @@
             } else if (error.code == 210) {
                 [ProgressHUD showError:@"Wrong password!"];
             } else{
-#warning 最好不要显示用户名的email
-                [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back, %@!", user.username]];
+                
+                [ProgressHUD showSuccess:@"Welcome Back"];
                 if([[AVUser currentUser]objectForKey:@"basicInfo"] != nil) {
 #warning 需要先判断沙盒是否有值, 如果有值就跳转到Main（可以做一个对比），没有值就在注册的时候存储沙盒
                     [LocalDataManager fetchProfileInfoFromCloud];
@@ -120,7 +126,7 @@
 
 //method for signup button
 - (IBAction)signup:(id)sender {
-    NSLog(@"did sign up");
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login&RegisterStoryBoard" bundle:nil];
     SNRegisterViewController *regVc = [storyboard instantiateViewControllerWithIdentifier:@"RegisterPage"];
     
