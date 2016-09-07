@@ -143,12 +143,26 @@ static MessageManager *center = nil;
     return self.allContacts;
 }
 -(void)startMessageService {
-    _client = [[AVIMClient alloc] initWithClientId:[[[AVUser currentUser] objectForKey:@"basicInfo"]objectId]];
-    [_client openWithCallback:^(BOOL succeeded, NSError *error) {
-        NSLog(@"成功打开实时通讯功能");
-        [self refreshAllConversations];
-        [self refreshAllFriendRequest];
-    }];
+    
+    AVUser *oldUser = [[AVUser currentUser]objectForKey:@"basicInfo"];
+    
+    if (oldUser) {
+        
+        _client = [[AVIMClient alloc]initWithClientId:oldUser.objectId];
+        
+        [_client openWithCallback:^(BOOL succeeded, NSError *error) {
+           
+            [self refreshAllConversations];
+            [self refreshAllFriendRequest];
+        }];
+    }
+    
+//    _client = [[AVIMClient alloc] initWithClientId:[[[AVUser currentUser] objectForKey:@"basicInfo"]objectId]];
+//    [_client openWithCallback:^(BOOL succeeded, NSError *error) {
+//        NSLog(@"成功打开实时通讯功能");
+//        [self refreshAllConversations];
+//        [self refreshAllFriendRequest];
+//    }];
 }
 
 -(void)sendAddFrendRequst:(NSString*)clientId {

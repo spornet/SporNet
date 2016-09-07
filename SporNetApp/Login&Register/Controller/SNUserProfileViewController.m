@@ -221,7 +221,12 @@
     //Set Up the Max Profile Image Number
     self.selectedProfileImageArray = [[NSMutableArray alloc]initWithCapacity:SELECTED_MAX_PROFILE_IMAGE];
     //LoadUser Info From Local
-    [self loadUserInfoFromLocal];
+    BOOL isFirstTime = [[NSUserDefaults standardUserDefaults] boolForKey:KUSER_FIRST_REGISTER];
+    if (!isFirstTime) {
+        
+        [self loadUserInfoFromLocal];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -314,6 +319,81 @@
     [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     self.birthdayLabel.text = [dateFormatter stringFromDate:date];
     self.selectedBirthday = date;
+}
+
+- (IBAction)doneClicked:(UIButton *)sender {
+    
+    if ([self checkAllUserInputs]) {
+        
+        [self setIcon];
+        [self saveOnLocal];
+        SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
+        [self presentViewController:tabVC animated:YES completion:nil];
+        [LocalDataManager updateProfileInfoOnCloudInBackground];
+        [[NSUserDefaults standardUserDefaults]setValue:@YES forKey:@"BasicInfo"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        
+    }
+    
+    
+}
+
+- (BOOL)checkAllUserInputs {
+    
+    for(int i = 1; i <= 6; i++) {
+        UIButton *button = (UIButton*)[self.picCell viewWithTag:i];
+        if ([button.currentBackgroundImage isEqual:PROFILE_IMAGE]) {
+            
+            [ProgressHUD showError:@"You need at least One Profile Picture"];
+            return NO;
+        }
+    }
+    
+    if ([self.firstNameTextField.text isEqualToString:@""] || [self.lastNameTextField.text isEqualToString:@""]) {
+        
+        [ProgressHUD showError:@"Please complete your name"];
+        
+        return NO;
+        
+    }else if (self.selectedBestSport == 0) {
+        
+        [ProgressHUD showError:@"Please select your sport"];
+        
+        return NO;
+
+    }else if (self.selectedSpotrTime == 0) {
+        
+        [ProgressHUD showError:@"Please select your sport time"];
+        
+        return NO;
+        
+    }else if ([self.aboutmeTextView.text isEqualToString:@""]) {
+        
+        [ProgressHUD showError:@"Please write a little bit about yourself"];
+        
+        return NO;
+
+    }else if (self.selectedGender == 0) {
+        
+        [ProgressHUD showError:@"Please select your gender"];
+        
+        return NO;
+
+    }else if (self.selectedBirthday == nil) {
+        
+        [ProgressHUD showError:@"Please select your birthday"];
+        
+        return NO;
+
+    }else if (self.selectedGradYear == 0) {
+        
+        [ProgressHUD showError:@"Please select your graduation year"];
+        
+        return NO;
+    }
+    
+    return YES;
 }
 
 /**
@@ -445,17 +525,7 @@
             [self.sportTimeTextField becomeFirstResponder];
             [self pickerViewWillShow];
             break;
-        case  UserProfileRowDone:{
             
-            [self setIcon];
-            [self saveOnLocal];
-            SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
-            [self presentViewController:tabVC animated:YES completion:nil];
-            [LocalDataManager updateProfileInfoOnCloudInBackground];
-            [[NSUserDefaults standardUserDefaults]setValue:@YES forKey:@"BasicInfo"];
-            [[NSUserDefaults standardUserDefaults]synchronize];
-            break;
-        }
         default:
             break;
     }
@@ -565,13 +635,14 @@
       inComponent:(NSInteger)component {
     if([pickerView isEqual:self.sexPicker]) {
         self.sexLabel.text = _genderArray[row];
-        self.selectedGender = (GenderType)row;
+        self.selectedGender = (GenderType)row + 1;
+        
     } else if([pickerView isEqual:self.graduationYearPicker]){
         self.gradLabel.text = _gradYears[row];
         self.selectedGradYear = [self.gradLabel.text intValue];
     }else{
         self.sportTimeLabel.text = _sportTime[row];
-        self.selectedSpotrTime = (SportTimeSlot)row;
+        self.selectedSpotrTime = (SportTimeSlot)row + 1;
     }
 }
 

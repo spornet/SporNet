@@ -55,7 +55,23 @@
     self.logoIcon.layer.cornerRadius = self.logoIcon.frame.size.width/2;
     
     self.logoIcon.layer.masksToBounds = YES;
-
+    
+    //Check Sandbox to see if already have Email and Password Saved
+    
+    NSString *userEmail = [[NSUserDefaults standardUserDefaults]objectForKey:KUSER_EMAIL];
+    NSString *userPassword = [[NSUserDefaults standardUserDefaults] objectForKey:KUSER_PASSWORD];
+    if (userEmail != nil && userPassword != nil) {
+        
+        [AVUser logInWithUsernameInBackground:userEmail password:userPassword block:^(AVUser *user, NSError *error) {
+            
+            if (error == nil) {
+                
+                SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
+                
+                [self presentViewController:tabVC animated:YES completion:nil];
+            }
+        }];
+    }
 
 }
 
@@ -86,15 +102,13 @@
                 [ProgressHUD showError:@"Wrong password!"];
             } else{
                 
-                [ProgressHUD showSuccess:@"Welcome Back"];
-                if([[AVUser currentUser]objectForKey:@"basicInfo"] != nil) {
-#warning 需要先判断沙盒是否有值, 如果有值就跳转到Main（可以做一个对比），没有值就在注册的时候存储沙盒
-                    [LocalDataManager fetchProfileInfoFromCloud];
-                    SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
-                    [self presentViewController:tabVC animated:YES completion:nil];
-                } else {
-                    [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
-                }
+                [ProgressHUD showSuccess:@"Welcome"];
+                [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
+//                if([[AVUser currentUser]objectForKey:@"basicInfo"] != nil) {
+//                    [LocalDataManager fetchProfileInfoFromCloud];
+//                    SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
+//                    [self presentViewController:tabVC animated:YES completion:nil];
+//                }
 
             }
         }];

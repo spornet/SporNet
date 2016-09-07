@@ -119,6 +119,10 @@
         
         [[NSUserDefaults standardUserDefaults] setObject:self.emailTextfield.text forKey:KUSER_EMAIL];
         [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextfield.text forKey:KUSER_PASSWORD];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:KUSER_FIRST_REGISTER];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+
     }];
     
 

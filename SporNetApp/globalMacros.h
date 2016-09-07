@@ -22,5 +22,6 @@
 //SandBox for User Login
 #define KUSER_EMAIL @"USER_EMAIL"
 #define KUSER_PASSWORD @"USER_PASSWORD"
+#define KUSER_FIRST_REGISTER @"USER_FIRST_REGISTER" 
 
 #endif /* globalMacros_h */
