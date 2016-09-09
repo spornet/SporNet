@@ -39,7 +39,9 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     //Set Up UIAlert
-    [self sendAlert:@"Only emails from XXX is valid."];
+    
+#warning 最后把所有其它学校加上去
+    [self sendAlert:@"This app is targeting Boston University..."];
     
     //Set Up UI
     [self setupUI];
@@ -83,11 +85,7 @@
         return;
     }
     if(![self validSchoolEmail:_emailTextfield.text]) {
-        [ProgressHUD showError:@"Invalid email address!"];
-        return;
-    }
-    if(![self validSchoolEmail:_emailTextfield.text]) {
-        [ProgressHUD showError:@"Your School is not on our list, coming soon!"];
+        [ProgressHUD showError:@"Your School is not on our list! Coming Soon!"];
         return;
     }
     if([_passwordTextfield.text isEqual:@""]) {
@@ -113,7 +111,7 @@
             [ProgressHUD showError:@"Email address has already been taken!"];
             return;
         }
-        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Signed up successfully!"]];
+        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Signed up successfully! Please go to your school email to confirm"]];
         
         //Save to SandBox
         
@@ -129,11 +127,30 @@
 }
 
 -(BOOL)validSchoolEmail:(NSString*)email {
-#warning 这里要加入对学校email的判断
-    return YES;
+    
+    
+    NSString *emailPlist = [[NSBundle mainBundle] pathForResource:@"emailToSchool" ofType:@"plist"];
+    
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:emailPlist];
+    
+    NSArray *emailList = [dic allKeys];
+        
+        for (NSString *schoolEmail in emailList) {
+            
+            if ([email containsString:schoolEmail]) {
+                
+                NSString *schoolName = [dic objectForKey:schoolEmail];
+                
+                [[NSUserDefaults standardUserDefaults]setObject:schoolName forKey:KUSER_SCHOOL_NAME];
+                
+                return YES;
+            }
+    }
+    
+    return NO;
 }
 -(void)sendAlert:(NSString*)message {
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel
                                                           handler:^(UIAlertAction * action) {}];
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Tips"
                                                                    message:message

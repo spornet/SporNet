@@ -40,17 +40,10 @@
         NSLog(@"进入广告界面");
         [[NSUserDefaults standardUserDefaults]setValue:version forKey:@"LastVersion"];
         [[NSUserDefaults standardUserDefaults]synchronize];
-    }else{
-        BOOL haveBasicInfo = [[[NSUserDefaults standardUserDefaults]valueForKey:@"BasicInfo"]boolValue];
-        if (!haveBasicInfo) {
-            NSLog(@"进入Login填写BasicInfo");
-            
-        } else {
-            NSLog(@"进入message controller");
-        }
+    }
 
         
-    }
+    
 
     return YES;
 }

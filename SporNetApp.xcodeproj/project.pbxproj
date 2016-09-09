@@ -63,7 +63,6 @@
 		B82FED2D1D21A57D00292ECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B82FED2B1D21A57D00292ECC /* LaunchScreen.storyboard */; };
 		B82FED381D21A57D00292ECC /* SporNetAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED371D21A57D00292ECC /* SporNetAppTests.m */; };
 		B82FED431D21A57D00292ECC /* SporNetAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FED421D21A57D00292ECC /* SporNetAppUITests.m */; };
-		B86E8B2A1D70E1CC009EC0D9 /* basicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B291D70E1CC009EC0D9 /* basicInfo.plist */; };
 		B86E8B301D74838D009EC0D9 /* SNTagMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B2D1D74838D009EC0D9 /* SNTagMainViewController.m */; };
 		B86E8B311D74838D009EC0D9 /* SNTagSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B2F1D74838D009EC0D9 /* SNTagSecondViewController.m */; };
 		B86E8B3E1D7483D6009EC0D9 /* CheckInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B341D7483D6009EC0D9 /* CheckInManager.m */; };
@@ -192,7 +191,6 @@
 		B82FED3E1D21A57D00292ECC /* SporNetAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SporNetAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82FED421D21A57D00292ECC /* SporNetAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SporNetAppUITests.m; sourceTree = "<group>"; };
 		B82FED441D21A57D00292ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B86E8B291D70E1CC009EC0D9 /* basicInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = basicInfo.plist; sourceTree = "<group>"; };
 		B86E8B2C1D74838D009EC0D9 /* SNTagMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagMainViewController.h; sourceTree = "<group>"; };
 		B86E8B2D1D74838D009EC0D9 /* SNTagMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTagMainViewController.m; sourceTree = "<group>"; };
 		B86E8B2E1D74838D009EC0D9 /* SNTagSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTagSecondViewController.h; sourceTree = "<group>"; };
@@ -460,7 +458,6 @@
 		B82FED1C1D21A57D00292ECC /* SporNetApp */ = {
 			isa = PBXGroup;
 			children = (
-				B86E8B291D70E1CC009EC0D9 /* basicInfo.plist */,
 				6D15F9321D529DBD00B8F011 /* emailToSchool.plist */,
 				B8CFCCE51D21AE540006495E /* Info.plist */,
 				B8CFCCE71D21AEC50006495E /* Login&Register */,
@@ -767,7 +764,6 @@
 				6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */,
 				B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */,
 				6DD9D5E01D37E8F700F622F6 /* SettingStoryboard.storyboard in Resources */,
-				B86E8B2A1D70E1CC009EC0D9 /* basicInfo.plist in Resources */,
 				6D1CF1C51D664F24008DECC1 /* ChatCell.xib in Resources */,
 				6DB7625B1D6F507D00DB92E3 /* SNFriendRequestCell.xib in Resources */,
 				6DD9D5CD1D37E6E700F622F6 /* rankingCell.xib in Resources */,
@@ -898,8 +894,6 @@
 				6D1CF1BD1D662070008DECC1 /* SNChatViewController.m in Sources */,
 				B86E8B3E1D7483D6009EC0D9 /* CheckInManager.m in Sources */,
 				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
-
-				6D2803941D4FC50D00267B18 /* TimeManager.m in Sources */,
 				6DB762641D711F5000DB92E3 /* SNContactCell.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
 				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,

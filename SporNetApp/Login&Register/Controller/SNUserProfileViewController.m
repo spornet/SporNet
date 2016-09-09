@@ -321,6 +321,11 @@
     self.selectedBirthday = date;
 }
 
+/**
+ *  User Finished all the basic info
+ *
+ *  @param UIButton
+ */
 - (IBAction)doneClicked:(UIButton *)sender {
     
     if ([self checkAllUserInputs]) {
@@ -330,15 +335,17 @@
         SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
         [self presentViewController:tabVC animated:YES completion:nil];
         [LocalDataManager updateProfileInfoOnCloudInBackground];
-        [[NSUserDefaults standardUserDefaults]setValue:@YES forKey:@"BasicInfo"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        
         
     }
     
     
 }
 
+/**
+ *  Check All User Input
+ *
+ *  @return Yes means user has fill out all basic info. Return No means at least one is not filled out
+ */
 - (BOOL)checkAllUserInputs {
     
     for(int i = 1; i <= 6; i++) {
@@ -356,6 +363,23 @@
         
         return NO;
         
+    }else if (self.selectedGender == 0) {
+        
+        [ProgressHUD showError:@"Please select your gender"];
+        
+        return NO;
+        
+    }else if (self.selectedBirthday == nil) {
+        
+        [ProgressHUD showError:@"Please select your birthday"];
+        
+        return NO;
+        
+    }else if (self.selectedGradYear == 0) {
+        
+        [ProgressHUD showError:@"Please select your graduation year"];
+        
+        return NO;
     }else if (self.selectedBestSport == 0) {
         
         [ProgressHUD showError:@"Please select your sport"];
@@ -374,23 +398,6 @@
         
         return NO;
 
-    }else if (self.selectedGender == 0) {
-        
-        [ProgressHUD showError:@"Please select your gender"];
-        
-        return NO;
-
-    }else if (self.selectedBirthday == nil) {
-        
-        [ProgressHUD showError:@"Please select your birthday"];
-        
-        return NO;
-
-    }else if (self.selectedGradYear == 0) {
-        
-        [ProgressHUD showError:@"Please select your graduation year"];
-        
-        return NO;
     }
     
     return YES;

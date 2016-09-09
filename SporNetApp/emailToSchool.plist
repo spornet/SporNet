@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>brandeis.edu</key>
+	<string>Brandeis University</string>
+	<key>suffolk.edu</key>
+	<string>Suffork University </string>
+	<key>umb.edu</key>
+	<string>Umass Boston </string>
+	<key>uml.edu</key>
+	<string>Umass Lowell </string>
+	<key>umass.edu</key>
+	<string>Umass Amherst </string>
+	<key>bc.edu</key>
+	<string>Boston College</string>
+	<key>tufts.edu</key>
+	<string>Tufts University</string>
+	<key>mit.edu</key>
+	<string>MIT </string>
+	<key>havard.edu</key>
+	<string>Harvard University </string>
 	<key>bu.edu</key>
 	<string>Boston University</string>
 	<key>neu.edu</key>
