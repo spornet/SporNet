@@ -84,10 +84,10 @@
         [ProgressHUD showError:@"Please enter your email address!"];
         return;
     }
-    if(![self validSchoolEmail:_emailTextfield.text]) {
-        [ProgressHUD showError:@"Your School is not on our list! Coming Soon!"];
-        return;
-    }
+//    if(![self validSchoolEmail:_emailTextfield.text]) {
+//        [ProgressHUD showError:@"Your School is not on our list! Coming Soon!"];
+//        return;
+//    }
     if([_passwordTextfield.text isEqual:@""]) {
         [ProgressHUD showError:@"You must input a password!"];
         return;
@@ -102,6 +102,7 @@
     user.email = _emailTextfield.text;
     user.password = _passwordTextfield.text;
     [ProgressHUD show:@"Signing Up Now..."];
+    
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error.code == 202) {
             [ProgressHUD showError:@"Username has already been taken!"];
@@ -111,16 +112,10 @@
             [ProgressHUD showError:@"Email address has already been taken!"];
             return;
         }
-        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Signed up successfully! Please go to your school email to confirm"]];
+            
+            [ProgressHUD showSuccess:[NSString stringWithFormat:@"Signed up successfully! Please go to your school email to confirm"]];
         
-        //Save to SandBox
-        
-        [[NSUserDefaults standardUserDefaults] setObject:self.emailTextfield.text forKey:KUSER_EMAIL];
-        [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextfield.text forKey:KUSER_PASSWORD];
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
 
     }];
     

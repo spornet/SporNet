@@ -26,10 +26,6 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -42,21 +38,38 @@
 
 //method for resend button
 - (IBAction)resend:(id)sender {
+    
+    if ([self.emailTextfield.text isEqualToString:@""]) {
+        
+        [ProgressHUD showError:@"Please input your email"];
+        
+        return;
+    }
+    
     if (_isFp) {
-        NSLog(@"Send a link for forget password");
+#warning 这里要重新检测
         [AVUser requestPasswordResetForEmailInBackground:_emailTextfield.text block:^(BOOL succeeded, NSError *error) {
-            NSLog(@"%@", error);
-            if(error.code == 205) [ProgressHUD showError:@"Email not found."];
-            else [ProgressHUD showSuccess:@"Please check your email to reset password."];
+            
+            if(error.code == 205) {
+                
+                [ProgressHUD showError:@"Email not found"];
+            }
+            else {
+             [ProgressHUD showSuccess:@"Please check your email to reset password"];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }];
     } else {
-        NSLog(@"Send another confirm email");
+        
+         [ProgressHUD showSuccess:@"Please check your email again"];
+        
+        [AVUser requestEmailVerify:self.emailTextfield.text withBlock:nil];
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    return YES;
-}
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     [UIView beginAnimations:nil context:nil];

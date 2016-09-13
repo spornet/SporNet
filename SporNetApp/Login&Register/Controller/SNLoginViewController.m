@@ -94,24 +94,36 @@
     } else if([_passwordTextfield.text isEqual:@""]) {
         [ProgressHUD showError:@"Please input password!"];
     } else {
-        [ProgressHUD show:@"Logging now..."];
-        [AVUser logInWithUsernameInBackground:_userEmailTextfield.text password:_passwordTextfield.text block:^(AVUser *user, NSError *error) {
-            if(error.code == 211)  {
-                [ProgressHUD showError:@"Email doesn't exist!"];
-            } else if (error.code == 210) {
-                [ProgressHUD showError:@"Wrong password!"];
-            } else{
-                
-                [ProgressHUD showSuccess:@"Welcome"];
-                [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
-//                if([[AVUser currentUser]objectForKey:@"basicInfo"] != nil) {
-//                    [LocalDataManager fetchProfileInfoFromCloud];
-//                    SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
-//                    [self presentViewController:tabVC animated:YES completion:nil];
-//                }
-
-            }
-        }];
+        
+      bool isVerified = [[AVUser currentUser]valueForKey:@"emailVerified"];
+        
+        if (isVerified) {
+            
+            [ProgressHUD show:@"Logging now..."];
+            [AVUser logInWithUsernameInBackground:_userEmailTextfield.text password:_passwordTextfield.text block:^(AVUser *user, NSError *error) {
+                if(error.code == 211)  {
+                    [ProgressHUD showError:@"Email doesn't exist!"];
+                } else if (error.code == 210) {
+                    [ProgressHUD showError:@"Wrong password!"];
+                } else{
+                    
+                    [ProgressHUD showSuccess:@"Welcome"];
+                    //Save to SandBox
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject:self.userEmailTextfield.text forKey:KUSER_EMAIL];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextfield.text forKey:KUSER_PASSWORD];
+                    
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
+                    
+                }
+            }];
+            
+        }else {
+            
+            [ProgressHUD showError:@"Please go to school email to confirm"];
+        }
+        
     }
 }
 

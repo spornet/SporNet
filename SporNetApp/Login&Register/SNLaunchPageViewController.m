@@ -28,13 +28,13 @@
     
 }
 
+
 - (UIButton *)startBtn {
     
     if (_startBtn == nil) {
         
         _startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _startBtn.frame = CGRectMake(self.view.center.x - 55, self.view.frame.size.height - 114, 110, 44);
-//        [_startBtn setTitle:@"Start" forState:UIControlStateNormal];
         [_startBtn setBackgroundColor:[UIColor colorWithRed:55 / 255.0 green:170 / 255.0 blue:157 / 255.0 alpha:1.0]];
         NSAttributedString *string = [[NSAttributedString alloc]initWithString:@"Start" attributes:@{
                                                                                                      NSFontAttributeName : [UIFont fontWithName:@"Avenir Next" size:20],
@@ -116,9 +116,7 @@
         [self.view addSubview:self.launchPages];
         [self.view addSubview:self.pageControl];
     }else {
-        
-#warning Need to go to login Controller 1
-        SNLoginViewController *loginController = [[SNLoginViewController alloc]init];
+                SNLoginViewController *loginController = [[SNLoginViewController alloc]init];
         UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
         keyWindow.rootViewController = loginController;
     }
