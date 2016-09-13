@@ -13,23 +13,53 @@
 #import "SNFriendRequestListViewController.h"
 #import "SNContactViewController.h"
 @interface SNMessageListViewController ()
+/**
+ *  Message List TableView
+ */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property NSMutableArray *conversationList;
+/**
+ *  Notification Button
+ */
 @property (weak, nonatomic) IBOutlet UIButton *bellButton;
+/**
+ *  Badge View on the Notification Button
+ */
 @property (weak, nonatomic) IBOutlet UIView *bellBadgeView;
+/**
+ *  Contains all Current User's Converstaion Model
+ */
+@property (nonatomic, strong) NSMutableArray *conversationList;
 
 
 @end
 
 @implementation SNMessageListViewController
 
+#pragma mark - Lazy Load
+
+- (NSMutableArray *)conversationList {
+    
+    if (_conversationList == nil) {
+        
+        _conversationList = [NSMutableArray array];
+    }
+    
+    return _conversationList;
+}
+
+#pragma mark - View Delegate
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [ProgressHUD show:@"Loading your message box..."];
+    
     self.navigationController.navigationBar.hidden = YES;
     
+    //Load Cell
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
-    //打开message功能
+    
+    //Open Current Message
+    
     [[MessageManager defaultManager] startMessageService];
     [MessageManager defaultManager].client.delegate = self;
     [MessageManager defaultManager].delegate = self;
@@ -41,23 +71,28 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:YES];
+    
     [MessageManager defaultManager].client.delegate = self;
     //[[MessageManager defaultManager]refreshAllConversations];
     self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
+
 -(void)didFinishRefreshing {
     self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
-    [_tableView reloadData];
+    [self.tableView reloadData];
     [ProgressHUD dismiss];
 }
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
+
+#pragma mark - UITableView Delegate
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _conversationList.count;
     
 }
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageListCell" forIndexPath:indexPath];
     [cell configureCellWithConversation:self.conversationList[indexPath.row]];
@@ -74,6 +109,9 @@
 
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+#pragma mark - IMClient Delegate
+
 -(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
     if([message.text isEqualToString:@"I'd love to add you as my friend"]) {
         NSLog(@"收到一条好友请求");
@@ -100,11 +138,15 @@
 -(void)conversation:(AVIMConversation *)conversation didReceiveUnread:(NSInteger)unread {
     NSLog(@"UNREAD");
 }
+
+#pragma mark - Private Methods
+
 - (IBAction)bellButtonClicked:(UIButton *)sender {
     SNFriendRequestListViewController *vc = [[SNFriendRequestListViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     self.bellBadgeView.hidden = YES;
 }
+
 - (IBAction)contactButtonClicked:(id)sender {
     SNContactViewController *vc = [[SNContactViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];

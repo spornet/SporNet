@@ -23,6 +23,7 @@
     NSLog(@"View did load");
     self.navigationController.navigationBar.hidden = YES;
     [self.tableView registerNib:[UINib nibWithNibName:@"SNFriendRequestCell" bundle:nil] forCellReuseIdentifier:@"SNFriendRequestCell"];
+#warning 可以直接传值
     self.currentFriendRequstList = [[MessageManager defaultManager]fetchAllCurrentFriendRequests];
     [MessageManager defaultManager].delegate = self;
     [MessageManager defaultManager].client.delegate = self;
@@ -32,9 +33,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
+#pragma mark - TableView Delegate
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.currentFriendRequstList.count;
 }
@@ -54,10 +54,15 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
 }
+
+#pragma mark - Message Manager Delegate
+
 -(void)didAcceptFriendRequest {
     self.currentFriendRequstList = [[MessageManager defaultManager]fetchAllCurrentFriendRequests];
     [self.tableView reloadData];
 }
+
+#pragma mark - UIClient Delegate
 -(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
     if([message.text isEqualToString:@"I'd love to add you as my friend"]) {
         NSLog(@"收到一条好友请求");

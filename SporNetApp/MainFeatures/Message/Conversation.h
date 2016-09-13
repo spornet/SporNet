@@ -7,9 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SNUser.h"
+
+@class SNUser;
+
 @interface Conversation : NSObject
-@property AVIMConversation *conversation;
-@property AVObject *basicInfo;
+/**
+ *  Conversation Model
+ */
+@property (nonatomic, strong) AVIMConversation *conversation;
+/**
+ *  User's Basic Info Model
+ */
+@property (nonatomic, strong) AVObject *basicInfo;
+/**
+ *  Message number hasn't read
+ */
 @property NSInteger unreadMessageNumber;
 @end

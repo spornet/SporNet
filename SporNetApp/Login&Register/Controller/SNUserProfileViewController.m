@@ -221,11 +221,14 @@
     //Set Up the Max Profile Image Number
     self.selectedProfileImageArray = [[NSMutableArray alloc]initWithCapacity:SELECTED_MAX_PROFILE_IMAGE];
     //LoadUser Info From Local
-    BOOL isFirstTime = [[NSUserDefaults standardUserDefaults] boolForKey:KUSER_FIRST_REGISTER];
-    if (!isFirstTime) {
+    
+    bool isSecond = [[NSUserDefaults standardUserDefaults]objectForKey:KUSER_FIRST_REGISTER];
+    
+    if (isSecond) {
         
         [self loadUserInfoFromLocal];
     }
+
     
 }
 
@@ -336,6 +339,8 @@
         [self presentViewController:tabVC animated:YES completion:nil];
         [LocalDataManager updateProfileInfoOnCloudInBackground];
         
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:KUSER_FIRST_REGISTER];
+        [[NSUserDefaults standardUserDefaults]synchronize];
     }
     
     

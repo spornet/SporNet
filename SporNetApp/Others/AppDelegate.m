@@ -10,8 +10,12 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "SNUser.h"
 #import <AVIMUserOptions.h>
+#import "SNLoginViewController.h"
+#import "SNLaunchPageViewController.h"
+
 #define AVOSCloudAppID  @"qLvqUSrb3dziuUehRKvpr6Kc-gzGzoHsz"
 #define AVOSCloudAppKey @"aYaqxmFig7hp77IYIl1wJ6RU"
+
 @interface AppDelegate ()
 
 @end
@@ -37,10 +41,16 @@
     //获取之前的版本号
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults]valueForKey:@"LastVersion"];
     if (![lastVersion isEqualToString:version]) {
-        NSLog(@"进入广告界面");
+        
+        SNLaunchPageViewController *launchController = [[SNLaunchPageViewController alloc]init];
+        self.window.backgroundColor = [UIColor colorWithRed:11/255.0 green:28/255.0 blue:53/255.0 alpha:1.0];
+        self.window.rootViewController = launchController;
+        
         [[NSUserDefaults standardUserDefaults]setValue:version forKey:@"LastVersion"];
         [[NSUserDefaults standardUserDefaults]synchronize];
+        
     }
+    
 
         
     

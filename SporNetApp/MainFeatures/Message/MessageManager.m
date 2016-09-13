@@ -42,15 +42,17 @@ static MessageManager *center = nil;
     } else return nil;
 }
 
+/**
+ *  Find All Current User's Consersations
+ */
 -(void)refreshAllConversations{
-    [ProgressHUD show:@"Fetching conversations. Please wait..."];
+    
     AVIMConversationQuery *query = [_client conversationQuery];
     [query whereKey:@"m" containsAllObjectsInArray:@[selfId]];
     [query whereKey:@"status" equalTo:@1];
-    query.cachePolicy = kAVIMCachePolicyNetworkElseCache;
+    
     [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
-        NSLog(@"%@", error);
-        NSLog(@"gagaga");
+
         for(AVIMConversation *conversation in objects) {
             NSString *talkToId;
             if([conversation.members[0] isEqualToString:selfId]) {
@@ -58,13 +60,18 @@ static MessageManager *center = nil;
             } else talkToId = conversation.members[0];
             AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:talkToId];
             NSLog(@"objectid is %@", talkToId);
-            [user fetch];
-            Conversation *c = [[Conversation alloc]init];
-            NSLog(@"这个人名字是 %@", [user objectForKey:@"name"]);
-            c.basicInfo = user;
-            c.conversation = conversation;
-            c.unreadMessageNumber = 0;
-            [self.allConversations addObject:c];
+#warning 可能有问题
+            [user fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
+               
+                Conversation *c = [[Conversation alloc]init];
+                NSLog(@"这个人名字是 %@", [object objectForKey:@"name"]);
+                c.basicInfo = object;
+                c.conversation = conversation;
+                c.unreadMessageNumber = 0;
+                [self.allConversations addObject:c];
+                
+            }];
+            
             //NSLog([user objectForKey:@"name"]);
 //            [user fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
 //                Conversation *c = [[Conversation alloc]init];
@@ -142,6 +149,10 @@ static MessageManager *center = nil;
     }
     return self.allContacts;
 }
+
+/**
+ *  Find Current User from the Disk and Open Messaging Function
+ */
 -(void)startMessageService {
     
     AVUser *oldUser = [[AVUser currentUser]objectForKey:@"basicInfo"];
@@ -156,13 +167,7 @@ static MessageManager *center = nil;
             [self refreshAllFriendRequest];
         }];
     }
-    
-//    _client = [[AVIMClient alloc] initWithClientId:[[[AVUser currentUser] objectForKey:@"basicInfo"]objectId]];
-//    [_client openWithCallback:^(BOOL succeeded, NSError *error) {
-//        NSLog(@"成功打开实时通讯功能");
-//        [self refreshAllConversations];
-//        [self refreshAllFriendRequest];
-//    }];
+
 }
 
 -(void)sendAddFrendRequst:(NSString*)clientId {

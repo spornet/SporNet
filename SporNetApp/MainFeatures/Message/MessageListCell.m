@@ -18,14 +18,8 @@
     _userImageView.layer.cornerRadius = _userImageView.frame.size.width / 2.0;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 -(void)configureCellWithConversation:(Conversation*)c {
-    
     
     
     UIColor *color = SPORTSLOT_COLOR_ARRAY[[[c.basicInfo objectForKey:@"sportTimeSlot"]integerValue]];
