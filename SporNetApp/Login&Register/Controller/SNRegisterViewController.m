@@ -84,10 +84,10 @@
         [ProgressHUD showError:@"Please enter your email address!"];
         return;
     }
-//    if(![self validSchoolEmail:_emailTextfield.text]) {
-//        [ProgressHUD showError:@"Your School is not on our list! Coming Soon!"];
-//        return;
-//    }
+    if(![self validSchoolEmail:_emailTextfield.text]) {
+        [ProgressHUD showError:@"Your School is not on our list! Coming Soon!"];
+        return;
+    }
     if([_passwordTextfield.text isEqual:@""]) {
         [ProgressHUD showError:@"You must input a password!"];
         return;
@@ -130,12 +130,15 @@
     NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:emailPlist];
     
     NSArray *emailList = [dic allKeys];
-        
+    
         for (NSString *schoolEmail in emailList) {
             
-            if ([email containsString:schoolEmail]) {
+            NSString *realEmail = [NSString stringWithString:schoolEmail];
+            
+            if ([email containsString:realEmail]) {
                 
-                NSString *schoolName = [dic objectForKey:schoolEmail];
+                NSString *schoolName = [dic[realEmail] firstObject];
+                NSLog(@"school name %@", schoolName); 
                 
                 [[NSUserDefaults standardUserDefaults]setObject:schoolName forKey:KUSER_SCHOOL_NAME];
                 

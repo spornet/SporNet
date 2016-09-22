@@ -52,7 +52,7 @@ static LocalDataManager *center = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"basicInfo.plist"];
-    
+    NSLog(@"PlistPath %@", plistPath);
     NSMutableArray *imageDataArr = [[NSMutableArray alloc]init];
     NSMutableArray *arr = [basicInfo objectForKey:@"PicUrls"];
     for(NSString *url in arr) {
@@ -83,7 +83,9 @@ static LocalDataManager *center = nil;
         user = [[SNUser alloc]init];
         user.voteNumber = 0;
         NSDictionary *schools = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"emailToSchool" ofType:@"plist"]];
-        [user setObject:schools[[[[AVUser currentUser].email componentsSeparatedByString:@"@"]lastObject]] forKey:@"school"];
+        NSString *lastComponet = [[[AVUser currentUser].email componentsSeparatedByString:@"@"]lastObject];
+        NSArray *array = schools[lastComponet];
+        [user setObject:[array firstObject] forKey:@"school"];
     }
     
     

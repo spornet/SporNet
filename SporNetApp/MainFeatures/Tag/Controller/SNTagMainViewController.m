@@ -128,8 +128,25 @@
 - (void)initialSetUp {
     
     _todaySportArraySelected = @[@"joggingSelected", @"muscleSelected", @"soccerSelected", @"basketballSelected", @"yogaSelected"];
-#warning 需要根据用户的学校来判断健身房
-    _gymArray = @[@"Marino Center", @"Cabot Center", @"Badger & Rosen", @"NU Open Skate"];
+    
+    
+    NSString *email = [AVUser currentUser].email;
+    NSString *emailPlist = [[NSBundle mainBundle] pathForResource:@"emailToSchool" ofType:@"plist"];
+    
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:emailPlist];
+    
+    NSArray *emailList = [dic allKeys];
+    
+    for (NSString *schoolEmail in emailList) {
+        
+        NSString *realEmail = [NSString stringWithString:schoolEmail];
+        
+        if ([email containsString:realEmail]) {
+            
+            _gymArray = [dic[realEmail] lastObject];
+            
+        }
+    }
     _whereLabel.text = _gymArray[0];
     
 }

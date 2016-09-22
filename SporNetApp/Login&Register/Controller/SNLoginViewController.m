@@ -14,6 +14,8 @@
 #import "AVFile.h"
 #import "SNMainFeatureTabController.h"
 #import "LocalDataManager.h"
+#import "SNUser.h"
+
 @interface SNLoginViewController ()<UITextFieldDelegate>
 /**
  *  User Email Input
@@ -94,7 +96,8 @@
     } else if([_passwordTextfield.text isEqual:@""]) {
         [ProgressHUD showError:@"Please input password!"];
     } else {
-        
+      
+#warning 从网上去判断是否verified
       bool isVerified = [[AVUser currentUser]valueForKey:@"emailVerified"];
         
         if (isVerified) {
@@ -107,6 +110,21 @@
                     [ProgressHUD showError:@"Wrong password!"];
                 } else{
                     
+                    AVQuery *query = [SNUser query];
+                    [query whereKey:@"userID" equalTo:[AVUser currentUser].objectId];
+                    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                       
+                        if (objects.count == 0) {
+                            
+                            
+                            [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
+                        }else {
+#warning 从网上获取数据然后存入沙盒并且赋值给User Profile Page
+                            [LocalDataManager fetchProfileInfoFromCloud];
+                        }
+                        
+                    }];
+                    
                     [ProgressHUD showSuccess:@"Welcome"];
                     //Save to SandBox
                     
@@ -114,7 +132,6 @@
                     [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextfield.text forKey:KUSER_PASSWORD];
                     
                     [[NSUserDefaults standardUserDefaults] synchronize];
-                    [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
                     
                 }
             }];
