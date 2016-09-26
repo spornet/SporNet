@@ -214,7 +214,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0he-Qj-4sg">
                     <rect key="frame" x="35" y="76" width="250" height="42"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
-                    <state key="normal" title="CANCEL cancel">
+                    <state key="normal" title="CANCEL">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>

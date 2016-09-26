@@ -96,9 +96,9 @@ static MessageManager *center = nil;
         NSLog(@"%@", error);
         for(AVIMConversation *conversation in objects) {
             NSString *talkToId;
-            if([conversation.members[0] isEqualToString:selfId]) {
-                talkToId = conversation.members[1];
-            } else talkToId = conversation.members[0];
+//            if([conversation.members[0] isEqualToString:selfId]) {
+//                talkToId = conversation.members[1];
+//            } else talkToId = conversation.members[0];
             AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:talkToId];
             NSLog(@"objectid is %@", talkToId);
             [user fetch];

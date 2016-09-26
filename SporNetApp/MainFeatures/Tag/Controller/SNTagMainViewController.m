@@ -196,6 +196,7 @@
  */
 - (IBAction)cancelButtonClicked:(UIButton *)sender {
     
+    [self performSegueWithIdentifier:@"toSecondTagVC" sender:nil];
 }
 
 #pragma mark - picker view delegate & datasource

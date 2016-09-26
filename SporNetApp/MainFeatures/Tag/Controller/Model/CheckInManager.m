@@ -19,6 +19,7 @@ static CheckInManager *center = nil;
 @property(nonatomic) NSMutableArray *allCheckIns;
 @end
 @implementation CheckInManager
+
 +(instancetype)defaultManager {
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^ {
@@ -27,6 +28,7 @@ static CheckInManager *center = nil;
     });
     return center;
 }
+
 -(instancetype)init {
     //    if(_allPrayers == nil) {
     //        _allPrayers = [[NSMutableArray alloc]init];
