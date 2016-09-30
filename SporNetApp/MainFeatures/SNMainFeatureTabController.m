@@ -8,8 +8,10 @@
 
 #import "SNMainFeatureTabController.h"
 #import "SNSettingViewController.h"
+#import "SNTagSecondViewController.h"
+#import "SNTagMainViewController.h"
 
-@interface SNMainFeatureTabController ()
+@interface SNMainFeatureTabController () <UITabBarControllerDelegate>
 
 @end
 
@@ -21,13 +23,13 @@
     if (self) {
         
         [self setupTabbarItem];
+        self.delegate = self;
 
         }
  
     
     return self;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,8 +63,10 @@
     UIStoryboard *search = [UIStoryboard storyboardWithName:@"SearchingStoryboard" bundle:nil];
     UIStoryboard *setting = [UIStoryboard storyboardWithName:@"SettingStoryboard" bundle:nil];
     
-    UIViewController *tagController = [tag instantiateInitialViewController];
     
+    UIViewController *tagController = [tag instantiateInitialViewController];
+    tagController.tabBarItem.tag = 1;
+   
     
     UIViewController *messageController = [message instantiateInitialViewController];
     
@@ -103,5 +107,50 @@
                                            forState: UIControlStateSelected];
 }
 
+#pragma mark - UITabBarController Delegate
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    
+    if (viewController.tabBarItem.tag == 1) {
+        
+        BOOL isFirstTagged = [[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTag"];
+//        if (isFirstTagged) {
+//            
+//            UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
+//            SNTagSecondViewController *secondVC = [tag instantiateViewControllerWithIdentifier:@"Second_Tag_Controller"];
+//            
+//            [tabBarController.selectedViewController presentViewController:secondVC animated:YES completion:nil];
+//            return NO;
+//    }
+    
+    }
+    
+    return YES;
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    
+    if (item.tag == 1) {
+        
+        BOOL isFirstTagged = [[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTag"];
+        if (isFirstTagged) {
+            
+            UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
+            SNTagSecondViewController *secondVC = [tag instantiateViewControllerWithIdentifier:@"Second_Tag_Controller"];
+            
+            
+            
+        }
+
+    }
+}
 
 @end
+
+
+
+
+
+
+
+
+

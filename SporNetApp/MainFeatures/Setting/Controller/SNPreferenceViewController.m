@@ -7,6 +7,7 @@
 //
 
 #import "SNPreferenceViewController.h"
+
 typedef NS_ENUM(NSInteger, PreferenceRow) {
     PreferenceRowGender= 0,
     PreferenceRowRadius,
@@ -26,7 +27,6 @@ typedef NS_ENUM(NSInteger, PreferenceSwitch) {
 @property (strong, nonatomic) IBOutlet UITableViewCell *genderCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *radiusCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *schoolCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *graduationCell;
 
 @property (weak, nonatomic) IBOutlet UILabel *mileLabel;
 @property (weak, nonatomic) IBOutlet UISlider *mileSlider;
@@ -40,12 +40,10 @@ typedef NS_ENUM(NSInteger, PreferenceSwitch) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     //set cell array
-    self.cellArray = @[self.genderCell, self.radiusCell, self.schoolCell, self.graduationCell];
+    self.cellArray = @[self.genderCell, self.radiusCell, self.schoolCell];
 }
 #pragma mark - table view delegate & datasource
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.cellArray.count;
 }
@@ -75,6 +73,8 @@ typedef NS_ENUM(NSInteger, PreferenceSwitch) {
 
 - (IBAction)mileSliderValueDidChange:(UISlider *)sender {
     _mileLabel.text = [NSString stringWithFormat:@"%.0f", sender.value];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"USER_MILE_CHANGED" object:self.mileLabel.text];
+    
 }
 
 

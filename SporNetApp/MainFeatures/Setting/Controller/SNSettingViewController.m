@@ -12,7 +12,10 @@
 #import "AVUser.h"
 #import "AVFile.h"
 #import "ProgressHUD.h"
+#import <MessageUI/MessageUI.h>
+
 typedef NS_ENUM(NSInteger, SettingRow) {
+    
     SettingRowSearchPreference= 0,
     SettingRowChangePassword,
     SettingRowContactUs,
@@ -20,7 +23,8 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     SettingRowNumber
 };
 
-@interface SNSettingViewController ()
+@interface SNSettingViewController ()<MFMailComposeViewControllerDelegate>
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *sportColorView;
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
@@ -48,12 +52,11 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     [self.userImageView addGestureRecognizer:tap];
 }
 #pragma mark- table view delegate & datasource
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return SettingRowNumber;
 }
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"simpleTableIdentifier"];
@@ -68,23 +71,66 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 54;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case SettingRowSearchPreference:{
-//            SNPreferenceViewController *preferenceVC = [[SNPreferenceViewController alloc] init];
-//            [self.navigationController pushViewController:preferenceVC animated:YES];
-                [self performSegueWithIdentifier:@"toPreferenceSegue" sender:nil];
+
+            [self performSegueWithIdentifier:@"toPreferenceSegue" sender:nil];
             
         }
             break;
-        case SettingRowChangePassword:
-            NSLog(@"%@", @"Go to change password!");
+        case SettingRowChangePassword:{
+            
+            UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"Please Reset Your Password" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.placeholder = @"Old Password";
+                textField.secureTextEntry = YES;
+            }];
+            [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.placeholder = @"Password";
+                textField.secureTextEntry = YES;
+            }];
+            [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.placeholder = @"Confirm Password";
+                textField.secureTextEntry = YES;
+            }];
+            //按钮按下时，让程序读取文本框中的值
+            UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UITextField * oldPassword = alertController.textFields.firstObject;
+                UITextField * firstPassword = alertController.textFields[1];
+                UITextField * confirmPassword = alertController.textFields.lastObject;
+                if (firstPassword.text == confirmPassword.text) {
+                    [[AVUser currentUser]updatePassword:oldPassword.text newPassword:firstPassword.text block:^(id object, NSError *error) {
+                        
+                        if (error) {
+                            
+                            [ProgressHUD showError:@"Your Password Doesn't Match Our Record"];
+                        }else {
+                            [ProgressHUD showSuccess:@"Update Successful"];
+                        }
+                    }];
+                  
+                }else {
+                    
+                    [ProgressHUD showError:@"Your Passwords Doesn't Match"];
+                }
+     
+            }];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alertController addAction:okAction];
+            [alertController addAction:cancelAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
             break;
         case SettingRowContactUs:
-            NSLog(@"%@", @"Contact us");
+            if ([MFMailComposeViewController canSendMail]) {
+                [self sendEmailAction]; // 调用发送邮件的代码
+            }
+            
             break;
         case SettingRowRateUs:
             NSLog(@"%@", @"Rate us");
@@ -92,6 +138,34 @@ typedef NS_ENUM(NSInteger, SettingRow) {
         default:
             break;
     }
+}
+
+#pragma mark - Private Methods 
+- (void)sendEmailAction {
+    
+    MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
+    // 设置邮件代理
+    [mailCompose setMailComposeDelegate:self];
+    
+    // 设置邮件主题
+    [mailCompose setSubject:@"我是邮件主题"];
+    
+    // 设置收件人
+    [mailCompose setToRecipients:@[@"info@spornetapp.com"]];
+    // 设置抄送人
+    [mailCompose setCcRecipients:@[@"邮箱号码"]];
+    // 设置密抄送
+    [mailCompose setBccRecipients:@[@"邮箱号码"]];
+    
+    /**
+     *  设置邮件的正文内容
+     */
+    NSString *emailContent = @"我是邮件内容";
+    // 是否为HTML格式
+    [mailCompose setMessageBody:emailContent isHTML:NO];
+    
+    [self presentViewController:mailCompose animated:YES completion:nil];
+
 }
 
 // blur the top background image
@@ -105,8 +179,8 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     // blur image
     CIImage *result = [filter valueForKey:kCIOutputImageKey];
     self.userBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    CGImageRef cgImage = [context createCGImage:result fromRect:CGRectMake(0, 100, 50, 100)];
-    CGImageRef cgImage = [context createCGImage:result fromRect:CGRectMake(75, 375, SCREEN_WIDTH+150, self.userBlurImageView.frame.size.height + 150)];
+
+    CGImageRef cgImage = [context createCGImage:result fromRect:CGRectMake(75, 375, SCREEN_WIDTH+150, self.userBlurImageView.frame.size.height + 80)];
     UIImage *blurImage = [UIImage imageWithCGImage:cgImage];
     CGImageRelease(cgImage);
     self.userBlurImageView.image = blurImage;
@@ -115,9 +189,35 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 
 //load setting profile
 -(void)loadProfileView {
-    if([[AVUser currentUser]objectForKey:@"icon"]) self.userImageView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
+    
+// 1. 从本地获取照片
+    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        // Set User Picture
+        NSDictionary *userBasicInfo = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
+        NSArray *imageDataArr = [userBasicInfo objectForKey:@"photoes"];
+        NSData *profilePic = [imageDataArr firstObject];
+        self.userImageView.image = [UIImage imageWithData:profilePic];
+        // Set User Sport Time Color
+        NSInteger userSportColor = [[userBasicInfo objectForKey:@"sportTimeSlot"]integerValue];
+        self.sportColorView.backgroundColor = SPORTSLOT_COLOR_ARRAY[userSportColor];
+        // Set User Sport
+        NSInteger userSport = [[userBasicInfo objectForKey:@"bestSport"]integerValue];
+        self.bestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[userSport]];
+        
+    }else {
+        //2. 本地没有照片，从网上获取
+        
+        if([[AVUser currentUser]objectForKey:@"icon"])
+        {
+            self.userImageView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
+            self.sportColorView.backgroundColor = SPORTSLOT_COLOR_ARRAY[[[[AVUser currentUser]objectForKey:@"sportTimeSlot"]integerValue]];
+            self.bestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[[AVUser currentUser]objectForKey:@"bestSport"]integerValue]]];
+        }
+    }
     [self setBlurTopImage:self.userImageView.image];
-    self.sportColorView.backgroundColor = SPORTSLOT_COLOR_ARRAY[[[[AVUser currentUser]objectForKey:@"sportTimeSlot"]integerValue]];
+    
+    
 }
 //setter for text array
 -(NSArray*)settingTextArray {
@@ -129,6 +229,8 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 //go to user profile page when image tapped
 -(void)userImageTapped {
     SNUserProfileViewController *profileVC = [[SNUserProfileViewController alloc] init];
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"editUserProfile"];
+    [[NSUserDefaults standardUserDefaults] synchronize]; 
     [self.navigationController pushViewController:profileVC animated:YES];
 }
 
@@ -137,4 +239,42 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     UIViewController *loginVC = [login instantiateInitialViewController];
     [self presentViewController:loginVC animated:YES completion:nil];
 }
+
+
+#pragma mark - MFMailControlDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled: // 用户取消编辑
+            NSLog(@"Mail send canceled...");
+            break;
+        case MFMailComposeResultSaved: // 用户保存邮件
+            NSLog(@"Mail saved...");
+            break;
+        case MFMailComposeResultSent: // 用户点击发送
+            NSLog(@"Mail sent...");
+            break;
+        case MFMailComposeResultFailed: // 用户尝试保存或发送邮件失败
+            NSLog(@"Mail send errored: %@...", [error localizedDescription]);
+            break;
+    }
+    
+    // 关闭邮件发送视图
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
+
+
+
+
+
+
+
+
+
+

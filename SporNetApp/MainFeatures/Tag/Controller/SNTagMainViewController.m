@@ -85,11 +85,11 @@
     [self initialSetUp];
     
     
-    [[NSUserDefaults standardUserDefaults]setValue:@NO forKey:@"FirstTag"];
+    [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"FirstTag"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     
-    [[NSUserDefaults standardUserDefaults]setValue:@NO forKey:@"UpdateTag"];
+    [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"UpdateTag"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 
 }
@@ -99,13 +99,12 @@
     
 
     BOOL firstTag = [[[NSUserDefaults standardUserDefaults]valueForKey:@"FirstTag"]boolValue];
-    if (!firstTag) {
-        NSLog(@"first time check in");
-    } else {
-        NSLog(@"update");
+    if (firstTag) {
+        
         self.relocatePanel.frame = self.checkinPanel.frame;
         [self.view addSubview:self.relocatePanel];
         [self.view bringSubviewToFront:self.relocatePanel];
+     
     }
 
 }
@@ -174,7 +173,7 @@
     [ProgressHUD show:@"Checking in now. Please wait..."];
     [self checkInAction];
 
-    [[NSUserDefaults standardUserDefaults]setValue:@YES forKey:@"FirstTag"];
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"FirstTag"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 
 }
@@ -183,10 +182,10 @@
  *
  */
 - (IBAction)updateButtonClicked:(UIButton *)sender {
-    [ProgressHUD show:@"Updating in now. Please wait..."];
+    [ProgressHUD show:@"Updating now. Please wait..."];
     [self checkInAction];
     
-    [[NSUserDefaults standardUserDefaults]setValue:@YES forKey:@"UpdateTag"];
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"UpdateTag"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 
 }

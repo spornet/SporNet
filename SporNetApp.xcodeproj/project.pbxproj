@@ -72,6 +72,7 @@
 		B86E8B441D7483D6009EC0D9 /* TagStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B3D1D7483D6009EC0D9 /* TagStoryboard.storyboard */; };
 		B86E8B511D884554009EC0D9 /* SNLaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B501D884554009EC0D9 /* SNLaunchPageViewController.m */; };
 		B86E8B531D89A020009EC0D9 /* SchoolGymList.plist in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B521D89A020009EC0D9 /* SchoolGymList.plist */; };
+		B8C2FAF91D9EB104007D73A5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2FAF81D9EB104007D73A5 /* MessageUI.framework */; };
 		B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */; };
 		B8CFCCE41D21ADEA0006495E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCE11D21ADEA0006495E /* main.m */; };
 		B8CFCCE61D21AE540006495E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCE51D21AE540006495E /* Info.plist */; };
@@ -204,6 +205,7 @@
 		B86E8B4F1D884554009EC0D9 /* SNLaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLaunchPageViewController.h; sourceTree = "<group>"; };
 		B86E8B501D884554009EC0D9 /* SNLaunchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLaunchPageViewController.m; sourceTree = "<group>"; };
 		B86E8B521D89A020009EC0D9 /* SchoolGymList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SchoolGymList.plist; sourceTree = "<group>"; };
+		B8C2FAF81D9EB104007D73A5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B8CFCCDE1D21ADEA0006495E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B8CFCCE11D21ADEA0006495E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8C2FAF91D9EB104007D73A5 /* MessageUI.framework in Frameworks */,
 				1A95BC2E1D6F46570024B0E4 /* CoreLocation.framework in Frameworks */,
 				33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */,
 			);
@@ -245,6 +248,7 @@
 		20D4F1F3ADD21C753495316D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B8C2FAF81D9EB104007D73A5 /* MessageUI.framework */,
 				1A95BC2D1D6F46570024B0E4 /* CoreLocation.framework */,
 				9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */,
 			);
@@ -702,7 +706,7 @@
 				TargetAttributes = {
 					B82FED191D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Z57DAJWH52;
+						DevelopmentTeam = 94BKEVH93P;
 					};
 					B82FED321D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;

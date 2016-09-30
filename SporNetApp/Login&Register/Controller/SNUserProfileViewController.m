@@ -212,6 +212,7 @@
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
+
     //Add tap gestures to 5 sport images
     for(int i = 1; i <= 5; i++) {
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
@@ -228,7 +229,13 @@
         
         [self loadUserInfoFromLocal];
     }
-
+    
+    bool editProfile = [[NSUserDefaults standardUserDefaults]boolForKey:@"editUserProfile"];
+    
+    if (editProfile) {
+        
+        
+    }
     
 }
 
@@ -331,17 +338,39 @@
  */
 - (IBAction)doneClicked:(UIButton *)sender {
     
-    if ([self checkAllUserInputs]) {
+    bool editProfile = [[NSUserDefaults standardUserDefaults]boolForKey:@"editUserProfile"];
+    
+    if (editProfile) {
         
-        [self setIcon];
-        [self saveOnLocal];
-        SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
-        [self presentViewController:tabVC animated:YES completion:nil];
-        [LocalDataManager updateProfileInfoOnCloudInBackground];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"Are you sure to edit your profile?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self setIcon];
+            [self saveOnLocal];
+            [LocalDataManager updateProfileInfoOnCloudInBackground];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }];
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:KUSER_FIRST_REGISTER];
-        [[NSUserDefaults standardUserDefaults]synchronize];
+        UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:nil];
+        [alertVC addAction:yesAction];
+        [alertVC addAction:noAction];
+        [self presentViewController:alertVC animated:yesAction completion:nil];
+        
+    }else {
+        
+        if ([self checkAllUserInputs]) {
+            
+            [self setIcon];
+            [self saveOnLocal];
+            SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
+            [self presentViewController:tabVC animated:YES completion:nil];
+            [LocalDataManager updateProfileInfoOnCloudInBackground];
+            
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:KUSER_FIRST_REGISTER];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+        }
     }
+    
     
     
 }
@@ -552,18 +581,25 @@
     UIButton *button = (UIButton*)[self.picCell viewWithTag:1];
     [[[AVUser currentUser]objectForKey:@"icon"]deleteInBackground];
     [[AVUser currentUser] setObject:[AVFile fileWithData:UIImagePNGRepresentation([self imageWithImage:button.currentBackgroundImage scaledToSize:CGSizeMake(100, 100)])] forKey:@"icon"];
-    [[AVUser currentUser]saveInBackground];
-    [_user setObject:[[AVUser currentUser] objectForKey:@"icon"] forKey:@"icon"];
-    [_user saveInBackground];
+    [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+       
+        if (succeeded) {
+            
+            [self.user setObject:[[AVUser currentUser] objectForKey:@"icon"] forKey:@"icon"];
+            [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                
+            }];
+        }
+        
+    }];
+
 }
 
 /**
  *  Save all User Basic Info to Local SandBox
  */
 -(void)saveOnLocal {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"basicInfo.plist"];
+    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
     
     NSMutableArray *imageDataArr = [[NSMutableArray alloc]init];
     for(int i = 1; i <= 6; i++) {
@@ -577,8 +613,6 @@
     if(plistData) {
         [plistData writeToFile:plistPath atomically:YES];
         NSLog(@"plist writte successfully");
-    } else {
-        NSLog(@"plist failed");
     }
 }
 
@@ -587,9 +621,7 @@
  */
 -(void)loadUserInfoFromLocal {
 #warning 可以优化代码
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"basicInfo.plist"];
+     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
         plistPath = [[NSBundle mainBundle] pathForResource:@"basicInfo" ofType:@"plist"];
     }
@@ -611,7 +643,7 @@
         _placeHolder.hidden = NO;
     }
     _placeHolder.hidden = YES;
-    NSMutableArray *imageDataArr = [dict objectForKey:@"photoes"];
+    NSArray *imageDataArr = [dict objectForKey:@"photoes"];
     int i = 1;
     for (NSData *data in imageDataArr) {
         [((UIButton*)[self.picCell viewWithTag:i]) setBackgroundImage:[UIImage imageWithData:data] forState:normal];

@@ -25,7 +25,7 @@
         <!--Tag Main View Controller-->
         <scene sceneID="jlS-vw-SF8">
             <objects>
-                <viewController id="2iZ-yV-hNm" customClass="SNTagMainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main_Tag_Controller" id="2iZ-yV-hNm" customClass="SNTagMainViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="N12-ML-Oji"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -39,7 +39,7 @@
         <!--Tag Second View Controller-->
         <scene sceneID="vC7-xi-H2e">
             <objects>
-                <viewController id="bh1-b8-oIl" customClass="SNTagSecondViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Second_Tag_Controller" id="bh1-b8-oIl" customClass="SNTagSecondViewController" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="270-9R-1Va" userLabel="First Responder" sceneMemberID="firstResponder"/>

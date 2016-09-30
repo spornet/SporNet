@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 typedef NS_ENUM(NSInteger, TodaySport) {
     TodaySportJogging = 1,
     TodaySportMuscle,
@@ -14,7 +15,9 @@ typedef NS_ENUM(NSInteger, TodaySport) {
     TodaySportBasketball,
     TodaySportYoga
 };
+
 @interface SNTagSecondViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
-@property NSString *gymName;
-@property TodaySport todaySport;
+
+@property (nonatomic, copy)   NSString *gymName;
+@property (nonatomic, assign) TodaySport todaySport;
 @end

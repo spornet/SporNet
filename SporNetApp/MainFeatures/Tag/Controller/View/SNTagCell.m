@@ -21,17 +21,13 @@ NSArray *todaySportImageArray;
     todaySportImageArray = @[@"", @"joggingSelected", @"muscleSelected", @"soccerSelected", @"basketballSelected", @"yogaSelected"];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 -(void)configureCellWithCheckinInfo:(AVObject *)checkinObject {
-//    NSString *userID = [checkinObject objectForKey:@"userID"];
-//    AVQuery *q = [AVQuery queryWithClassName:@"SNUser"];
-//    [q whereKey:@"userID" equalTo:userID];
-//    AVObject *basicUser = [q findObjects][0];
-    if([checkinObject objectForKey:@"icon"]) self.userImageView.image =  [UIImage imageWithData:[(AVFile*)[checkinObject objectForKey:@"icon"]getData]];
+
+    if([checkinObject objectForKey:@"icon"]){
+        
+        self.userImageView.image =  [UIImage imageWithData:[(AVFile*)[checkinObject objectForKey:@"icon"]getData]];
+    }
+    
     
     self.boxView.backgroundColor = SPORTSLOT_COLOR_ARRAY[[[checkinObject objectForKey:@"sportTimeSlot"]integerValue]];
     

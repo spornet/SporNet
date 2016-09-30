@@ -49,9 +49,7 @@ static LocalDataManager *center = nil;
     NSArray *fetchObjects = [query findObjects];
     if(fetchObjects.count == 0) return;
     SNUser *basicInfo = fetchObjects[0];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"basicInfo.plist"];
+    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
     NSLog(@"PlistPath %@", plistPath);
     NSMutableArray *imageDataArr = [[NSMutableArray alloc]init];
     NSMutableArray *arr = [basicInfo objectForKey:@"PicUrls"];
@@ -125,15 +123,7 @@ static LocalDataManager *center = nil;
         }];
     }
     NSLog(@"开始存储");
-//    //save
-//    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (succeeded) {
-//            NSLog(@"存储成功哈哈哈");
-//        } else {
-//            NSLog(@"存储失败");
-//            NSLog(@"失败原因%@", error);
-//        }
-//    }];
+
     
 }
 -(NSMutableArray*)fetchCurrentAllUserInfo {

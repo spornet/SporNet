@@ -19,25 +19,40 @@
 #import "CheckInManager.h"
 #import "SNSearchNearbyProfileViewController.h"
 @interface SNTagSecondViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property NSMutableArray *allCheckIns;
+
+{
+    DXPopover *popover;
+}
+
+@property (weak, nonatomic)  IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *allCheckIns;
 @property (weak, nonatomic) IBOutlet UILabel *gymNameLabel;
 @property (strong, nonatomic) IBOutlet UIView *popPanel;
 @property (weak, nonatomic) IBOutlet UIButton *filterButton;
 @property (weak, nonatomic) IBOutlet UIButton *updateBtn;
-@property(strong) NSMutableArray *currentCheckins;
-@property NSMutableArray *currentUserBasicInfos;
+@property (nonatomic, strong) NSMutableArray *currentCheckins;
+@property (nonatomic, strong) NSMutableArray *currentUserBasicInfos;
+
 @end
 
 
 @implementation SNTagSecondViewController
-DXPopover *popover;
-//NSMutableArray *currentCheckins;
+
+-(NSMutableArray *)currentUserBasicInfos {
+    
+    if (_currentUserBasicInfos == nil) {
+        
+        self.currentUserBasicInfos = [[NSMutableArray alloc]init];
+        
+    }
+    
+    return _currentUserBasicInfos;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.gymNameLabel.text = self.gymName;
     [_tableView registerNib:[UINib nibWithNibName:@"SNTagCell" bundle:nil] forCellReuseIdentifier:@"SNTagCell"];
-    self.currentUserBasicInfos = [[NSMutableArray alloc]init];
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refresh];
     }];
@@ -46,21 +61,25 @@ DXPopover *popover;
 -(void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
     
-    BOOL updateTag = [[[NSUserDefaults standardUserDefaults]valueForKey:@"UpdateTag"]boolValue];
-    if (!updateTag) {
-        NSLog(@"显示更新按钮");
-    } else {
-        NSLog(@"隐藏更新按钮");
+    BOOL updateTag = [[NSUserDefaults standardUserDefaults]boolForKey:@"UpdateTag"];
+    if (updateTag) {
+        
         self.updateBtn.enabled = NO;
+        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"UpdateTag"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"FirstTag"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
     }
+    
+    
+    
 
 }
 -(void)refresh {
-    self.allCheckIns = [[CheckInManager defaultManager]refreshAndFetchAllCheckinsWithGymName:_gymName];
+    self.allCheckIns = [[CheckInManager defaultManager]refreshAndFetchAllCheckinsWithGymName:self.gymNameLabel.text];
     self.currentCheckins = self.allCheckIns;
     [self fetchCurrentUserBasicInfoInBackground];
-//    NSArray *unionOfObjects = [self.allCheckIns valueForKeyPath:@"@unionOfObjects.userID"];
-//    for(NSString *str in unionOfObjects) NSLog(str);
     [_tableView reloadData];
     [_tableView.mj_header endRefreshing];
 }
@@ -72,14 +91,22 @@ DXPopover *popover;
             AVQuery *query = [SNUser query];
             [query whereKey:@"userID" equalTo:[checkin objectForKey:@"userID"]];
             
-            [self.currentUserBasicInfos addObject:[query findObjects][0]];
+            NSArray *checkIns = [query findObjects];
+            
+            if (checkIns.count) {
+                
+                [self.currentUserBasicInfos addObject:[checkIns lastObject]];
+                
+            }else {
+                
+                return;
+            }
+            
         }
     });
 }
 #pragma mark - table view delegate & datasource
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.currentCheckins.count;
 }

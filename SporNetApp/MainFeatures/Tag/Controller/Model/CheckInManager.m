@@ -30,10 +30,7 @@ static CheckInManager *center = nil;
 }
 
 -(instancetype)init {
-    //    if(_allPrayers == nil) {
-    //        _allPrayers = [[NSMutableArray alloc]init];
-    //        _prayerDic = [[NSMutableDictionary alloc]init];
-    //    }
+
     NSString *str = (NSString *)center;
     if([str isKindOfClass:[NSString class]] & [str isEqualToString:@"CheckInManager"]) {
         self = [super init];
