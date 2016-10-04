@@ -71,7 +71,6 @@
 		B86E8B431D7483D6009EC0D9 /* SNTagSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B3C1D7483D6009EC0D9 /* SNTagSecondViewController.xib */; };
 		B86E8B441D7483D6009EC0D9 /* TagStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B3D1D7483D6009EC0D9 /* TagStoryboard.storyboard */; };
 		B86E8B511D884554009EC0D9 /* SNLaunchPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B86E8B501D884554009EC0D9 /* SNLaunchPageViewController.m */; };
-		B86E8B531D89A020009EC0D9 /* SchoolGymList.plist in Resources */ = {isa = PBXBuildFile; fileRef = B86E8B521D89A020009EC0D9 /* SchoolGymList.plist */; };
 		B8C2FAF91D9EB104007D73A5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2FAF81D9EB104007D73A5 /* MessageUI.framework */; };
 		B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */; };
 		B8CFCCE41D21ADEA0006495E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCE11D21ADEA0006495E /* main.m */; };
@@ -204,7 +203,6 @@
 		B86E8B3D1D7483D6009EC0D9 /* TagStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagStoryboard.storyboard; sourceTree = "<group>"; };
 		B86E8B4F1D884554009EC0D9 /* SNLaunchPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLaunchPageViewController.h; sourceTree = "<group>"; };
 		B86E8B501D884554009EC0D9 /* SNLaunchPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLaunchPageViewController.m; sourceTree = "<group>"; };
-		B86E8B521D89A020009EC0D9 /* SchoolGymList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SchoolGymList.plist; sourceTree = "<group>"; };
 		B8C2FAF81D9EB104007D73A5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B8CFCCDE1D21ADEA0006495E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8CFCCDF1D21ADEA0006495E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -460,7 +458,6 @@
 			isa = PBXGroup;
 			children = (
 				6D15F9321D529DBD00B8F011 /* emailToSchool.plist */,
-				B86E8B521D89A020009EC0D9 /* SchoolGymList.plist */,
 				B8CFCCE51D21AE540006495E /* Info.plist */,
 				B8CFCCE71D21AEC50006495E /* Login&Register */,
 				B8CFCCEB1D21C66F0006495E /* MainFeatures */,
@@ -706,7 +703,7 @@
 				TargetAttributes = {
 					B82FED191D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 94BKEVH93P;
+						DevelopmentTeam = 7292B4XVFZ;
 					};
 					B82FED321D21A57D00292ECC = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -746,7 +743,6 @@
 				B86E8B441D7483D6009EC0D9 /* TagStoryboard.storyboard in Resources */,
 				6DD9D5FB1D37E96000F622F6 /* SNUserProfileViewController.xib in Resources */,
 				6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */,
-				B86E8B531D89A020009EC0D9 /* SchoolGymList.plist in Resources */,
 				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
 				6DB762561D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib in Resources */,
 				B8CFCCE61D21AE540006495E /* Info.plist in Resources */,
@@ -1072,6 +1068,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Debug;
@@ -1091,6 +1088,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = PW.SporNetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
 			};
 			name = Release;

@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *userBlurImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *bestSportImageView;
+
 //Text array for setting view.
 @property(nonatomic) NSArray *settingTextArray;
 @end
@@ -266,6 +267,19 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     // 关闭邮件发送视图
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Terms of Service and Privacy Policy
+
+- (IBAction)showTermsOfService:(id)sender {
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://spornetapp.com/terms.html"]];
+}
+
+- (IBAction)showPrivacyPolicy:(id)sender {
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.iubenda.com/privacy-policy/7900019/full-legal"]];
+}
+
 
 @end
 

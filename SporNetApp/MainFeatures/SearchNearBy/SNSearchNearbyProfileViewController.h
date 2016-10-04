@@ -12,7 +12,7 @@
 - (void)didClickCrossButton;
 @end
 @interface SNSearchNearbyProfileViewController : UIViewController<UIScrollViewAccessibilityDelegate>
-@property(nonatomic, strong) SNUser *currentUserProfile;
-@property (nonatomic,assign) BOOL isSearchNearBy;
-@property id<SNSearchNearbyProfileVCDelegate> delegate;
+@property (nonatomic, strong) SNUser *currentUserProfile;
+@property (nonatomic, assign) BOOL isSearchNearBy;
+@property (nonatomic, assign) id<SNSearchNearbyProfileVCDelegate> delegate;
 @end

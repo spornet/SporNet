@@ -172,7 +172,7 @@ static MessageManager *center = nil;
 
 -(void)sendAddFrendRequst:(NSString*)clientId {
     [_client createConversationWithName:@"friend request" clientIds:@[selfId, clientId] attributes:nil options:AVIMConversationOptionUnique callback:^(AVIMConversation *conversation, NSError *error) {
-        AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"I'd love to add you as my friend"attributes:nil];
+        AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"Lets Play Sport Together"attributes:nil];
         [conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
             [ProgressHUD showSuccess:@"You've successfully sent friend request."];
         }];

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewBigPhotoViewController : UIViewController<UIScrollViewDelegate>
-@property NSMutableArray *pictures;
+@property (nonatomic, strong) NSArray *pictures;
+@property (nonatomic, assign) NSInteger currentImageIndex;
 @end

@@ -18,6 +18,7 @@ static LocalDataManager *center = nil;
 @interface LocalDataManager ()
 
 @property(nonatomic) NSMutableArray *allUserInfo;
+
 @end
 @implementation LocalDataManager
 +(instancetype)defaultManager {
@@ -127,8 +128,13 @@ static LocalDataManager *center = nil;
     
 }
 -(NSMutableArray*)fetchCurrentAllUserInfo {
-    if(_allUserInfo.count == 0) return [self refreshAndFetchAllUserInfo];
-    else return _allUserInfo;
+    if(self.allUserInfo.count == 0){
+        
+        return [self refreshAndFetchAllUserInfo];
+    }
+    else {
+        return self.allUserInfo;
+    }
 }
 -(NSMutableArray*)fetchUserInfoBySportType:(NSInteger)sportType {
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
@@ -143,9 +149,12 @@ static LocalDataManager *center = nil;
     AVQuery *query = [SNUser query];
     [query includeKey:@"icon"];
     [query orderByDescending:@"voteNumber"];
-    self.allUserInfo = [[query findObjects]mutableCopy];
+    
+    NSArray *users = [query findObjects];
+    self.allUserInfo = [users mutableCopy];
+
     [ProgressHUD dismiss];
-    return _allUserInfo;
+    return self.allUserInfo;
     
 }
 -(BOOL)filterError:(NSError *)error{

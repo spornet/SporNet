@@ -230,13 +230,6 @@
         [self loadUserInfoFromLocal];
     }
     
-    bool editProfile = [[NSUserDefaults standardUserDefaults]boolForKey:@"editUserProfile"];
-    
-    if (editProfile) {
-        
-        
-    }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

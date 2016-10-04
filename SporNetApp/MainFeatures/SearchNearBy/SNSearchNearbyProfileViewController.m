@@ -38,6 +38,7 @@
 
 @implementation SNSearchNearbyProfileViewController
 NSInteger width;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.scrollView setContentSize:CGSizeMake(0, self.scrollView.contentSize.height)];
@@ -54,6 +55,12 @@ NSInteger width;
         self.voteButton.userInteractionEnabled = NO;
     }
 }
+
+- (BOOL)prefersStatusBarHidden {
+    
+    return YES;
+}
+
 - (IBAction)moreInfoButtonClicked:(UIButton *)sender {
     self.scrollView.scrollEnabled = YES;
     self.moreInfoButton.hidden = YES;
@@ -70,7 +77,7 @@ NSInteger width;
     
     self.firstNameLabel.text = [self.currentUserProfile objectForKey:@"name"];
     NSString *aboutMe = [self.currentUserProfile objectForKey:@"aboutMe"];
-    self.aboutMeLabel.text = aboutMe?aboutMe:@"No self introduction yet.";
+    self.aboutMeLabel.text = aboutMe?aboutMe:@"No Self Introduction Yet.";
     self.schoolButton.text = [self.currentUserProfile objectForKey:@"school"];
     self.ageLabel.text = [NSString stringWithFormat:@"%ld", [TimeManager calculateAgeByBirthday:[self.currentUserProfile objectForKey:@"dateOfBirth"]]];
     self.sportTimeLabel.text = SPORTSLOT_ARRAY[[[self.currentUserProfile objectForKey:@"sportTimeSlot"] integerValue]];
@@ -78,37 +85,37 @@ NSInteger width;
     self.imageConstraintHeight.constant = SCREEN_HEIGHT*0.33;
     
     //set user profile images
-    NSMutableArray *imagesUrls = [self.currentUserProfile objectForKey:@"PicUrls"];
+    NSArray *imagesUrls = [self.currentUserProfile objectForKey:@"PicUrls"];
     if(imagesUrls.count == 0) return;
+    self.pageControl.numberOfPages = imagesUrls.count;
     self.contentImageScrollView.contentSize = CGSizeMake(self.x * imagesUrls.count, self.contentImageScrollView.frame.size.height*0.2);
-    CGFloat xPos = 0.0;
+    CGFloat xPos;
     self.currentImages = [[NSMutableArray alloc]init];
     for(NSString *url in imagesUrls) {
         NSLog(@"url is %@", url);
     
         UIImageView *imageView = [[UIImageView alloc]init];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholderImage"] options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholderImage"] options:0 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             [self.currentImages addObject:imageView.image];
-            [imageView setContentMode:UIViewContentModeScaleAspectFill];
+            [imageView setContentMode:UIViewContentModeScaleAspectFit];
             imageView.frame = CGRectMake(xPos, 0.0, self.x, SCREEN_HEIGHT*0.33);
             [self.contentImageScrollView addSubview:imageView];
         }];
         xPos += self.x;
     }
     
-    self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = imagesUrls.count;
     
 }
 - (IBAction)voteButtonClicked:(UIButton *)sender {
     
     NSInteger voteNumber = [[self.currentUserProfile objectForKey:@"voteNumber"]integerValue];
-    self.voteNumberLabel.text = [NSString stringWithFormat:@"%ld", (long)voteNumber];
+    self.voteNumberLabel.text = [NSString stringWithFormat:@"%ld", (long)voteNumber + 1];
     [self.currentUserProfile setObject:[NSNumber numberWithInteger:voteNumber + 1] forKey:@"voteNumber"];
     [self.currentUserProfile saveInBackground];
     
     [[AVUser currentUser]addObject:[self.currentUserProfile objectForKey:@"userID"] forKey:@"votedPeople"];
     [[AVUser currentUser]saveInBackground];
+    [self.voteButton setTitle:@"VOTED" forState:UIControlStateNormal];
     self.voteButton.backgroundColor = [UIColor lightGrayColor];
     self.voteButton.userInteractionEnabled = NO;
 }
@@ -118,7 +125,7 @@ NSInteger width;
 -(void)viewBigPicture {
     ViewBigPhotoViewController *vc = [[ViewBigPhotoViewController alloc]init];
     vc.pictures = self.currentImages;
-    NSLog(@"all pic count is %ld", vc.pictures.count);
+    vc.currentImageIndex = self.pageControl.currentPage;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -126,7 +133,10 @@ NSInteger width;
     [self.navigationController popViewControllerAnimated:YES];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
-    [self.delegate didClickCrossButton];
+    if ([self.delegate respondsToSelector:@selector(didClickCrossButton)]) {
+        
+        [self.delegate didClickCrossButton];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

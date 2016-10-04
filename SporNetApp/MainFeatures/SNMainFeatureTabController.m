@@ -113,14 +113,14 @@
     if (viewController.tabBarItem.tag == 1) {
         
         BOOL isFirstTagged = [[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTag"];
-//        if (isFirstTagged) {
-//            
-//            UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
-//            SNTagSecondViewController *secondVC = [tag instantiateViewControllerWithIdentifier:@"Second_Tag_Controller"];
-//            
-//            [tabBarController.selectedViewController presentViewController:secondVC animated:YES completion:nil];
-//            return NO;
-//    }
+        if (isFirstTagged) {
+            
+            UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
+            SNTagSecondViewController *secondVC = [tag instantiateViewControllerWithIdentifier:@"Second_Tag_Controller"];
+            
+            [tabBarController.selectedViewController presentViewController:secondVC animated:YES completion:nil];
+            return NO;
+    }
     
     }
     

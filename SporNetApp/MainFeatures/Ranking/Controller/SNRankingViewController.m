@@ -32,25 +32,32 @@
 
 @implementation SNRankingViewController
 
+- (NSMutableArray *)currentUsers {
+    
+    if (_currentUsers == nil) {
+        
+        _currentUsers = [NSMutableArray array];
+    }
+    
+    return _currentUsers;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //register ranking cell.
     [self.tableView registerNib:[UINib nibWithNibName:@"rankingCell" bundle:nil] forCellReuseIdentifier:@"rankingCell"];
 
     //initilize current users as nil and current sport as basketball.
-    self.currentUsers = [[NSMutableArray alloc]init];
+    
+    self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
    
+    self.currentSport = BestSportsJogging;
 }
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
 }
--(void)viewDidAppear:(BOOL)animated {
-    //fetch all users
-    self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
-    //set selected sport
-     self.currentSport = BestSportsBasketball;
-}
+
 #pragma mark: tableview delegate & datasource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.currentUsers.count;
@@ -62,7 +69,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SNSearchNearbyProfileViewController *vc = [[SNSearchNearbyProfileViewController alloc]init];
-    vc.currentUserProfile = _currentUsers[indexPath.row];
+    vc.currentUserProfile = self.currentUsers[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
