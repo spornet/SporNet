@@ -72,12 +72,16 @@ static LocalDataManager *center = nil;
     
 #warning 需要重构代码，做一个从沙盒读取的工具类
         //更新的时候，得把NSInteger值转为NSNumber
+
     AVQuery *query = [SNUser query];
         //选取当前登陆用户的所有记录
     [query whereKey:@"userID" equalTo:[AVUser currentUser].objectId];
     NSArray *fetchedPrayers = [query findObjects];
     SNUser *user;
-    if(fetchedPrayers.count) user = fetchedPrayers[0];
+    if(fetchedPrayers.count)
+    {
+       user = fetchedPrayers[0];
+    }
     else {
         user = [[SNUser alloc]init];
         user.voteNumber = 0;
@@ -87,44 +91,77 @@ static LocalDataManager *center = nil;
         [user setObject:[array firstObject] forKey:@"school"];
     }
     
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"basicInfo.plist"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
-        plistPath = [[NSBundle mainBundle] pathForResource:@"basicInfo" ofType:@"plist"];
+    bool editProfile = [[NSUserDefaults standardUserDefaults]boolForKey:@"editUserProfile"];
+    if (editProfile) {
+        
+        NSArray *imageUrls = [user objectForKey:@"PicUrls"];
+        if (imageUrls) {
+            
+            for (NSString *imageUrl in imageUrls) {
+                
+                AVFile *imageFile = [AVFile fileWithURL:imageUrl];
+                [imageFile deleteInBackground];
+            }
+            
+            [user removeObjectsInArray:imageUrls forKey:@"PicUrls"];
+        }
     }
-    NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     
-    [user setObject:[NSString stringWithFormat:@"%@ %@", dict[@"firstName"], dict[@"lastName"]] forKey:@"name"];
-    [user setObject:dict[@"gradYear"] forKey:@"gradYear"];
-    [user setObject:dict[@"gender"] forKey:@"gender"];
-    [user setObject:dict[@"bestSport"] forKey:@"bestSport"];
-    [user setObject:dict[@"sportTimeSlot"] forKey:@"sportTimeSlot"];
-    [user setObject:dict[@"dateOfBirth"] forKey:@"dateOfBirth"];
-    [user setObject:dict[@"aboutMe"] forKey:@"aboutMe"];
-    [user setObject:[AVUser currentUser].objectId forKey:@"userID"];
-    [user setObject:[[AVUser currentUser]objectForKey:@"icon"] forKey:@"icon"];
-    [[AVUser currentUser]setObject:[NSString stringWithFormat:@"%@ %@", dict[@"firstName"], dict[@"lastName"]] forKey:@"name"];
-    [[AVUser currentUser]setObject:dict[@"sportTimeSlot"] forKey:@"sportTimeSlot"];
-    [[AVUser currentUser]setObject:dict[@"bestSport"] forKey:@"bestSport"];
-    [[AVUser currentUser]setObject:user forKey:@"basicInfo"];
-    [[AVUser currentUser]saveInBackground];
-    //delete all previous images
-    NSMutableArray *arr = [user objectForKey:@"ProfilePhotoes"];
-    for(AVFile *file in arr) [file deleteInBackground];
-    [user removeObjectsInArray:arr forKey:@"ProfilePhotoes"];
-    //add all current images
-    for(NSData *data in dict[@"photoes"]) {
-        AVFile *file = [AVFile fileWithData:data];
-        [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [user addObject:file.url forKey:@"PicUrls"];
-            [user save];
-            NSLog(@"嘎嘎嘎");
-        }];
-    }
-    NSLog(@"开始存储");
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
+    NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
 
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        filePath = [[NSBundle mainBundle] pathForResource:@"basicInfo" ofType:@"plist"];
+    }else {
+        
+        
+        [user setObject:[NSString stringWithFormat:@"%@ %@", dict[@"firstName"], dict[@"lastName"]] forKey:@"name"];
+        [user setObject:dict[@"gradYear"] forKey:@"gradYear"];
+        [user setObject:dict[@"gender"] forKey:@"gender"];
+        [user setObject:dict[@"bestSport"] forKey:@"bestSport"];
+        [user setObject:dict[@"sportTimeSlot"] forKey:@"sportTimeSlot"];
+        [user setObject:dict[@"dateOfBirth"] forKey:@"dateOfBirth"];
+        [user setObject:dict[@"aboutMe"] forKey:@"aboutMe"];
+        [user setObject:[AVUser currentUser].objectId forKey:@"userID"];
+        [user setObject:[[AVUser currentUser]objectForKey:@"icon"] forKey:@"icon"];
+        for(NSData *data in dict[@"photoes"]) {
+            AVFile *file = [AVFile fileWithData:data];
+            [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    
+                    [user setObject:file.url forKey:@"PicUrls"];
+                    [user save];
+                }
+                
+//                [user addObject:arrayM forKey:@"PicUrls"];
+                
+            }];
+        }
+        
+        [[AVUser currentUser]setObject:[NSString stringWithFormat:@"%@ %@", dict[@"firstName"], dict[@"lastName"]] forKey:@"name"];
+        [[AVUser currentUser]setObject:dict[@"sportTimeSlot"] forKey:@"sportTimeSlot"];
+        [[AVUser currentUser]setObject:dict[@"bestSport"] forKey:@"bestSport"];
+        [[AVUser currentUser]setObject:user forKey:@"basicInfo"];
+        [[AVUser currentUser]saveInBackground];
+        [user save];
+        }
+    
+    
+    //delete all previous images
+//    NSArray *arr = [user objectForKey:@"PicUrls"];
+//    if (arr.count) {
+//        
+////        for(AVFile *file in arr) [file deleteInBackground];
+//        for (NSString *fileURL in arr) {
+//            AVFile *imageFile = [AVFile fileWithURL:fileURL];
+//            [imageFile deleteInBackground];
+//        }
+//        [user removeObjectsInArray:arr forKey:@"PicUrls"];
+//    }
+    //add all current images
+
+    NSLog(@"开始存储");
+    
     
 }
 -(NSMutableArray*)fetchCurrentAllUserInfo {

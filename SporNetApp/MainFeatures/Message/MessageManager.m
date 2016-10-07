@@ -71,16 +71,6 @@ static MessageManager *center = nil;
                 [self.allConversations addObject:c];
                 
             }];
-            
-            //NSLog([user objectForKey:@"name"]);
-//            [user fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-//                Conversation *c = [[Conversation alloc]init];
-//                NSLog(@"这个人名字是 %@", [user objectForKey:@"name"]);
-//                c.basicInfo = user;
-//                c.conversation = conversation;
-//                c.unreadMessageNumber = 0;
-//                [self.allConversations addObject:c];
-//            }];
         }
         [self.delegate didFinishRefreshing];
     }];

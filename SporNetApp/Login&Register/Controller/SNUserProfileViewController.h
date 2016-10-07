@@ -19,8 +19,21 @@ typedef NS_ENUM(NSInteger, UserProfileRow) {
     UserProfileRowDone,
     UserProfileRowNumber
 };
+@protocol SNUserProfileViewControllerDelegate <NSObject>
+
+@optional
+-(void)EditDoneDidClicked;
+
+@end
 
 @interface SNUserProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property(nonatomic, strong) AVObject *user;
+@property (nonatomic, strong) AVObject *user;
+@property (nonatomic, assign) id<SNUserProfileViewControllerDelegate> delegate;
+
 @end
+
+
+
+
+

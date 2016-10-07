@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     SettingRowNumber
 };
 
-@interface SNSettingViewController ()<MFMailComposeViewControllerDelegate>
+@interface SNSettingViewController ()<MFMailComposeViewControllerDelegate, SNUserProfileViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *sportColorView;
@@ -201,7 +201,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
         self.userImageView.image = [UIImage imageWithData:profilePic];
         // Set User Sport Time Color
         NSInteger userSportColor = [[userBasicInfo objectForKey:@"sportTimeSlot"]integerValue];
-        self.sportColorView.backgroundColor = SPORTSLOT_COLOR_ARRAY[userSportColor];
+        self.sportColorView.backgroundColor = SPORTSLOT_COLOR_ARRAY[userSportColor - 1];
         // Set User Sport
         NSInteger userSport = [[userBasicInfo objectForKey:@"bestSport"]integerValue];
         self.bestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[userSport]];
@@ -230,6 +230,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 //go to user profile page when image tapped
 -(void)userImageTapped {
     SNUserProfileViewController *profileVC = [[SNUserProfileViewController alloc] init];
+    profileVC.delegate = self;
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"editUserProfile"];
     [[NSUserDefaults standardUserDefaults] synchronize]; 
     [self.navigationController pushViewController:profileVC animated:YES];
@@ -241,6 +242,12 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     [self presentViewController:loginVC animated:YES completion:nil];
 }
 
+#pragma mark - SNUserProfileViewControllerDelegate
+
+- (void)EditDoneDidClicked {
+    
+    [self loadProfileView];
+}
 
 #pragma mark - MFMailControlDelegate
 

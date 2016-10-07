@@ -2,7 +2,7 @@
 //  SNUserProfileViewController.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 6/29/16.
+//  Created by Peng Wang on 6/29/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 #import "SNUser.h"
@@ -134,11 +134,12 @@
 /**
  *  ImagePicker
  */
-@property(nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
 /**
  *  Alert Controller
  */
-@property(nonatomic, strong) UIAlertController       *alert;
+@property (nonatomic, strong) UIAlertController       *alert;
+@property (nonatomic, assign) NSInteger               sportTimeColorIndex;
 
 @end
 
@@ -337,10 +338,17 @@
         
         UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"Are you sure to edit your profile?" message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [ProgressHUD show:@"Saving..."];
             [self setIcon];
             [self saveOnLocal];
             [LocalDataManager updateProfileInfoOnCloudInBackground];
             [self.navigationController popViewControllerAnimated:YES];
+            
+            if ([self.delegate respondsToSelector:@selector(EditDoneDidClicked)]) {
+                
+                [self.delegate EditDoneDidClicked];
+                [ProgressHUD dismiss];
+            }
             
         }];
         
@@ -579,9 +587,7 @@
         if (succeeded) {
             
             [self.user setObject:[[AVUser currentUser] objectForKey:@"icon"] forKey:@"icon"];
-            [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                
-            }];
+            [self.user save];
         }
         
     }];
@@ -601,7 +607,17 @@
         [imageDataArr addObject:UIImageJPEGRepresentation(button.currentBackgroundImage, 0.2)];
     }
 
-    NSDictionary *plistDict = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects: self.firstNameTextField.text, self.lastNameTextField.text, [NSNumber numberWithInteger:self.selectedGender], self.selectedBirthday, [NSNumber numberWithInteger:self.selectedGradYear], [NSNumber numberWithInteger:self.selectedBestSport], [NSNumber numberWithInteger:self.selectedSpotrTime],self.aboutmeTextView.text, imageDataArr, nil] forKeys:[NSArray arrayWithObjects: @"firstName", @"lastName",@"gender", @"dateOfBirth",@"gradYear",@"bestSport",@"sportTimeSlot",@"aboutMe",@"photoes", nil]];
+    NSDictionary *plistDict = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects:
+                                    self.firstNameTextField.text,
+                                    self.lastNameTextField.text,
+                                    [NSNumber numberWithInteger:self.selectedGender],
+                                    self.selectedBirthday,
+                                    [NSNumber numberWithInteger:self.selectedGradYear],
+                                    [NSNumber numberWithInteger:self.selectedBestSport],
+                                    [NSNumber numberWithInteger:self.selectedSpotrTime],
+                                    self.aboutmeTextView.text,
+                                    imageDataArr, nil]
+                                    forKeys:[NSArray arrayWithObjects: @"firstName", @"lastName",@"gender", @"dateOfBirth",@"gradYear",@"bestSport",@"sportTimeSlot",@"aboutMe",@"photoes", nil]];
     NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
     if(plistData) {
         [plistData writeToFile:plistPath atomically:YES];
@@ -626,7 +642,8 @@
     self.selectedBirthday = [dict objectForKey:@"dateOfBirth"];
     self.birthdayLabel.text = [TimeManager getDateString:self.selectedBirthday];
     self.selectedSpotrTime = [[dict objectForKey:@"sportTimeSlot"]integerValue];
-    self.sportTimeLabel.text = SPORTSLOT_ARRAY[self.selectedSpotrTime];
+    self.sportTimeLabel.text = SPORTSLOT_ARRAY[self.selectedSpotrTime -1];
+    self.sportTimeLabel.backgroundColor = SPORTSLOT_COLOR_ARRAY[self.selectedSpotrTime - 1];
     self.selectedBestSport = [[dict objectForKey:@"bestSport"]integerValue];
     self.selectedGradYear = (int)[[dict objectForKey:@"gradYear"]integerValue];
     self.gradLabel.text = [NSString stringWithFormat:@"%d", self.selectedGradYear];
@@ -679,6 +696,8 @@
         self.selectedGradYear = [self.gradLabel.text intValue];
     }else{
         self.sportTimeLabel.text = _sportTime[row];
+        self.sportTimeLabel.backgroundColor = SPORTSLOT_COLOR_ARRAY[row];
+        self.sportTimeColorIndex = row;
         self.selectedSpotrTime = (SportTimeSlot)row + 1;
     }
 }

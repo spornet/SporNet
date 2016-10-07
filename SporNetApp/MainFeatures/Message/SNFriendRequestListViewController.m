@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"View did load");
     self.navigationController.navigationBar.hidden = YES;
     [self.tableView registerNib:[UINib nibWithNibName:@"SNFriendRequestCell" bundle:nil] forCellReuseIdentifier:@"SNFriendRequestCell"];
 #warning 可以直接传值
@@ -64,7 +63,7 @@
 
 #pragma mark - UIClient Delegate
 -(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
-    if([message.text isEqualToString:@"I'd love to add you as my friend"]) {
+    if([message.text isEqualToString:@"Lets Play Sport Together"]) {
         NSLog(@"收到一条好友请求");
         AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:conversation.creator];
         [user fetch];
