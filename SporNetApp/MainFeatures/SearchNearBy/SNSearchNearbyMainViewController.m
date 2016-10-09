@@ -7,7 +7,6 @@
 //
 
 #import "SNSearchNearbyMainViewController.h"
-
 #import "WaterView.h"
 #import <pop/POP.h>
 #import "LocalDataManager.h"
@@ -98,55 +97,74 @@ NSInteger indexOfCurrentUser;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
+    [self locationManager];
+    self.dist = 200.0;
     [self setBackgroundGalaxy];
     [self addTopView];
     [self addCircleView];
     
     self.userR = 50;
-
-    self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
-    if(_allUsers.count == 0) {
-        [ProgressHUD showError:@"Bad connection. Please try later."];
-        return;
+    
+    //    AVQuery *query = [SNUser query];
+    //    [query whereKey:@"userID" equalTo:[AVUser currentUser].objectId];
+    //    NSArray *fetchObjects = [query findObjects];
+    //    if(fetchObjects.count == 0) return;
+    //    SNUser *currentUser = fetchObjects[0];
+    //    AVGeoPoint *lo = [currentUser objectForKey:@"GeoLocation"];
+    //    NSLog(@"地址是%@",lo);
+    
+    //初始化在appDelegate里面的首次定位位置
+    NSString *lo = [[NSUserDefaults standardUserDefaults]valueForKey:@"Lo"];
+    NSString *la = [[NSUserDefaults standardUserDefaults]valueForKey:@"La"];
+    AVGeoPoint *p =[AVGeoPoint geoPointWithLatitude:([la doubleValue]) longitude:[lo doubleValue]];
+    
+    if (p) {
+        self.allUsers = [[LocalDataManager defaultManager]fetchNearByUserInfo:p withinDist:self.dist];
+        if(_allUsers.count == 0) {
+            [ProgressHUD showError:@"Bad connection. Please try later."];
+            return;
+        }
+        
+        self.currentUsers = [NSMutableArray arrayWithArray:@[_allUsers[0], _allUsers[1],_allUsers[2], _allUsers[3], _allUsers[4]]];
+        [self createUser1Btn];
+        [self createUser2Btn];
+        [self createUser3Btn];
+        [self createUser4Btn];
+        [self createUser5Btn];
+        indexOfCurrentUser = 5;
+        [self refreshAnimation];
+        
+        
+    }else{
+        [ProgressHUD showError:@"No location."];
     }
     
-    self.currentUsers = [NSMutableArray arrayWithArray:@[_allUsers[0], _allUsers[1],_allUsers[2], _allUsers[3], _allUsers[4]]];
-    [self createUser1Btn];
-    [self createUser2Btn];
-    [self createUser3Btn];
-    [self createUser4Btn];
-    [self createUser5Btn];
-    indexOfCurrentUser = 5;
-    [self refreshAnimation];
-    
-
-    [self locationManager];
-
     
 }
 
+
 -(void)viewWillAppear:(BOOL)animated{
-
+    
+    [self.locationManager startUpdatingLocation];
+    
     [self tapCircleView];
-
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-
+    
     [self.blurView removeFromSuperview];
-    [self.locationManager startUpdatingLocation];
-
+    
 }
 
 
 -(void)createUser1Btn{
     [self randomUser1Coordinate];
     UIButton *user1 = [[UIButton alloc]initWithFrame:CGRectMake(self.x1, self.y1, self.userR, self.userR)];
-//    UserView *user1 = [[UserView alloc]initWithFrame:CGRectMake(100, 100, 60, 60)];
+    //    UserView *user1 = [[UserView alloc]initWithFrame:CGRectMake(100, 100, 60, 60)];
     //[user1 configureUserViewWithUserInfo:_currentUsers[0]];
     if([_currentUsers[0] objectForKey:@"icon"]) [user1 setImage:[UIImage imageWithData:[(AVFile*)[_currentUsers[0] objectForKey:@"icon"]getData]] forState:normal];
-        else [user1 setImage:[UIImage imageNamed:@"profile"] forState:normal];
+    else [user1 setImage:[UIImage imageNamed:@"profile"] forState:normal];
     [[user1 layer] setBorderWidth:2.0f];
     UIColor *color = SPORTSLOT_COLOR_ARRAY[[[_currentUsers[0] objectForKey:@"sportTimeSlot"]integerValue]];
     [user1.layer setBorderColor:color.CGColor];
@@ -183,11 +201,11 @@ NSInteger indexOfCurrentUser;
     animSport.springBounciness = 6;
     //震动的明显程度
     animSport.dynamicsMass = 10;
-
+    
     [self.bestSportImageView1.layer pop_addAnimation:animSport forKey:@"size"];
     [self.user1.layer pop_addAnimation:anim forKey:@"size"];
     
-//        NSLog(@"%f %f",self.x,self.y);
+    //        NSLog(@"%f %f",self.x,self.y);
     
 }
 
@@ -236,7 +254,7 @@ NSInteger indexOfCurrentUser;
     [self.bestSportImageView2.layer pop_addAnimation:animSport forKey:@"size"];
     [self.user2.layer pop_addAnimation:anim forKey:@"size"];
     
-//        NSLog(@"%f %f",self.x,self.y);
+    //        NSLog(@"%f %f",self.x,self.y);
     
 }
 
@@ -248,7 +266,7 @@ NSInteger indexOfCurrentUser;
     else [user3 setImage:[UIImage imageNamed:@"profile"] forState:normal];
     NSLog(@"current user name is %@", [self.currentUsers[2] objectForKey:@"name"]);
     [[user3 layer] setBorderWidth:2.0f];
-    UIColor *color = SPORTSLOT_COLOR_ARRAY[[[_currentUsers[2] objectForKey:@"sportTimeSlot"]integerValue] - 1];
+    UIColor *color = SPORTSLOT_COLOR_ARRAY[[[_currentUsers[2] objectForKey:@"sportTimeSlot"]integerValue]];
     [user3.layer setBorderColor:color.CGColor];
     user3.layer.masksToBounds = YES;
     user3.layer.cornerRadius = user3.frame.size.width / 2.0;
@@ -294,12 +312,12 @@ NSInteger indexOfCurrentUser;
     [self randomUser4Coordinate];
     UIButton *user4 = [[UIButton alloc]initWithFrame:CGRectMake(self.x4, self.y4, self.userR, self.userR)];
     //[user4 configureUserViewWithUserInfo:_currentUsers[3]];
-
+    
     if([_currentUsers[3] objectForKey:@"icon"]) [user4 setImage:[UIImage imageWithData:[(AVFile*)[_currentUsers[3] objectForKey:@"icon"]getData]] forState:normal];
     else [user4 setImage:[UIImage imageNamed:@"profile"] forState:normal];
     NSLog(@"current user name is %@", [self.currentUsers[3] objectForKey:@"name"]);
     [[user4 layer] setBorderWidth:2.0f];
-    UIColor *color = SPORTSLOT_COLOR_ARRAY[[[_currentUsers[3] objectForKey:@"sportTimeSlot"]integerValue] -1];
+    UIColor *color = SPORTSLOT_COLOR_ARRAY[[[_currentUsers[3] objectForKey:@"sportTimeSlot"]integerValue]];
     [user4.layer setBorderColor:color.CGColor];
     user4.layer.masksToBounds = YES;
     user4.layer.cornerRadius = user4.frame.size.width / 2.0;
@@ -445,7 +463,7 @@ NSInteger indexOfCurrentUser;
             self.user1.center=location;
             self.bestSportImageView1.center = CGPointMake(location.x + 25, location.y);
         } completion:nil];
-
+        
         self.dist1 = 0;
     }else{
         //移除的动画效果
@@ -466,20 +484,20 @@ NSInteger indexOfCurrentUser;
     
 }
 -(void)showUserInfo:(AVObject*)userInfo {
-
+    
     SNSearchNearbyProfileViewController *vc = [[SNSearchNearbyProfileViewController alloc]init];
     vc.delegate = self;
     vc.currentUserProfile = (SNUser*)userInfo;
     vc.isSearchNearBy = YES;
-        NSLog(@"A");
+    NSLog(@"A");
     [self addChildViewController:vc];
-        vc.view.frame = CGRectMake(20, 50, SCREEN_WIDTH-40, SCREEN_HEIGHT-100);
-        NSLog(@"B");
+    vc.view.frame = CGRectMake(20, 50, SCREEN_WIDTH-40, SCREEN_HEIGHT-100);
+    NSLog(@"B");
     
     [self.blurView addSubview:vc.view];
-        NSLog(@"C");
+    NSLog(@"C");
     
-        NSLog(@"D");
+    NSLog(@"D");
     NSLog(@"user name is %@", [userInfo objectForKey:@"name"]);
 }
 - (void) dragUser2Moving: (UIControl *) c withEvent:ev
@@ -506,7 +524,7 @@ NSInteger indexOfCurrentUser;
     float dist4 = [self distanceFromPointA:CGPointMake(self.x4+self.userR/2, self.y4+self.userR/2) toPointB:c.center];
     self.dist4 = dist4;
     self.bestSportImageView4.center = CGPointMake(c.center.x + 25, c.center.y);
-
+    
     //    NSLog(@"%f",self.dist);
 }
 
@@ -517,7 +535,7 @@ NSInteger indexOfCurrentUser;
     float dist5 = [self distanceFromPointA:CGPointMake(self.x5+self.userR/2, self.y5+self.userR/2) toPointB:c.center];
     self.dist5 = dist5;
     self.bestSportImageView5.center = CGPointMake(c.center.x + 25, c.center.y);
-
+    
     //    NSLog(@"%f",self.dist);
 }
 
@@ -756,7 +774,7 @@ NSInteger indexOfCurrentUser;
     [self.circleView addGestureRecognizer:tapGesturRecognizer];
     
     UIView *user1Area = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topBtnView.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-//        user1Area.backgroundColor = [UIColor redColor];
+    //        user1Area.backgroundColor = [UIColor redColor];
     [self.view addSubview:user1Area];
     self.user1Area = user1Area;
     UITapGestureRecognizer *tapGesturRecognizer1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
@@ -764,7 +782,7 @@ NSInteger indexOfCurrentUser;
     [self.user1Area addGestureRecognizer:tapGesturRecognizer1];
     
     UIView *user2Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/2, CGRectGetMaxY(self.topBtnView.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-//        user2Area.backgroundColor = [UIColor orangeColor];
+    //        user2Area.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:user2Area];
     self.user2Area = user2Area;
     UITapGestureRecognizer *tapGesturRecognizer2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
@@ -772,7 +790,7 @@ NSInteger indexOfCurrentUser;
     [self.user2Area addGestureRecognizer:tapGesturRecognizer2];
     
     UIView *user3Area = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.user1Area.frame), MAIN_SCREEN_WIDTH/2-37.5, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-//        user3Area.backgroundColor = [UIColor yellowColor];
+    //        user3Area.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:user3Area];
     self.user3Area = user3Area;
     UITapGestureRecognizer *tapGesturRecognizer3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
@@ -780,16 +798,16 @@ NSInteger indexOfCurrentUser;
     [self.user3Area addGestureRecognizer:tapGesturRecognizer3];
     
     UIView *user4Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/2+37.5, CGRectGetMaxY(self.user1Area.frame), MAIN_SCREEN_WIDTH/2-37.5, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-//        user4Area.backgroundColor = [UIColor greenColor];
+    //        user4Area.backgroundColor = [UIColor greenColor];
     [self.view addSubview:user4Area];
     self.user4Area = user4Area;
     UITapGestureRecognizer *tapGesturRecognizer4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     self.user4Area.userInteractionEnabled = YES;
     [self.user4Area addGestureRecognizer:tapGesturRecognizer4];
-
+    
     
     UIView *user5Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/4, CGRectGetMaxY(self.user3Area.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3-44)];
-//        user5Area.backgroundColor = [UIColor blueColor];
+    //        user5Area.backgroundColor = [UIColor blueColor];
     [self.view addSubview:user5Area];
     self.user5Area = user5Area;
     UITapGestureRecognizer *tapGesturRecognizer5 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
@@ -813,15 +831,15 @@ NSInteger indexOfCurrentUser;
             self.tabBarController.tabBar.center = CGPointMake(self.tabBarController.tabBar.center.x, y);
             self.isTabBarHide = NO;
         }];
-
+        
     } else {
         [UIView animateWithDuration:0.5 animations:^{
             self.tabBarController.tabBar.center = CGPointMake(self.tabBarController.tabBar.center.x, y);
             self.isTabBarHide = YES;
         }];
-
+        
     }
-
+    
 }
 
 
@@ -841,36 +859,36 @@ NSInteger indexOfCurrentUser;
     [self.topBtnView addSubview:radiusImageView];
     
     
-
+    
     /**
      *  黑洞效果
      */
-//    
-//    UIImageView *radiusBGImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -40, self.topBtnView.bounds.size.height/2 -40, 80, 80)];
-//    radiusBGImageView.image = [UIImage imageNamed:@"blackhole"];
-//    radiusBGImageView.layer.masksToBounds = YES;
-//    radiusBGImageView.layer.cornerRadius = radiusBGImageView.frame.size.width / 2.0;
-//    UIImageView *radiusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -30, self.topBtnView.bounds.size.height/2 -30, 60, 60)];
-//    radiusImageView.image = [UIImage imageNamed:@"blackhole2"];
-//    radiusImageView.layer.masksToBounds = YES;
-//    radiusImageView.layer.cornerRadius = radiusImageView.frame.size.width / 2.0;
-//    
-//    CGFloat angleBG = -M_1_PI;
-//    CGFloat angle = M_PI;
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:50];
-//    for (int i = 1; i<50; i++) {
-//        radiusImageView.transform = CGAffineTransformRotate(radiusImageView.transform, angle);
-//        radiusBGImageView.transform = CGAffineTransformRotate(radiusBGImageView.transform, angleBG);
-//    }
-//    [UIView commitAnimations];
-//    
-//    [self.topBtnView addSubview:radiusBGImageView];
-//    [self.topBtnView addSubview:radiusImageView];
+    //
+    //    UIImageView *radiusBGImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -40, self.topBtnView.bounds.size.height/2 -40, 80, 80)];
+    //    radiusBGImageView.image = [UIImage imageNamed:@"blackhole"];
+    //    radiusBGImageView.layer.masksToBounds = YES;
+    //    radiusBGImageView.layer.cornerRadius = radiusBGImageView.frame.size.width / 2.0;
+    //    UIImageView *radiusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -30, self.topBtnView.bounds.size.height/2 -30, 60, 60)];
+    //    radiusImageView.image = [UIImage imageNamed:@"blackhole2"];
+    //    radiusImageView.layer.masksToBounds = YES;
+    //    radiusImageView.layer.cornerRadius = radiusImageView.frame.size.width / 2.0;
+    //
+    //    CGFloat angleBG = -M_1_PI;
+    //    CGFloat angle = M_PI;
+    //    [UIView beginAnimations:nil context:nil];
+    //    [UIView setAnimationDuration:50];
+    //    for (int i = 1; i<50; i++) {
+    //        radiusImageView.transform = CGAffineTransformRotate(radiusImageView.transform, angle);
+    //        radiusBGImageView.transform = CGAffineTransformRotate(radiusBGImageView.transform, angleBG);
+    //    }
+    //    [UIView commitAnimations];
+    //
+    //    [self.topBtnView addSubview:radiusBGImageView];
+    //    [self.topBtnView addSubview:radiusImageView];
     
     
     
-
+    
     
     UILabel *topLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 - 75, self.topBtnView.bounds.size.height/2 + 30, 150, 20)];
     topLabel.text = @"我是距离";
@@ -929,6 +947,20 @@ NSInteger indexOfCurrentUser;
         [waterView removeFromSuperview];
     }];
     
+    
+    
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
+    anim.fromValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 20, 20)];
+    anim.springSpeed = 50.0;
+    anim.dynamicsFriction = 20.0;
+    //震动的次数～约等于springBounciness－10
+    anim.springBounciness = 6;
+    //震动的明显程度
+    anim.dynamicsMass = 10;
+    
+    [self.filterBtn.layer pop_addAnimation:anim forKey:@"size"];
+    
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -946,7 +978,7 @@ NSInteger indexOfCurrentUser;
 -(void)setBackgroundGalaxy{
     UIImageView *galaxyImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bgn"]];
     galaxyImageView.frame = CGRectMake(-50, -50, MAIN_SCREEN_WIDTH +100, MAIN_SCREEN_HEIGHT +100);
-//    galaxyImageView.contentMode = UIViewContentModeScaleAspectFill;
+    //    galaxyImageView.contentMode = UIViewContentModeScaleAspectFill;
     
     UIInterpolatingMotionEffect *xEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
     xEffect.minimumRelativeValue = [NSNumber numberWithFloat:50.0];
@@ -987,14 +1019,14 @@ NSInteger indexOfCurrentUser;
     effectView.alpha = 0.9f;
     [self.view addSubview:effectView];
     self.blurView = effectView;
-
+    
 }
 
 -(void)removeBlurView{
     
     [self endAnimation];
     [self performSelector:@selector(removeBlurViewSelector) withObject:nil afterDelay:0.5f];
-
+    
 }
 
 -(void)removeBlurViewSelector{
@@ -1376,7 +1408,7 @@ NSInteger indexOfCurrentUser;
         _locationManager.distanceFilter = 1.0f;//设备移动后获得位置信息的最小距离
         _locationManager.delegate = self;
         [_locationManager requestWhenInUseAuthorization];//弹出用户授权对话框，使用程序期间授权
-//        [_locationManager requestAlwaysAuthorization];//始终授权
+        //        [_locationManager requestAlwaysAuthorization];//始终授权
     }
     return _locationManager;
 }
@@ -1387,26 +1419,66 @@ NSInteger indexOfCurrentUser;
     self.longitude = self.currlocation.coordinate.longitude;//获取经度
     self.latitude = self.currlocation.coordinate.latitude;//获取纬度
     NSLog(@"%f %f",self.longitude, self.latitude);
-    self.currentUserLocation = [AVGeoPoint geoPointWithLatitude:self.latitude longitude:self.longitude];
-    [[[AVUser currentUser] objectForKey:@"basicInfo"] setObject:self.currentUserLocation forKey:@"GeoLocation"];
-//    [[AVUser currentUser] setObject:self.currentUserLocation forKey:@"GeoLocation"];
-    [[AVUser currentUser]saveInBackground];
+    AVGeoPoint *currentUserLocation = [AVGeoPoint geoPointWithLatitude:self.latitude longitude:self.longitude];
+    self.currentUserLocation = currentUserLocation;
+    
+    AVQuery *query = [SNUser query];
+    [query whereKey:@"userID" equalTo:[AVUser currentUser].objectId];
+    NSArray *fetchObjects = [query findObjects];
+    if(fetchObjects.count == 0) return;
+    SNUser *basicInfo = fetchObjects[0];
+    [basicInfo setObject:self.currentUserLocation forKey:@"GeoLocation"];
+    [basicInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"error %@", error.description);
+    }];
     [self.locationManager stopUpdatingLocation];
+    
+    
+    
+    
 }
+
 
 //定位失败调用
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"%@ 调用失败",error);
+    //    NSLog(@"%ld 调用失败",(long)error.code);
+    
+    [manager stopUpdatingLocation];
+    switch((long)error.code) {
+        case 1:{
+            //定位没打开
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Access to Location Services denied by user" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }];
+            [alertController addAction:action];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        }
+            break;
+        case kCLErrorLocationUnknown:
+            //@"Location data unavailable";
+            break;
+        default:
+            //@"An unknown error has occurred";
+            break;
+    }
+    
+    
 }
+
+
 
 //授权状态发生变化调用
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
     if (!status) {
-//        NSLog(@"请打开定位");
+        //        NSLog(@"请打开定位");
         [self.locationManager requestWhenInUseAuthorization];
     }
-    NSLog(@"change");
+    
 }
+
+
 
 
 -(void)didClickCrossButton {

@@ -377,6 +377,16 @@
             
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:KUSER_FIRST_REGISTER];
             [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            //记录老时间
+            NSDate *date = [NSDate date];
+            NSDateFormatter *dateformatter  =[[NSDateFormatter alloc]init];
+            [dateformatter setDateFormat:@"YYYYMMdd"];
+            NSString *lastCheckInDate = [dateformatter stringFromDate:date];
+            //            NSLog(@"只有一次显示%@",lastCheckInDate);
+            [[NSUserDefaults standardUserDefaults] setValue:lastCheckInDate forKey:@"LastCheckInDate"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+
         }
     }
     

@@ -12,29 +12,87 @@
 #import <AVIMUserOptions.h>
 #import "SNLoginViewController.h"
 #import "SNLaunchPageViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 #define AVOSCloudAppID  @"qLvqUSrb3dziuUehRKvpr6Kc-gzGzoHsz"
 #define AVOSCloudAppKey @"aYaqxmFig7hp77IYIl1wJ6RU"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<CLLocationManagerDelegate>
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *currlocation;
+//经度
+@property (nonatomic,assign) NSString                          *longitude;
+//纬度
+@property (nonatomic,assign) NSString                          *latitude;
+
 
 @end
 
 @implementation AppDelegate
 
+- (CLLocationManager *)locationManager{
+    
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;//精度设置
+        _locationManager.distanceFilter = 1.0f;//设备移动后获得位置信息的最小距离
+        _locationManager.delegate = self;
+        [_locationManager requestWhenInUseAuthorization];//弹出用户授权对话框，使用程序期间授权
+        //        [_locationManager requestAlwaysAuthorization];//始终授权
+    }
+    return _locationManager;
+}
+
+//定位成功时调用
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    self.currlocation = [locations lastObject];//获取当前位置
+    self.longitude = [NSString stringWithFormat:@"%f", self.currlocation.coordinate.longitude];//获取经度
+    self.latitude = [NSString stringWithFormat:@"%f",self.currlocation.coordinate.latitude];//获取纬度
+    
+    [[NSUserDefaults standardUserDefaults]setValue:self.longitude forKey:@"Lo"];
+    [[NSUserDefaults standardUserDefaults]setValue:self.latitude forKey:@"La"];
+    
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    [self.locationManager stopUpdatingLocation];
+    
+    
+    
+    
+}
+
+//定位失败调用
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"%@ 调用失败",error);
+}
+
+//授权状态发生变化调用
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    if (!status) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    NSLog(@"change");
+}
+
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //change the style for page indicator
+    
+    [self locationManager];
+    [self.locationManager startUpdatingLocation];
+    
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-    pageControl.backgroundColor = [UIColor clearColor];    
+    pageControl.backgroundColor = [UIColor clearColor];
     
     
     [SNUser registerSubclass];
     [AVOSCloud setApplicationId:AVOSCloudAppID
                       clientKey:AVOSCloudAppKey];
-
+    
     //获取当前版本号
     NSString *key = (NSString *)kCFBundleVersionKey;
     NSString *version = [NSBundle mainBundle].infoDictionary[key];
@@ -51,10 +109,10 @@
         
     }
     
-
-        
     
-
+    
+    
+    
     return YES;
 }
 

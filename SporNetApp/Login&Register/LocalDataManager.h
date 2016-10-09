@@ -13,5 +13,6 @@
 +(void)updateProfileInfoOnCloudInBackground;
 +(instancetype)defaultManager;
 -(NSMutableArray*)fetchCurrentAllUserInfo;
+-(NSMutableArray*)fetchNearByUserInfo:(AVGeoPoint*)point withinDist:(CGFloat)dist;
 -(NSMutableArray*)fetchUserInfoBySportType:(NSInteger)sportType;
 @end

@@ -2,7 +2,7 @@
 //  TagMainViewController.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 7/28/16.
+//  Created by ZhengYang on 7/28/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -53,7 +53,7 @@
 
 @implementation SNTagMainViewController
 
-#pragma mark - Setter Method 
+#pragma mark - Setter Method
 
 -(void)setTodaySport:(TodaySport)todaySport {
     _todaySport = todaySport;
@@ -85,32 +85,75 @@
     [self initialSetUp];
     
     
+}
+
+-(void)checkDate{
+    //    [NSTimer scheduledTimerWithTimeInterval:50 target:self selector:@selector(updateUserDefaults) userInfo:nil repeats:YES];
+    
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateformatter  =[[NSDateFormatter alloc]init];
+    [dateformatter setDateFormat:@"YYYYMMdd"];
+    NSString *todayDate = [dateformatter stringFromDate:date];
+    
+    NSString *lastDate = [[NSUserDefaults standardUserDefaults]valueForKey:@"LastCheckInDate"];
+    //    NSLog(@"今天是%@上次是%@",todayDate,lastDate);
+    if ([todayDate isEqualToString:lastDate]) {
+        return;
+    }else{
+        [self updateUserDefaults];
+        [[NSUserDefaults standardUserDefaults] setValue:todayDate forKey:@"LastCheckInDate"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
+}
+
+-(void)updateUserDefaults{
+    
     [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"FirstTag"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     
     [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"UpdateTag"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-
+    
 }
+
 
 -(void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
     
-
+    [self checkDate];
+    
     BOOL firstTag = [[[NSUserDefaults standardUserDefaults]valueForKey:@"FirstTag"]boolValue];
     if (firstTag) {
         
         self.relocatePanel.frame = self.checkinPanel.frame;
         [self.view addSubview:self.relocatePanel];
         [self.view bringSubviewToFront:self.relocatePanel];
-     
+        
+    }else{
+        
+        [self.relocatePanel removeFromSuperview];
     }
+    
+    BOOL updateTag = [[NSUserDefaults standardUserDefaults]boolForKey:@"UpdateTag"];
+    if (updateTag) {
+        
+        [self performSegueWithIdentifier:@"toSecondTagVC" sender:nil];
+        
+    }
+    
+    
+    
+}
 
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    self.tabBarItem.enabled = YES;
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-
+    
     self.todaySport = TodaySportJogging;
 }
 
@@ -172,10 +215,10 @@
 - (IBAction)checkInButtonClicked:(UIButton *)sender {
     [ProgressHUD show:@"Checking in now. Please wait..."];
     [self checkInAction];
-
+    
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"FirstTag"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-
+    
 }
 /**
  *  When User Update Location
@@ -187,7 +230,8 @@
     
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"UpdateTag"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-
+    
+    
 }
 /**
  *  When User Select Cancel

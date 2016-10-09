@@ -170,6 +170,29 @@ static LocalDataManager *center = nil;
         return self.allUserInfo;
     }
 }
+
+-(NSMutableArray*)fetchNearByUserInfo:(AVGeoPoint*)point withinDist:(CGFloat)dist {
+    if(_allUserInfo.count == 0){
+        
+        [ProgressHUD show:@"Finding near user..."];
+        AVQuery *query = [SNUser query];
+        [query includeKey:@"icon"];
+        [query whereKey:@"GeoLocation" nearGeoPoint:point withinMiles:dist];
+        
+        
+        self.allUserInfo = [[query findObjects]mutableCopy];
+        
+        //        NSArray *array = [query findObjects];
+        
+        [ProgressHUD dismiss];
+        //        return (NSMutableArray *)array;
+        return _allUserInfo;
+        
+        
+    }
+    else return _allUserInfo;
+}
+
 -(NSMutableArray*)fetchUserInfoBySportType:(NSInteger)sportType {
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
         AVObject *user = (AVObject*)obj;

@@ -113,15 +113,15 @@
     if (viewController.tabBarItem.tag == 1) {
         
         BOOL isFirstTagged = [[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTag"];
-        if (isFirstTagged) {
-            
-            UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
-            SNTagSecondViewController *secondVC = [tag instantiateViewControllerWithIdentifier:@"Second_Tag_Controller"];
-            
-            [tabBarController.selectedViewController presentViewController:secondVC animated:YES completion:nil];
-            return NO;
-    }
-    
+        //        if (isFirstTagged) {
+        //
+        //            UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
+        //            SNTagSecondViewController *secondVC = [tag instantiateViewControllerWithIdentifier:@"Second_Tag_Controller"];
+        //
+        //            [tabBarController.selectedViewController presentViewController:secondVC animated:YES completion:nil];
+        //            return NO;
+        //    }
+        
     }
     
     return YES;
@@ -143,6 +143,39 @@
 
     }
 }
+
+
+//// 遍历tabBar上的子控件,给"UITabBarButton"类型的按钮绑定动画效果事件
+////(注意:遍历添加动画事件的时机是在layoutSubviews布局子控件方法中)
+//- (void)layoutSubviews{
+//
+//    [super layoutSubviews];
+//
+//    for (UIControl *tabBarButton in self) {
+//        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+//            [tabBarButton addTarget:self action:@selector(tabBarButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//        }
+//    }
+//}
+
+
+//// 动画效果(遍历UITabBarButton按钮的子控件,
+////如果需要对图片添加动画,寻找"UITabBarSwappableImageView"类型的图片子控件;
+////如果需要对按钮下面的文字添加动画,寻找"UITabBarButtonLabel"类型的文字子控件即可).
+//- (void)tabBarButtonClick:(UIControl *)tabBarButton
+//{
+//    for (UIView *imageView in tabBarButton.subviews) {
+//        if ([imageView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
+//            // 需要实现的帧动画,这里根据需求自定义
+//            CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+//            animation.values = @[@1.0,@1.3,@0.9,@1.15,@0.95,@1.02,@1.0];
+//            animation.duration = 1;
+//            animation.calculationMode = kCAAnimationCubic;
+//            // 把动画添加到对应控件的layer上去就OK了
+//            [imageView.layer addAnimation:animation forKey:nil];
+//        }
+//    }
+//}
 
 @end
 

@@ -2,7 +2,7 @@
 //  TagSecondViewController.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 7/28/16.
+//  Created by ZhengYang on 7/28/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -57,25 +57,29 @@
         [self refresh];
     }];
     [self.tableView.mj_header beginRefreshing];
+    
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    self.navigationController.tabBarItem.enabled = YES;
+    
 }
 -(void)viewWillAppear:(BOOL)animated {
+    
     self.tabBarController.tabBar.hidden = NO;
     
     BOOL updateTag = [[NSUserDefaults standardUserDefaults]boolForKey:@"UpdateTag"];
     if (updateTag) {
         
-        self.updateBtn.enabled = NO;
-        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"UpdateTag"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
+        self.navigationController.tabBarItem.enabled = NO;
         
-        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"FirstTag"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
+        self.updateBtn.enabled = NO;
     }
     
     
-    
-
 }
+
 -(void)refresh {
     self.allCheckIns = [[CheckInManager defaultManager]refreshAndFetchAllCheckinsWithGymName:self.gymNameLabel.text];
     self.currentCheckins = self.allCheckIns;
