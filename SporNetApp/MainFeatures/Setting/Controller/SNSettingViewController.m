@@ -52,6 +52,13 @@ typedef NS_ENUM(NSInteger, SettingRow) {
                                    action:@selector(userImageTapped)];
     [self.userImageView addGestureRecognizer:tap];
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    
+    return UIStatusBarStyleLightContent;
+}
+    
+
 #pragma mark- table view delegate & datasource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

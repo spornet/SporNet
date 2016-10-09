@@ -29,7 +29,7 @@ NSArray *todaySportImageArray;
     }
     
     
-    self.boxView.backgroundColor = SPORTSLOT_COLOR_ARRAY[[[checkinObject objectForKey:@"sportTimeSlot"]integerValue]];
+    self.boxView.backgroundColor = SPORTSLOT_COLOR_ARRAY[[[checkinObject objectForKey:@"sportTimeSlot"]integerValue] - 1];
     
     self.userNameLabel.text = [checkinObject objectForKey:@"name"];
     self.userCheckinTimeLabel.text = [TimeManager getTimeLabelString:[checkinObject objectForKey:@"checkinTime"] refreshTime:[NSDate date]];

@@ -104,6 +104,7 @@ static LocalDataManager *center = nil;
             for (NSString *imageUrl in imageUrls) {
                 
                 AVFile *imageFile = [AVFile fileWithURL:imageUrl];
+                [imageFile getData];
                 [imageFile deleteInBackground];
             }
             
@@ -128,16 +129,21 @@ static LocalDataManager *center = nil;
         [user setObject:dict[@"aboutMe"] forKey:@"aboutMe"];
         [user setObject:[AVUser currentUser].objectId forKey:@"userID"];
         [user setObject:[[AVUser currentUser]objectForKey:@"icon"] forKey:@"icon"];
+        NSMutableArray *arrayM = [NSMutableArray array];
         for(NSData *data in dict[@"photoes"]) {
             AVFile *file = [AVFile fileWithData:data];
             [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     
-                    [user setObject:file.url forKey:@"PicUrls"];
-                    [user save];
+                    [arrayM addObject:file.url];
                 }
                 
-//                [user addObject:arrayM forKey:@"PicUrls"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [user setObject:arrayM forKey:@"PicUrls"];
+                    [user save];
+                    
+                });
                 
             }];
         }
@@ -146,23 +152,10 @@ static LocalDataManager *center = nil;
         [[AVUser currentUser]setObject:dict[@"sportTimeSlot"] forKey:@"sportTimeSlot"];
         [[AVUser currentUser]setObject:dict[@"bestSport"] forKey:@"bestSport"];
         [[AVUser currentUser]setObject:user forKey:@"basicInfo"];
+        [[AVUser currentUser]setObject:@(YES) forKey:@"User_Registered"];
         [[AVUser currentUser]saveInBackground];
         [user save];
         }
-    
-    
-    //delete all previous images
-//    NSArray *arr = [user objectForKey:@"PicUrls"];
-//    if (arr.count) {
-//        
-////        for(AVFile *file in arr) [file deleteInBackground];
-//        for (NSString *fileURL in arr) {
-//            AVFile *imageFile = [AVFile fileWithURL:fileURL];
-//            [imageFile deleteInBackground];
-//        }
-//        [user removeObjectsInArray:arr forKey:@"PicUrls"];
-//    }
-    //add all current images
 
     NSLog(@"开始存储");
     

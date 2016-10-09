@@ -78,6 +78,11 @@
     [self.tableView reloadData];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    
+    return YES; 
+}
+
 -(void)didFinishRefreshing {
     self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
     [self.tableView reloadData];

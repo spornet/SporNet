@@ -248,7 +248,7 @@ NSInteger indexOfCurrentUser;
     else [user3 setImage:[UIImage imageNamed:@"profile"] forState:normal];
     NSLog(@"current user name is %@", [self.currentUsers[2] objectForKey:@"name"]);
     [[user3 layer] setBorderWidth:2.0f];
-    UIColor *color = SPORTSLOT_COLOR_ARRAY[[[_currentUsers[2] objectForKey:@"sportTimeSlot"]integerValue]];
+    UIColor *color = SPORTSLOT_COLOR_ARRAY[[[_currentUsers[2] objectForKey:@"sportTimeSlot"]integerValue] - 1];
     [user3.layer setBorderColor:color.CGColor];
     user3.layer.masksToBounds = YES;
     user3.layer.cornerRadius = user3.frame.size.width / 2.0;

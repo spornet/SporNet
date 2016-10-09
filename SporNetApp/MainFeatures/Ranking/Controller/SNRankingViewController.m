@@ -58,6 +58,11 @@
     self.tabBarController.tabBar.hidden = NO;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    
+    return UIStatusBarStyleLightContent; 
+}
+
 #pragma mark: tableview delegate & datasource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.currentUsers.count;

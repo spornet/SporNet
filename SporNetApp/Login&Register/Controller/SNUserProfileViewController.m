@@ -96,6 +96,7 @@
 @property (weak, nonatomic)   IBOutlet UITextField        *sportTimeTextField;
 @property (weak, nonatomic)   IBOutlet UITextField        *birthdayTextField;
 @property (strong, nonatomic) IBOutlet UITextView         *aboutmeTextView;
+@property (weak, nonatomic)   IBOutlet UILabel            *topLable;
 
 //********************************************************
 /**
@@ -223,11 +224,13 @@
     //Set Up the Max Profile Image Number
     self.selectedProfileImageArray = [[NSMutableArray alloc]initWithCapacity:SELECTED_MAX_PROFILE_IMAGE];
     //LoadUser Info From Local
+    bool isRegistered =(bool)[[AVUser currentUser]objectForKey:@"User_Registered"];
+    bool isSecond = [[NSUserDefaults standardUserDefaults]boolForKey:KUSER_FIRST_REGISTER];
     
-    bool isSecond = [[NSUserDefaults standardUserDefaults]objectForKey:KUSER_FIRST_REGISTER];
-    
-    if (isSecond) {
+    if (isSecond || isRegistered) {
         
+        self.topLable.hidden = YES;
+
         [self loadUserInfoFromLocal];
     }
     
@@ -245,6 +248,11 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [self setSelectedBestSport:_selectedBestSport];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    
+    return YES;
 }
 
 #pragma mark - Private Methods

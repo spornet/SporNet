@@ -160,6 +160,7 @@
                 <constraint firstAttribute="bottom" secondItem="xO2-Yu-gim" secondAttribute="bottom" id="vvO-6V-oxe"/>
                 <constraint firstItem="pRT-Jg-ueZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="yLc-Uf-wt2"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <variation key="default">
                 <mask key="constraints">

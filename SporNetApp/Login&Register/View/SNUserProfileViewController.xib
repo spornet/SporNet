@@ -37,6 +37,7 @@
                 <outlet property="sportTimePicker" destination="Ifn-Ov-CyU" id="5BN-df-CN4"/>
                 <outlet property="sportTimeTextField" destination="9lD-by-gbX" id="FyJ-sb-NrR"/>
                 <outlet property="tableView" destination="VZw-IJ-4aA" id="xHQ-uU-Wk0"/>
+                <outlet property="topLable" destination="ryQ-xW-z22" id="dns-9G-DIr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
