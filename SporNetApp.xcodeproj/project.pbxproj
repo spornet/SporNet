@@ -315,11 +315,11 @@
 			isa = PBXGroup;
 			children = (
 				6DB762521D6F4DB200DB92E3 /* SNFriendRequestListViewController.h */,
+				6DB762591D6F507D00DB92E3 /* SNFriendRequestCell.xib */,
 				6DB762531D6F4DB200DB92E3 /* SNFriendRequestListViewController.m */,
 				6DB762541D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib */,
 				6DB762571D6F507D00DB92E3 /* SNFriendRequestCell.h */,
 				6DB762581D6F507D00DB92E3 /* SNFriendRequestCell.m */,
-				6DB762591D6F507D00DB92E3 /* SNFriendRequestCell.xib */,
 			);
 			name = "Friend Request List";
 			sourceTree = "<group>";

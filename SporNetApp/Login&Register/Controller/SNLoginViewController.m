@@ -119,8 +119,10 @@
                             
                             [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
                         }else {
-#warning 从网上获取数据然后存入沙盒并且赋值给User Profile Page
                             [LocalDataManager fetchProfileInfoFromCloud];
+                            SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
+                            
+                            [self presentViewController:tabVC animated:YES completion:nil];
                         }
                         
                     }];

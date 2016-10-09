@@ -46,18 +46,22 @@ static LocalDataManager *center = nil;
 +(void)fetchProfileInfoFromCloud {
     AVQuery *query = [SNUser query];
     [query whereKey:@"userID" equalTo:[AVUser currentUser].objectId];
-#warning 可以试试看在后台找寻数据，不堵住主线程
     NSArray *fetchObjects = [query findObjects];
-    if(fetchObjects.count == 0) return;
-    SNUser *basicInfo = fetchObjects[0];
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
-    NSLog(@"PlistPath %@", plistPath);
-    NSMutableArray *imageDataArr = [[NSMutableArray alloc]init];
-    NSMutableArray *arr = [basicInfo objectForKey:@"PicUrls"];
-    for(NSString *url in arr) {
-        [imageDataArr addObject:[[AVFile fileWithURL:url]getData]];
+    if(fetchObjects.count == 0){
+        
+        return;
     }
-    NSDictionary *plistDict = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects: [[basicInfo objectForKey:@"name"] componentsSeparatedByString:@" "][0], [[basicInfo objectForKey:@"name"] componentsSeparatedByString:@" "][1], [basicInfo objectForKey:@"gender"], [basicInfo objectForKey:@"dateOfBirth"], [basicInfo objectForKey:@"gradYear"], [basicInfo objectForKey:@"bestSport"], [basicInfo objectForKey:@"sportTimeSlot"],[basicInfo objectForKey:@"aboutMe"], imageDataArr, nil] forKeys:[NSArray arrayWithObjects: @"firstName", @"lastName",@"gender", @"dateOfBirth",@"gradYear",@"bestSport",@"sportTimeSlot",@"aboutMe",@"photoes", nil]];
+    SNUser *basicInfo = fetchObjects.firstObject;
+    
+    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
+    
+    NSMutableArray *imageUrlArr = [[NSMutableArray alloc]init];
+    NSArray *arr = [basicInfo objectForKey:@"PicUrls"];
+    for(NSString *url in arr) {
+        
+        [imageUrlArr addObject:[[AVFile fileWithURL:url]getData]];
+    }
+    NSDictionary *plistDict = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects: [[basicInfo objectForKey:@"name"] componentsSeparatedByString:@" "][0], [[basicInfo objectForKey:@"name"] componentsSeparatedByString:@" "][1], [basicInfo objectForKey:@"gender"], [basicInfo objectForKey:@"dateOfBirth"], [basicInfo objectForKey:@"gradYear"], [basicInfo objectForKey:@"bestSport"], [basicInfo objectForKey:@"sportTimeSlot"],[basicInfo objectForKey:@"aboutMe"], imageUrlArr, nil] forKeys:[NSArray arrayWithObjects: @"firstName", @"lastName",@"gender", @"dateOfBirth",@"gradYear",@"bestSport",@"sportTimeSlot",@"aboutMe",@"photoes", nil]];
     NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
     if(plistData) {
         [plistData writeToFile:plistPath atomically:YES];

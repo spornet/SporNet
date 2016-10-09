@@ -25,4 +25,7 @@
 #define KUSER_FIRST_REGISTER @"USER_FIRST_REGISTER" 
 #define KUSER_SCHOOL_NAME @"USER_SCHOOL_NAME"
 
+//SanBox for Other Uses
+#define KUSER_EDIT_PROFILE @"EDIT_USER_PROFILE"
+
 #endif /* globalMacros_h */

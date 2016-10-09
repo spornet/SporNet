@@ -332,7 +332,7 @@
  */
 - (IBAction)doneClicked:(UIButton *)sender {
     
-    bool editProfile = [[NSUserDefaults standardUserDefaults]boolForKey:@"editUserProfile"];
+    bool editProfile = [[NSUserDefaults standardUserDefaults]boolForKey:KUSER_EDIT_PROFILE];
     
     if (editProfile) {
         

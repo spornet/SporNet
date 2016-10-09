@@ -231,15 +231,28 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 -(void)userImageTapped {
     SNUserProfileViewController *profileVC = [[SNUserProfileViewController alloc] init];
     profileVC.delegate = self;
-    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"editUserProfile"];
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:KUSER_EDIT_PROFILE];
     [[NSUserDefaults standardUserDefaults] synchronize]; 
     [self.navigationController pushViewController:profileVC animated:YES];
 }
 
 - (IBAction)logOutAction:(id)sender {
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:KUSER_EMAIL];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:KUSER_PASSWORD];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:KUSER_EDIT_PROFILE];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:KUSER_FIRST_REGISTER];
+    [self cleanSandbox];
     UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login&RegisterStoryBoard" bundle:nil];
     UIViewController *loginVC = [login instantiateInitialViewController];
     [self presentViewController:loginVC animated:YES completion:nil];
+}
+
+- (void)cleanSandbox {
+    
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
+        
+        [[NSFileManager defaultManager]removeItemAtPath:filePath error:nil];
+    
 }
 
 #pragma mark - SNUserProfileViewControllerDelegate
