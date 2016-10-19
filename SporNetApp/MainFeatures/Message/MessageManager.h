@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AVIMClient.h>
 #import "Conversation.h"
-//@protocol MessageManagerDelegate <NSObject>
-//- (void)didClickSavePhotosButton:(NSMutableArray *)selectedPhotos;
-//@end
+
 @protocol MessageManagerDelegate <NSObject>
 @optional
 -(void)didFinishRefreshing;
@@ -20,7 +18,9 @@
 @end
 @interface MessageManager : NSObject
 
-@property (nonatomic, strong) AVIMClient *client;
+@property (nonatomic, strong) AVIMClient *myClient;
+@property (nonatomic, strong) AVIMClient *friendClient;
+
 @property (nonatomic, weak) id<MessageManagerDelegate> delegate;
 +(instancetype)defaultManager;
 -(void)startMessageService;
@@ -28,6 +28,10 @@
 -(NSMutableArray*)fetchAllCurrentFriendRequests;
 -(NSMutableDictionary*)fetchAllContacts;
 -(void)refreshAllConversations;
+-(void)refreshAllFriendRequest;
 -(void)sendAddFrendRequst:(NSString*)clientId;
 -(void)acceptFriendRequest:(Conversation*)c;
 @end
+
+
+

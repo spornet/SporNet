@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     [self loadProfileView];
     //add tap gesture to user photo. When tapped, go to user profile page.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                       initWithTarget:self
+                                   initWithTarget:self
                                    action:@selector(userImageTapped)];
     [self.userImageView addGestureRecognizer:tap];
 }
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     
     return UIStatusBarStyleLightContent;
 }
-    
+
 
 #pragma mark- table view delegate & datasource
 
@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case SettingRowSearchPreference:{
-
+            
             [self performSegueWithIdentifier:@"toPreferenceSegue" sender:nil];
             
         }
@@ -120,12 +120,12 @@ typedef NS_ENUM(NSInteger, SettingRow) {
                             [ProgressHUD showSuccess:@"Update Successful"];
                         }
                     }];
-                  
+                    
                 }else {
                     
                     [ProgressHUD showError:@"Your Passwords Doesn't Match"];
                 }
-     
+                
             }];
             
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -148,7 +148,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     }
 }
 
-#pragma mark - Private Methods 
+#pragma mark - Private Methods
 - (void)sendEmailAction {
     
     MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
@@ -156,24 +156,24 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     [mailCompose setMailComposeDelegate:self];
     
     // 设置邮件主题
-    [mailCompose setSubject:@"我是邮件主题"];
+    [mailCompose setSubject:@"New Message"];
     
     // 设置收件人
     [mailCompose setToRecipients:@[@"info@spornetapp.com"]];
     // 设置抄送人
-    [mailCompose setCcRecipients:@[@"邮箱号码"]];
+    [mailCompose setCcRecipients:@[@"Email"]];
     // 设置密抄送
-    [mailCompose setBccRecipients:@[@"邮箱号码"]];
+    [mailCompose setBccRecipients:@[@"Email"]];
     
     /**
      *  设置邮件的正文内容
      */
-    NSString *emailContent = @"我是邮件内容";
+    NSString *emailContent = @"I'm a user from SporNet";
     // 是否为HTML格式
     [mailCompose setMessageBody:emailContent isHTML:NO];
     
     [self presentViewController:mailCompose animated:YES completion:nil];
-
+    
 }
 
 // blur the top background image
@@ -187,7 +187,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     // blur image
     CIImage *result = [filter valueForKey:kCIOutputImageKey];
     self.userBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
-
+    
     CGImageRef cgImage = [context createCGImage:result fromRect:CGRectMake(75, 375, SCREEN_WIDTH+150, self.userBlurImageView.frame.size.height + 80)];
     UIImage *blurImage = [UIImage imageWithCGImage:cgImage];
     CGImageRelease(cgImage);
@@ -198,7 +198,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 //load setting profile
 -(void)loadProfileView {
     
-// 1. 从本地获取照片
+    // 1. 从本地获取照片
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
         // Set User Picture
@@ -208,7 +208,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
         self.userImageView.image = [UIImage imageWithData:profilePic];
         // Set User Sport Time Color
         NSInteger userSportColor = [[userBasicInfo objectForKey:@"sportTimeSlot"]integerValue];
-        self.sportColorView.backgroundColor = SPORTSLOT_COLOR_ARRAY[userSportColor - 1];
+        self.sportColorView.backgroundColor = SPORTSLOT_COLOR_ARRAY[userSportColor];
         // Set User Sport
         NSInteger userSport = [[userBasicInfo objectForKey:@"bestSport"]integerValue];
         self.bestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[userSport]];
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     SNUserProfileViewController *profileVC = [[SNUserProfileViewController alloc] init];
     profileVC.delegate = self;
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:KUSER_EDIT_PROFILE];
-    [[NSUserDefaults standardUserDefaults] synchronize]; 
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController pushViewController:profileVC animated:YES];
 }
 
@@ -257,8 +257,8 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 - (void)cleanSandbox {
     
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
-        
-        [[NSFileManager defaultManager]removeItemAtPath:filePath error:nil];
+    
+    [[NSFileManager defaultManager]removeItemAtPath:filePath error:nil];
     
 }
 

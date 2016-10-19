@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,58 +12,52 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <frame key="frameInset" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user4" translatesAutoresizingMaskIntoConstraints="NO" id="ALM-wA-nPP">
-                        <rect key="frame" x="17" y="15" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="2oI-ni-JH2"/>
                             <constraint firstAttribute="height" constant="50" id="coJ-g2-7nK"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yamada Ryosuke" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bel-ao-5Hg">
-                        <rect key="frame" x="85" y="15" width="124" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Northeastern University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KV-JG-mxS">
-                        <rect key="frame" x="85" y="40" width="164" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3uq-Em-3rX">
-                        <rect key="frame" x="85" y="64" width="65" height="30"/>
-                        <color key="backgroundColor" red="0.33604918020000002" green="0.76349806750000004" blue="0.3752569811" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.33604918020000002" green="0.76349806750000004" blue="0.3752569811" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="tpI-sN-GNK"/>
                             <constraint firstAttribute="width" constant="65" id="yd7-wb-VJf"/>
                         </constraints>
                         <state key="normal" title="Accept">
-                            <color key="titleColor" red="0.9501201923" green="0.9501201923" blue="0.9501201923" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.9501201923" green="0.9501201923" blue="0.9501201923" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
                             <action selector="acceptButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="K0M-DV-bpe"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="du6-8J-JZV">
-                        <rect key="frame" x="180" y="64" width="65" height="30"/>
-                        <color key="backgroundColor" red="0.33604918020000002" green="0.76349806750000004" blue="0.3752569811" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.33604918020000002" green="0.76349806750000004" blue="0.3752569811" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Hia-0g-uwy"/>
                             <constraint firstAttribute="width" constant="65" id="rm7-uG-eRK"/>
                         </constraints>
                         <state key="normal" title="Remove">
-                            <color key="titleColor" red="0.9501201923" green="0.9501201923" blue="0.9501201923" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.9501201923" green="0.9501201923" blue="0.9501201923" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
                             <action selector="removeButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WlJ-S4-j6r"/>
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccer" translatesAutoresizingMaskIntoConstraints="NO" id="bj0-yr-bcR">
-                        <rect key="frame" x="53" y="9" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="0KY-id-ay2"/>
                             <constraint firstAttribute="width" constant="18" id="mA4-xR-e9i"/>

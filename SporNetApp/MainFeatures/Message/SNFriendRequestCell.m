@@ -13,14 +13,14 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     self.userImageView.layer.masksToBounds = YES;
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2.0;
 }
 
 - (IBAction)acceptButtonClicked:(UIButton *)sender {
-    NSLog(@"接受");
     [[MessageManager defaultManager] acceptFriendRequest:self.conversation];
-//    [[[MessageManager defaultManager] fetchAllCurrentFriendRequests] removeObject:self.conversation];
+
 }
 - (IBAction)removeButtonClicked:(UIButton *)sender {
     NSLog(@"拒绝");
@@ -28,14 +28,21 @@
 }
 -(void)configureCellWithConversation:(Conversation*)conversation {
     self.conversation = conversation;
-    self.nameLabel.text = [conversation.basicInfo objectForKey:@"name"];
-    self.bestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[conversation.basicInfo objectForKey:@"bestSport"]integerValue]]];
-    [[_userImageView layer] setBorderWidth:2.0f];
-    UIColor *color = SPORTSLOT_COLOR_ARRAY[[[conversation.basicInfo objectForKey:@"sportTimeSlot"]integerValue]];
-    [_userImageView.layer setBorderColor:color.CGColor];
+ 
+    AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:conversation.myInfo];
     
-    self.schoolLabel.text = [conversation.basicInfo objectForKey:@"school"];
-    self.userImageView.image = [UIImage imageWithData:[[conversation.basicInfo objectForKey:@"icon"]getData]];
+    [user fetch];
+                
+    self.nameLabel.text = [user objectForKey:@"name"];
+    self.bestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[user objectForKey:@"bestSport"]integerValue]]];
+    [[_userImageView layer] setBorderWidth:2.0f];
+    NSInteger colorIndex =[[user objectForKey:@"sportTimeSlot"]integerValue];
+    UIColor *color = SPORTSLOT_COLOR_ARRAY[colorIndex];
+    [_userImageView.layer setBorderColor:color.CGColor];
+                
+    self.schoolLabel.text = [user objectForKey:@"school"];
+    self.userImageView.image = [UIImage imageWithData:[[user objectForKey:@"icon"]getData]];
+          
     
 }
 

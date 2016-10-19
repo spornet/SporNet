@@ -14,7 +14,9 @@
 NSArray *sportPicArray;
 - (void)awakeFromNib {
     // Initialize the cell
-    //set user image to round shape
+    
+    [super awakeFromNib];
+    
     self.userImageView.clipsToBounds = YES;
     [self.userImageView.layer setCornerRadius:self.userImageView.frame.size.width / 2.0];
     self.userBestSportColorView.clipsToBounds = YES;

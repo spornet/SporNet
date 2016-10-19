@@ -12,7 +12,7 @@
 #import "SNChatViewController.h"
 #import "SNFriendRequestListViewController.h"
 #import "SNContactViewController.h"
-@interface SNMessageListViewController ()
+@interface SNMessageListViewController () <SNChatViewControllerDelegate>
 /**
  *  Message List TableView
  */
@@ -29,6 +29,8 @@
  *  Contains all Current User's Converstaion Model
  */
 @property (nonatomic, strong) NSMutableArray *conversationList;
+
+@property (nonatomic, strong) AVIMClient *friendClient;
 
 
 @end
@@ -58,11 +60,11 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     
-    //Open Current Message
-    
     [[MessageManager defaultManager] startMessageService];
-    [MessageManager defaultManager].client.delegate = self;
+    [MessageManager defaultManager].myClient.delegate = self;
     [MessageManager defaultManager].delegate = self;
+    //Open Current Message
+
     //set badge view of notification icon (the bell)
     self.bellBadgeView.layer.masksToBounds = YES;
     self.bellBadgeView.layer.cornerRadius = self.bellBadgeView.frame.size.width / 2.0;
@@ -72,10 +74,14 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:YES];
-    
-    [MessageManager defaultManager].client.delegate = self;
-    self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
+    self.conversationList = [[MessageManager defaultManager]fetchAllCurrentConversations];
+    if (self.conversationList.count == 0) {
+        
+//        [[MessageManager defaultManager] startMessageService];
+        [[MessageManager defaultManager] refreshAllConversations];
+    }
     [self.tableView reloadData];
+    
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -83,10 +89,18 @@
     return YES; 
 }
 
+#pragma mark - SNChatViewController Delegate
+
+- (void)didSendMessage {
+    
+    [self.tableView reloadData];
+}
+
+#pragma marks - MessageManager Delegate
+
 -(void)didFinishRefreshing {
     self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
     [self.tableView reloadData];
-    [ProgressHUD dismiss];
 }
 
 #pragma mark - UITableView Delegate
@@ -106,8 +120,9 @@
     return 72;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Conversation *c = _conversationList[indexPath.row];
+    Conversation *c = self.conversationList[indexPath.row];
     SNChatViewController *vc = [[SNChatViewController alloc]init];
+    vc.delegate = self;
     vc.conversation = c;
     c.unreadMessageNumber = 0;
 
@@ -118,30 +133,29 @@
 
 -(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
     if([message.text isEqualToString:@"Lets Play Sport Together"]) {
-        NSLog(@"收到一条好友请求");
         
-        AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:conversation.creator];
-        [user fetch];
         Conversation *c = [[Conversation alloc]init];
-        c.basicInfo = user;
+        c.myInfo = conversation.creator;
+        c.friendBasicInfo = conversation.clientId;
         c.conversation = conversation;
         
         [[[MessageManager defaultManager]fetchAllCurrentFriendRequests] addObject:c];
         self.bellBadgeView.hidden = NO;
-    }
-    self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
-    for(Conversation *c in self.conversationList) {
+    } else if ([message.text isEqualToString:@"I've added you as my friend. Let's start to chat!"]){
 
-        if([c.conversation.conversationId isEqualToString:message.conversationId]) {
-            c.unreadMessageNumber++;
-            break;
+        
+        self.conversationList = [[MessageManager defaultManager] fetchAllCurrentConversations];
+        for(Conversation *c in self.conversationList) {
+            
+            if([c.conversation.conversationId isEqualToString:message.conversationId]) {
+                c.unreadMessageNumber++;
+                break;
+            }
         }
+        
     }
-    [self.tableView reloadData];
 }
--(void)conversation:(AVIMConversation *)conversation didReceiveUnread:(NSInteger)unread {
-    NSLog(@"UNREAD");
-}
+
 
 #pragma mark - Private Methods
 

@@ -10,14 +10,16 @@
 #import <AVUser.h>
 #import "SNChatModelFrame.h"
 #import <UIKit/UIKit.h>
-#define selfId [[[AVUser currentUser] objectForKey:@"basicInfo"]objectId]
+#import "SNUser.h"
 static MessageManager *center = nil;
 
 @interface MessageManager ()
 
-@property(nonatomic) NSMutableArray *allConversations;
 @property(nonatomic) NSMutableArray *allFriendRequsts;
+@property(nonatomic, strong) NSMutableArray *allConversations;
+
 @property(nonatomic) NSMutableDictionary *allContacts;
+@property(nonatomic) NSMutableArray *myFriends;
 @end
 
 @implementation MessageManager
@@ -31,9 +33,10 @@ static MessageManager *center = nil;
 }
 -(instancetype)init {
 
-    _allConversations = [[NSMutableArray alloc]init];
+//    _allConversations = [[NSMutableArray alloc]init];
     _allFriendRequsts = [[NSMutableArray alloc]init];
     _allContacts = [[NSMutableDictionary alloc]init];
+    _myFriends = [NSMutableArray array];
     NSString *str = (NSString *)center;
     if([str isKindOfClass:[NSString class]] & [str isEqualToString:@"MessageManager"]) {
         self = [super init];
@@ -42,81 +45,93 @@ static MessageManager *center = nil;
     } else return nil;
 }
 
+- (NSMutableArray *)allConversations {
+    
+    if (_allConversations == nil) {
+        
+        _allConversations = [NSMutableArray array];
+    }
+    return _allConversations;
+}
+
 /**
  *  Find All Current User's Consersations
  */
 -(void)refreshAllConversations{
     
-    AVIMConversationQuery *query = [_client conversationQuery];
-    [query whereKey:@"m" containsAllObjectsInArray:@[selfId]];
+    if (!SELF_ID) {
+        
+        return;
+    }
+    
+    AVIMConversationQuery *query = [self.myClient conversationQuery];
+
+    [query whereKey:@"m" containsAllObjectsInArray:@[SELF_ID]];
     [query whereKey:@"status" equalTo:@1];
+    query.cachePolicy = kAVIMCachePolicyNetworkOnly;
+
     
     [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
-
-        for(AVIMConversation *conversation in objects) {
-            NSString *talkToId;
-            if([conversation.members[0] isEqualToString:selfId]) {
-                talkToId = conversation.members[1];
-            } else talkToId = conversation.members[0];
-            AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:talkToId];
-            NSLog(@"objectid is %@", talkToId);
-#warning 可能有问题
-            [user fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-               
+            
+            NSString *friendID;
+            for(AVIMConversation *conversation in objects) {
+                
+                friendID = conversation.members.lastObject;
+                
                 Conversation *c = [[Conversation alloc]init];
-                NSLog(@"这个人名字是 %@", [object objectForKey:@"name"]);
-                c.basicInfo = object;
+                c.myInfo = conversation.members.firstObject;
+                c.friendBasicInfo = friendID;
                 c.conversation = conversation;
                 c.unreadMessageNumber = 0;
                 [self.allConversations addObject:c];
                 
-            }];
-        }
-        [self.delegate didFinishRefreshing];
+                if ([self.delegate respondsToSelector:@selector(didFinishRefreshing)]) {
+                    
+                    [self.delegate didFinishRefreshing];
+                }
+            }
+        
+        
     }];
 }
 -(void)refreshAllFriendRequest{
-    [ProgressHUD show:@"Fetching friend requests. Please wait..."];
-    AVIMConversationQuery *query = [_client conversationQuery];
-    [query whereKey:@"m" containsAllObjectsInArray:@[selfId]];
+    
+    AVIMConversationQuery *query = [self.myClient conversationQuery];
+    [query whereKey:@"m" containsAllObjectsInArray:@[SELF_ID]];
     [query whereKey:@"status" notEqualTo:@1];
-    //[query whereKey:@"c" notEqualTo:selfId];
+    
     query.cachePolicy = kAVIMCachePolicyNetworkElseCache;
     [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
-        NSLog(@"%@", error);
         for(AVIMConversation *conversation in objects) {
-            NSString *talkToId;
-//            if([conversation.members[0] isEqualToString:selfId]) {
-//                talkToId = conversation.members[1];
-//            } else talkToId = conversation.members[0];
-            AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:talkToId];
-            NSLog(@"objectid is %@", talkToId);
-            [user fetch];
-            Conversation *c = [[Conversation alloc]init];
-            NSLog(@"这个人名字是 %@", [user objectForKey:@"name"]);
-            c.basicInfo = user;
-            c.conversation = conversation;
-            c.unreadMessageNumber = 0;
-            [self.allFriendRequsts addObject:c];
+            
+            if (objects.count) {
+                
+                Conversation *c = [[Conversation alloc]init];
+                c.myInfo = conversation.members.firstObject;
+                c.friendBasicInfo = conversation.members.lastObject;
+                c.conversation = conversation;
+                c.unreadMessageNumber = 0;
+                [self.allFriendRequsts addObject:c];
+            }
+            
+            if ([self.delegate respondsToSelector:@selector(didFinishRefreshing)]) {
+                
+                [self.delegate didFinishRefreshing];
+            }
         }
     }];
 }
 
 -(NSMutableArray*)fetchAllCurrentFriendRequests {
-    NSLog(@"更新好友请求");
     return _allFriendRequsts;
 }
 
 -(NSMutableArray*)fetchAllCurrentConversations {
-//    NSLog(@"更新");
-    return [[_allConversations sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-//        NSDate *date1 = ((Conversation*)obj1).conversation.lastMessageAt;
+    return [[self.allConversations sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         NSDate *date1 = [NSDate dateWithTimeIntervalSince1970:[[((Conversation*)obj1).conversation queryMessagesFromCacheWithLimit:1][0] sendTimestamp]];
         NSDate *date2 = [NSDate dateWithTimeIntervalSince1970:[[((Conversation*)obj2).conversation queryMessagesFromCacheWithLimit:1][0] sendTimestamp]];
-//        NSDate *date2 = ((Conversation*)obj2).conversation.lastMessageAt;
         return [date2 compare:date1];
     }]mutableCopy];
-    //return _allConversations;
 }
 
 -(NSMutableArray*)fetchMessagesWithUserId:(NSString*)userId {
@@ -127,13 +142,44 @@ static MessageManager *center = nil;
     for(NSString *sport in SPORT_ARRAY) {
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
             Conversation *c = (Conversation*)obj;
-            return [[c.basicInfo objectForKey:@"bestSport"] intValue] == ([SPORT_ARRAY indexOfObject:sport] + 1);
+            
+            AVObject *myself;
+            if ([c.myInfo isEqualToString:SELF_ID]) {
+                
+                myself = [AVObject objectWithClassName:@"SNUser" objectId:c.friendBasicInfo];
+            } else {
+                
+                myself = [AVObject objectWithClassName:@"SNUser" objectId:c.myInfo];
+            }
+            
+            [myself fetch];
+            
+            return [[myself objectForKey:@"bestSport"] intValue] == ([SPORT_ARRAY indexOfObject:sport] + 1);
         }];
         NSArray *arr = [self.allConversations filteredArrayUsingPredicate:predicate];
-        //NSMutableArray *sortedArray = [[arr sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]mutableCopy];
+        
         NSArray *sorted = [arr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
             
-            return [[[(Conversation*)obj1 basicInfo] objectForKey:@"name"] caseInsensitiveCompare:[[(Conversation*)obj2 basicInfo] objectForKey:@"name"]];
+            AVObject *myself;
+            AVObject *myself2;
+            Conversation *userC = (Conversation *)obj1;
+            Conversation *user2C = (Conversation *)obj2;
+            if ([userC.myInfo isEqualToString:SELF_ID] && [user2C.myInfo isEqualToString:SELF_ID]) {
+                
+                myself = [AVObject objectWithClassName:@"SNUser" objectId:userC.friendBasicInfo];
+                myself2 = [AVObject objectWithClassName:@"SNUser" objectId:user2C.friendBasicInfo];
+            } else {
+                
+                myself = [AVObject objectWithClassName:@"SNUser" objectId:userC.myInfo];
+                myself2 = [AVObject objectWithClassName:@"SNUser" objectId:user2C.myInfo];
+
+            }
+            
+            [myself fetch];
+            
+            [myself2 fetch];
+            
+            return [[myself objectForKey:@"name"] caseInsensitiveCompare:[myself2 objectForKey:@"name"]];
         }];
         if(arr.count) [self.allContacts setObject:[sorted mutableCopy] forKey:sport];
     }
@@ -145,38 +191,138 @@ static MessageManager *center = nil;
  */
 -(void)startMessageService {
     
-    AVUser *oldUser = [[AVUser currentUser]objectForKey:@"basicInfo"];
+    self.myClient = [[AVIMClient alloc]initWithClientId:[AVUser currentUser].objectId];
+    [self.myClient openWithCallback:^(BOOL succeeded, NSError *error) {
+        
+        if (error) {
+            NSLog(@"error, %@", error.description);
+        }
+    }];
+
     
-    if (oldUser) {
-        
-        _client = [[AVIMClient alloc]initWithClientId:oldUser.objectId];
-        
-        [_client openWithCallback:^(BOOL succeeded, NSError *error) {
-           
-            [self refreshAllConversations];
-            [self refreshAllFriendRequest];
-        }];
-    }
 
 }
 
 -(void)sendAddFrendRequst:(NSString*)clientId {
-    [_client createConversationWithName:@"friend request" clientIds:@[selfId, clientId] attributes:nil options:AVIMConversationOptionUnique callback:^(AVIMConversation *conversation, NSError *error) {
-        AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"Lets Play Sport Together"attributes:nil];
-        [conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
-            [ProgressHUD showSuccess:@"You've successfully sent friend request."];
+    
+    NSLog(@"Friend Client %@", clientId);
+    
+    [self.myClient openWithCallback:^(BOOL succeeded, NSError *error) {
+       
+        [self.myClient createConversationWithName:@"friend request" clientIds:@[clientId] attributes:nil options:AVIMConversationOptionUnique callback:^(AVIMConversation *conversation, NSError *error) {
+            AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"Lets Play Sport Together"attributes:nil];
+            [conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
+                [ProgressHUD showSuccess:@"You've successfully sent friend request."];
+                
+                //Send Notification Push
+                AVQuery *query = [AVInstallation query];
+                [query whereKey:@"Owner" equalTo:clientId];
+                
+                AVPush *push = [[AVPush alloc]init];
+                [push setMessage:@"You've Got a Friend Request"];
+                [push setQuery:query];
+                [push sendPushInBackground];
+                
+            }];
         }];
+        
     }];
+    
 }
 -(void)acceptFriendRequest:(Conversation*)c{
-    [c.conversation update:@{@"status":@1} callback:^(BOOL succeeded, NSError *error) {
+    [c.conversation update:@{@"status":@1, @"name":@"New Conversation"} callback:^(BOOL succeeded, NSError *error) {
         AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"I've added you as my friend. Let's start to chat!" attributes:nil];
-        [c.conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
-            [ProgressHUD showSuccess:@"You've successfully sent friend request."];
-            [self.allFriendRequsts removeObject:c];
-            [self.allConversations addObject:c];
-            [self.delegate didAcceptFriendRequest];
+        [ProgressHUD showSuccess:@"You've add a new friend."];
+  
+            [c.conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
+                
+                [self AddFriendRelationship:c];
+                
+                [self.allFriendRequsts removeObject:c];
+                [self.allConversations addObject:c];
+                if ([self.delegate respondsToSelector:@selector(didAcceptFriendRequest)]) {
+                    
+                    [self.delegate didAcceptFriendRequest];
+                }
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"Add_NEW_FRIEND" object:nil];
+                
+            }];
         }];
+}
+
+- (void)AddFriendRelationship:(Conversation *)c {
+    
+    AVObject *myself = [AVObject objectWithClassName:@"SNUser" objectId:c.myInfo];
+    
+    AVObject *myFriend = [AVObject objectWithClassName:@"SNUser" objectId:c.friendBasicInfo];
+    
+    AVQuery *queryFriend = [AVInstallation query];
+    AVQuery *queryMyself = [AVInstallation query];
+
+    
+    [myself fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
+        
+        [queryFriend whereKey:@"Owner" equalTo:myFriend.objectId];
+        AVPush *push = [[AVPush alloc]init];
+        [push setMessage:@"You've Made a New Friend"];
+        [push setQuery:queryFriend];
+        [push sendPushInBackground];
+        NSMutableArray *myselfFriends = [NSMutableArray array];
+        
+        NSArray *myfriends = [object objectForKey:@"MyFriends"];
+        
+        if (myfriends.count) {
+            
+            if (![myfriends containsObject:c.friendBasicInfo]) {
+                
+                [object addObject:c.friendBasicInfo forKey:@"MyFriends"];
+                [object saveInBackground];
+                
+            }
+            
+        }else {
+            
+            [myselfFriends addObject:c.friendBasicInfo];
+            
+            [object setObject:myselfFriends forKey:@"MyFriends"];
+            [object saveInBackground];
+            
+        }
     }];
+    
+    
+    [myFriend fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
+        
+        [queryMyself whereKey:@"Owner" equalTo:c.myInfo];
+        AVPush *push = [[AVPush alloc]init];
+        [push setMessage:@"You've Made a New Friend"];
+        [push setQuery:queryMyself];
+        [push sendPushInBackground];
+        
+        NSMutableArray *myfriendM = [NSMutableArray array];
+        NSArray *myfriends = [object objectForKey:@"MyFriends"];
+        
+        if (myfriends.count) {
+            
+            if (![myfriends containsObject:c.myInfo]) {
+                
+                [object addObject:c.myInfo forKey:@"MyFriends"];
+                [object saveInBackground];
+                
+            }
+            
+        }else {
+            
+            [myfriendM addObject:c.myInfo];
+            
+            [object setObject:myfriendM forKey:@"MyFriends"];
+            [object saveInBackground];
+            
+        }
+    }];
+
+
+    
 }
 @end

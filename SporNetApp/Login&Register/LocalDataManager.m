@@ -13,6 +13,7 @@
 #import <AVFile.h>
 #import "SNUser.h"
 #import "ProgressHUD.h"
+
 static LocalDataManager *center = nil;
 
 @interface LocalDataManager ()
@@ -30,10 +31,7 @@ static LocalDataManager *center = nil;
     return center;
 }
 -(instancetype)init {
-//    if(_allPrayers == nil) {
-//        _allPrayers = [[NSMutableArray alloc]init];
-//        _prayerDic = [[NSMutableDictionary alloc]init];
-//    }
+
     NSString *str = (NSString *)center;
     if([str isKindOfClass:[NSString class]] & [str isEqualToString:@"LocalDataManager"]) {
         self = [super init];
@@ -156,9 +154,13 @@ static LocalDataManager *center = nil;
         [[AVUser currentUser]saveInBackground];
         [user save];
         }
-
-    NSLog(@"开始存储");
-    
+    //Set Current User's Notification
+   
+    AVInstallation *installation = [AVInstallation currentInstallation];
+    AVObject *owner = [[AVUser currentUser] objectForKey:@"basicInfo"];
+    [owner fetch];
+    [installation setObject:owner.objectId forKey:@"Owner"];
+    [installation saveInBackground];
     
 }
 -(NSMutableArray*)fetchCurrentAllUserInfo {
@@ -171,6 +173,7 @@ static LocalDataManager *center = nil;
     }
 }
 
+//ZY
 -(NSMutableArray*)fetchNearByUserInfo:(AVGeoPoint*)point withinDist:(CGFloat)dist {
     if(_allUserInfo.count == 0){
         
@@ -191,6 +194,30 @@ static LocalDataManager *center = nil;
         
     }
     else return _allUserInfo;
+}
+
+
+-(NSMutableArray*)fetchUserFromList:(NSMutableArray*)userlist withSportType:(NSInteger)sportType{
+    BOOL isMaleSwitchOn = [[NSUserDefaults standardUserDefaults]boolForKey:@"searchPreferenceMale"];
+    BOOL isfemaleSwitchOn = [[NSUserDefaults standardUserDefaults]boolForKey:@"searchPreferenceFemale"];
+    BOOL ismySchoolOnlySwitchOn = [[NSUserDefaults standardUserDefaults]boolForKey:@"searchPreferenceOnlyMySchool"];
+    NSString *school =[[NSUserDefaults standardUserDefaults]objectForKey:KUSER_SCHOOL_NAME];
+//    AVObject *user;
+//
+//    NSUInteger *sport =[[user objectForKey:@"bestSport"]integerValue];
+//    NSString *s = [[user objectForKey:@"school"]stringValue];
+//    NSLog(@"sport%@ school%@",sport,s);
+
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
+        AVObject *user = (AVObject*)obj;
+//        SNUser *user = (SNUser*)obj;
+        return [[user objectForKey:@"bestSport"]integerValue] == sportType && [[user objectForKey:@"gender"]integerValue] == 1;
+//        return [[[user objectForKey:@"school"]stringValue] isEqualToString:school];
+
+
+    }];
+    return [[userlist filteredArrayUsingPredicate:predicate]mutableCopy];
+
 }
 
 -(NSMutableArray*)fetchUserInfoBySportType:(NSInteger)sportType {

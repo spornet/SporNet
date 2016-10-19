@@ -2,7 +2,7 @@
 //  SNUserProfileViewController.m
 //  SporNetApp
 //
-//  Created by Peng Wang on 6/29/16.
+//  Created by 浦明晖 on 6/29/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 #import "SNUser.h"
@@ -238,16 +238,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.tabBarController.tabBar.hidden = YES;
-    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self setSelectedBestSport:_selectedBestSport];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     
     self.navigationController.tabBarController.tabBar.hidden = NO;
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    [self setSelectedBestSport:_selectedBestSport];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -386,6 +385,19 @@
             //            NSLog(@"只有一次显示%@",lastCheckInDate);
             [[NSUserDefaults standardUserDefaults] setValue:lastCheckInDate forKey:@"LastCheckInDate"];
             [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            [[NSUserDefaults standardUserDefaults]setFloat:10 forKey:@"Radius"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            //setting中的搜索条件初始设定
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"searchPreferenceMale"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"searchPreferenceFemale"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"searchPreferenceOnlyMySchool"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+
+
 
         }
     }
@@ -416,7 +428,7 @@
         
         return NO;
         
-    }else if (self.selectedGender == 0) {
+    }else if ([self.sexLabel.text isEqualToString:@""]) {
         
         [ProgressHUD showError:@"Please select your gender"];
         
@@ -439,7 +451,7 @@
         
         return NO;
 
-    }else if (self.selectedSpotrTime == 0) {
+    }else if ([self.sportTimeLabel.text isEqualToString:@""]) {
         
         [ProgressHUD showError:@"Please select your sport time"];
         
@@ -599,6 +611,9 @@
     //set icon image
     UIButton *button = (UIButton*)[self.picCell viewWithTag:1];
     [[[AVUser currentUser]objectForKey:@"icon"]deleteInBackground];
+    
+
+    
     [[AVUser currentUser] setObject:[AVFile fileWithData:UIImagePNGRepresentation([self imageWithImage:button.currentBackgroundImage scaledToSize:CGSizeMake(100, 100)])] forKey:@"icon"];
     [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
        
@@ -639,7 +654,6 @@
     NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
     if(plistData) {
         [plistData writeToFile:plistPath atomically:YES];
-        NSLog(@"plist writte successfully");
     }
 }
 
@@ -647,7 +661,6 @@
  *  Load User Basic Info from Sandbox
  */
 -(void)loadUserInfoFromLocal {
-#warning 可以优化代码
      NSString *plistPath = [[NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"basicInfo.plist"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
         plistPath = [[NSBundle mainBundle] pathForResource:@"basicInfo" ofType:@"plist"];
@@ -655,13 +668,13 @@
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     self.firstNameTextField.text = [dict objectForKey:@"firstName"];
     self.lastNameTextField.text = [dict objectForKey:@"lastName"];
-    self.selectedGender = (BOOL)[dict objectForKey:@"gender"];
-    self.sexLabel.text = (BOOL)[dict objectForKey:@"gender"]? @"Female":@"Male";
+    self.selectedGender = [[dict objectForKey:@"gender"] integerValue];
+    self.sexLabel.text = _genderArray[self.selectedGender];
     self.selectedBirthday = [dict objectForKey:@"dateOfBirth"];
     self.birthdayLabel.text = [TimeManager getDateString:self.selectedBirthday];
     self.selectedSpotrTime = [[dict objectForKey:@"sportTimeSlot"]integerValue];
-    self.sportTimeLabel.text = SPORTSLOT_ARRAY[self.selectedSpotrTime -1];
-    self.sportTimeLabel.backgroundColor = SPORTSLOT_COLOR_ARRAY[self.selectedSpotrTime - 1];
+    self.sportTimeLabel.text = SPORTSLOT_ARRAY[self.selectedSpotrTime];
+    self.sportTimeLabel.backgroundColor = SPORTSLOT_COLOR_ARRAY[self.selectedSpotrTime];
     self.selectedBestSport = [[dict objectForKey:@"bestSport"]integerValue];
     self.selectedGradYear = (int)[[dict objectForKey:@"gradYear"]integerValue];
     self.gradLabel.text = [NSString stringWithFormat:@"%d", self.selectedGradYear];
@@ -707,7 +720,8 @@
       inComponent:(NSInteger)component {
     if([pickerView isEqual:self.sexPicker]) {
         self.sexLabel.text = _genderArray[row];
-        self.selectedGender = (GenderType)row + 1;
+        self.selectedGender = (GenderType)row;
+        NSNumber *gender = [NSNumber numberWithInteger:self.selectedGender];
         
     } else if([pickerView isEqual:self.graduationYearPicker]){
         self.gradLabel.text = _gradYears[row];
@@ -716,7 +730,7 @@
         self.sportTimeLabel.text = _sportTime[row];
         self.sportTimeLabel.backgroundColor = SPORTSLOT_COLOR_ARRAY[row];
         self.sportTimeColorIndex = row;
-        self.selectedSpotrTime = (SportTimeSlot)row + 1;
+        self.selectedSpotrTime = (SportTimeSlot)row;
     }
 }
 

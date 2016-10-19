@@ -107,42 +107,7 @@
                                            forState: UIControlStateSelected];
 }
 
-#pragma mark - UITabBarController Delegate
--(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    
-    if (viewController.tabBarItem.tag == 1) {
-        
-        BOOL isFirstTagged = [[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTag"];
-        //        if (isFirstTagged) {
-        //
-        //            UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
-        //            SNTagSecondViewController *secondVC = [tag instantiateViewControllerWithIdentifier:@"Second_Tag_Controller"];
-        //
-        //            [tabBarController.selectedViewController presentViewController:secondVC animated:YES completion:nil];
-        //            return NO;
-        //    }
-        
-    }
-    
-    return YES;
-}
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    
-    if (item.tag == 1) {
-        
-        BOOL isFirstTagged = [[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTag"];
-        if (isFirstTagged) {
-            
-            UIStoryboard *tag = [UIStoryboard storyboardWithName:@"TagStoryboard" bundle:nil];
-            SNTagSecondViewController *secondVC = [tag instantiateViewControllerWithIdentifier:@"Second_Tag_Controller"];
-            
-            
-            
-        }
-
-    }
-}
 
 
 //// 遍历tabBar上的子控件,给"UITabBarButton"类型的按钮绑定动画效果事件

@@ -25,8 +25,8 @@
     [super viewDidLoad];
     self.allContacts = [[MessageManager defaultManager]fetchAllContacts];
     [self.tableView registerNib:[UINib nibWithNibName:@"SNContactCell" bundle:nil] forCellReuseIdentifier:@"SNContactCell"];
-    [self.view bringSubviewToFront:self.indexView];
     [self loadIndexView];
+    [self.view bringSubviewToFront:self.indexView];
 }
 
 -(void)loadIndexView {

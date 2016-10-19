@@ -18,9 +18,13 @@
 /**
  *  User's Basic Info Model
  */
-@property (nonatomic, strong) AVObject *basicInfo;
+@property (nonatomic, copy) NSString *myInfo;
 /**
  *  Message number hasn't read
  */
 @property NSInteger unreadMessageNumber;
+/**
+ *  Friend's Basic info Model
+ */
+@property (nonatomic, copy) NSString *friendBasicInfo;
 @end

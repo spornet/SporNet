@@ -100,8 +100,15 @@
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
         return ((SNUser*)obj).bestSport == _currentSport;
     }];
-    self.currentUsers = [[self.allUsers filteredArrayUsingPredicate:predicate]mutableCopy];
-    [self.tableView reloadData];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        self.currentUsers = [[self.allUsers filteredArrayUsingPredicate:predicate]mutableCopy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.tableView reloadData];
+        });
+    });
 }
 
 #pragma mark: getter of some properties.

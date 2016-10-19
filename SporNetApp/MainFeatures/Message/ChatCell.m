@@ -23,6 +23,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     _userImageView = [[UIImageView alloc]init];
     
     _textButton = [[UIButton alloc]init];
@@ -56,7 +57,6 @@
     [self.contentView addSubview:self.timeLabel];
     
     NSString *text = [(AVIMTypedMessage*)message text];
-    //NSString *text = @"what the fuck? Why should i do these shit.";
     CGSize contentStrSize = [text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 100, CGFLOAT_MAX)
                                                options:NSStringDrawingUsesLineFragmentOrigin
                                             attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Arial" size:17.0]}

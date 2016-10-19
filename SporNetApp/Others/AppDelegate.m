@@ -13,11 +13,12 @@
 #import "SNLoginViewController.h"
 #import "SNLaunchPageViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <UserNotifications/UserNotifications.h>
 
 #define AVOSCloudAppID  @"qLvqUSrb3dziuUehRKvpr6Kc-gzGzoHsz"
 #define AVOSCloudAppKey @"aYaqxmFig7hp77IYIl1wJ6RU"
 
-@interface AppDelegate ()<CLLocationManagerDelegate>
+@interface AppDelegate ()<CLLocationManagerDelegate, UNUserNotificationCenterDelegate>
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currlocation;
 //经度
@@ -71,7 +72,6 @@
     if (!status) {
         [self.locationManager requestWhenInUseAuthorization];
     }
-    NSLog(@"change");
 }
 
 
@@ -109,11 +109,92 @@
         
     }
     
+    //Push Notifications
     
+    [self registerForRemoteNotification];
     
-    
+    application.applicationIconBadgeNumber = 0;
+
     
     return YES;
+}
+
+- (void)registerForRemoteNotification {
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        // 使用 UNUserNotificationCenter 来管理通知
+        UNUserNotificationCenter *uncenter = [UNUserNotificationCenter currentNotificationCenter];
+        // 监听回调事件
+        [uncenter setDelegate:self];
+        //iOS10 使用以下方法注册，才能得到授权
+        [uncenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert+UNAuthorizationOptionBadge+UNAuthorizationOptionSound)
+                                completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                    //TODO:授权状态改变
+                                    NSLog(@"%@" , granted ? @"授权成功" : @"授权失败");
+                                }];
+        // 获取当前的通知授权状态, UNNotificationSettings
+        [uncenter getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+            /*
+             UNAuthorizationStatusNotDetermined : 没有做出选择
+             UNAuthorizationStatusDenied : 用户未授权
+             UNAuthorizationStatusAuthorized ：用户已授权
+             */
+            if (settings.authorizationStatus == UNAuthorizationStatusNotDetermined) {
+                NSLog(@"未选择");
+            } else if (settings.authorizationStatus == UNAuthorizationStatusDenied) {
+                NSLog(@"未授权");
+            } else if (settings.authorizationStatus == UNAuthorizationStatusAuthorized) {
+                NSLog(@"已授权");
+            }
+        }];
+    }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        UIUserNotificationType types = UIUserNotificationTypeAlert |
+        UIUserNotificationTypeBadge |
+        UIUserNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeAlert |
+        UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+    }
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    NSLog(@"deviceToken %@", deviceToken); 
+    
+    [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    NSLog(@"userInfo %@", userInfo); 
+    if (application.applicationState == UIApplicationStateActive) {
+        // 转换成一个本地通知，显示到通知栏，你也可以直接显示出一个 alertView，只是那样稍显 aggressive：）
+        
+        NSLog(@"notification %@", userInfo); 
+        
+//        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+//        localNotification.userInfo = userInfo;
+//        localNotification.soundName = UILocalNotificationDefaultSoundName;
+//        localNotification.alertBody = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+//        localNotification.fireDate = [NSDate date];
+//        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    } else {
+        [AVAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+    }
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"注册失败，无法获取设备 ID, 具体错误: %@", error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -127,7 +208,13 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    AVInstallation *installation = [AVInstallation currentInstallation];
+    [installation setBadge:0];
+    [installation saveInBackground];
+    
+    application.applicationIconBadgeNumber = 0;
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

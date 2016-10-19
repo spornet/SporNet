@@ -11,15 +11,29 @@
 @implementation SNContactCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.userImageView.layer.masksToBounds = YES;
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2.0;
 }
 -(void)configureCellWithConversation:(Conversation *)c {
-    [self.userImageView.layer setBorderWidth:2.0f];
-    UIColor *color = SPORTSLOT_COLOR_ARRAY[[[c.basicInfo objectForKey:@"sportTimeSlot"]integerValue]];
-    [_userImageView.layer setBorderColor:color.CGColor];
-    self.userNameField.text = [c.basicInfo objectForKey:@"name"];
-    self.userImageView.image = [UIImage imageWithData:[[c.basicInfo objectForKey:@"icon"]getData]];
-    self.bestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[c.basicInfo objectForKey:@"bestSport"]integerValue]]];
+    
+    AVObject *myself;
+    if ([c.myInfo isEqualToString:SELF_ID]) {
+        
+        myself = [AVObject objectWithClassName:@"SNUser" objectId:c.friendBasicInfo];
+    }else {
+        
+        myself = [AVObject objectWithClassName:@"SNUser" objectId:c.myInfo];
+    }
+    [myself fetch];
+    
+        UIColor *color = SPORTSLOT_COLOR_ARRAY[[[myself objectForKey:@"sportTimeSlot"]integerValue]];
+        [self.userImageView.layer setBorderColor:color.CGColor];
+        [self.userImageView.layer setBorderWidth:2.0f];
+
+        self.userImageView.image = [UIImage imageWithData:[[myself objectForKey:@"icon"]getData]];
+        self.userNameField.text = [myself objectForKey:@"name"];
+        self.bestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[myself objectForKey:@"bestSport"]integerValue]]];
+    
 }
 @end

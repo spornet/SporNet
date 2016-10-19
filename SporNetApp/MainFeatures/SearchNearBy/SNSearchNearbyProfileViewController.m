@@ -143,7 +143,12 @@ NSInteger width;
     self.tabBarController.tabBar.hidden = NO;
 }
 - (IBAction)addFriendButtonClicked:(UIButton *)sender {
+    
     [[MessageManager defaultManager]sendAddFrendRequst:self.currentUserProfile.objectId];
+    
+
+
+    
 }
 
 @end

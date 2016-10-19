@@ -19,6 +19,9 @@
 #define SCREEN_WIDTH [[UIScreen mainScreen]bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen]bounds].size.height
 
+#define SELF_ID [[[AVUser currentUser] objectForKey:@"basicInfo"]objectId]
+
+
 //SandBox for User Login
 #define KUSER_EMAIL @"USER_EMAIL"
 #define KUSER_PASSWORD @"USER_PASSWORD"

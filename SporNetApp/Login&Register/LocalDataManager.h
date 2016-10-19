@@ -14,5 +14,6 @@
 +(instancetype)defaultManager;
 -(NSMutableArray*)fetchCurrentAllUserInfo;
 -(NSMutableArray*)fetchNearByUserInfo:(AVGeoPoint*)point withinDist:(CGFloat)dist;
+-(NSMutableArray*)fetchUserFromList:(NSMutableArray*)userlist withSportType:(NSInteger)sportType;
 -(NSMutableArray*)fetchUserInfoBySportType:(NSInteger)sportType;
 @end

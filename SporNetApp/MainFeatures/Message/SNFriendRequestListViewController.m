@@ -22,14 +22,33 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
     [self.tableView registerNib:[UINib nibWithNibName:@"SNFriendRequestCell" bundle:nil] forCellReuseIdentifier:@"SNFriendRequestCell"];
-#warning 可以直接传值
+
     self.currentFriendRequstList = [[MessageManager defaultManager]fetchAllCurrentFriendRequests];
     [MessageManager defaultManager].delegate = self;
-    [MessageManager defaultManager].client.delegate = self;
+    [MessageManager defaultManager].myClient.delegate = self;
 }
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    if (self.currentFriendRequstList == 0) {
+        
+        [[MessageManager defaultManager] refreshAllFriendRequest];
+    }
+    
+}
+
+- (void)didFinishRefreshing {
+    
+    self.currentFriendRequstList = [[MessageManager defaultManager]fetchAllCurrentFriendRequests];
+    
+    [self.tableView reloadData]; 
+
 }
 
 #pragma mark - TableView Delegate
@@ -47,8 +66,13 @@
     SNSearchNearbyProfileViewController *vc = [[SNSearchNearbyProfileViewController alloc]init];
     Conversation *c = self.currentFriendRequstList[indexPath.row];
     
-    vc.currentUserProfile = (SNUser*)c.basicInfo;
-    [self.navigationController pushViewController:vc animated:YES];
+    AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:c.myInfo];
+    [user fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
+        
+        vc.currentUserProfile = (SNUser *)object;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
@@ -61,20 +85,20 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UIClient Delegate
--(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
-    if([message.text isEqualToString:@"Lets Play Sport Together"]) {
-        NSLog(@"收到一条好友请求");
-        AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:conversation.creator];
-        [user fetch];
-        
-        Conversation *c = [[Conversation alloc]init];
-        c.basicInfo = user;
-        c.conversation = conversation;
-        
-        [self.currentFriendRequstList addObject:c];
-        [self.tableView reloadData];
-        
-    }
-}
+//#pragma mark - UIClient Delegate
+//-(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
+//    if([message.text isEqualToString:@"Lets Play Sport Together"]) {
+//        NSLog(@"收到一条好友请求");
+//        AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:conversation.creator];
+//        [user fetch];
+//        
+//        Conversation *c = [[Conversation alloc]init];
+//        c.basicInfo = user;
+//        c.conversation = conversation;
+//        
+//        [self.currentFriendRequstList addObject:c];
+//        [self.tableView reloadData];
+//        
+//    }
+//}
 @end

@@ -15,6 +15,7 @@
 #import "SNMainFeatureTabController.h"
 #import "LocalDataManager.h"
 #import "SNUser.h"
+#import "MessageManager.h"
 
 @interface SNLoginViewController ()<UITextFieldDelegate>
 /**
@@ -134,6 +135,7 @@
                     [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextfield.text forKey:KUSER_PASSWORD];
                     
                     [[NSUserDefaults standardUserDefaults] synchronize];
+                    
                     
                 }
             }];

@@ -17,11 +17,10 @@ static NSString *const kSportTimeSlot =@"sportTimeSlot";
 static NSString *const kAboutMe = @"aboutMe";
 static NSString *const kDateOfBirth = @"dateOfBirth";
 
-typedef enum{
-    GenderUnknown = 0,
+typedef NS_ENUM(NSInteger, GenderType){
     GenderMale,
     GenderFamale
-}GenderType;
+};
 
 typedef NS_ENUM(NSInteger, BestSports) {
     BestSportsJogging = 1,
@@ -31,7 +30,6 @@ typedef NS_ENUM(NSInteger, BestSports) {
     BestSportsYoga
 };
 typedef NS_ENUM(NSInteger, SportTimeSlot) {
-    SportTimeSlotUnselected = 0,
     SportTimeSlotMorning,
     SportTimeSlotNoon,
     SportTimeSlotAfternoon,
