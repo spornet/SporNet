@@ -15,6 +15,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UserNotifications/UserNotifications.h>
 
+
 #define AVOSCloudAppID  @"qLvqUSrb3dziuUehRKvpr6Kc-gzGzoHsz"
 #define AVOSCloudAppKey @"aYaqxmFig7hp77IYIl1wJ6RU"
 
@@ -80,6 +81,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //change the style for page indicator
     
+    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+
+    NSLog(@"Notification info %@", notificationPayload);
+    
     [self locationManager];
     [self.locationManager startUpdatingLocation];
     
@@ -92,12 +97,19 @@
     [SNUser registerSubclass];
     [AVOSCloud setApplicationId:AVOSCloudAppID
                       clientKey:AVOSCloudAppKey];
-    
+    [AVIMClient setUserOptions:@{
+                                 AVIMUserOptionUseUnread: @(YES)
+                                 }];
+    [AVOSCloud setAllLogsEnabled:YES];
+    [AVPush setProductionMode:NO]; 
     //获取当前版本号
     NSString *key = (NSString *)kCFBundleVersionKey;
     NSString *version = [NSBundle mainBundle].infoDictionary[key];
     //获取之前的版本号
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults]valueForKey:@"LastVersion"];
+//    
+//    NSString *userEmail = [[NSUserDefaults standardUserDefaults]objectForKey:KUSER_EMAIL];
+//    NSString *userPassword = [[NSUserDefaults standardUserDefaults]objectForKey:KUSER_PASSWORD];
     if (![lastVersion isEqualToString:version]) {
         
         SNLaunchPageViewController *launchController = [[SNLaunchPageViewController alloc]init];
@@ -108,8 +120,6 @@
         [[NSUserDefaults standardUserDefaults]synchronize];
         
     }
-    
-    //Push Notifications
     
     [self registerForRemoteNotification];
     
@@ -194,7 +204,8 @@
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"注册失败，无法获取设备 ID, 具体错误: %@", error);
+    
+    NSLog(@"notification Error %@", error.description); 
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

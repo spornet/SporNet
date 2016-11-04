@@ -2,15 +2,14 @@
 //  rankingCell.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 7/6/16.
+//  Created by Peng Wang on 7/6/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
 #import "rankingCell.h"
 #import "globalMacros.h"
 @implementation rankingCell
-//a color array for sport time
-//a image array for sport image
+
 NSArray *sportPicArray;
 - (void)awakeFromNib {
     // Initialize the cell

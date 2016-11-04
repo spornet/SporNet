@@ -2,7 +2,7 @@
 //  RankingViewController.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 7/6/16.
+//  Created by Peng Wang on 7/6/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -12,22 +12,26 @@
 #import <AVQuery.h>
 #import "LocalDataManager.h"
 #import "SNSearchNearbyProfileViewController.h"
+#import <MJRefresh.h>
+
 @interface SNRankingViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView    *tableView;
 @property (strong, nonatomic) IBOutlet UILabel        *titleLabel;
 //currently selected sport.
-@property (nonatomic        ) enum     BestSports     currentSport;
+@property (nonatomic, assign) enum     BestSports     currentSport;
 //mock data of all users.
 @property (nonatomic, strong) NSMutableArray        *allUsers;
 //users of currently selected sport.
 @property (nonatomic, strong) NSMutableArray *currentUsers;
 //array of 5 sport images.
-@property (nonatomic        ) NSArray        *sportArray;
+@property (nonatomic, strong) NSArray        *sportArray;
 //array of 5 sport images on selection state.
-@property (nonatomic        ) NSArray        *sportArraySelected;
+@property (nonatomic, strong) NSArray        *sportArraySelected;
 //array of 5 sport titles.
-@property (nonatomic        ) NSArray        *titles;
+@property (nonatomic, strong) NSArray        *titles;
+
+@property (nonatomic, assign) NSInteger      *currentSportTag;
 @end
 
 @implementation SNRankingViewController
@@ -46,13 +50,53 @@
     [super viewDidLoad];
     //register ranking cell.
     [self.tableView registerNib:[UINib nibWithNibName:@"rankingCell" bundle:nil] forCellReuseIdentifier:@"rankingCell"];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+       
+        [self refresh];
+    }];
 
     //initilize current users as nil and current sport as basketball.
     
-    self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
-   
+    [ProgressHUD showError:@"Loading..."];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
+      
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [ProgressHUD dismiss];
+            [self.tableView reloadData];
+        });
+    });
+    
     self.currentSport = BestSportsJogging;
 }
+
+- (void)refresh {
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+    self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
+    
+    [self.currentUsers removeAllObjects];
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
+        return ((SNUser*)obj).bestSport == _currentSport;
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        self.currentUsers = [[self.allUsers filteredArrayUsingPredicate:predicate]mutableCopy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.tableView reloadData];
+        });
+    });
+        
+    [self.tableView.mj_header endRefreshing];
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
@@ -82,6 +126,7 @@
     return 77;
 }
 - (IBAction)sportButtonClicked:(UIButton *)sender {
+    [ProgressHUD show:@"Loading..."];
     self.currentSport = sender.tag;
 }
 /**
@@ -107,6 +152,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [self.tableView reloadData];
+            [ProgressHUD dismiss];
         });
     });
 }

@@ -2,7 +2,7 @@
 //  SNContactCell.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 8/26/16.
+//  Created by Peng Wang on 8/26/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.userImageView.layer.masksToBounds = YES;
-    self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2.0;
+//    self.userImageView.layer.masksToBounds = YES;
+//    self.userImageView.layer.cornerRadius = 30;
 }
 -(void)configureCellWithConversation:(Conversation *)c {
     

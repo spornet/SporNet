@@ -2,7 +2,7 @@
 //  MessageManager.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 8/17/16.
+//  Created by Peng Wang on 8/17/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -20,9 +20,11 @@ static MessageManager *center = nil;
 
 @property(nonatomic) NSMutableDictionary *allContacts;
 @property(nonatomic) NSMutableArray *myFriends;
+@property (nonatomic, strong)AVObject *myself;
 @end
 
 @implementation MessageManager
+
 +(instancetype)defaultManager {
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^ {
@@ -31,6 +33,7 @@ static MessageManager *center = nil;
     });
     return center;
 }
+
 -(instancetype)init {
 
 //    _allConversations = [[NSMutableArray alloc]init];
@@ -60,27 +63,39 @@ static MessageManager *center = nil;
 -(void)refreshAllConversations{
     
     if (!SELF_ID) {
-        
-        return;
+        return; 
     }
     
     AVIMConversationQuery *query = [self.myClient conversationQuery];
-
-    [query whereKey:@"m" containsAllObjectsInArray:@[SELF_ID]];
+    
+    self.myself = [AVObject objectWithClassName:@"SNUser" objectId:SELF_ID];
+    [self.myself fetch];
+    NSString *name = [self.myself objectForKey:@"name"];
+    
+    [query whereKey:@"m" containsAllObjectsInArray:@[name]];
     [query whereKey:@"status" equalTo:@1];
-    query.cachePolicy = kAVIMCachePolicyNetworkOnly;
 
     
     [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
-            
-            NSString *friendID;
+        
+        NSLog(@"consersation error %@", error.description); 
+        
             for(AVIMConversation *conversation in objects) {
+                AVQuery *query1 = [SNUser query];
+                [query1 whereKey:@"name" equalTo:conversation.creator];
+                NSArray *queryArray1 = [query1 findObjects];
+                SNUser *myself = queryArray1[0];
                 
-                friendID = conversation.members.lastObject;
+                AVQuery *query2 = [SNUser query];
+                [query2 whereKey:@"name" equalTo:conversation.members.firstObject];
+                NSArray *queryArray2 = [query2 findObjects];
+                SNUser *friend = queryArray2[0];
+                
+                NSLog(@"friend id %@ & myself id %@", friend.objectId, myself.objectId); 
                 
                 Conversation *c = [[Conversation alloc]init];
-                c.myInfo = conversation.members.firstObject;
-                c.friendBasicInfo = friendID;
+                c.myInfo = myself.objectId;
+                c.friendBasicInfo = friend.objectId;
                 c.conversation = conversation;
                 c.unreadMessageNumber = 0;
                 [self.allConversations addObject:c];
@@ -97,22 +112,32 @@ static MessageManager *center = nil;
 -(void)refreshAllFriendRequest{
     
     AVIMConversationQuery *query = [self.myClient conversationQuery];
-    [query whereKey:@"m" containsAllObjectsInArray:@[SELF_ID]];
+    [query whereKey:@"m" containsAllObjectsInArray:@[[self.myself objectForKey:@"name"]]];
     [query whereKey:@"status" notEqualTo:@1];
     
     query.cachePolicy = kAVIMCachePolicyNetworkElseCache;
     [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
-        for(AVIMConversation *conversation in objects) {
             
-            if (objects.count) {
+            for(AVIMConversation *conversation in objects) {
+                
+                AVQuery *query1 = [SNUser query];
+                [query1 whereKey:@"name" equalTo:conversation.creator];
+                NSArray *queryArray1 = [query1 findObjects];
+                SNUser *myself = queryArray1[0];
+                
+                AVQuery *query2 = [SNUser query];
+                [query2 whereKey:@"name" equalTo:conversation.members.firstObject];
+                NSArray *queryArray2 = [query2 findObjects];
+                SNUser *friend = queryArray2[0];
+                
+                NSLog(@"friend id %@ & myself id %@", friend.objectId, myself.objectId);
                 
                 Conversation *c = [[Conversation alloc]init];
-                c.myInfo = conversation.members.firstObject;
-                c.friendBasicInfo = conversation.members.lastObject;
+                c.myInfo = myself.objectId;
+                c.friendBasicInfo = friend.objectId;
                 c.conversation = conversation;
                 c.unreadMessageNumber = 0;
                 [self.allFriendRequsts addObject:c];
-            }
             
             if ([self.delegate respondsToSelector:@selector(didFinishRefreshing)]) {
                 
@@ -191,45 +216,72 @@ static MessageManager *center = nil;
  */
 -(void)startMessageService {
     
-    self.myClient = [[AVIMClient alloc]initWithClientId:[AVUser currentUser].objectId];
-    [self.myClient openWithCallback:^(BOOL succeeded, NSError *error) {
+    if (self.myClient.status == AVIMClientStatusResuming) {
         
-        if (error) {
-            NSLog(@"error, %@", error.description);
-        }
-    }];
+        [self.myClient openWithCallback:^(BOOL succeeded, NSError * _Nullable error) {
+           
+            if (succeeded) {
+                NSLog(@"resume succuss");
+            }else {
+                NSLog(@"websocket error %@", error.description);
+            }
+        }];
+    }else if (self.myClient == nil){
+    
+        NSString *name = [[AVUser currentUser] objectForKey:@"name"];
+        self.myClient = [[AVIMClient alloc]initWithClientId:name];
+        [self.myClient openWithCallback:^(BOOL succeeded, NSError *error) {
+            
+            if (succeeded) {
+                NSLog(@"succuss");
+                [[MessageManager defaultManager] refreshAllConversations];
 
+            }else {
+                NSLog(@"websocket error %@", error.description); 
+            }
+        }];
+    }
     
 
+
+}
+
+- (void)closeMessageService {
+    
+    if (self.myClient) {
+        
+        [self.myClient closeWithCallback:^(BOOL succeeded, NSError * _Nullable error) {
+            
+            if (error) {
+                
+                NSLog(@"closeMessageService error %@", error.description);
+            }
+            
+        }];
+    }
+    
 }
 
 -(void)sendAddFrendRequst:(NSString*)clientId {
     
-    NSLog(@"Friend Client %@", clientId);
+    AVObject *friendObject = [AVObject objectWithClassName:@"SNUser" objectId:clientId];
+    [friendObject fetch];
+    NSString *friendName = [friendObject objectForKey:@"name"];
     
-    [self.myClient openWithCallback:^(BOOL succeeded, NSError *error) {
-       
-        [self.myClient createConversationWithName:@"friend request" clientIds:@[clientId] attributes:nil options:AVIMConversationOptionUnique callback:^(AVIMConversation *conversation, NSError *error) {
+        [self.myClient createConversationWithName:@"friend request" clientIds:@[friendName] attributes:nil options:AVIMConversationOptionUnique callback:^(AVIMConversation *conversation, NSError *error) {
             AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"Lets Play Sport Together"attributes:nil];
             [conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
                 [ProgressHUD showSuccess:@"You've successfully sent friend request."];
                 
-                //Send Notification Push
-                AVQuery *query = [AVInstallation query];
-                [query whereKey:@"Owner" equalTo:clientId];
-                
-                AVPush *push = [[AVPush alloc]init];
-                [push setMessage:@"You've Got a Friend Request"];
-                [push setQuery:query];
-                [push sendPushInBackground];
+                [self sendPushNotificationTo:friendName withMessage:@"You've Got a Friend Request"];
                 
             }];
         }];
         
-    }];
     
 }
 -(void)acceptFriendRequest:(Conversation*)c{
+    
     [c.conversation update:@{@"status":@1, @"name":@"New Conversation"} callback:^(BOOL succeeded, NSError *error) {
         AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"I've added you as my friend. Let's start to chat!" attributes:nil];
         [ProgressHUD showSuccess:@"You've add a new friend."];
@@ -245,10 +297,20 @@ static MessageManager *center = nil;
                     [self.delegate didAcceptFriendRequest];
                 }
                 
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"Add_NEW_FRIEND" object:nil];
                 
             }];
         }];
+}
+
+-(void)rejectFriendRequest:(Conversation*)c {
+    
+    [self.allFriendRequsts removeObject:c];
+    
+    if ([self.delegate respondsToSelector:@selector(didAcceptFriendRequest)]) {
+        
+        [self.delegate didAcceptFriendRequest];
+    }
+    
 }
 
 - (void)AddFriendRelationship:(Conversation *)c {
@@ -257,17 +319,24 @@ static MessageManager *center = nil;
     
     AVObject *myFriend = [AVObject objectWithClassName:@"SNUser" objectId:c.friendBasicInfo];
     
-    AVQuery *queryFriend = [AVInstallation query];
-    AVQuery *queryMyself = [AVInstallation query];
-
+    [myself fetch];
+    [myFriend fetch];
     
+    
+//    AVQuery *sendToFriend = [AVInstallation query];
+//    [sendToFriend whereKey:@"Owner" equalTo:c.friendBasicInfo];
+//    AVPush *pushToFriend = [[AVPush alloc]init];
+//    [pushToFriend setMessage:@"You've Made a New Sport Friend"];
+//    [pushToFriend setQuery:sendToFriend];
+//    
+//    AVQuery *sendToMyself = [AVInstallation query];
+//    [sendToMyself whereKey:@"Owner" equalTo:c.myInfo];
+//    AVPush *pushToMyself = [[AVPush alloc]init];
+//    [pushToMyself setMessage:@"You've Made a New Sport Friend"];
+//    [pushToMyself setQuery:sendToMyself];
+
     [myself fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
         
-        [queryFriend whereKey:@"Owner" equalTo:myFriend.objectId];
-        AVPush *push = [[AVPush alloc]init];
-        [push setMessage:@"You've Made a New Friend"];
-        [push setQuery:queryFriend];
-        [push sendPushInBackground];
         NSMutableArray *myselfFriends = [NSMutableArray array];
         
         NSArray *myfriends = [object objectForKey:@"MyFriends"];
@@ -289,16 +358,11 @@ static MessageManager *center = nil;
             [object saveInBackground];
             
         }
+        
     }];
     
     
     [myFriend fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-        
-        [queryMyself whereKey:@"Owner" equalTo:c.myInfo];
-        AVPush *push = [[AVPush alloc]init];
-        [push setMessage:@"You've Made a New Friend"];
-        [push setQuery:queryMyself];
-        [push sendPushInBackground];
         
         NSMutableArray *myfriendM = [NSMutableArray array];
         NSArray *myfriends = [object objectForKey:@"MyFriends"];
@@ -320,9 +384,36 @@ static MessageManager *center = nil;
             [object saveInBackground];
             
         }
+        
     }];
-
-
     
+    [self sendPushNotificationTo:[myFriend objectForKey:@"name"] withMessage:@"You've Made a New Sport Friend"];
+    [self sendPushNotificationTo:[myself objectForKey:@"name"] withMessage:@"You've Made a New Sport Friend"];
+}
+
+- (void)sendPushNotificationTo:(NSString *)name withMessage:(NSString *)message {
+    
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          @"Increment", @"badge",
+                          nil];
+    
+    AVQuery *query = [AVInstallation query];
+    [query whereKey:@"Owner" equalTo:name];
+    AVPush *push = [[AVPush alloc]init];
+    [push expireAfterTimeInterval:36000];
+    [push setData:data];
+    [push setMessage:message];
+    [push setQuery:query];
+    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"Push Error %@", error.description);
+        }
+        
+    }];
 }
 @end
+
+
+
+

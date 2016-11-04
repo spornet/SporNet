@@ -2,7 +2,7 @@
 //  SNPreferenceViewController.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 7/5/16.
+//  Created by Peng Wang on 7/5/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 

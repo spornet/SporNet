@@ -119,6 +119,12 @@
                             
                             
                             [self performSegueWithIdentifier:@"firstTimeLoginSegue" sender:nil];
+                            //Save to SandBox
+                            
+                            [[NSUserDefaults standardUserDefaults] setObject:self.userEmailTextfield.text forKey:KUSER_EMAIL];
+                            [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextfield.text forKey:KUSER_PASSWORD];
+                            
+                            [[NSUserDefaults standardUserDefaults] synchronize];
                         }else {
                             [LocalDataManager fetchProfileInfoFromCloud];
                             SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
@@ -129,12 +135,6 @@
                     }];
                     
                     [ProgressHUD showSuccess:@"Welcome"];
-                    //Save to SandBox
-                    
-                    [[NSUserDefaults standardUserDefaults] setObject:self.userEmailTextfield.text forKey:KUSER_EMAIL];
-                    [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextfield.text forKey:KUSER_PASSWORD];
-                    
-                    [[NSUserDefaults standardUserDefaults] synchronize];
                     
                     
                 }

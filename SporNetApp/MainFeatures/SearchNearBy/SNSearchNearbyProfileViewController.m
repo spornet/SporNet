@@ -2,7 +2,7 @@
 //  SNSearchNearbyProfileViewController.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 8/3/16.
+//  Created by Peng Wang on 8/3/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -41,6 +41,7 @@ NSInteger width;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.scrollView setContentSize:CGSizeMake(0, self.scrollView.contentSize.height)];
     self.scrollView.scrollEnabled = NO;
     self.tabBarController.tabBar.hidden = YES;
@@ -48,6 +49,8 @@ NSInteger width;
     [self.contentImageScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewBigPicture)]];
 }
 -(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     self.navigationController.navigationBar.hidden = YES;
     self.voteNumberLabel.text = [NSString stringWithFormat:@"%ld",  [[self.currentUserProfile objectForKey:@"voteNumber"]integerValue]];
     if([[[AVUser currentUser]objectForKey:@"votedPeople"]containsObject:[self.currentUserProfile objectForKey:@"userID"]]) {
@@ -76,8 +79,7 @@ NSInteger width;
     
     
     self.firstNameLabel.text = [self.currentUserProfile objectForKey:@"name"];
-    NSString *aboutMe = [self.currentUserProfile objectForKey:@"aboutMe"];
-    self.aboutMeLabel.text = aboutMe?aboutMe:@"No Self Introduction Yet.";
+    self.aboutMeLabel.text = [self.currentUserProfile objectForKey:@"aboutMe"];
     self.schoolButton.text = [self.currentUserProfile objectForKey:@"school"];
     self.ageLabel.text = [NSString stringWithFormat:@"%ld", [TimeManager calculateAgeByBirthday:[self.currentUserProfile objectForKey:@"dateOfBirth"]]];
     self.sportTimeLabel.text = SPORTSLOT_ARRAY[[[self.currentUserProfile objectForKey:@"sportTimeSlot"] integerValue]];
@@ -86,11 +88,16 @@ NSInteger width;
     
     //set user profile images
     NSArray *imagesUrls = [self.currentUserProfile objectForKey:@"PicUrls"];
-    if(imagesUrls.count == 0) return;
-    self.pageControl.numberOfPages = imagesUrls.count;
-    self.contentImageScrollView.contentSize = CGSizeMake(self.x * imagesUrls.count, self.contentImageScrollView.frame.size.height*0.2);
     CGFloat xPos;
     self.currentImages = [[NSMutableArray alloc]init];
+    if(imagesUrls.count == 0) {
+        
+        return;
+        
+    }
+    
+    self.pageControl.numberOfPages = imagesUrls.count;
+    self.contentImageScrollView.contentSize = CGSizeMake(self.x * imagesUrls.count, self.contentImageScrollView.frame.size.height*0.2);
     for(NSString *url in imagesUrls) {
         NSLog(@"url is %@", url);
     
@@ -103,7 +110,6 @@ NSInteger width;
         }];
         xPos += self.x;
     }
-    
     
 }
 - (IBAction)voteButtonClicked:(UIButton *)sender {
@@ -144,10 +150,25 @@ NSInteger width;
 }
 - (IBAction)addFriendButtonClicked:(UIButton *)sender {
     
-    [[MessageManager defaultManager]sendAddFrendRequst:self.currentUserProfile.objectId];
+    AVObject *myself = [AVObject objectWithClassName:@"SNUser" objectId:SELF_ID];
+    [myself fetch];
+    NSArray *myfriendsList = [myself objectForKey:@"MyFriends"];
     
-
-
+    for (NSString *friendID in myfriendsList) {
+        
+        if ([friendID isEqualToString:self.currentUserProfile.objectId]) {
+            
+            [ProgressHUD showError:@"This is your friend"];
+            continue;
+            
+        }else {
+            
+            [[MessageManager defaultManager]sendAddFrendRequst:self.currentUserProfile.objectId];
+            
+        }
+    }
+    
+    
     
 }
 

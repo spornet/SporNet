@@ -40,7 +40,6 @@
     //Selected Image Tag
     NSInteger _selectedImageTag;
     //If Image Change
-    BOOL      _imageDidChange;
 }
 
 //All Cells
@@ -170,11 +169,9 @@
         }]];
         [_alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             UIButton *selectedButton = (UIButton*)[self.picCell viewWithTag:_selectedImageTag];
-            if(_selectedImageTag == 1) {
-                [selectedButton setBackgroundImage:PROFILE_IMAGE forState:normal];
-            } else {
-                [selectedButton setBackgroundImage:ADD_IMAGE forState:normal];
-            }
+   
+            [selectedButton setImage:ADD_IMAGE forState:normal];
+            
         }]];
         [_alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         }]];
@@ -224,15 +221,6 @@
     //Set Up the Max Profile Image Number
     self.selectedProfileImageArray = [[NSMutableArray alloc]initWithCapacity:SELECTED_MAX_PROFILE_IMAGE];
     //LoadUser Info From Local
-    bool isRegistered =(bool)[[AVUser currentUser]objectForKey:@"User_Registered"];
-    bool isSecond = [[NSUserDefaults standardUserDefaults]boolForKey:KUSER_FIRST_REGISTER];
-    
-    if (isSecond || isRegistered) {
-        
-        self.topLable.hidden = YES;
-
-        [self loadUserInfoFromLocal];
-    }
     
 }
 
@@ -247,6 +235,19 @@
 - (void)viewWillDisappear:(BOOL)animated {
     
     self.navigationController.tabBarController.tabBar.hidden = NO;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    bool isRegistered =(bool)[[AVUser currentUser]objectForKey:@"User_Registered"];
+    bool isSecond = [[NSUserDefaults standardUserDefaults]boolForKey:KUSER_FIRST_REGISTER];
+    
+    if (isSecond || isRegistered) {
+        
+        self.topLable.hidden = YES;
+        
+        [self loadUserInfoFromLocal];
+    }
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -280,7 +281,6 @@
     _sportTime = @[@"Morning",@"Noon",@"Afternoon",@"Evening"];
     _bestSportsPicArray = @[@"jogging", @"muscle", @"soccer", @"basketball", @"yoga"];
     _bestSportsPicArraySelected = @[@"joggingSelected", @"muscleSelected", @"soccerSelected", @"basketballSelected", @"yogaSelected"];
-    _imageDidChange = NO;
 
 }
 /**
@@ -302,11 +302,12 @@
 - (IBAction)picButtonClicked:(UIButton *)sender {
     _selectedImageTag = sender.tag;
     
-    if([sender.currentBackgroundImage isEqual:PROFILE_IMAGE] | [sender.currentBackgroundImage isEqual:ADD_IMAGE]) {
+    if([sender.currentImage isEqual:ADD_IMAGE]) {
         [self presentViewController:self.imagePicker animated:YES completion:nil];
     } else {
         [self presentViewController:self.alert animated:YES completion:nil];
     }
+
 }
 
 /**
@@ -368,11 +369,15 @@
         
         if ([self checkAllUserInputs]) {
             
+            [ProgressHUD show:@"Saving..."];
             [self setIcon];
             [self saveOnLocal];
+            [LocalDataManager updateProfileInfoOnCloudInBackground];
+            sleep(3);
+            [ProgressHUD dismiss];
+            
             SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
             [self presentViewController:tabVC animated:YES completion:nil];
-            [LocalDataManager updateProfileInfoOnCloudInBackground];
             
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:KUSER_FIRST_REGISTER];
             [[NSUserDefaults standardUserDefaults]synchronize];
@@ -413,14 +418,14 @@
  */
 - (BOOL)checkAllUserInputs {
     
-    for(int i = 1; i <= 6; i++) {
-        UIButton *button = (UIButton*)[self.picCell viewWithTag:i];
-        if ([button.currentBackgroundImage isEqual:PROFILE_IMAGE]) {
+    
+        UIButton *button = (UIButton*)[self.picCell viewWithTag:1];
+        if (button.currentImage == nil) {
             
             [ProgressHUD showError:@"You need at least One Profile Picture"];
             return NO;
         }
-    }
+    
     
     if ([self.firstNameTextField.text isEqualToString:@""] || [self.lastNameTextField.text isEqualToString:@""]) {
         
@@ -537,6 +542,7 @@
     }
     return height;
 }
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     switch (indexPath.row) {
@@ -574,6 +580,7 @@
     }
     return  cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self dismissKeyboard];
     switch (indexPath.row) {
@@ -610,17 +617,17 @@
 - (void)setIcon {
     //set icon image
     UIButton *button = (UIButton*)[self.picCell viewWithTag:1];
-    [[[AVUser currentUser]objectForKey:@"icon"]deleteInBackground];
     
-
-    
-    [[AVUser currentUser] setObject:[AVFile fileWithData:UIImagePNGRepresentation([self imageWithImage:button.currentBackgroundImage scaledToSize:CGSizeMake(100, 100)])] forKey:@"icon"];
+    [[AVUser currentUser] setObject:[AVFile fileWithData:UIImagePNGRepresentation([self imageWithImage:button.currentImage scaledToSize:CGSizeMake(100, 100)])] forKey:@"icon"];
     [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
        
         if (succeeded) {
             
             [self.user setObject:[[AVUser currentUser] objectForKey:@"icon"] forKey:@"icon"];
             [self.user save];
+        } else {
+            
+            NSLog(@"Profile pic Error %@", error.description); 
         }
         
     }];
@@ -636,8 +643,8 @@
     NSMutableArray *imageDataArr = [[NSMutableArray alloc]init];
     for(int i = 1; i <= 6; i++) {
         UIButton *button = (UIButton*)[self.picCell viewWithTag:i];
-        if([button.currentBackgroundImage isEqual:PROFILE_IMAGE] | [button.currentBackgroundImage isEqual:ADD_IMAGE]) continue;
-        [imageDataArr addObject:UIImageJPEGRepresentation(button.currentBackgroundImage, 0.2)];
+        if([button.currentImage isEqual:ADD_IMAGE]) continue;
+        [imageDataArr addObject:UIImageJPEGRepresentation(button.currentImage, 0.9)];
     }
 
     NSDictionary *plistDict = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects:
@@ -687,7 +694,9 @@
     NSArray *imageDataArr = [dict objectForKey:@"photoes"];
     int i = 1;
     for (NSData *data in imageDataArr) {
-        [((UIButton*)[self.picCell viewWithTag:i]) setBackgroundImage:[UIImage imageWithData:data] forState:normal];
+        UIImage *image = [UIImage imageWithData:data];
+        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [((UIButton*)[self.picCell viewWithTag:i]) setImage:image forState:normal];
         i++;
     }
 }
@@ -721,7 +730,6 @@
     if([pickerView isEqual:self.sexPicker]) {
         self.sexLabel.text = _genderArray[row];
         self.selectedGender = (GenderType)row;
-        NSNumber *gender = [NSNumber numberWithInteger:self.selectedGender];
         
     } else if([pickerView isEqual:self.graduationYearPicker]){
         self.gradLabel.text = _gradYears[row];
@@ -750,47 +758,19 @@
     }
 }
 
-//load user information if already has a user
-//-(void)loadUserInfo {
-//    NSLog(@"BEGIN LOADING");
-//    self.firstNameTextField.text = [[[AVUser currentUser] objectForKey:@"name" ] componentsSeparatedByString:@" "][0];
-//    self.lastNameTextField.text = [[[AVUser currentUser] objectForKey:@"name" ] componentsSeparatedByString:@" "][1];
-//    self.sexLabel.text = (BOOL)[_user objectForKey:@"gender"]? @"Female":@"Male";
-//    self.selectedGender = (BOOL)[_user objectForKey:@"gender"];
-//    self.birthdayLabel.text = [TimeManager getDateString:[_user objectForKey:@"dateOfBirth"]];
-//    self.selectedBirthday = [_user objectForKey:@"dateOfBirth"];
-//
-//    self.selectedGradYear = (int)[[_user objectForKey:@"gradYear"] integerValue];
-//    self.gradLabel.text = [NSString stringWithFormat:@"%d", self.selectedGradYear];
-//
-//    self.selectedSpotrTime = [[[AVUser currentUser]objectForKey:@"sportTimeSlot"]integerValue];
-//    self.sportTimeLabel.text = SPORTSLOT_ARRAY[self.selectedSpotrTime];
-//    self.aboutmeTextView.text = [_user objectForKey:@"aboutMe"];
-//    
-//    if([[_user objectForKey:@"aboutMe"] isEqual:@""]) _placeHolder.hidden = NO;
-//    else _placeHolder.hidden = YES;
-//    _placeHolder.hidden = YES;
-//    self.selectedBestSport = [[[AVUser currentUser]objectForKey:@"bestSport"]integerValue];
-//    NSMutableArray *arr = [_user objectForKey:@"ProfilePhotoes"];
-//    NSLog(@"count is %ld", arr.count);
-//    int i = 1;
-//    for (AVObject *obj in arr) {
-//        NSLog(@"我就看看你执行不执行");
-//        [AVFile getFileWithObjectId:obj.objectId withBlock:^(AVFile *file, NSError *error) {
-//            [((UIButton*)[self.picCell viewWithTag:i]) setBackgroundImage:[UIImage imageWithData:[file getData]] forState:normal];
-//        }];
-//        i++;
-//    }
-//}
+
 
 #pragma mark - ImagePicker Delegate
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    _imageDidChange = YES;
+    
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+//    NSLog(@"image %@", chosenImage);
+//    chosenImage = [chosenImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIButton *selectedButton = (UIButton*)[self.picCell viewWithTag:_selectedImageTag];
-    [selectedButton setBackgroundImage:chosenImage forState:normal];
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    [selectedButton setImage:chosenImage forState:UIControlStateNormal];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Setter Method
@@ -798,12 +778,14 @@
  *  Set SelectedBestSport Property
  */
 -(void)setSelectedBestSport:(BestSports)selectedBestSport {
+    [self.view layoutIfNeeded];
 
     _selectedBestSport = selectedBestSport;
     UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:selectedBestSport];
     
     self.selectedBestSportImageView.frame = CGRectMake(imageView.frame.origin.x - 5, imageView.frame.origin.y - 5, imageView.frame.size.width + 10, imageView.frame.size.height + 10);
     self.selectedBestSportImageView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[selectedBestSport]];
+
     
 }
 

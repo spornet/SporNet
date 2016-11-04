@@ -2,7 +2,7 @@
 //  MessageListCell.h
 //  SporNetApp
 //
-//  Created by 浦明晖 on 8/17/16.
+//  Created by Peng Wang on 8/17/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -17,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastTimeLabel;
-@property JSBadgeView *badgeView;
+@property (nonatomic, strong) JSBadgeView *badgeView;
 -(void)configureCellWithConversation:(Conversation*)c;
 @end

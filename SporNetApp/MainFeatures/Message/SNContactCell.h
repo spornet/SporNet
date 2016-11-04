@@ -2,7 +2,7 @@
 //  SNContactCell.h
 //  SporNetApp
 //
-//  Created by 浦明晖 on 8/26/16.
+//  Created by Peng Wang on 8/26/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 

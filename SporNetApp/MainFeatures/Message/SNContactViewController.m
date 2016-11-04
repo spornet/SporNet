@@ -2,7 +2,7 @@
 //  SNContactViewController.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 8/26/16.
+//  Created by Peng Wang on 8/26/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -13,9 +13,9 @@
 @interface SNContactViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *indexView;
-@property NSMutableArray *indexIcons;
+@property (nonatomic, strong) NSMutableArray *indexIcons;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property NSMutableDictionary *allContacts;
+@property (nonatomic, strong) NSMutableDictionary *allContacts;
 
 @end
 
@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+        
     self.allContacts = [[MessageManager defaultManager]fetchAllContacts];
     [self.tableView registerNib:[UINib nibWithNibName:@"SNContactCell" bundle:nil] forCellReuseIdentifier:@"SNContactCell"];
     [self loadIndexView];
@@ -60,6 +61,7 @@
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SNContactCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SNContactCell" forIndexPath:indexPath];
+    
     NSString *category = self.allContacts.allKeys[indexPath.section];
     [cell configureCellWithConversation:_allContacts[category][indexPath.row]];
     return cell;

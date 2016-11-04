@@ -110,7 +110,7 @@
         self.indicator.frame = CGRectMake(0, 0, 20, 20);
         self.indicator.center = CGPointMake(-23, _textButton.frame.size.height / 2.0);
         if(!alreadySent) {
-            self.indicator.color = [UIColor darkGrayColor];
+            self.indicator.color = [UIColor redColor];
             [self.indicator startAnimating];
         } else {
             [self.indicator stopAnimating];

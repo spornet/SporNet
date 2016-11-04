@@ -64,7 +64,14 @@
         
          [ProgressHUD showSuccess:@"Please check your email again"];
         
-        [AVUser requestEmailVerify:self.emailTextfield.text withBlock:nil];
+        [AVUser requestEmailVerify:self.emailTextfield.text withBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            
+            if (error) {
+                
+                
+            }
+            
+        }];
         
         [self.navigationController popViewControllerAnimated:YES];
     }

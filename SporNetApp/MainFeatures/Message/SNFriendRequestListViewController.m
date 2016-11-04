@@ -25,7 +25,6 @@
 
     self.currentFriendRequstList = [[MessageManager defaultManager]fetchAllCurrentFriendRequests];
     [MessageManager defaultManager].delegate = self;
-    [MessageManager defaultManager].myClient.delegate = self;
 }
 
 - (IBAction)backButtonClicked:(id)sender {
@@ -36,6 +35,7 @@
     
     [super viewWillAppear:animated];
     
+    [MessageManager defaultManager].myClient.delegate = self;
     if (self.currentFriendRequstList == 0) {
         
         [[MessageManager defaultManager] refreshAllFriendRequest];

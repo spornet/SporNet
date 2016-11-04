@@ -7,15 +7,16 @@
 //
 
 #import "SNFriendRequestCell.h"
-#import "AVObject.h"
+#import "SNUser.h"
 #import "MessageManager.h"
+#import "UIImageView+WebCache.h"
 @implementation SNFriendRequestCell
 
 - (void)awakeFromNib {
     // Initialization code
     [super awakeFromNib];
     self.userImageView.layer.masksToBounds = YES;
-    self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2.0;
+    self.userImageView.layer.cornerRadius = 20;
 }
 
 - (IBAction)acceptButtonClicked:(UIButton *)sender {
@@ -23,12 +24,12 @@
 
 }
 - (IBAction)removeButtonClicked:(UIButton *)sender {
-    NSLog(@"拒绝");
     
+    [[MessageManager defaultManager] rejectFriendRequest:self.conversation];
 }
 -(void)configureCellWithConversation:(Conversation*)conversation {
     self.conversation = conversation;
- 
+    
     AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:conversation.myInfo];
     
     [user fetch];
@@ -41,7 +42,10 @@
     [_userImageView.layer setBorderColor:color.CGColor];
                 
     self.schoolLabel.text = [user objectForKey:@"school"];
-    self.userImageView.image = [UIImage imageWithData:[[user objectForKey:@"icon"]getData]];
+    NSArray *imageURLs = [user objectForKey:@"PicUrls"];
+    NSString *profileURL = [imageURLs firstObject];
+//    UIImage *image = [UIImage imageWithData:[[user objectForKey:@"icon"]getData]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:profileURL] placeholderImage:[UIImage imageNamed:@"profile"]];
           
     
 }

@@ -15,7 +15,8 @@
                 <frame key="frameInset" width="320" height="71"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user4" translatesAutoresizingMaskIntoConstraints="NO" id="xG7-2j-d1K">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xG7-2j-d1K">
+                        <color key="backgroundColor" red="1" green="0.018492512155142249" blue="0.8368073899785069" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="8q7-cN-nqT"/>
                             <constraint firstAttribute="width" constant="50" id="Xv2-Tz-iFo"/>
@@ -77,6 +78,5 @@
     </objects>
     <resources>
         <image name="basketball" width="58" height="58"/>
-        <image name="user4" width="400" height="400"/>
     </resources>
 </document>

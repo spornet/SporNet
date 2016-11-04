@@ -72,7 +72,6 @@ static LocalDataManager *center = nil;
 }
 +(void)updateProfileInfoOnCloudInBackground {
     
-#warning 需要重构代码，做一个从沙盒读取的工具类
         //更新的时候，得把NSInteger值转为NSNumber
 
     AVQuery *query = [SNUser query];
@@ -93,11 +92,11 @@ static LocalDataManager *center = nil;
         [user setObject:[array firstObject] forKey:@"school"];
     }
     
-    bool editProfile = [[NSUserDefaults standardUserDefaults]boolForKey:@"editUserProfile"];
+    bool editProfile = [[NSUserDefaults standardUserDefaults]boolForKey:KUSER_EDIT_PROFILE];
     if (editProfile) {
         
         NSArray *imageUrls = [user objectForKey:@"PicUrls"];
-        if (imageUrls) {
+        if (imageUrls.count) {
             
             for (NSString *imageUrl in imageUrls) {
                 
@@ -105,8 +104,6 @@ static LocalDataManager *center = nil;
                 [imageFile getData];
                 [imageFile deleteInBackground];
             }
-            
-            [user removeObjectsInArray:imageUrls forKey:@"PicUrls"];
         }
     }
     
@@ -127,24 +124,26 @@ static LocalDataManager *center = nil;
         [user setObject:dict[@"aboutMe"] forKey:@"aboutMe"];
         [user setObject:[AVUser currentUser].objectId forKey:@"userID"];
         [user setObject:[[AVUser currentUser]objectForKey:@"icon"] forKey:@"icon"];
+        NSArray *imageData = dict[@"photoes"];
         NSMutableArray *arrayM = [NSMutableArray array];
-        for(NSData *data in dict[@"photoes"]) {
-            AVFile *file = [AVFile fileWithData:data];
-            [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded) {
-                    
-                    [arrayM addObject:file.url];
-                }
+        
+        
+            for (NSData *data in imageData) {
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                AVFile *file = [AVFile fileWithData:data];
+                [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        
+                        [user setObject:arrayM forKey:@"PicUrls"];
+                        [arrayM addObject:file.url];
+                        [user save];
+                    }else {
+                        
+                        NSLog(@"Saving Pics Error %@", error.description); 
+                    }
                     
-                    [user setObject:arrayM forKey:@"PicUrls"];
-                    [user save];
-                    
-                });
-                
-            }];
-        }
+                }];
+            }
         
         [[AVUser currentUser]setObject:[NSString stringWithFormat:@"%@ %@", dict[@"firstName"], dict[@"lastName"]] forKey:@"name"];
         [[AVUser currentUser]setObject:dict[@"sportTimeSlot"] forKey:@"sportTimeSlot"];
@@ -152,25 +151,25 @@ static LocalDataManager *center = nil;
         [[AVUser currentUser]setObject:user forKey:@"basicInfo"];
         [[AVUser currentUser]setObject:@(YES) forKey:@"User_Registered"];
         [[AVUser currentUser]saveInBackground];
-        [user save];
+        [user saveInBackground];
+        
+        //Set Current User's Notification
+        
+        AVInstallation *installation = [AVInstallation currentInstallation];
+        AVObject *owner = [[AVUser currentUser] objectForKey:@"basicInfo"];
+        [owner fetch];
+        [installation setObject:[owner objectForKey:@"name"] forKey:@"Owner"];
+
+        [installation saveInBackground];
+        
         }
-    //Set Current User's Notification
-   
-    AVInstallation *installation = [AVInstallation currentInstallation];
-    AVObject *owner = [[AVUser currentUser] objectForKey:@"basicInfo"];
-    [owner fetch];
-    [installation setObject:owner.objectId forKey:@"Owner"];
-    [installation saveInBackground];
+
     
 }
 -(NSMutableArray*)fetchCurrentAllUserInfo {
-    if(self.allUserInfo.count == 0){
-        
-        return [self refreshAndFetchAllUserInfo];
-    }
-    else {
-        return self.allUserInfo;
-    }
+    
+    return [self refreshAndFetchAllUserInfo];
+
 }
 
 //ZY
@@ -229,15 +228,13 @@ static LocalDataManager *center = nil;
 
 }
 -(NSMutableArray*)refreshAndFetchAllUserInfo {
-    [ProgressHUD show:@"Fetching Data. Please wait..."];
     AVQuery *query = [SNUser query];
     [query includeKey:@"icon"];
     [query orderByDescending:@"voteNumber"];
-    
+    query.cachePolicy = kAVCachePolicyNetworkOnly; 
     NSArray *users = [query findObjects];
     self.allUserInfo = [users mutableCopy];
 
-    [ProgressHUD dismiss];
     return self.allUserInfo;
     
 }

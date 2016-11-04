@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *frameArr;
+@property (nonatomic, strong) AVObject *myself;
 @property (weak, nonatomic) IBOutlet UITextView *messageInputTextView;
 @property (weak, nonatomic) IBOutlet UILabel *talkToLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBoxBottomConstraint;
@@ -32,24 +33,27 @@
     return _frameArr;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
     self.tabBarController.tabBar.hidden = YES;
     
+    [[MessageManager defaultManager] startMessageService];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"ChatCell" bundle:nil] forCellReuseIdentifier:@"ChatCell"];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    AVObject *myself;
+    
     if ([self.conversation.myInfo isEqualToString:SELF_ID]) {
         
-        myself = [AVObject objectWithClassName:@"SNUser" objectId:self.conversation.friendBasicInfo];
+        self.myself = [AVObject objectWithClassName:@"SNUser" objectId:self.conversation.friendBasicInfo];
     } else {
         
-        myself = [AVObject objectWithClassName:@"SNUser" objectId:self.conversation.myInfo];
+        self.myself = [AVObject objectWithClassName:@"SNUser" objectId:self.conversation.myInfo];
     }
     
-    [myself fetch];
-    self.talkToLabel.text = [myself objectForKey:@"name"];
+    [self.myself fetch];
+    self.talkToLabel.text = [self.myself objectForKey:@"name"];
 
     self.messages = [[self.conversation.conversation queryMessagesFromCacheWithLimit:100] mutableCopy];
     for(AVIMMessage *message in self.messages) {
@@ -63,7 +67,6 @@
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
-    [self scrollToBottom];
     
 }
 -(void)viewWillAppear:(BOOL)animated {
@@ -72,12 +75,22 @@
     
     [MessageManager defaultManager].myClient.delegate = self;
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    [self scrollToBottom];
+    
+}
+
 -(void)keyboardWillChange:(NSNotification *)notification {
+    
     
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     if([self.messageInputTextView isFirstResponder]) {
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:0.25];
     self.toolBoxBottomConstraint.constant = keyboardSize.height;
     [self.view layoutIfNeeded];
     [UIView commitAnimations];
@@ -93,23 +106,14 @@
     return self.messages.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ChatCell" forIndexPath:indexPath];
+    ChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ChatCell"];
     
-    AVObject *myself;
-    if ([self.conversation.myInfo isEqualToString:SELF_ID]) {
-        
-        myself = [AVObject objectWithClassName:@"SNUser" objectId:self.conversation.friendBasicInfo];
-    } else {
-        
-        myself = [AVObject objectWithClassName:@"SNUser" objectId:self.conversation.myInfo];
+    for (UIView *view in cell.contentView.subviews) {
+        [view removeFromSuperview];
     }
     
-    [myself fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-        
-        if(indexPath.row == 0) [cell configureCellWithMessage:_messages[0] previousMessage:nil receiver:object loadingStatus:[self.frameArr[indexPath.row] alreadySent]];
-        else [cell configureCellWithMessage:_messages[indexPath.row] previousMessage:_messages[indexPath.row - 1] receiver:object loadingStatus:[self.frameArr[indexPath.row] alreadySent]];
-    }];
-    
+        if(indexPath.row == 0) [cell configureCellWithMessage:_messages[0] previousMessage:nil receiver:self.myself loadingStatus:[self.frameArr[indexPath.row] alreadySent]];
+        else [cell configureCellWithMessage:_messages[indexPath.row] previousMessage:_messages[indexPath.row - 1] receiver:self.myself loadingStatus:[self.frameArr[indexPath.row] alreadySent]];
     
     return cell;
 }
@@ -121,13 +125,14 @@
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:0.25];
     self.toolBoxBottomConstraint.constant = 0;
     [self.view layoutIfNeeded];
     [UIView commitAnimations];
 }
 - (IBAction)backButtonClicked:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self.frameArr[indexPath.row] cellH];
@@ -149,30 +154,45 @@
     frame.chat = textMessage;
     frame.alreadySent = NO;
     [_frameArr addObject:frame];
-    [self.tableView reloadData];
-    [self scrollToBottom];
     self.messageInputTextView.text = @"";
     
-    [self.conversation.conversation sendMessage:textMessage progressBlock:^(NSInteger percentDone) {
+    AVIMMessageOption *messageOption = [[AVIMMessageOption alloc]init];
+    messageOption.receipt = YES;
+    
+    AVObject *myself;
+    if ([self.conversation.myInfo isEqualToString:SELF_ID]) {
         
-    } callback:^(BOOL succeeded, NSError *error) {
+        myself = [AVObject objectWithClassName:@"SNUser" objectId:self.conversation.friendBasicInfo];
+    }else {
+        
+        myself = [AVObject objectWithClassName:@"SNUser" objectId:self.conversation.myInfo];
+    }
+    
+    
+    [myself fetch];
+    
+    
+    [self.conversation.conversation sendMessage:textMessage option:messageOption callback:^(BOOL succeeded, NSError * _Nullable error) {
+        
         if (error) {
             // 此时聊天服务不可用。
-            NSLog(@"聊天不可用");
+            NSLog(@"conversation error %@", error.description);
             [ProgressHUD showError:@"聊天不可用"];
         }
         else{
+            
             frame.alreadySent = YES;
-//            [self.tableView reloadData];
+            
+            [self.tableView reloadData];
+            [self scrollToBottom];
+            
+            [[MessageManager defaultManager]sendPushNotificationTo:[myself objectForKey:@"name"] withMessage:@"You've Got a New Message"];
             
         }
-
-    }];
-    
-    if ([self.delegate respondsToSelector:@selector(didSendMessage)]) {
-        
-        [self.delegate didSendMessage];
     }
+     ];
+    
+    
 
 }
 
@@ -188,7 +208,7 @@
 - (void)scrollToBottom {
     if (!self.messages.count) return;
     NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow: self.messages.count - 1 inSection:0];
-    [self.tableView scrollToRowAtIndexPath: lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self.tableView scrollToRowAtIndexPath: lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;

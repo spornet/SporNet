@@ -2,7 +2,7 @@
 //  MessageListCell.m
 //  SporNetApp
 //
-//  Created by 浦明晖 on 8/17/16.
+//  Created by Peng Wang on 8/17/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -17,9 +17,13 @@
     // Initialization code
     [super awakeFromNib];
     
-    _badgeView = [[JSBadgeView alloc] initWithParentView:_userImageView alignment:JSBadgeViewAlignmentTopRight];
-    _userImageView.layer.masksToBounds = YES;
-    _userImageView.layer.cornerRadius = _userImageView.frame.size.width / 2.0;
+    self.badgeView = [[JSBadgeView alloc] initWithParentView:self.userImageView alignment:JSBadgeViewAlignmentTopLeft];
+    self.badgeView.badgePositionAdjustment = CGPointMake(12, 12);
+    self.badgeView.badgeBackgroundColor = [UIColor redColor];
+    self.badgeView.badgeOverlayColor = [UIColor clearColor];
+    self.badgeView.badgeStrokeColor = [UIColor redColor];
+    self.userImageView.layer.masksToBounds = YES;
+    self.userImageView.layer.cornerRadius = 20;
 }
 
 
@@ -36,20 +40,23 @@
     
     
         [myself fetch];
-       
+    
         NSInteger colorIndex = [[myself objectForKey:@"sportTimeSlot"]integerValue];
         UIColor *color = SPORTSLOT_COLOR_ARRAY[colorIndex];
         [_userImageView.layer setBorderColor:color.CGColor];
         [[_userImageView layer] setBorderWidth:2.0f];
     
-        AVFile *image_file = [myself objectForKey:@"icon"];
-        [image_file getData];
-        [image_file save];
-        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:image_file.url] placeholderImage:[UIImage imageNamed:@"profile"]];
-        if(c.unreadMessageNumber) {
-            _badgeView.hidden = NO;
-            _badgeView.badgeText = [NSString stringWithFormat:@"%ld", c.unreadMessageNumber];
-        } else _badgeView.hidden = YES;
+        NSArray *imageURLs = [myself objectForKey:@"PicUrls"];
+        NSString *profileURL = [imageURLs firstObject];
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:profileURL] placeholderImage:[UIImage imageNamed:@"profile"]];
+        if(c.unreadMessageNumber > 0) {
+            self.badgeView.badgeText = [NSString stringWithFormat:@"%ld", c.unreadMessageNumber];
+        
+        }else {
+            
+            self.badgeView.badgeText = nil;
+                    }
+        [self.badgeView setNeedsLayout];
         self.userNameLabel.text = [myself objectForKey:@"name"];
         self.lastTimeLabel.text = [TimeManager getTimeStringFromNSDate:c.conversation.lastMessageAt];
         self.bestSportImage.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[myself objectForKey:@"bestSport"]integerValue]]];
@@ -60,5 +67,6 @@
         self.lastMessageLabel.text = [objects[0]text];
         self.lastTimeLabel.text = [TimeManager getConvastionTimeStr: [NSDate dateWithTimeIntervalSince1970:message.sendTimestamp / 1000]];
     }];
+    
 }
 @end

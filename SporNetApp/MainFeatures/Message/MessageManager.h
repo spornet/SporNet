@@ -2,7 +2,7 @@
 //  MessageManager.h
 //  SporNetApp
 //
-//  Created by 浦明晖 on 8/17/16.
+//  Created by Peng Wang on 8/17/16.
 //  Copyright © 2016 Peng Wang. All rights reserved.
 //
 
@@ -24,6 +24,7 @@
 @property (nonatomic, weak) id<MessageManagerDelegate> delegate;
 +(instancetype)defaultManager;
 -(void)startMessageService;
+- (void)closeMessageService;
 -(NSMutableArray*)fetchAllCurrentConversations;
 -(NSMutableArray*)fetchAllCurrentFriendRequests;
 -(NSMutableDictionary*)fetchAllContacts;
@@ -31,6 +32,8 @@
 -(void)refreshAllFriendRequest;
 -(void)sendAddFrendRequst:(NSString*)clientId;
 -(void)acceptFriendRequest:(Conversation*)c;
+-(void)rejectFriendRequest:(Conversation*)c;
+- (void)sendPushNotificationTo:(NSString *)name withMessage:(NSString *)message;
 @end
 
 

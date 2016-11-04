@@ -14,6 +14,8 @@
 @implementation SNTagCell
 NSArray *todaySportImageArray;
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     _boxView.layer.masksToBounds = YES;
     _boxView.layer.cornerRadius = _boxView.frame.size.width / 2.0;
     _userImageView.layer.masksToBounds = YES;
