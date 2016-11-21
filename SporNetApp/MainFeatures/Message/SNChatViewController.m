@@ -88,13 +88,19 @@
     
     
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     if([self.messageInputTextView isFirstResponder]) {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    self.toolBoxBottomConstraint.constant = keyboardSize.height;
-    [self.view layoutIfNeeded];
-    [UIView commitAnimations];
-    [self.view bringSubviewToFront:[self.view viewWithTag:1]];
+        
+        self.toolBoxBottomConstraint.constant = keyboardSize.height;
+        [self.view bringSubviewToFront:[self.view viewWithTag:1]];
+
+        CGFloat startYOffset = self.tableView.contentOffset.y + CGRectGetHeight(self.tableView.bounds);
+        CGFloat endYOffset = startYOffset - keyboardSize.height;
+        
+        [UIView animateWithDuration:duration animations:^{
+            [self.view layoutIfNeeded];
+            [self.tableView setContentOffset:CGPointMake(0.0, endYOffset) animated:false];
+        }];
     }
 
 }

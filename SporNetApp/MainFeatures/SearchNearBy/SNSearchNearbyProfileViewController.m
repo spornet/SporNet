@@ -154,19 +154,17 @@ NSInteger width;
     [myself fetch];
     NSArray *myfriendsList = [myself objectForKey:@"MyFriends"];
     
-    for (NSString *friendID in myfriendsList) {
+    if ([myfriendsList containsObject:self.currentUserProfile.objectId]) {
         
-        if ([friendID isEqualToString:self.currentUserProfile.objectId]) {
-            
-            [ProgressHUD showError:@"This is your friend"];
-            continue;
-            
-        }else {
-            
-            [[MessageManager defaultManager]sendAddFrendRequst:self.currentUserProfile.objectId];
-            
-        }
+        [ProgressHUD showError:@"This is your friend already"];
+        
+    }else {
+        
+        [[MessageManager defaultManager]sendAddFrendRequst:self.currentUserProfile.objectId];
     }
+    
+    
+    
     
     
     

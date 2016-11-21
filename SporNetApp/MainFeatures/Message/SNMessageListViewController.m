@@ -58,12 +58,16 @@
     
     self.navigationController.navigationBar.hidden = YES;
     
+    if (self.conversationList.count == 0) {
+        
+        self.tableView.separatorColor = [UIColor clearColor]; 
+    }
+    
     //Load Cell
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     [[MessageManager defaultManager] startMessageService];
     sleep(3);
-    [MessageManager defaultManager].delegate = self;
     //Open Current Message
 
     //set badge view of notification icon (the bell)
@@ -76,6 +80,7 @@
     
     [super viewWillAppear:YES];
     [MessageManager defaultManager].myClient.delegate = self;
+    [MessageManager defaultManager].delegate = self;
 
     self.conversationList = [[MessageManager defaultManager]fetchAllCurrentConversations];
     [self.tableView reloadData];
@@ -136,8 +141,9 @@
         NSArray *queryArray2 = [query2 findObjects];
         SNUser *friend = queryArray2[0];
         
+        NSLog(@"conversation %@, %@", conversation.creator, conversation.clientId);
         Conversation *c = [[Conversation alloc]init];
-        
+        NSLog(@"myself id %@, myfriend id %@", myself.objectId, friend.objectId);
         c.myInfo = myself.objectId;
         c.friendBasicInfo = friend.objectId;
         c.conversation = conversation;
@@ -193,6 +199,7 @@
                 
                 Conversation *c = [[Conversation alloc]init];
                 
+                NSLog(@"conversation %@, %@", conversation.creator, conversation.clientId);
                 NSLog(@"myself id %@, myfriend id %@", myself.objectId, friend.objectId);
                 
                 c.myInfo = myself.objectId;

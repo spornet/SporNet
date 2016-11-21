@@ -30,6 +30,7 @@
 -(void)configureCellWithConversation:(Conversation*)c {
     
     AVObject *myself;
+    NSLog(@"myself Id %@, another ID %@, %@", SELF_ID, c.myInfo, c.friendBasicInfo); 
     if ([c.myInfo isEqualToString:SELF_ID]) {
         
         myself = [AVObject objectWithClassName:@"SNUser" objectId:c.friendBasicInfo];

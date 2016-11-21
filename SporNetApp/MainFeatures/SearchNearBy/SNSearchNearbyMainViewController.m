@@ -47,6 +47,7 @@
 @property (weak, nonatomic ) UIView                           *user5Area;
 
 @property (weak, nonatomic ) UIButton                         *filterBtn;
+@property (weak, nonatomic ) UIImageView                      *photoView;
 @property (weak, nonatomic ) UIButton                         *user1;
 @property (weak, nonatomic ) UIImageView                      *bestSportImageView1;
 @property (weak, nonatomic ) UIButton                         *user2;
@@ -76,6 +77,13 @@
 @property (nonatomic,assign) CGFloat                          dist4;
 @property (nonatomic,assign) CGFloat                          dist5;
 @property (nonatomic,assign) BOOL                             isTabBarHide;
+@property (nonatomic,assign) BOOL                             isUser1Null;
+@property (nonatomic,assign) BOOL                             isUser2Null;
+@property (nonatomic,assign) BOOL                             isUser3Null;
+@property (nonatomic,assign) BOOL                             isUser4Null;
+@property (nonatomic,assign) BOOL                             isUser5Null;
+@property (nonatomic,weak  ) NSTimer                          *loadingTimer;
+
 //用户的半径，更确切的说是用户生成地点距离所在view的边距。用户按钮的大小主要有pop函数的toValue来控制，如果toValue是50，但是userR＝100则在view内边距为userR－toValue的范围内活动。
 @property (nonatomic,assign) CGFloat                          userR;
 
@@ -94,7 +102,7 @@
 //最终符合所选搜索条件的Array，直接作用于CreatUser方法
 @property NSMutableArray *currentUsers;
 //永不相见用户列表
-@property NSMutableArray *neverSeeAgain;
+@property (nonatomic) NSMutableArray *neverSeeAgain;
 @end
 
 @implementation SNSearchNearbyMainViewController
@@ -110,8 +118,29 @@ NSInteger indexOfCurrentUser;
     
     self.userR = 50;
     [self fetchUserByLocation];
+    [self fetchCurrentUsersFromAllUsers];
     [self creatUserFromCurrentUsers];
     
+    
+    //
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    //
+    //        [self locationManager];
+    //        self.dist = [[NSUserDefaults standardUserDefaults]floatForKey:@"Radius"];
+    //        [self setBackgroundGalaxy];
+    //        [self addTopView];
+    //
+    //        self.userR = 50;
+    //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //
+    //            [self addCircleView];
+    //            [self fetchUserByLocation];
+    //    [self fetchCurrentUsersFromAllUsers];
+    //            [self creatUserFromCurrentUsers];
+    //            [self refreshAnimation];
+    //
+    //        });
+    //    });
     
 }
 
@@ -121,14 +150,23 @@ NSInteger indexOfCurrentUser;
     NSString *la = [[NSUserDefaults standardUserDefaults]valueForKey:@"La"];
     AVGeoPoint *p =[AVGeoPoint geoPointWithLatitude:([la doubleValue]) longitude:[lo doubleValue]];
     
+    //    self.neverSeeAgain = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:@"blackList"]];
+    
     if (p) {
         self.allUsers = [[LocalDataManager defaultManager]fetchNearByUserInfo:p withinDist:self.dist];
+        self.allUsers = [[LocalDataManager defaultManager]filterUserByGenderFromList:self.allUsers];
+//        self.allUsers = [[LocalDataManager defaultManager]fetchUserFromBlackList:self.allUsers withBlackList:self.neverSeeAgain];
+        
+        
+        
+        NSPredicate *blacklisted = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)",self.neverSeeAgain];
+        [self.allUsers filterUsingPredicate:blacklisted];
         if(_allUsers.count == 0) {
             [ProgressHUD showError:@"Bad connection. Please try later."];
             return;
         }
         
-        [self fetchCurrentUsersFromAllUsers];
+        //        [self fetchCurrentUsersFromAllUsers];
         
     }else{
         [ProgressHUD showError:@"No location."];
@@ -139,33 +177,36 @@ NSInteger indexOfCurrentUser;
     switch (self.allUsers.count) {
         case 0:
             //网络出错
+            [self showLoadView];
+            
             break;
             
         case 1:
-            //只有自己，原因：搜索条件内只有自己或者用户不够多
-        {
-            //没有拉下来用户
-            [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
-            [self.filterBtn removeFromSuperview];
-            UIImageView *photoView = [[UIImageView alloc]init];
-            photoView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
-            photoView.frame = CGRectMake(self.circleView.frame.size.width/2 - 50, self.circleView.bounds.size.height/2 - 50 + CGRectGetMaxY(self.topBtnView.frame), 100, 100);
-            photoView.layer.masksToBounds = YES;
-            photoView.layer.cornerRadius = photoView.frame.size.width / 2.0;
-            [self.view addSubview:photoView];
-            self.refreshBtn.enabled = NO;
-            
-            POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
-            anim.fromValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 20, 20)];
-            anim.springSpeed = 50.0;
-            anim.dynamicsFriction = 20.0;
-            //震动的次数～约等于springBounciness－10
-            anim.springBounciness = 6;
-            //震动的明显程度
-            anim.dynamicsMass = 10;
-            [photoView.layer pop_addAnimation:anim forKey:@"size"];
-        }
-            
+            //            //只有自己，原因：搜索条件内只有自己或者用户不够多
+            //        {
+            ////            没有拉下来用户
+            //            [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
+            //            [self.filterBtn removeFromSuperview];
+            //            UIImageView *photoView = [[UIImageView alloc]init];
+            //            photoView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
+            //            photoView.frame = CGRectMake(self.circleView.frame.size.width/2 - 50, self.circleView.bounds.size.height/2 - 50 + CGRectGetMaxY(self.topBtnView.frame), 100, 100);
+            //            photoView.layer.masksToBounds = YES;
+            //            photoView.layer.cornerRadius = photoView.frame.size.width / 2.0;
+            //            [self.view addSubview:photoView];
+            //            self.refreshBtn.enabled = NO;
+            //
+            //            POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
+            //            anim.fromValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 20, 20)];
+            //            anim.springSpeed = 50.0;
+            //            anim.dynamicsFriction = 20.0;
+            //            //震动的次数～约等于springBounciness－10
+            //            anim.springBounciness = 6;
+            //            //震动的明显程度
+            //            anim.dynamicsMass = 10;
+            //            [photoView.layer pop_addAnimation:anim forKey:@"size"];
+            //        }
+            //
+            [self showLoadView];
             break;
             
         case 2:
@@ -227,6 +268,10 @@ NSInteger indexOfCurrentUser;
         case 1:
         {
             [self createUser1Btn];
+            self.isUser2Null = YES;
+            self.isUser3Null = YES;
+            self.isUser4Null = YES;
+            self.isUser5Null = YES;
             [self refreshAnimation];
         }
             break;
@@ -234,6 +279,9 @@ NSInteger indexOfCurrentUser;
         case 2:
             [self createUser1Btn];
             [self createUser2Btn];
+            self.isUser3Null = YES;
+            self.isUser4Null = YES;
+            self.isUser5Null = YES;
             [self refreshAnimation];
             break;
             
@@ -241,6 +289,8 @@ NSInteger indexOfCurrentUser;
             [self createUser1Btn];
             [self createUser2Btn];
             [self createUser3Btn];
+            self.isUser4Null = YES;
+            self.isUser5Null = YES;
             [self refreshAnimation];
             break;
             
@@ -249,6 +299,7 @@ NSInteger indexOfCurrentUser;
             [self createUser2Btn];
             [self createUser3Btn];
             [self createUser4Btn];
+            self.isUser5Null = YES;
             [self refreshAnimation];
             break;
             
@@ -269,8 +320,7 @@ NSInteger indexOfCurrentUser;
     }
 }
 
-
--(void)viewWillAppear:(BOOL)animated{
+-(void)firstTimeAlert{
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert" message:@"If you remove user from the screen, you'll never see this use again" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -279,25 +329,29 @@ NSInteger indexOfCurrentUser;
     [self presentViewController:alertController animated:YES completion:nil];
     
     
-    
-    
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
     [self.locationManager startUpdatingLocation];
     
     self.dist = [[NSUserDefaults standardUserDefaults]floatForKey:@"Radius"];
     self.radiusLabel.text = [NSString stringWithFormat:@"%.0f Miles", self.dist];
     
     [self tapCircleView];
-    
-    
-    
+    NSLog(@"%@",self.neverSeeAgain);
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    
+    [super viewDidAppear:YES];
     [self.blurView removeFromSuperview];
+    [self.loadingTimer setFireDate:[NSDate distantPast]];
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:YES];
+    [self.loadingTimer setFireDate:[NSDate distantFuture]];
+}
 
 -(void)createUser1Btn{
     [self randomUser1Coordinate];
@@ -345,6 +399,8 @@ NSInteger indexOfCurrentUser;
     [self.user1.layer pop_addAnimation:anim forKey:@"size"];
     
     //        NSLog(@"%f %f",self.x,self.y);
+    self.isUser1Null = NO;
+    self.dist1 = 0;
     
 }
 
@@ -394,6 +450,8 @@ NSInteger indexOfCurrentUser;
     [self.user2.layer pop_addAnimation:anim forKey:@"size"];
     
     //        NSLog(@"%f %f",self.x,self.y);
+    self.isUser2Null = NO;
+    self.dist2 = 0;
     
 }
 
@@ -443,6 +501,8 @@ NSInteger indexOfCurrentUser;
     [self.user3.layer pop_addAnimation:anim forKey:@"size"];
     
     //    NSLog(@"%f %f",self.x,self.y);
+    self.isUser3Null = NO;
+    self.dist3 = 0;
     
 }
 
@@ -492,6 +552,8 @@ NSInteger indexOfCurrentUser;
     [self.user4.layer pop_addAnimation:anim forKey:@"size"];
     
     //    NSLog(@"%f %f",self.x,self.y);
+    self.isUser4Null = NO;
+    self.dist4 = 0;
     
 }
 
@@ -541,6 +603,8 @@ NSInteger indexOfCurrentUser;
     [self.user5.layer pop_addAnimation:anim forKey:@"size"];
     
     //    NSLog(@"%f %f",self.x,self.y);
+    self.isUser5Null = NO;
+    self.dist5 = 0;
     
 }
 
@@ -569,54 +633,6 @@ NSInteger indexOfCurrentUser;
     self.y5 = btn.frame.origin.y;
 }
 
-
-- (void) dragUser1Moving: (UIControl *) c withEvent:ev
-{
-    c.center = [[[ev allTouches] anyObject] locationInView:self.view];
-    float dist1 = [self distanceFromPointA:CGPointMake(self.x1+self.userR/2, self.y1+self.userR/2) toPointB:c.center];
-    self.dist1 = dist1;
-    self.bestSportImageView1.center = CGPointMake(c.center.x + 25, c.center.y);
-    //    NSLog(@"%f",self.dist);
-}
-
--(void)ifUser1Remove{
-    
-    if (self.dist1 < 15) {
-        NSLog(@"用户信息");
-        [self configreBlurView];
-        [self showUserInfo:self.currentUsers[0]];
-    }else if(self.dist1 < 100){
-        NSLog(@"弹簧效果");
-        
-        CGPoint location= CGPointMake(self.x1+self.userR/2, self.y1+self.userR/2);
-        /*创建弹性动画
-         damping:阻尼，范围0-1，阻尼越接近于0，弹性效果越明显
-         velocity:弹性复位的速度
-         */
-        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:10.0 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.user1.center=location;
-            self.bestSportImageView1.center = CGPointMake(location.x + 25, location.y);
-        } completion:nil];
-        
-        self.dist1 = 0;
-    }else{
-        //移除的动画效果
-        UIImageView *bombView = [[UIImageView alloc]initWithFrame:self.user1.frame];
-        [self.user1 removeFromSuperview];
-        [self.bestSportImageView1 removeFromSuperview];
-        [self.view addSubview:bombView];
-        [bombView setAnimationImages:@[[UIImage imageNamed:@"bomb0"],[UIImage imageNamed:@"bomb1"], [UIImage imageNamed:@"bomb2"],[UIImage imageNamed:@"bomb3"],[UIImage imageNamed:@"bomb4"]]];
-        [bombView setAnimationRepeatCount:1];
-        [bombView setAnimationDuration:0.5];
-        [bombView startAnimating];
-        if(indexOfCurrentUser == self.allUsers.count) return;
-        self.currentUsers[0] = self.allUsers[indexOfCurrentUser];
-        indexOfCurrentUser++;
-        [self createUser1Btn];
-        self.dist1 = 0;
-    }
-    
-}
 -(void)showUserInfo:(AVObject*)userInfo {
     
     SNSearchNearbyProfileViewController *vc = [[SNSearchNearbyProfileViewController alloc]init];
@@ -630,6 +646,15 @@ NSInteger indexOfCurrentUser;
     
     NSLog(@"user name is %@", [userInfo objectForKey:@"name"]);
 }
+
+- (void) dragUser1Moving: (UIControl *) c withEvent:ev
+{
+    c.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    float dist1 = [self distanceFromPointA:CGPointMake(self.x1+self.userR/2, self.y1+self.userR/2) toPointB:c.center];
+    self.dist1 = dist1;
+    self.bestSportImageView1.center = CGPointMake(c.center.x + 25, c.center.y);
+}
+
 - (void) dragUser2Moving: (UIControl *) c withEvent:ev
 {
     c.center = [[[ev allTouches] anyObject] locationInView:self.view];
@@ -665,6 +690,70 @@ NSInteger indexOfCurrentUser;
     self.bestSportImageView5.center = CGPointMake(c.center.x + 25, c.center.y);
 }
 
+-(void)ifUser1Remove{
+    
+    if (self.dist1 < 15) {
+        NSLog(@"用户信息");
+        [self configreBlurView];
+        [self showUserInfo:self.currentUsers[0]];
+    }else if(self.dist1 < 100){
+        NSLog(@"弹簧效果");
+        
+        CGPoint location= CGPointMake(self.x1+self.userR/2, self.y1+self.userR/2);
+        /*创建弹性动画
+         damping:阻尼，范围0-1，阻尼越接近于0，弹性效果越明显
+         velocity:弹性复位的速度
+         */
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:10.0 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.user1.center=location;
+            self.bestSportImageView1.center = CGPointMake(location.x + 25, location.y);
+        } completion:nil];
+        
+        self.dist1 = 0;
+    }else{
+        //移除的动画效果
+        UIImageView *bombView = [[UIImageView alloc]initWithFrame:self.user1.frame];
+        [self.user1 removeFromSuperview];
+        [self.bestSportImageView1 removeFromSuperview];
+        [self.view addSubview:bombView];
+        [bombView setAnimationImages:@[[UIImage imageNamed:@"bomb0"],[UIImage imageNamed:@"bomb1"], [UIImage imageNamed:@"bomb2"],[UIImage imageNamed:@"bomb3"],[UIImage imageNamed:@"bomb4"]]];
+        [bombView setAnimationRepeatCount:1];
+        [bombView setAnimationDuration:0.5];
+        [bombView startAnimating];
+        //        if(indexOfCurrentUser == self.allUsers.count) return;
+        //        self.currentUsers[0] = self.allUsers[indexOfCurrentUser];
+        //        indexOfCurrentUser++;
+        //        [self createUser1Btn];
+        //        self.dist1 = 0;
+        
+        NSInteger indexOfBlackList = self.neverSeeAgain.count;
+        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[0];
+        
+        //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
+        //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
+        //        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        
+        self.isUser1Null = YES;
+        if(indexOfCurrentUser == self.allUsers.count) {
+            if (self.isUser1Null && self.isUser2Null && self.isUser3Null && self.isUser4Null && self.isUser5Null) {
+                //                self.dist1 = 0;
+                [self showLoadView];
+            } else {
+                //                self.dist1 = 0;
+                return;
+            }
+        }else{
+            self.currentUsers[0] = self.allUsers[indexOfCurrentUser];
+            indexOfCurrentUser++;
+            [self createUser1Btn];
+            //放在creatBtn中
+            //self.dist1 = 0;
+        }
+    }
+    
+}
+
 -(void)ifUser2Remove{
     if (self.dist2 < 15) {
         NSLog(@"用户信息");
@@ -693,11 +782,33 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
         
-        if(indexOfCurrentUser == self.allUsers.count) return;
-        self.currentUsers[1] = self.allUsers[indexOfCurrentUser];
-        indexOfCurrentUser++;
-        [self createUser2Btn];
-        self.dist2 = 0;
+        //        if(indexOfCurrentUser == self.allUsers.count) return;
+        //        self.currentUsers[1] = self.allUsers[indexOfCurrentUser];
+        //        indexOfCurrentUser++;
+        //        [self createUser2Btn];
+        //        self.dist2 = 0;
+        
+        NSInteger indexOfBlackList = self.neverSeeAgain.count;
+        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[1];
+        
+        //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
+        //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
+        //        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        
+        self.isUser2Null = YES;
+        if(indexOfCurrentUser == self.allUsers.count){
+            if (self.isUser1Null && self.isUser2Null && self.isUser3Null && self.isUser4Null && self.isUser5Null) {
+                [self showLoadView];
+            } else {
+                return;
+            }
+        }else{
+            self.currentUsers[1] = self.allUsers[indexOfCurrentUser];
+            indexOfCurrentUser++;
+            [self createUser2Btn];
+            //            self.dist2 = 0;
+        }
     }
     
 }
@@ -731,11 +842,33 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
         
-        if(indexOfCurrentUser == self.allUsers.count) return;
-        self.currentUsers[2] = self.allUsers[indexOfCurrentUser];
-        indexOfCurrentUser++;
-        [self createUser3Btn];
-        self.dist3 = 0;
+        //        if(indexOfCurrentUser == self.allUsers.count) return;
+        //        self.currentUsers[2] = self.allUsers[indexOfCurrentUser];
+        //        indexOfCurrentUser++;
+        //        [self createUser3Btn];
+        //        self.dist3 = 0;
+        
+        NSInteger indexOfBlackList = self.neverSeeAgain.count;
+        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[2];
+        
+        //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
+        //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
+        //        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        
+        self.isUser3Null = YES;
+        if(indexOfCurrentUser == self.allUsers.count){
+            if (self.isUser1Null && self.isUser2Null && self.isUser3Null && self.isUser4Null && self.isUser5Null) {
+                [self showLoadView];
+            } else {
+                return;
+            }
+        }else{
+            self.currentUsers[2] = self.allUsers[indexOfCurrentUser];
+            indexOfCurrentUser++;
+            [self createUser3Btn];
+            //            self.dist3 = 0;
+        }
     }
     
 }
@@ -769,11 +902,33 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
         
-        if(indexOfCurrentUser == self.allUsers.count) return;
-        self.currentUsers[3] = self.allUsers[indexOfCurrentUser];
-        indexOfCurrentUser++;
-        [self createUser4Btn];
-        self.dist4 = 0;
+        //        if(indexOfCurrentUser == self.allUsers.count) return;
+        //        self.currentUsers[3] = self.allUsers[indexOfCurrentUser];
+        //        indexOfCurrentUser++;
+        //        [self createUser4Btn];
+        //        self.dist4 = 0;
+        
+        NSInteger indexOfBlackList = self.neverSeeAgain.count;
+        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[3];
+        
+        //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
+        //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
+        //        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        
+        self.isUser4Null = YES;
+        if(indexOfCurrentUser == self.allUsers.count){
+            if (self.isUser1Null && self.isUser2Null && self.isUser3Null && self.isUser4Null && self.isUser5Null) {
+                [self showLoadView];
+            } else {
+                return;
+            }
+        }else{
+            self.currentUsers[3] = self.allUsers[indexOfCurrentUser];
+            indexOfCurrentUser++;
+            [self createUser4Btn];
+            //            self.dist4 = 0;
+        }
     }
     
 }
@@ -809,11 +964,33 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
         
-        if(indexOfCurrentUser == self.allUsers.count) return;
-        self.currentUsers[4] = self.allUsers[indexOfCurrentUser];
-        indexOfCurrentUser++;
-        [self createUser5Btn];
-        self.dist5 = 0;
+        //        if(indexOfCurrentUser == self.allUsers.count) return;
+        //        self.currentUsers[4] = self.allUsers[indexOfCurrentUser];
+        //        indexOfCurrentUser++;
+        //        [self createUser5Btn];
+        //        self.dist5 = 0;
+        
+        NSInteger indexOfBlackList = self.neverSeeAgain.count;
+        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[4];
+        
+        //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
+        //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
+        //        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        
+        self.isUser5Null = YES;
+        if(indexOfCurrentUser == self.allUsers.count){
+            if (self.isUser1Null && self.isUser2Null && self.isUser3Null && self.isUser4Null && self.isUser5Null) {
+                [self showLoadView];
+            } else {
+                return;
+            }
+        }else{
+            self.currentUsers[4] = self.allUsers[indexOfCurrentUser];
+            indexOfCurrentUser++;
+            [self createUser5Btn];
+            //            self.dist5 = 0;
+        }
     }
     
 }
@@ -1050,14 +1227,19 @@ NSInteger indexOfCurrentUser;
     [self.bestSportImageView4 removeFromSuperview];
     [self.bestSportImageView5 removeFromSuperview];
     
-    [self refreshAnimation];
-    for(int i = 0; i < 5; i++) {
-        if(indexOfCurrentUser == _allUsers.count) continue;
-        self.currentUsers[i] = self.allUsers[indexOfCurrentUser];
-        NSString *str = [NSString stringWithFormat:@"createUser%dBtn", i + 1];
-        SEL s = NSSelectorFromString(str);
-        [self performSelector:s];
-        indexOfCurrentUser++;
+    
+    if (indexOfCurrentUser == _allUsers.count) {
+        [self showLoadView];
+    } else {
+        for(int i = 0; i < 5; i++) {
+            if(indexOfCurrentUser == _allUsers.count) continue;
+            self.currentUsers[i] = self.allUsers[indexOfCurrentUser];
+            NSString *str = [NSString stringWithFormat:@"createUser%dBtn", i + 1];
+            SEL s = NSSelectorFromString(str);
+            [self performSelector:s];
+            indexOfCurrentUser++;
+            [self refreshAnimation];
+        }
     }
 }
 
@@ -1089,6 +1271,7 @@ NSInteger indexOfCurrentUser;
     anim.dynamicsMass = 10;
     
     [self.filterBtn.layer pop_addAnimation:anim forKey:@"size"];
+    [self.photoView.layer pop_addAnimation:anim forKey:@"size"];
     
     
 }
@@ -1124,6 +1307,7 @@ NSInteger indexOfCurrentUser;
     [self.view addSubview:galaxyImageView];
     self.galaxyImageView = galaxyImageView;
 }
+
 -(void)sportFilterClick{
     
     [self configreBlurView];
@@ -1138,6 +1322,7 @@ NSInteger indexOfCurrentUser;
     
     [self beginAnimation];
 }
+
 -(void)configreBlurView {
     //  创建需要的毛玻璃特效类型
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -1208,16 +1393,18 @@ NSInteger indexOfCurrentUser;
 }
 
 -(void)bestSportSelected:(id)sender{
+    //为了重置一下currentUsers，因为上面已经用相应的体育运动筛选了一遍，如果不重置，换其他运动的时候currentUsers就为空了。
+    [self fetchUserByLocation];
     //    self.allUsers = [[LocalDataManager defaultManager]fetchUserInfoBySportType:((UIView*)sender).tag];
-    self.currentUsers = [[LocalDataManager defaultManager]fetchUserFromList:self.allUsers withSportType:((UIView*)sender).tag];
-    
-    long currentUserSportTag =[[[AVUser currentUser]valueForKey:@"bestSport"]integerValue];
-    if (((UIButton*)sender).tag == currentUserSportTag) {
-        indexOfCurrentUser = 1;//数组后移一位
-    }else{
-        indexOfCurrentUser = 0;
-    }
-    
+    self.allUsers = [[LocalDataManager defaultManager]fetchUserFromList:self.allUsers withSportType:((UIView*)sender).tag];
+    [self fetchCurrentUsersFromAllUsers];
+    //    long currentUserSportTag =[[[AVUser currentUser]valueForKey:@"bestSport"]integerValue];
+    //    if (((UIButton*)sender).tag == currentUserSportTag) {
+    //        indexOfCurrentUser = 1;//数组后移一位
+    //    }else{
+    //        indexOfCurrentUser = 0;
+    //    }
+    //
     
     //    self.currentUsers = [[LocalDataManager defaultManager]fetchUserInfoBySportType:((UIView*)sender).tag];
     
@@ -1264,6 +1451,10 @@ NSInteger indexOfCurrentUser;
     [self.bestSportImageView3 removeFromSuperview];
     [self.bestSportImageView4 removeFromSuperview];
     [self.bestSportImageView5 removeFromSuperview];
+    
+    if (self.allUsers.count==1||self.allUsers.count==0) {
+        return;
+    }
     [self creatUserFromCurrentUsers];
     
     
@@ -1285,6 +1476,7 @@ NSInteger indexOfCurrentUser;
     [self.bestSportImageView4 removeFromSuperview];
     [self.bestSportImageView5 removeFromSuperview];
     [self fetchUserByLocation];
+    [self fetchCurrentUsersFromAllUsers];
     [self creatUserFromCurrentUsers];
     
     
@@ -1575,6 +1767,22 @@ NSInteger indexOfCurrentUser;
     
 }
 
+-(void)showLoadView{
+    
+    self.loadingTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
+    [self.filterBtn removeFromSuperview];
+    UIImageView *photoView = [[UIImageView alloc]init];
+    photoView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
+    photoView.frame = CGRectMake(self.circleView.frame.size.width/2 - 50, self.circleView.bounds.size.height/2 - 50 + CGRectGetMaxY(self.topBtnView.frame), 100, 100);
+    photoView.layer.masksToBounds = YES;
+    photoView.layer.cornerRadius = photoView.frame.size.width / 2.0;
+    self.photoView = photoView;
+    [self.view addSubview:self.photoView];
+    self.refreshBtn.enabled = NO;
+    [self refreshAnimation];
+    
+}
+
 - (CLLocationManager *)locationManager{
     
     if (!_locationManager) {
@@ -1653,8 +1861,12 @@ NSInteger indexOfCurrentUser;
     
 }
 
-
-
+-(NSMutableArray *)neverSeeAgain{
+    if (_neverSeeAgain==nil) {
+        _neverSeeAgain=[[NSMutableArray alloc]init];
+    }
+    return _neverSeeAgain;
+}
 
 -(void)didClickCrossButton {
     [self.blurView removeFromSuperview];

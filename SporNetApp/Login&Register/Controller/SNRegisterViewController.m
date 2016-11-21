@@ -56,9 +56,9 @@
 
 - (void)setupUI {
     
-    _emailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your school email" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your password" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    _confirmPwTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"confirm your password" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    _emailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"school email" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"password" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    _confirmPwTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"confirm password" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     
 }
 

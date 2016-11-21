@@ -81,13 +81,33 @@ static MessageManager *center = nil;
         NSLog(@"consersation error %@", error.description); 
         
             for(AVIMConversation *conversation in objects) {
+                
+                NSArray *members = conversation.members;
+                
+                NSString *myselfName = [NSString string];
+                NSString *friendName = [NSString string];
+                
+                for (NSString *member  in members) {
+                    
+                    if ([member isEqualToString:name]) {
+                        
+                        myselfName = member;
+                    }else {
+                        
+                        friendName = member;
+                    }
+                    
+                }
+                
                 AVQuery *query1 = [SNUser query];
-                [query1 whereKey:@"name" equalTo:conversation.creator];
+                [query1 whereKey:@"name" equalTo:myselfName];
                 NSArray *queryArray1 = [query1 findObjects];
                 SNUser *myself = queryArray1[0];
                 
+                NSLog(@"creator %@, first member %@, last member %@", conversation.creator, conversation.members.firstObject, conversation.members.lastObject);
+                
                 AVQuery *query2 = [SNUser query];
-                [query2 whereKey:@"name" equalTo:conversation.members.firstObject];
+                [query2 whereKey:@"name" equalTo:friendName];
                 NSArray *queryArray2 = [query2 findObjects];
                 SNUser *friend = queryArray2[0];
                 
@@ -115,18 +135,35 @@ static MessageManager *center = nil;
     [query whereKey:@"m" containsAllObjectsInArray:@[[self.myself objectForKey:@"name"]]];
     [query whereKey:@"status" notEqualTo:@1];
     
-    query.cachePolicy = kAVIMCachePolicyNetworkElseCache;
+//    query.cachePolicy = kAVIMCachePolicyNetworkElseCache;
     [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
             
             for(AVIMConversation *conversation in objects) {
                 
+                NSArray *members = conversation.members;
+                
+                NSString *myselfName = [NSString string];
+                NSString *friendName = [NSString string];
+                
+                for (NSString *member  in members) {
+                    
+                    if ([member isEqualToString:[self.myself objectForKey:@"name"]]) {
+                        
+                        myselfName = member;
+                    }else {
+                        
+                        friendName = member;
+                    }
+                    
+                }
+                
                 AVQuery *query1 = [SNUser query];
-                [query1 whereKey:@"name" equalTo:conversation.creator];
+                [query1 whereKey:@"name" equalTo:myselfName];
                 NSArray *queryArray1 = [query1 findObjects];
                 SNUser *myself = queryArray1[0];
                 
                 AVQuery *query2 = [SNUser query];
-                [query2 whereKey:@"name" equalTo:conversation.members.firstObject];
+                [query2 whereKey:@"name" equalTo:friendName];
                 NSArray *queryArray2 = [query2 findObjects];
                 SNUser *friend = queryArray2[0];
                 
@@ -267,13 +304,17 @@ static MessageManager *center = nil;
     AVObject *friendObject = [AVObject objectWithClassName:@"SNUser" objectId:clientId];
     [friendObject fetch];
     NSString *friendName = [friendObject objectForKey:@"name"];
+    [ProgressHUD showSuccess:@"You've successfully sent friend request."];
     
         [self.myClient createConversationWithName:@"friend request" clientIds:@[friendName] attributes:nil options:AVIMConversationOptionUnique callback:^(AVIMConversation *conversation, NSError *error) {
             AVIMTextMessage *message = [AVIMTextMessage messageWithText:@"Lets Play Sport Together"attributes:nil];
             [conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
-                [ProgressHUD showSuccess:@"You've successfully sent friend request."];
                 
-                [self sendPushNotificationTo:friendName withMessage:@"You've Got a Friend Request"];
+                if (succeeded) {
+                    
+                    [self sendPushNotificationTo:friendName withMessage:@"You've Got a Friend Request"];
+                }
+                
                 
             }];
         }];
@@ -288,10 +329,10 @@ static MessageManager *center = nil;
   
             [c.conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
                 
+                [self.allConversations addObject:c];
+                [self.allFriendRequsts removeObject:c];
                 [self AddFriendRelationship:c];
                 
-                [self.allFriendRequsts removeObject:c];
-                [self.allConversations addObject:c];
                 if ([self.delegate respondsToSelector:@selector(didAcceptFriendRequest)]) {
                     
                     [self.delegate didAcceptFriendRequest];
@@ -321,19 +362,6 @@ static MessageManager *center = nil;
     
     [myself fetch];
     [myFriend fetch];
-    
-    
-//    AVQuery *sendToFriend = [AVInstallation query];
-//    [sendToFriend whereKey:@"Owner" equalTo:c.friendBasicInfo];
-//    AVPush *pushToFriend = [[AVPush alloc]init];
-//    [pushToFriend setMessage:@"You've Made a New Sport Friend"];
-//    [pushToFriend setQuery:sendToFriend];
-//    
-//    AVQuery *sendToMyself = [AVInstallation query];
-//    [sendToMyself whereKey:@"Owner" equalTo:c.myInfo];
-//    AVPush *pushToMyself = [[AVPush alloc]init];
-//    [pushToMyself setMessage:@"You've Made a New Sport Friend"];
-//    [pushToMyself setQuery:sendToMyself];
 
     [myself fetchInBackgroundWithBlock:^(AVObject *object, NSError *error) {
         
@@ -404,13 +432,7 @@ static MessageManager *center = nil;
     [push setData:data];
     [push setMessage:message];
     [push setQuery:query];
-    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        
-        if (error) {
-            NSLog(@"Push Error %@", error.description);
-        }
-        
-    }];
+    [push sendPushInBackground];
 }
 @end
 

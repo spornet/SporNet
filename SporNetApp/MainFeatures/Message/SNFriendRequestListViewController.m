@@ -85,20 +85,4 @@
     [self.tableView reloadData];
 }
 
-//#pragma mark - UIClient Delegate
-//-(void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
-//    if([message.text isEqualToString:@"Lets Play Sport Together"]) {
-//        NSLog(@"收到一条好友请求");
-//        AVObject *user = [AVObject objectWithClassName:@"SNUser" objectId:conversation.creator];
-//        [user fetch];
-//        
-//        Conversation *c = [[Conversation alloc]init];
-//        c.basicInfo = user;
-//        c.conversation = conversation;
-//        
-//        [self.currentFriendRequstList addObject:c];
-//        [self.tableView reloadData];
-//        
-//    }
-//}
 @end

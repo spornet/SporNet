@@ -279,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3U-cD-7k5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="319" y="-38"/>
+            <point key="canvasLocation" x="474" y="-38"/>
         </scene>
         <!--Register Page-->
         <scene sceneID="HaO-Iy-Ilc">
@@ -455,7 +455,7 @@
                 <viewController id="WKN-Ya-Lzq" userLabel="User Profile Page" customClass="SNUserProfileViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TS7-cB-sJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="813.5" y="-38.5"/>
+            <point key="canvasLocation" x="1086" y="-38"/>
         </scene>
         <!--Forget Password&Don't Receive Email-->
         <scene sceneID="yxh-qN-zmU">

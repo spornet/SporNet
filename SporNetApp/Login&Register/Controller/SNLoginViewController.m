@@ -82,8 +82,8 @@
 
 - (void)setUpAllUI {
     
-    _userEmailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your school email" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-    _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"your password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _userEmailTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"school email" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _passwordTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {

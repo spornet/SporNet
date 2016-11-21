@@ -96,6 +96,7 @@
 @property (weak, nonatomic)   IBOutlet UITextField        *birthdayTextField;
 @property (strong, nonatomic) IBOutlet UITextView         *aboutmeTextView;
 @property (weak, nonatomic)   IBOutlet UILabel            *topLable;
+@property (strong, nonatomic) IBOutlet UIToolbar          *DoneToolBar;
 
 //********************************************************
 /**
@@ -226,10 +227,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.tabBarController.tabBar.hidden = YES;
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    [self setSelectedBestSport:_selectedBestSport];
+    [self loadUserInfoFromLocal];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -245,8 +243,7 @@
     if (isSecond || isRegistered) {
         
         self.topLable.hidden = YES;
-        
-        [self loadUserInfoFromLocal];
+        [self setSelectedBestSport:_selectedBestSport];
     }
 }
 
@@ -289,9 +286,13 @@
 - (void)setUpTextField {
     
     self.sexTextField.inputView = self.sexPicker;
+    self.sexTextField.inputAccessoryView = self.DoneToolBar;
     self.gradTextField.inputView = self.graduationYearPicker;
+    self.gradTextField.inputAccessoryView = self.DoneToolBar; 
     self.sportTimeTextField.inputView = self.sportTimePicker;
+    self.sportTimeTextField.inputAccessoryView = self.DoneToolBar;
     self.birthdayTextField.inputView = self.birthdayPicker;
+    self.birthdayTextField.inputAccessoryView = self.DoneToolBar;
     self.lastNameTextField.adjustsFontSizeToFitWidth = YES;
     self.lastNameTextField.minimumFontSize = 8;
 }
@@ -331,6 +332,26 @@
     [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     self.birthdayLabel.text = [dateFormatter stringFromDate:date];
     self.selectedBirthday = date;
+}
+
+- (IBAction)DoneButtonClicked:(id)sender {
+    
+    if ([self.sexTextField isFirstResponder]) {
+        
+        [self.sexTextField endEditing:YES];
+        
+    }else if ([self.gradTextField isFirstResponder]) {
+        
+        [self.gradTextField endEditing:YES];
+        
+    }else if ([self.sportTimeTextField isFirstResponder]) {
+        
+        [self.sportTimeTextField endEditing:YES];
+        
+    }else if ([self.birthdayTextField isFirstResponder]) {
+        
+        [self.birthdayTextField endEditing:YES];
+    }
 }
 
 /**
@@ -765,10 +786,9 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-//    NSLog(@"image %@", chosenImage);
-//    chosenImage = [chosenImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    NSLog(@"image %@", chosenImage);
+    chosenImage = [chosenImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIButton *selectedButton = (UIButton*)[self.picCell viewWithTag:_selectedImageTag];
-    
     [selectedButton setImage:chosenImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

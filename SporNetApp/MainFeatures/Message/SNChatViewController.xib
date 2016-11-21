@@ -46,6 +46,7 @@
                         <constraint firstItem="ILM-Qz-iVr" firstAttribute="centerY" secondItem="NNw-Yk-QYl" secondAttribute="centerY" id="Kzi-OW-iME"/>
                         <constraint firstItem="ILM-Qz-iVr" firstAttribute="baseline" secondItem="NNw-Yk-QYl" secondAttribute="baseline" id="XDw-9F-GnA"/>
                         <constraint firstItem="NNw-Yk-QYl" firstAttribute="centerX" secondItem="cpE-Xr-4LK" secondAttribute="centerX" id="cAe-Ye-AHI"/>
+                        <constraint firstAttribute="height" constant="80" id="wLx-lt-yeB"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -87,12 +88,11 @@
                 <constraint firstAttribute="trailing" secondItem="ekT-Ok-twF" secondAttribute="trailing" id="3kx-l9-inl"/>
                 <constraint firstItem="mWr-98-Igm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ESW-ka-Hao"/>
                 <constraint firstItem="mWr-98-Igm" firstAttribute="top" secondItem="ekT-Ok-twF" secondAttribute="bottom" id="IxQ-bx-Lrt"/>
-                <constraint firstItem="cpE-Xr-4LK" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.12" id="K14-Rx-too"/>
+                <constraint firstItem="ekT-Ok-twF" firstAttribute="top" secondItem="cpE-Xr-4LK" secondAttribute="bottom" id="ZX7-K0-JgF"/>
                 <constraint firstItem="cpE-Xr-4LK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mag-36-EXb"/>
                 <constraint firstItem="ekT-Ok-twF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="n3H-jo-OwP"/>
                 <constraint firstAttribute="trailing" secondItem="mWr-98-Igm" secondAttribute="trailing" id="q34-hh-olr"/>
                 <constraint firstAttribute="trailing" secondItem="cpE-Xr-4LK" secondAttribute="trailing" id="reP-vM-RRF"/>
-                <constraint firstItem="ekT-Ok-twF" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.77" id="t5w-0V-tZZ"/>
                 <constraint firstItem="mWr-98-Igm" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.1" id="tAh-9q-RbU"/>
                 <constraint firstAttribute="bottom" secondItem="mWr-98-Igm" secondAttribute="bottom" id="teC-k2-y8U"/>
             </constraints>

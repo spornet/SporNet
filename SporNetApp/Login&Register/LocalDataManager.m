@@ -195,28 +195,80 @@ static LocalDataManager *center = nil;
     else return _allUserInfo;
 }
 
-
--(NSMutableArray*)fetchUserFromList:(NSMutableArray*)userlist withSportType:(NSInteger)sportType{
+-(NSMutableArray*)filterUserByGenderFromList:(NSMutableArray*)userlist{
     BOOL isMaleSwitchOn = [[NSUserDefaults standardUserDefaults]boolForKey:@"searchPreferenceMale"];
     BOOL isfemaleSwitchOn = [[NSUserDefaults standardUserDefaults]boolForKey:@"searchPreferenceFemale"];
-    BOOL ismySchoolOnlySwitchOn = [[NSUserDefaults standardUserDefaults]boolForKey:@"searchPreferenceOnlyMySchool"];
-    NSString *school =[[NSUserDefaults standardUserDefaults]objectForKey:KUSER_SCHOOL_NAME];
-//    AVObject *user;
-//
-//    NSUInteger *sport =[[user objectForKey:@"bestSport"]integerValue];
-//    NSString *s = [[user objectForKey:@"school"]stringValue];
-//    NSLog(@"sport%@ school%@",sport,s);
-
+    
+    
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
         AVObject *user = (AVObject*)obj;
-//        SNUser *user = (SNUser*)obj;
-        return [[user objectForKey:@"bestSport"]integerValue] == sportType && [[user objectForKey:@"gender"]integerValue] == 1;
-//        return [[[user objectForKey:@"school"]stringValue] isEqualToString:school];
-
-
+        if (isMaleSwitchOn) {
+            if (isfemaleSwitchOn) {
+                return [[user objectForKey:@"gender"]integerValue] == 0 || [[user objectForKey:@"gender"]integerValue] == 1;
+            }
+            return [[user objectForKey:@"gender"]integerValue] == 0;
+        } else{
+            return [[user objectForKey:@"gender"]integerValue] == 1;
+        }
+        
+        
     }];
     return [[userlist filteredArrayUsingPredicate:predicate]mutableCopy];
+    
+}
 
+//-(NSMutableArray*)fetchUserFromBlackList:(NSMutableArray*)userlist withBlackList:(NSMutableArray*)blacklist{
+//            NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
+//    
+//                AVObject *user = (AVObject*)obj;
+//    
+//                return [user objectForKey:@"objectId"] != blacklist;
+//    
+//        }];
+//        return [[userlist filteredArrayUsingPredicate:predicate]mutableCopy];
+//    
+//    NSMutableArray *list;
+//    
+//    for (AVObject *user in userlist) {
+//        [user fetch];
+//        NSString *userid = [user objectForKey:@"objectId"];
+//        if (![blacklist containsObject:userid]){
+//            [list addObject:user];
+//        }
+//    }
+//    return list;
+//    
+//        NSMutableArray *list;
+//        NSPredicate *blacklisted = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)",blacklist];
+//        [userlist filterUsingPredicate:blacklisted];
+//        return list;
+//}
+
+-(NSMutableArray*)fetchUserFromList:(NSMutableArray*)userlist withSportType:(NSInteger)sportType{
+    //    BOOL ismySchoolOnlySwitchOn = [[NSUserDefaults standardUserDefaults]boolForKey:@"searchPreferenceOnlyMySchool"];
+    //    NSString *school =[[NSUserDefaults standardUserDefaults]objectForKey:KUSER_SCHOOL_NAME];
+    
+    
+    //    AVObject *user;
+    //
+    //    NSUInteger *sport =[[user objectForKey:@"bestSport"]integerValue];
+    //    NSString *s = [[user objectForKey:@"school"]stringValue];
+    //    NSLog(@"sport%@ school%@",sport,s);
+    
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
+        AVObject *user = (AVObject*)obj;
+        //        NSString *schoolName = [user objectForKey:@"school"];
+        //        NSString *na = [user objectForKey:@"name"];
+        //        NSInteger num =[[user objectForKey:@"gender"]integerValue];
+        //        SNUser *user = (SNUser*)obj;
+        return [[user objectForKey:@"bestSport"]integerValue] == sportType;
+        
+        //        return [[user objectForKey:@"school"] isEqualToString:school];
+        
+        
+    }];
+    return [[userlist filteredArrayUsingPredicate:predicate]mutableCopy];
+    
 }
 
 -(NSMutableArray*)fetchUserInfoBySportType:(NSInteger)sportType {

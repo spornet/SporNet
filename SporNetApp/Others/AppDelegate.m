@@ -192,12 +192,12 @@
         
         NSLog(@"notification %@", userInfo); 
         
-//        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-//        localNotification.userInfo = userInfo;
-//        localNotification.soundName = UILocalNotificationDefaultSoundName;
-//        localNotification.alertBody = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
-//        localNotification.fireDate = [NSDate date];
-//        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.userInfo = userInfo;
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        localNotification.alertBody = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+        localNotification.fireDate = [NSDate date];
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     } else {
         [AVAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
     }

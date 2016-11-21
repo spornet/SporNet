@@ -15,5 +15,7 @@
 -(NSMutableArray*)fetchCurrentAllUserInfo;
 -(NSMutableArray*)fetchNearByUserInfo:(AVGeoPoint*)point withinDist:(CGFloat)dist;
 -(NSMutableArray*)fetchUserFromList:(NSMutableArray*)userlist withSportType:(NSInteger)sportType;
+-(NSMutableArray*)filterUserByGenderFromList:(NSMutableArray*)userlist;
+-(NSMutableArray*)fetchUserFromBlackList:(NSMutableArray*)userlist withBlackList:(NSMutableArray*)blacklist;
 -(NSMutableArray*)fetchUserInfoBySportType:(NSInteger)sportType;
 @end
