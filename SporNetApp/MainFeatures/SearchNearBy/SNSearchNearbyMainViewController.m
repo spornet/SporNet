@@ -109,6 +109,8 @@
 NSInteger indexOfCurrentUser;
 
 - (void)viewDidLoad {
+    
+    NSLog(@"git test");
     [super viewDidLoad];
     [self locationManager];
     self.dist = [[NSUserDefaults standardUserDefaults]floatForKey:@"Radius"];
