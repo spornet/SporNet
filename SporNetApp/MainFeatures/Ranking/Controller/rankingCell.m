@@ -40,10 +40,12 @@ NSArray *sportPicArray;
     else if(ranking == 1) self.medalImageView.image = [UIImage imageNamed:@"medalSilver"];
     else if (ranking == 2) self.medalImageView.image = [UIImage imageNamed:@"medalBronze"];
     //if user's ranking is out of 3, replace medal image wit rankLabel.
+    
     else {
         self.rankLabel.text = [NSString stringWithFormat:@"NO.%ld", ranking + 1];
         self.medalImageView.image = nil;
         [self.medalImageView addSubview:self.rankLabel];
+        NSLog(@"test github ----lifei");
     }
 }
 
