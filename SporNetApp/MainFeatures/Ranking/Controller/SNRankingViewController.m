@@ -115,8 +115,12 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SNSearchNearbyProfileViewController *vc = [[SNSearchNearbyProfileViewController alloc]init];
-    vc.currentUserProfile = self.currentUsers[indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+    SNUser *myself = self.currentUsers[indexPath.row];
+    if (![myself.objectId isEqualToString:SELF_ID]) {
+        
+        vc.currentUserProfile = self.currentUsers[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

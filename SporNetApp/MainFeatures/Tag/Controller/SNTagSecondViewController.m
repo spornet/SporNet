@@ -127,9 +127,14 @@
         [query whereKey:@"userID" equalTo:[self.currentCheckins[indexPath.row] objectForKey:@"userID"]];
         vc.currentUserProfile = [query findObjects][0];
     } else {
-        vc.currentUserProfile = self.currentUserBasicInfos[indexPath.row];
+        SNUser *myself = self.currentUserBasicInfos[indexPath.row];
+        if (![myself.objectId isEqualToString:SELF_ID]) {
+            
+            vc.currentUserProfile = self.currentUserBasicInfos[indexPath.row];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+//        vc.currentUserProfile = self.currentUserBasicInfos[indexPath.row];
     }
-    [self.navigationController pushViewController:vc animated:YES];
     [ProgressHUD dismiss];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

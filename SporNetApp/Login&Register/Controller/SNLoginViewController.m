@@ -65,13 +65,19 @@
     NSString *userPassword = [[NSUserDefaults standardUserDefaults] objectForKey:KUSER_PASSWORD];
     if (userEmail != nil && userPassword != nil) {
         
+        [ProgressHUD show:@"Loading" Interaction:NO];
+        
         [AVUser logInWithUsernameInBackground:userEmail password:userPassword block:^(AVUser *user, NSError *error) {
             
             if (error == nil) {
                 
+                [[MessageManager defaultManager] startMessageService];
+                
                 SNMainFeatureTabController *tabVC = [[SNMainFeatureTabController alloc]init];
                 
-                [self presentViewController:tabVC animated:YES completion:nil];
+                [self presentViewController:tabVC animated:NO completion:nil];
+                
+                [ProgressHUD dismiss];
             }
         }];
     }

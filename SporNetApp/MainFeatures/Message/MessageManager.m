@@ -421,9 +421,9 @@ static MessageManager *center = nil;
 
 - (void)sendPushNotificationTo:(NSString *)name withMessage:(NSString *)message {
     
-    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @"Increment", @"badge",
-                          nil];
+    NSDictionary *data = @{@"Increment" : @"badge",
+                           @"default": @"sound"
+                                     };
     
     AVQuery *query = [AVInstallation query];
     [query whereKey:@"Owner" equalTo:name];

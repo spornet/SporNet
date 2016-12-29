@@ -66,8 +66,7 @@
     //Load Cell
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageListCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
-    [[MessageManager defaultManager] startMessageService];
-    sleep(3);
+//    sleep(3);
     //Open Current Message
 
     //set badge view of notification icon (the bell)

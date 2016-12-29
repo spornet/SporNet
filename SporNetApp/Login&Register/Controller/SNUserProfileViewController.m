@@ -155,7 +155,7 @@
         _imagePicker = [[UIImagePickerController alloc]init];
         _imagePicker.delegate = self;
         _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        _imagePicker.allowsEditing = YES;
+        _imagePicker.allowsEditing = NO;
         
     }
     
@@ -169,9 +169,9 @@
             [self presentViewController:self.imagePicker animated:YES completion:nil];
         }]];
         [_alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            UIButton *selectedButton = (UIButton*)[self.picCell viewWithTag:_selectedImageTag];
+            UIImageView *selectedImage = (UIImageView* )[self.picCell viewWithTag:_selectedImageTag];
    
-            [selectedButton setImage:ADD_IMAGE forState:normal];
+            [selectedImage setImage:ADD_IMAGE];
             
         }]];
         [_alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -218,6 +218,13 @@
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportTapped:)];
         UIImageView *imageView = (UIImageView*)[self.bestSportCell viewWithTag:i];
         [imageView addGestureRecognizer:tapRecognizer];
+    }
+    
+    for (int i = 1; i <= 6; i ++) {
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(picButtonClicked:)];
+        UIImageView *profileImage = (UIImageView *)[self.picCell viewWithTag:i];
+        [profileImage addGestureRecognizer:tap];
     }
     //Set Up the Max Profile Image Number
     self.selectedProfileImageArray = [[NSMutableArray alloc]initWithCapacity:SELECTED_MAX_PROFILE_IMAGE];
@@ -300,10 +307,13 @@
 /**
  *  Profile Picture Clicked
  */
-- (IBAction)picButtonClicked:(UIButton *)sender {
-    _selectedImageTag = sender.tag;
+- (void)picButtonClicked:(UITapGestureRecognizer *)tapGesture {
     
-    if([sender.currentImage isEqual:ADD_IMAGE]) {
+    UIImageView *imageView = (UIImageView*)tapGesture.view;
+
+    _selectedImageTag = imageView.tag;
+    
+    if([imageView.image isEqual:ADD_IMAGE]) {
         [self presentViewController:self.imagePicker animated:YES completion:nil];
     } else {
         [self presentViewController:self.alert animated:YES completion:nil];
@@ -440,8 +450,8 @@
 - (BOOL)checkAllUserInputs {
     
     
-        UIButton *button = (UIButton*)[self.picCell viewWithTag:1];
-        if (button.currentImage == nil) {
+        UIImageView *profileView = (UIImageView*)[self.picCell viewWithTag:1];
+        if (profileView.image == nil) {
             
             [ProgressHUD showError:@"You need at least One Profile Picture"];
             return NO;
@@ -637,9 +647,9 @@
  */
 - (void)setIcon {
     //set icon image
-    UIButton *button = (UIButton*)[self.picCell viewWithTag:1];
+    UIImageView *profileView = (UIImageView*)[self.picCell viewWithTag:1];
     
-    [[AVUser currentUser] setObject:[AVFile fileWithData:UIImagePNGRepresentation([self imageWithImage:button.currentImage scaledToSize:CGSizeMake(100, 100)])] forKey:@"icon"];
+    [[AVUser currentUser] setObject:[AVFile fileWithData:UIImagePNGRepresentation([self imageWithImage:profileView.image scaledToSize:CGSizeMake(100, 100)])] forKey:@"icon"];
     [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
        
         if (succeeded) {
@@ -663,9 +673,9 @@
     
     NSMutableArray *imageDataArr = [[NSMutableArray alloc]init];
     for(int i = 1; i <= 6; i++) {
-        UIButton *button = (UIButton*)[self.picCell viewWithTag:i];
-        if([button.currentImage isEqual:ADD_IMAGE]) continue;
-        [imageDataArr addObject:UIImageJPEGRepresentation(button.currentImage, 0.9)];
+        UIImageView *profileView = (UIImageView*)[self.picCell viewWithTag:i];
+        if([profileView.image isEqual:ADD_IMAGE]) continue;
+        [imageDataArr addObject:UIImageJPEGRepresentation(profileView.image, 0.9)];
     }
 
     NSDictionary *plistDict = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects:
@@ -717,7 +727,7 @@
     for (NSData *data in imageDataArr) {
         UIImage *image = [UIImage imageWithData:data];
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        [((UIButton*)[self.picCell viewWithTag:i]) setImage:image forState:normal];
+        [((UIImageView*)[self.picCell viewWithTag:i]) setImage:image];
         i++;
     }
 }
@@ -786,10 +796,9 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    NSLog(@"image %@", chosenImage);
-    chosenImage = [chosenImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIButton *selectedButton = (UIButton*)[self.picCell viewWithTag:_selectedImageTag];
-    [selectedButton setImage:chosenImage forState:UIControlStateNormal];
+    UIImageView *profileView = (UIImageView*)[self.picCell viewWithTag:_selectedImageTag];
+    profileView.image = nil;
+    [profileView setImage:chosenImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

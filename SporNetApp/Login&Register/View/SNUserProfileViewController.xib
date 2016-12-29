@@ -366,86 +366,31 @@
                 <frame key="frameInset" width="326" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qa3-u6-fya">
-                        <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="80" id="YdE-45-C6N"/>
-                            <constraint firstAttribute="height" constant="80" id="oiL-M1-IBC"/>
-                        </constraints>
-                        <state key="normal" image="add"/>
-                        <connections>
-                            <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="lIC-Zc-RrO"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Luy-vK-h38">
-                        <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="80" id="hSd-cw-A9d"/>
-                            <constraint firstAttribute="height" constant="80" id="i2f-sk-RNf"/>
-                        </constraints>
-                        <state key="normal" image="add"/>
-                        <connections>
-                            <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="yao-0o-6kj"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfl-12-4RO">
-                        <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="80" id="6ep-Iq-55h"/>
-                            <constraint firstAttribute="width" constant="80" id="yMf-ae-NiC"/>
-                        </constraints>
-                        <state key="normal" image="add"/>
-                        <connections>
-                            <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="t1G-kB-mbx"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fv-Qg-TGa">
-                        <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="80" id="FYx-5C-t3O"/>
-                            <constraint firstAttribute="width" constant="80" id="PK1-aD-F24"/>
-                        </constraints>
-                        <state key="normal" image="add"/>
-                        <connections>
-                            <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="PbK-Hj-60d"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-RC-Tsa">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="80" id="h2m-2F-tkZ"/>
-                            <constraint firstAttribute="height" constant="80" id="z2R-nD-D7j"/>
-                        </constraints>
-                        <state key="normal" image="add"/>
-                        <connections>
-                            <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="gOr-P9-0L6"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WlJ-A0-jh9">
-                        <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="80" id="OeT-9R-ENM"/>
-                            <constraint firstAttribute="height" constant="80" id="rtr-pI-JB6"/>
-                        </constraints>
-                        <state key="normal" image="add"/>
-                        <connections>
-                            <action selector="picButtonClicked:" destination="-1" eventType="touchUpInside" id="c8s-AE-KK8"/>
-                        </connections>
-                    </button>
+                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="6rv-l4-Nxr">
+                        <frame key="frameInset" minX="8" minY="8" width="80" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="w5S-IB-9M1">
+                        <frame key="frameInset" minX="8" minY="111" width="80" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="os9-tD-1hb">
+                        <frame key="frameInset" minX="123" minY="111" width="80" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="xeS-8U-Kdf">
+                        <frame key="frameInset" minX="123" minY="8" width="80" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="SvW-gq-rcg">
+                        <frame key="frameInset" minX="238" minY="8" width="80" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="3Ly-F3-LVu">
+                        <frame key="frameInset" minX="238" minY="111" width="80" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="Qa3-u6-fya" firstAttribute="centerY" secondItem="j0T-Wg-HBJ" secondAttribute="centerY" multiplier="1.5" id="1Ej-KZ-b8c"/>
-                    <constraint firstItem="Luy-vK-h38" firstAttribute="centerY" secondItem="j0T-Wg-HBJ" secondAttribute="centerY" multiplier="1.5" id="EEU-qt-dKj"/>
-                    <constraint firstItem="5fv-Qg-TGa" firstAttribute="centerX" secondItem="j0T-Wg-HBJ" secondAttribute="centerX" multiplier="0.33" constant="-14.789999999999999" id="EgX-hK-PbQ"/>
-                    <constraint firstItem="7zv-RC-Tsa" firstAttribute="centerX" secondItem="j0T-Wg-HBJ" secondAttribute="centerX" multiplier="0.33" constant="-15" id="Gf9-Ba-TM3"/>
-                    <constraint firstItem="Luy-vK-h38" firstAttribute="centerX" secondItem="j0T-Wg-HBJ" secondAttribute="centerX" multiplier="1.67" constant="13.79000000000002" id="MJC-Fj-txS"/>
-                    <constraint firstItem="5fv-Qg-TGa" firstAttribute="centerY" secondItem="j0T-Wg-HBJ" secondAttribute="centerY" multiplier="1.5" id="MdT-yM-C5g"/>
-                    <constraint firstItem="WlJ-A0-jh9" firstAttribute="centerY" secondItem="j0T-Wg-HBJ" secondAttribute="centerY" multiplier="0.5" id="PBx-tu-t2O"/>
-                    <constraint firstItem="Rfl-12-4RO" firstAttribute="centerY" secondItem="j0T-Wg-HBJ" secondAttribute="centerY" multiplier="0.5" id="Sac-af-34z"/>
-                    <constraint firstItem="WlJ-A0-jh9" firstAttribute="centerX" secondItem="j0T-Wg-HBJ" secondAttribute="centerX" id="VTY-OH-JkE"/>
-                    <constraint firstItem="Qa3-u6-fya" firstAttribute="centerX" secondItem="j0T-Wg-HBJ" secondAttribute="centerX" id="fqG-3A-pbC"/>
-                    <constraint firstItem="7zv-RC-Tsa" firstAttribute="centerY" secondItem="j0T-Wg-HBJ" secondAttribute="centerY" multiplier="0.5" id="hZC-Es-B6b"/>
-                    <constraint firstItem="Rfl-12-4RO" firstAttribute="centerX" secondItem="j0T-Wg-HBJ" secondAttribute="centerX" multiplier="1.67" constant="13.79000000000002" id="kOA-cB-EZj"/>
-                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="312" y="1703"/>
         </tableViewCell>

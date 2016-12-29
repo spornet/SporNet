@@ -88,7 +88,6 @@
 }
 
 -(void)checkDate{
-    //    [NSTimer scheduledTimerWithTimeInterval:50 target:self selector:@selector(updateUserDefaults) userInfo:nil repeats:YES];
     
     NSDate *date = [NSDate date];
     NSDateFormatter *dateformatter  =[[NSDateFormatter alloc]init];
@@ -96,7 +95,7 @@
     NSString *todayDate = [dateformatter stringFromDate:date];
     
     NSString *lastDate = [[NSUserDefaults standardUserDefaults]valueForKey:@"LastCheckInDate"];
-    //    NSLog(@"今天是%@上次是%@",todayDate,lastDate);
+    
     if ([todayDate isEqualToString:lastDate]) {
         return;
     }else{
@@ -109,10 +108,9 @@
 -(void)updateUserDefaults{
     
     [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"FirstTag"];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
     
     [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"UpdateTag"];
+    
     [[NSUserDefaults standardUserDefaults]synchronize];
     
 }
@@ -123,13 +121,16 @@
     
     [self checkDate];
     
-    BOOL firstTag = [[[NSUserDefaults standardUserDefaults]valueForKey:@"FirstTag"]boolValue];
+    BOOL firstTag = [[NSUserDefaults standardUserDefaults]boolForKey:@"FirstTag"];
     if (firstTag) {
         
-        self.relocatePanel.frame = self.checkinPanel.frame;
-        [self.view addSubview:self.relocatePanel];
-        [self.view bringSubviewToFront:self.relocatePanel];
+//        self.relocatePanel.frame = self.checkinPanel.frame;
+//        [self.view addSubview:self.relocatePanel];
+//        [self.view bringSubviewToFront:self.relocatePanel];
         
+        
+        [self performSegueWithIdentifier:@"toSecondTagVC" sender:nil];
+
     }else{
         
         [self.relocatePanel removeFromSuperview];

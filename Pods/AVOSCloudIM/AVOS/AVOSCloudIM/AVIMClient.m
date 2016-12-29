@@ -152,15 +152,6 @@ static BOOL AVIMClientHasInstantiated = NO;
     @weakify(self);
 
     [selfObserver
-     addTarget:self
-     forKeyPath:NSStringFromSelector(@selector(onceOpened))
-     options:0
-     block:^(id object, id target, NSDictionary *change) {
-         @strongify(self);
-         [self registerPushChannelInBackground];
-     }];
-
-    [selfObserver
      addTarget:[AVInstallation currentInstallation]
      forKeyPath:NSStringFromSelector(@selector(deviceToken))
      options:0
@@ -260,13 +251,13 @@ static BOOL AVIMClientHasInstantiated = NO;
 }
 
 - (void)sendCommand:(AVIMGenericCommand *)command {
-    if (_socketWrapper) {
-        switch (_status) {
-        case AVIMClientStatusClosing:
-        case AVIMClientStatusClosed: return;
-        default: break;
-        }
+    BOOL sendable = (
+        _socketWrapper != nil &&
+        _status != AVIMClientStatusClosing &&
+        _status != AVIMClientStatusClosed
+    );
 
+    if (sendable) {
         [_socketWrapper sendCommand:command];
     } else {
         AVIMCommandResultBlock callback = command.callback;
@@ -420,19 +411,27 @@ static BOOL AVIMClientHasInstantiated = NO;
 }
 
 - (void)registerPushChannelInBackground {
+    dispatch_async(imClientQueue, ^{
+        [self registerPushChannel];
+    });
+}
+
+- (void)registerPushChannel {
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
     NSString *deviceToken = currentInstallation.deviceToken;
 
     if (deviceToken && self.onceOpened && (self.status == AVIMClientStatusOpened) && self.clientId) {
-        /* Add client id to installation channels. */
-        [currentInstallation addUniqueObject:self.clientId forKey:@"channels"];
-        [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (error)
-                AVLoggerError(AVLoggerDomainIM, @"Register push channel failed: %@", error);
-        }];
-
         /* Report current device token to cloud. */
         [self reportDeviceToken:deviceToken];
+
+        /* Add client id to installation channels. */
+        NSError *error = nil;
+        [currentInstallation addUniqueObject:self.clientId forKey:@"channels"];
+        [currentInstallation save:&error];
+
+        if (error) {
+            AVLoggerError(AVLoggerDomainIM, @"Register push channel failed: %@", error);
+        }
     }
 }
 
@@ -532,8 +531,9 @@ static BOOL AVIMClientHasInstantiated = NO;
                 if (!error) {
                     self.onceOpened = YES;
 
-                    /* NOTE: this will trigger an action that puts client id into channels of current installation. */
                     [self changeStatus:AVIMClientStatusOpened];
+
+                    [self registerPushChannel];
 
                     [AVIMBlockHelper callBooleanResultBlock:callback error:nil];
 
@@ -568,6 +568,23 @@ static BOOL AVIMClientHasInstantiated = NO;
     });
 }
 
+- (void)removeWebSocketNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_OPENED object:_socketWrapper];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_COMMAND object:_socketWrapper];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_RECONNECT object:_socketWrapper];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_CLOSED object:_socketWrapper];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_ERROR object:_socketWrapper];
+}
+
+- (void)processClientStatusAfterWebSocketOffline {
+    [self removeWebSocketNotification];
+    [[AVInstallation currentInstallation] removeObject:_clientId forKey:@"channels"];
+    if ([[AVInstallation currentInstallation] deviceToken]) {
+        [[AVInstallation currentInstallation] saveInBackground];
+    }
+    [self changeStatus:AVIMClientStatusClosed];
+}
+
 - (void)closeWithCallback:(AVIMBooleanResultBlock)callback {
     dispatch_async(imClientQueue, ^{
         AVIMGenericCommand *genericCommand = [[AVIMGenericCommand alloc] init];
@@ -578,16 +595,9 @@ static BOOL AVIMClientHasInstantiated = NO;
         AVIMSessionCommand *sessionCommand = [[AVIMSessionCommand alloc] init];
         [genericCommand avim_addRequiredKeyWithCommand:sessionCommand];
         [genericCommand setCallback:^(AVIMGenericCommand *outCommand, AVIMGenericCommand *inCommand, NSError *error) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_OPENED object:_socketWrapper];
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_COMMAND object:_socketWrapper];
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_RECONNECT object:_socketWrapper];
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_CLOSED object:_socketWrapper];
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:AVIM_NOTIFICATION_WEBSOCKET_ERROR object:_socketWrapper];
-            [[AVInstallation currentInstallation] removeObject:_clientId forKey:@"channels"];
-            if ([[AVInstallation currentInstallation] deviceToken]) {
-                [[AVInstallation currentInstallation] saveInBackground];
+            if (!error) {
+                [self processClientStatusAfterWebSocketOffline];
             }
-            [self changeStatus:AVIMClientStatusClosed];
             [AVIMBlockHelper callBooleanResultBlock:callback error:error];
         }];
         [self sendCommand:genericCommand];
@@ -652,7 +662,7 @@ static BOOL AVIMClientHasInstantiated = NO;
                 AVIMConversation *conversation = [self conversationWithId:conversationInCommand.cid];
                 NSDictionary *dict = [self parseJsonFromMessage:conversationOutCommand.attr];
                 conversation.name = [dict objectForKey:KEY_NAME];
-                conversation.attributes = [dict objectForKey:KEY_ATTR];
+                conversation.attributes = [AVIMConversation filterCustomAttributesFromDictionary:dict];
                 conversation.creator = self.clientId;
                 conversation.createAt = [AVObjectUtils dateFromString:[conversationInCommand cdate]];
                 conversation.transient = conversationOutCommand.transient;
@@ -948,6 +958,7 @@ static BOOL AVIMClientHasInstantiated = NO;
             [self changeStatus:AVIMClientStatusClosed];
             if ([self.delegate respondsToSelector:@selector(client:didOfflineWithError:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [self processClientStatusAfterWebSocketOffline];
                     [self.delegate client:self didOfflineWithError:[genericCommand avim_errorObject]];
                 });
             }
