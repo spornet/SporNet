@@ -217,32 +217,32 @@ static LocalDataManager *center = nil;
     
 }
 
-//-(NSMutableArray*)fetchUserFromBlackList:(NSMutableArray*)userlist withBlackList:(NSMutableArray*)blacklist{
-//            NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
-//    
-//                AVObject *user = (AVObject*)obj;
-//    
-//                return [user objectForKey:@"objectId"] != blacklist;
-//    
-//        }];
-//        return [[userlist filteredArrayUsingPredicate:predicate]mutableCopy];
-//    
-//    NSMutableArray *list;
-//    
-//    for (AVObject *user in userlist) {
-//        [user fetch];
-//        NSString *userid = [user objectForKey:@"objectId"];
-//        if (![blacklist containsObject:userid]){
-//            [list addObject:user];
-//        }
-//    }
-//    return list;
-//    
-//        NSMutableArray *list;
-//        NSPredicate *blacklisted = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)",blacklist];
-//        [userlist filterUsingPredicate:blacklisted];
-//        return list;
-//}
+-(NSMutableArray*)fetchUserFromBlackList:(NSMutableArray*)userlist withBlackList:(NSMutableArray*)blacklist{
+    //        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bing) {
+    //
+    //            AVObject *user = (AVObject*)obj;
+    //
+    //            return [user objectForKey:@"objectId"] != blacklist;
+    //
+    //    }];
+    //    return [[userlist filteredArrayUsingPredicate:predicate]mutableCopy];
+    //
+    NSMutableArray *list = [NSMutableArray array];
+    
+    for (AVObject *user in userlist) {
+        [user fetch];
+        NSString *userid = [user objectForKey:@"objectId"];
+        if (![blacklist containsObject:userid]){
+            [list addObject:user];
+        }
+    }
+    return list;
+    
+    //    NSMutableArray *list;
+    //    NSPredicate *blacklisted = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)",blacklist];
+    //    [userlist filterUsingPredicate:blacklisted];
+    //    return list;
+}
 
 -(NSMutableArray*)fetchUserFromList:(NSMutableArray*)userlist withSportType:(NSInteger)sportType{
     //    BOOL ismySchoolOnlySwitchOn = [[NSUserDefaults standardUserDefaults]boolForKey:@"searchPreferenceOnlyMySchool"];

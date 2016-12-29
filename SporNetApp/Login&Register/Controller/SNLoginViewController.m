@@ -78,6 +78,9 @@
                 [self presentViewController:tabVC animated:NO completion:nil];
                 
                 [ProgressHUD dismiss];
+            }else {
+                
+                NSLog(@"%@",error.description);
             }
         }];
     }

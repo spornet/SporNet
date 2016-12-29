@@ -47,7 +47,6 @@
 @property (weak, nonatomic ) UIView                           *user5Area;
 
 @property (weak, nonatomic ) UIButton                         *filterBtn;
-@property (weak, nonatomic ) UIImageView                      *photoView;
 @property (weak, nonatomic ) UIButton                         *user1;
 @property (weak, nonatomic ) UIImageView                      *bestSportImageView1;
 @property (weak, nonatomic ) UIButton                         *user2;
@@ -82,6 +81,7 @@
 @property (nonatomic,assign) BOOL                             isUser3Null;
 @property (nonatomic,assign) BOOL                             isUser4Null;
 @property (nonatomic,assign) BOOL                             isUser5Null;
+@property (nonatomic,assign) BOOL                             photoShowedOnFilterBtn;
 @property (nonatomic,weak  ) NSTimer                          *loadingTimer;
 
 //用户的半径，更确切的说是用户生成地点距离所在view的边距。用户按钮的大小主要有pop函数的toValue来控制，如果toValue是50，但是userR＝100则在view内边距为userR－toValue的范围内活动。
@@ -122,7 +122,7 @@ NSInteger indexOfCurrentUser;
     [self creatUserFromCurrentUsers];
     
     
-    //
+    
     //    dispatch_async(dispatch_get_main_queue(), ^{
     //
     //        [self locationManager];
@@ -150,17 +150,38 @@ NSInteger indexOfCurrentUser;
     NSString *la = [[NSUserDefaults standardUserDefaults]valueForKey:@"La"];
     AVGeoPoint *p =[AVGeoPoint geoPointWithLatitude:([la doubleValue]) longitude:[lo doubleValue]];
     
+    
+    
+    
+    
+    //
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    //
+    //        [self refreshAnimation];
+    //        self.loadingTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
+    //
+    //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //
+    //            [self fetchUserByLocation];
+    //            [self fetchCurrentUsersFromAllUsers];
+    //            [self creatUserFromCurrentUsers];
+    //
+    //        });
+    //    });
+    //
+    //
+    
+    
+    
+    
     //    self.neverSeeAgain = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:@"blackList"]];
     
     if (p) {
         self.allUsers = [[LocalDataManager defaultManager]fetchNearByUserInfo:p withinDist:self.dist];
         self.allUsers = [[LocalDataManager defaultManager]filterUserByGenderFromList:self.allUsers];
-//        self.allUsers = [[LocalDataManager defaultManager]fetchUserFromBlackList:self.allUsers withBlackList:self.neverSeeAgain];
+        self.allUsers = [[LocalDataManager defaultManager]fetchUserFromBlackList:self.allUsers withBlackList:self.neverSeeAgain];
         
         
-        
-        NSPredicate *blacklisted = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)",self.neverSeeAgain];
-        [self.allUsers filterUsingPredicate:blacklisted];
         if(_allUsers.count == 0) {
             [ProgressHUD showError:@"Bad connection. Please try later."];
             return;
@@ -176,37 +197,15 @@ NSInteger indexOfCurrentUser;
 -(void)fetchCurrentUsersFromAllUsers{
     switch (self.allUsers.count) {
         case 0:
-            //网络出错
+            //网络出错&筛选体育运动的时候没有选择自己的运动
             [self showLoadView];
-            
+            self.currentUsers = nil;
             break;
             
         case 1:
-            //            //只有自己，原因：搜索条件内只有自己或者用户不够多
-            //        {
-            ////            没有拉下来用户
-            //            [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
-            //            [self.filterBtn removeFromSuperview];
-            //            UIImageView *photoView = [[UIImageView alloc]init];
-            //            photoView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
-            //            photoView.frame = CGRectMake(self.circleView.frame.size.width/2 - 50, self.circleView.bounds.size.height/2 - 50 + CGRectGetMaxY(self.topBtnView.frame), 100, 100);
-            //            photoView.layer.masksToBounds = YES;
-            //            photoView.layer.cornerRadius = photoView.frame.size.width / 2.0;
-            //            [self.view addSubview:photoView];
-            //            self.refreshBtn.enabled = NO;
-            //
-            //            POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
-            //            anim.fromValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 20, 20)];
-            //            anim.springSpeed = 50.0;
-            //            anim.dynamicsFriction = 20.0;
-            //            //震动的次数～约等于springBounciness－10
-            //            anim.springBounciness = 6;
-            //            //震动的明显程度
-            //            anim.dynamicsMass = 10;
-            //            [photoView.layer pop_addAnimation:anim forKey:@"size"];
-            //        }
-            //
+            //只有自己，原因：搜索条件内只有自己或者用户不够多
             [self showLoadView];
+            self.currentUsers = nil;
             break;
             
         case 2:
@@ -241,28 +240,7 @@ NSInteger indexOfCurrentUser;
 -(void)creatUserFromCurrentUsers{
     switch (self.currentUsers.count) {
         case 0:
-            //        {
-            //            //没有拉下来用户
-            //            [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
-            //            [self.filterBtn removeFromSuperview];
-            //            UIImageView *photoView = [[UIImageView alloc]init];
-            //            photoView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
-            //            photoView.frame = CGRectMake(self.circleView.frame.size.width/2 - 50, self.circleView.bounds.size.height/2 - 50 + CGRectGetMaxY(self.topBtnView.frame), 100, 100);
-            //            photoView.layer.masksToBounds = YES;
-            //            photoView.layer.cornerRadius = photoView.frame.size.width / 2.0;
-            //            [self.view addSubview:photoView];
-            //            self.refreshBtn.enabled = NO;
-            //
-            //            POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
-            //            anim.fromValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 20, 20)];
-            //            anim.springSpeed = 50.0;
-            //            anim.dynamicsFriction = 20.0;
-            //            //震动的次数～约等于springBounciness－10
-            //            anim.springBounciness = 6;
-            //            //震动的明显程度
-            //            anim.dynamicsMass = 10;
-            //            [photoView.layer pop_addAnimation:anim forKey:@"size"];
-            //        }
+            
             break;
             
         case 1:
@@ -272,6 +250,10 @@ NSInteger indexOfCurrentUser;
             self.isUser3Null = YES;
             self.isUser4Null = YES;
             self.isUser5Null = YES;
+            [self.filterBtn setImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
+            [self.loadingTimer setFireDate:[NSDate distantFuture]];
+            
+            self.photoShowedOnFilterBtn = NO;
             [self refreshAnimation];
         }
             break;
@@ -282,6 +264,10 @@ NSInteger indexOfCurrentUser;
             self.isUser3Null = YES;
             self.isUser4Null = YES;
             self.isUser5Null = YES;
+            [self.filterBtn setImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
+            [self.loadingTimer setFireDate:[NSDate distantFuture]];
+            
+            self.photoShowedOnFilterBtn = NO;
             [self refreshAnimation];
             break;
             
@@ -291,6 +277,10 @@ NSInteger indexOfCurrentUser;
             [self createUser3Btn];
             self.isUser4Null = YES;
             self.isUser5Null = YES;
+            [self.filterBtn setImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
+            [self.loadingTimer setFireDate:[NSDate distantFuture]];
+            
+            self.photoShowedOnFilterBtn = NO;
             [self refreshAnimation];
             break;
             
@@ -300,6 +290,10 @@ NSInteger indexOfCurrentUser;
             [self createUser3Btn];
             [self createUser4Btn];
             self.isUser5Null = YES;
+            [self.filterBtn setImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
+            [self.loadingTimer setFireDate:[NSDate distantFuture]];
+            
+            self.photoShowedOnFilterBtn = NO;
             [self refreshAnimation];
             break;
             
@@ -309,6 +303,10 @@ NSInteger indexOfCurrentUser;
             [self createUser3Btn];
             [self createUser4Btn];
             [self createUser5Btn];
+            [self.filterBtn setImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
+            [self.loadingTimer setFireDate:[NSDate distantFuture]];
+            
+            self.photoShowedOnFilterBtn = NO;
             [self refreshAnimation];
             break;
             
@@ -720,14 +718,9 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationRepeatCount:1];
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
-        //        if(indexOfCurrentUser == self.allUsers.count) return;
-        //        self.currentUsers[0] = self.allUsers[indexOfCurrentUser];
-        //        indexOfCurrentUser++;
-        //        [self createUser1Btn];
-        //        self.dist1 = 0;
         
         NSInteger indexOfBlackList = self.neverSeeAgain.count;
-        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[0];
+        self.neverSeeAgain[indexOfBlackList] = [self.currentUsers[0]objectForKey:@"objectId"];
         
         //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
         //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
@@ -737,10 +730,8 @@ NSInteger indexOfCurrentUser;
         self.isUser1Null = YES;
         if(indexOfCurrentUser == self.allUsers.count) {
             if (self.isUser1Null && self.isUser2Null && self.isUser3Null && self.isUser4Null && self.isUser5Null) {
-                //                self.dist1 = 0;
                 [self showLoadView];
             } else {
-                //                self.dist1 = 0;
                 return;
             }
         }else{
@@ -782,14 +773,8 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
         
-        //        if(indexOfCurrentUser == self.allUsers.count) return;
-        //        self.currentUsers[1] = self.allUsers[indexOfCurrentUser];
-        //        indexOfCurrentUser++;
-        //        [self createUser2Btn];
-        //        self.dist2 = 0;
-        
         NSInteger indexOfBlackList = self.neverSeeAgain.count;
-        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[1];
+        self.neverSeeAgain[indexOfBlackList] = [self.currentUsers[1]objectForKey:@"objectId"];
         
         //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
         //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
@@ -842,14 +827,8 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
         
-        //        if(indexOfCurrentUser == self.allUsers.count) return;
-        //        self.currentUsers[2] = self.allUsers[indexOfCurrentUser];
-        //        indexOfCurrentUser++;
-        //        [self createUser3Btn];
-        //        self.dist3 = 0;
-        
         NSInteger indexOfBlackList = self.neverSeeAgain.count;
-        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[2];
+        self.neverSeeAgain[indexOfBlackList] = [self.currentUsers[2]objectForKey:@"objectId"];
         
         //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
         //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
@@ -902,14 +881,8 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
         
-        //        if(indexOfCurrentUser == self.allUsers.count) return;
-        //        self.currentUsers[3] = self.allUsers[indexOfCurrentUser];
-        //        indexOfCurrentUser++;
-        //        [self createUser4Btn];
-        //        self.dist4 = 0;
-        
         NSInteger indexOfBlackList = self.neverSeeAgain.count;
-        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[3];
+        self.neverSeeAgain[indexOfBlackList] = [self.currentUsers[3]objectForKey:@"objectId"];
         
         //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
         //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
@@ -964,14 +937,8 @@ NSInteger indexOfCurrentUser;
         [bombView setAnimationDuration:0.5];
         [bombView startAnimating];
         
-        //        if(indexOfCurrentUser == self.allUsers.count) return;
-        //        self.currentUsers[4] = self.allUsers[indexOfCurrentUser];
-        //        indexOfCurrentUser++;
-        //        [self createUser5Btn];
-        //        self.dist5 = 0;
-        
         NSInteger indexOfBlackList = self.neverSeeAgain.count;
-        self.neverSeeAgain[indexOfBlackList] = self.currentUsers[4];
+        self.neverSeeAgain[indexOfBlackList] = [self.currentUsers[4]objectForKey:@"objectId"];
         
         //        NSArray *array = [NSArray arrayWithArray:self.neverSeeAgain];
         //        [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"blackList"];
@@ -1077,7 +1044,7 @@ NSInteger indexOfCurrentUser;
     [self.circleView addGestureRecognizer:tapGesturRecognizer];
     
     UIView *user1Area = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topBtnView.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-    //        user1Area.backgroundColor = [UIColor redColor];
+    //    user1Area.backgroundColor = [UIColor redColor];
     [self.view addSubview:user1Area];
     self.user1Area = user1Area;
     UITapGestureRecognizer *tapGesturRecognizer1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
@@ -1085,7 +1052,7 @@ NSInteger indexOfCurrentUser;
     [self.user1Area addGestureRecognizer:tapGesturRecognizer1];
     
     UIView *user2Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/2, CGRectGetMaxY(self.topBtnView.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-    //        user2Area.backgroundColor = [UIColor orangeColor];
+    //    user2Area.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:user2Area];
     self.user2Area = user2Area;
     UITapGestureRecognizer *tapGesturRecognizer2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
@@ -1093,7 +1060,7 @@ NSInteger indexOfCurrentUser;
     [self.user2Area addGestureRecognizer:tapGesturRecognizer2];
     
     UIView *user3Area = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.user1Area.frame), MAIN_SCREEN_WIDTH/2-37.5, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-    //        user3Area.backgroundColor = [UIColor yellowColor];
+    //    user3Area.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:user3Area];
     self.user3Area = user3Area;
     UITapGestureRecognizer *tapGesturRecognizer3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
@@ -1101,21 +1068,21 @@ NSInteger indexOfCurrentUser;
     [self.user3Area addGestureRecognizer:tapGesturRecognizer3];
     
     UIView *user4Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/2+37.5, CGRectGetMaxY(self.user1Area.frame), MAIN_SCREEN_WIDTH/2-37.5, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-    //        user4Area.backgroundColor = [UIColor greenColor];
+    //    user4Area.backgroundColor = [UIColor greenColor];
     [self.view addSubview:user4Area];
     self.user4Area = user4Area;
     UITapGestureRecognizer *tapGesturRecognizer4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     self.user4Area.userInteractionEnabled = YES;
     [self.user4Area addGestureRecognizer:tapGesturRecognizer4];
     
-    
     UIView *user5Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/4, CGRectGetMaxY(self.user3Area.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3-44)];
-    //        user5Area.backgroundColor = [UIColor blueColor];
+    //    user5Area.backgroundColor = [UIColor blueColor];
     [self.view addSubview:user5Area];
     self.user5Area = user5Area;
     UITapGestureRecognizer *tapGesturRecognizer5 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     self.user5Area.userInteractionEnabled = YES;
     [self.user5Area addGestureRecognizer:tapGesturRecognizer5];
+    
     
     UIButton *filterBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.circleView.frame.size.width/2 - 37.5, self.circleView.bounds.size.height/2 - 37.5 + CGRectGetMaxY(self.topBtnView.frame), 75, 75)];
     [filterBtn setBackgroundImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
@@ -1123,6 +1090,7 @@ NSInteger indexOfCurrentUser;
     self.filterBtn = filterBtn;
     [self.filterBtn addTarget:self action:@selector(sportFilterClick) forControlEvents:UIControlEventTouchUpInside];
 }
+
 
 //hide or show TabBar
 -(void)tapCircleView{
@@ -1261,17 +1229,27 @@ NSInteger indexOfCurrentUser;
     
     
     
-    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
-    anim.fromValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 20, 20)];
-    anim.springSpeed = 50.0;
-    anim.dynamicsFriction = 20.0;
+    POPSpringAnimation *anim4FilterBtn = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
+    anim4FilterBtn.fromValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 20, 20)];
+    anim4FilterBtn.springSpeed = 50.0;
+    anim4FilterBtn.dynamicsFriction = 20.0;
     //震动的次数～约等于springBounciness－10
-    anim.springBounciness = 6;
+    anim4FilterBtn.springBounciness = 6;
     //震动的明显程度
-    anim.dynamicsMass = 10;
+    anim4FilterBtn.dynamicsMass = 10;
     
-    [self.filterBtn.layer pop_addAnimation:anim forKey:@"size"];
-    [self.photoView.layer pop_addAnimation:anim forKey:@"size"];
+    [self.filterBtn.layer pop_addAnimation:anim4FilterBtn forKey:@"size"];
+    
+    
+    //    POPSpringAnimation *anim4PhotoView = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
+    //    anim4PhotoView.fromValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 20, 20)];
+    //    anim4PhotoView.springSpeed = 50.0;
+    //    anim4PhotoView.dynamicsFriction = 20.0;
+    //    //震动的次数～约等于springBounciness－10
+    //    anim4PhotoView.springBounciness = 6;
+    //    //震动的明显程度
+    //    anim4PhotoView.dynamicsMass = 10;
+    //    [self.photoView.layer pop_addAnimation:anim4PhotoView forKey:@"size"];
     
     
 }
@@ -1310,17 +1288,44 @@ NSInteger indexOfCurrentUser;
 
 -(void)sportFilterClick{
     
-    [self configreBlurView];
-    [self addSportBtn];
-    
-    
-    UIButton *filterBtnInBlurView = [[UIButton alloc]initWithFrame:CGRectMake(self.circleView.frame.size.width/2 - 37.5, self.circleView.bounds.size.height/2 - 37.5 + self.topBtnView.frame.size.height + STATUS_BAR_HEIGHT, 75, 75)];
-    [filterBtnInBlurView setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
-    [self.blurView addSubview:filterBtnInBlurView];
-    self.filterBtnInBlurView = filterBtnInBlurView;
-    [self.filterBtnInBlurView addTarget:self action:@selector(removeBlurView) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self beginAnimation];
+    if (self.photoShowedOnFilterBtn) {
+        //调用load画面
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self refreshAnimation];
+            self.loadingTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                [self fetchUserByLocation];
+                [self fetchCurrentUsersFromAllUsers];
+                [self creatUserFromCurrentUsers];
+                
+            });
+        });
+        
+        
+        
+        
+        
+        
+    } else {
+        
+        [self configreBlurView];
+        [self addSportBtn];
+        
+        
+        UIButton *filterBtnInBlurView = [[UIButton alloc]initWithFrame:CGRectMake(self.circleView.frame.size.width/2 - 37.5, self.circleView.bounds.size.height/2 - 37.5 + self.topBtnView.frame.size.height + STATUS_BAR_HEIGHT, 75, 75)];
+        [filterBtnInBlurView setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
+        [self.blurView addSubview:filterBtnInBlurView];
+        self.filterBtnInBlurView = filterBtnInBlurView;
+        [self.filterBtnInBlurView addTarget:self action:@selector(removeBlurView) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self beginAnimation];
+        
+    }
 }
 
 -(void)configreBlurView {
@@ -1393,27 +1398,6 @@ NSInteger indexOfCurrentUser;
 }
 
 -(void)bestSportSelected:(id)sender{
-    //为了重置一下currentUsers，因为上面已经用相应的体育运动筛选了一遍，如果不重置，换其他运动的时候currentUsers就为空了。
-    [self fetchUserByLocation];
-    //    self.allUsers = [[LocalDataManager defaultManager]fetchUserInfoBySportType:((UIView*)sender).tag];
-    self.allUsers = [[LocalDataManager defaultManager]fetchUserFromList:self.allUsers withSportType:((UIView*)sender).tag];
-    [self fetchCurrentUsersFromAllUsers];
-    //    long currentUserSportTag =[[[AVUser currentUser]valueForKey:@"bestSport"]integerValue];
-    //    if (((UIButton*)sender).tag == currentUserSportTag) {
-    //        indexOfCurrentUser = 1;//数组后移一位
-    //    }else{
-    //        indexOfCurrentUser = 0;
-    //    }
-    //
-    
-    //    self.currentUsers = [[LocalDataManager defaultManager]fetchUserInfoBySportType:((UIView*)sender).tag];
-    
-    //    if (((UIButton*)sender).tag == currentUserSportTag) {
-    //        for (int i=1; i<=self.currentUsers.count; i++) {
-    //            self.currentUsers[i] = self.currentUsers[i-1];
-    //        }
-    //        NSLog(@"数组后移一位");
-    //    }
     
     NSString *imageName = [[NSString alloc]init];
     
@@ -1439,7 +1423,12 @@ NSInteger indexOfCurrentUser;
     
     [self.filterBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [self removeBlurView];
-    //    [self clickRefreshBtn];
+    
+    
+    //为了重置一下currentUsers，因为上面已经用相应的体育运动筛选了一遍，如果不重置，换其他运动的时候currentUsers就为空了。
+    [self fetchUserByLocation];
+    self.allUsers = [[LocalDataManager defaultManager]fetchUserFromList:self.allUsers withSportType:((UIView*)sender).tag];
+    [self fetchCurrentUsersFromAllUsers];
     
     [self.user1 removeFromSuperview];
     [self.user2 removeFromSuperview];
@@ -1462,9 +1451,7 @@ NSInteger indexOfCurrentUser;
 -(void)allSportSelected {
     [self removeBlurView];
     [self.filterBtn setImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
-    //    indexOfCurrentUser = 0;
-    //    self.allUsers = [[LocalDataManager defaultManager]fetchCurrentAllUserInfo];
-    //    [self clickRefreshBtn];
+    
     [self.user1 removeFromSuperview];
     [self.user2 removeFromSuperview];
     [self.user3 removeFromSuperview];
@@ -1768,18 +1755,27 @@ NSInteger indexOfCurrentUser;
 }
 
 -(void)showLoadView{
+    //
+    //    [self.filterBtn removeFromSuperview];
+    //    UIImageView *photoView = [[UIImageView alloc]init];
+    //    photoView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
+    //    photoView.frame = CGRectMake(self.circleView.frame.size.width/2 - 50, self.circleView.bounds.size.height/2 - 50 + CGRectGetMaxY(self.topBtnView.frame), 100, 100);
+    //    photoView.layer.masksToBounds = YES;
+    //    photoView.layer.cornerRadius = photoView.frame.size.width / 2.0;
+    //    self.photoView = photoView;
+    //    [self.view addSubview:self.photoView];
+    //    self.refreshBtn.enabled = NO;
+    //
+    //    self.loadingTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
+    //    [self refreshAnimation];
     
-    self.loadingTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(refreshAnimation) userInfo:nil repeats:YES];
-    [self.filterBtn removeFromSuperview];
-    UIImageView *photoView = [[UIImageView alloc]init];
-    photoView.image = [UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]];
-    photoView.frame = CGRectMake(self.circleView.frame.size.width/2 - 50, self.circleView.bounds.size.height/2 - 50 + CGRectGetMaxY(self.topBtnView.frame), 100, 100);
-    photoView.layer.masksToBounds = YES;
-    photoView.layer.cornerRadius = photoView.frame.size.width / 2.0;
-    self.photoView = photoView;
-    [self.view addSubview:self.photoView];
+    
+    
     self.refreshBtn.enabled = NO;
-    [self refreshAnimation];
+    [self.filterBtn setImage:[UIImage imageWithData:[[[AVUser currentUser]objectForKey:@"icon"]getData]] forState:UIControlStateNormal];
+    self.filterBtn.imageView.layer.masksToBounds = YES;
+    self.filterBtn.imageView.layer.cornerRadius = self.filterBtn.imageView.frame.size.width / 2.0;
+    self.photoShowedOnFilterBtn = YES;
     
 }
 
