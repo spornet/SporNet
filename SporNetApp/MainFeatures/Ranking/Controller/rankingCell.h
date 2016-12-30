@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *bestSportImageView;
 @property(strong) UILabel *rankLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *votesLabel;
 
 
 -(void)configureCellWithUser:(SNUser*)user Ranking:(NSInteger)ranking;

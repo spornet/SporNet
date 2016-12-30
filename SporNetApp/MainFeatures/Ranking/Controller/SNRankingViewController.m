@@ -97,7 +97,9 @@
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
-}
+    //reload after new votes occurred
+    [self.tableView reloadData];
+ }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     

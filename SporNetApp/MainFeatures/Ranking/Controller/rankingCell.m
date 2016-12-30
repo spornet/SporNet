@@ -29,6 +29,8 @@ NSArray *sportPicArray;
 -(void)configureCellWithUser:(SNUser*)user Ranking:(NSInteger)ranking {
     self.userNameLabel.text = user.name;
     self.userSchoolLabel.text = [user objectForKey:@"school"];
+    //votesLabel
+    self.votesLabel.text = [NSString stringWithFormat:@"%ld",user.voteNumber];
     [self.userBestSportColorView setBackgroundColor:SPORTSLOT_COLOR_ARRAY[(int)user.sportTimeSlot]];
     AVFile *file = [user objectForKey:@"icon"];
     if(file == nil) self.userImageView.image = [UIImage imageNamed:@"profile"];
