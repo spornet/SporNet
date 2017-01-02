@@ -795,10 +795,11 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
-    NSLog(@"%@", info); 
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     UIImageView *profileView = (UIImageView*)[self.picCell viewWithTag:_selectedImageTag];
+    
+    profileView.image = nil;
     [profileView setImage:chosenImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
