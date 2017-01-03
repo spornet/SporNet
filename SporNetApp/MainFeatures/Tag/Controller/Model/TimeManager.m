@@ -25,6 +25,7 @@ static NSDateFormatter *dateFormatter = nil;
     }
     return [dateFormatter stringFromDate:date];
 }
+
 +(NSString*)getTimeLabelString:(NSDate*)checkinTime refreshTime:(NSDate*)refreshTime {
     NSString *result;
     NSTimeInterval distanceSeconds = -[checkinTime timeIntervalSinceDate:refreshTime];
