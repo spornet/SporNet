@@ -45,7 +45,6 @@ NSArray *sportPicArray;
         self.rankLabel.text = [NSString stringWithFormat:@"NO.%ld", ranking + 1];
         self.medalImageView.image = nil;
         [self.medalImageView addSubview:self.rankLabel];
-        NSLog(@"test github ----lifei");
     }
 }
 

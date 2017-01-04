@@ -39,6 +39,7 @@
 @property (weak, nonatomic ) UIView                           *topBtnView;
 @property (weak, nonatomic ) UILabel                          *radiusLabel;
 @property (weak, nonatomic ) UIButton                         *refreshBtn;
+@property (weak, nonatomic ) UISegmentedControl               *segSwitch;
 @property (weak,nonatomic  ) UIView                           *circleView;
 @property (weak, nonatomic ) UIView                           *user1Area;
 @property (weak, nonatomic ) UIView                           *user2Area;
@@ -110,7 +111,6 @@ NSInteger indexOfCurrentUser;
 
 - (void)viewDidLoad {
     
-    NSLog(@"git test");
     [super viewDidLoad];
     [self locationManager];
     self.dist = [[NSUserDefaults standardUserDefaults]floatForKey:@"Radius"];
@@ -367,10 +367,10 @@ NSInteger indexOfCurrentUser;
     bestsportView.frame = CGRectMake(self.x1 + 41, self.y1 + 16, 18, 18);
     bestsportView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[_currentUsers[0] objectForKey:@"bestSport"]integerValue]]];
     NSLog(@"current user name is %@", [self.currentUsers[0] objectForKey:@"name"]);
-    [self.view addSubview:user1];
-    [self.view addSubview:bestsportView];
-    self.bestSportImageView1 = bestsportView;
+    [self.user1Area addSubview:user1];
+    [self.user1Area addSubview:bestsportView];
     self.user1 = user1;
+    self.bestSportImageView1 = bestsportView;
     [self.user1 addTarget:self action:@selector(dragUser1Moving:withEvent:) forControlEvents:UIControlEventTouchDragInside];
     [self.user1 addTarget:self action:@selector(ifUser1Remove) forControlEvents:UIControlEventTouchUpInside];
     [self.user1 addTarget:self action:@selector(rememberUser1OrignXY:) forControlEvents:UIControlEventTouchDown];
@@ -395,8 +395,8 @@ NSInteger indexOfCurrentUser;
     //震动的明显程度
     animSport.dynamicsMass = 10;
     
-    [self.bestSportImageView1.layer pop_addAnimation:animSport forKey:@"size"];
     [self.user1.layer pop_addAnimation:anim forKey:@"size"];
+    [self.bestSportImageView1.layer pop_addAnimation:animSport forKey:@"size"];
     
     //        NSLog(@"%f %f",self.x,self.y);
     self.isUser1Null = NO;
@@ -419,10 +419,10 @@ NSInteger indexOfCurrentUser;
     UIImageView *bestsportView = [[UIImageView alloc]init];
     bestsportView.frame = CGRectMake(self.x2 + 41, self.y2 + 16, 18, 18);
     bestsportView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[_currentUsers[1] objectForKey:@"bestSport"]integerValue]]];
-    [self.view addSubview:user2];
-    [self.view addSubview:bestsportView];
-    self.bestSportImageView2 = bestsportView;
+    [self.user2Area addSubview:user2];
+    [self.user2Area addSubview:bestsportView];
     self.user2 = user2;
+    self.bestSportImageView2 = bestsportView;
     [self.user2 addTarget:self action:@selector(dragUser2Moving:withEvent:) forControlEvents:UIControlEventTouchDragInside];
     [self.user2 addTarget:self action:@selector(ifUser2Remove) forControlEvents:UIControlEventTouchUpInside];
     [self.user2 addTarget:self action:@selector(rememberUser2OrignXY:) forControlEvents:UIControlEventTouchDown];
@@ -446,8 +446,8 @@ NSInteger indexOfCurrentUser;
     //震动的明显程度
     animSport.dynamicsMass = 10;
     
-    [self.bestSportImageView2.layer pop_addAnimation:animSport forKey:@"size"];
     [self.user2.layer pop_addAnimation:anim forKey:@"size"];
+    [self.bestSportImageView2.layer pop_addAnimation:animSport forKey:@"size"];
     
     //        NSLog(@"%f %f",self.x,self.y);
     self.isUser2Null = NO;
@@ -469,10 +469,10 @@ NSInteger indexOfCurrentUser;
     UIImageView *bestsportView = [[UIImageView alloc]init];
     bestsportView.frame = CGRectMake(self.x3 + 41, self.y3 + 16, 18, 18);
     bestsportView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[_currentUsers[2] objectForKey:@"bestSport"]integerValue]]];
-    [self.view addSubview:user3];
-    [self.view addSubview:bestsportView];
-    self.bestSportImageView3 = bestsportView;
+    [self.user3Area addSubview:user3];
+    [self.user3Area addSubview:bestsportView];
     self.user3 = user3;
+    self.bestSportImageView3 = bestsportView;
     [self.user3 addTarget:self action:@selector(dragUser3Moving:withEvent:) forControlEvents:UIControlEventTouchDragInside];
     [self.user3 addTarget:self action:@selector(ifUser3Remove) forControlEvents:UIControlEventTouchUpInside];
     [self.user3 addTarget:self action:@selector(rememberUser3OrignXY:) forControlEvents:UIControlEventTouchDown];
@@ -497,8 +497,8 @@ NSInteger indexOfCurrentUser;
     //震动的明显程度
     animSport.dynamicsMass = 10;
     
-    [self.bestSportImageView3.layer pop_addAnimation:animSport forKey:@"size"];
     [self.user3.layer pop_addAnimation:anim forKey:@"size"];
+    [self.bestSportImageView3.layer pop_addAnimation:animSport forKey:@"size"];
     
     //    NSLog(@"%f %f",self.x,self.y);
     self.isUser3Null = NO;
@@ -520,9 +520,9 @@ NSInteger indexOfCurrentUser;
     UIImageView *bestsportView = [[UIImageView alloc]init];
     bestsportView.frame = CGRectMake(self.x4 + 41, self.y4 + 16, 18, 18);
     bestsportView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[_currentUsers[3] objectForKey:@"bestSport"]integerValue]]];
-    [self.view addSubview:user4];
+    [self.user4Area addSubview:user4];
+    [self.user4Area addSubview:bestsportView];
     self.user4 = user4;
-    [self.view addSubview:bestsportView];
     self.bestSportImageView4 = bestsportView;
     [self.user4 addTarget:self action:@selector(dragUser4Moving:withEvent:) forControlEvents:UIControlEventTouchDragInside];
     [self.user4 addTarget:self action:@selector(ifUser4Remove) forControlEvents:UIControlEventTouchUpInside];
@@ -548,8 +548,8 @@ NSInteger indexOfCurrentUser;
     //震动的明显程度
     animSport.dynamicsMass = 10;
     
-    [self.bestSportImageView4.layer pop_addAnimation:animSport forKey:@"size"];
     [self.user4.layer pop_addAnimation:anim forKey:@"size"];
+    [self.bestSportImageView4.layer pop_addAnimation:animSport forKey:@"size"];
     
     //    NSLog(@"%f %f",self.x,self.y);
     self.isUser4Null = NO;
@@ -571,8 +571,8 @@ NSInteger indexOfCurrentUser;
     UIImageView *bestsportView = [[UIImageView alloc]init];
     bestsportView.frame = CGRectMake(self.x5 + 41, self.y5 + 16, 18, 18);
     bestsportView.image = [UIImage imageNamed:BESTSPORT_IMAGE_ARRAY[[[_currentUsers[4] objectForKey:@"bestSport"]integerValue]]];
-    [self.view addSubview:user5];
-    [self.view addSubview:bestsportView];
+    [self.user5Area addSubview:user5];
+    [self.user5Area addSubview:bestsportView];
     self.user5 = user5;
     self.bestSportImageView5 = bestsportView;
     [self.user5 addTarget:self action:@selector(dragUser5Moving:withEvent:) forControlEvents:UIControlEventTouchDragInside];
@@ -599,8 +599,8 @@ NSInteger indexOfCurrentUser;
     //震动的明显程度
     animSport.dynamicsMass = 10;
     
-    [self.bestSportImageView5.layer pop_addAnimation:animSport forKey:@"size"];
     [self.user5.layer pop_addAnimation:anim forKey:@"size"];
+    [self.bestSportImageView5.layer pop_addAnimation:animSport forKey:@"size"];
     
     //    NSLog(@"%f %f",self.x,self.y);
     self.isUser5Null = NO;
@@ -649,7 +649,7 @@ NSInteger indexOfCurrentUser;
 
 - (void) dragUser1Moving: (UIControl *) c withEvent:ev
 {
-    c.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    c.center = [[[ev allTouches] anyObject] locationInView:self.user1Area];
     float dist1 = [self distanceFromPointA:CGPointMake(self.x1+self.userR/2, self.y1+self.userR/2) toPointB:c.center];
     self.dist1 = dist1;
     self.bestSportImageView1.center = CGPointMake(c.center.x + 25, c.center.y);
@@ -657,7 +657,7 @@ NSInteger indexOfCurrentUser;
 
 - (void) dragUser2Moving: (UIControl *) c withEvent:ev
 {
-    c.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    c.center = [[[ev allTouches] anyObject] locationInView:self.user2Area];
     float dist2 = [self distanceFromPointA:CGPointMake(self.x2+self.userR/2, self.y2+self.userR/2) toPointB:c.center];
     self.dist2 = dist2;
     self.bestSportImageView2.center = CGPointMake(c.center.x + 25, c.center.y);
@@ -666,7 +666,7 @@ NSInteger indexOfCurrentUser;
 
 - (void) dragUser3Moving: (UIControl *) c withEvent:ev
 {
-    c.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    c.center = [[[ev allTouches] anyObject] locationInView:self.user3Area];
     float dist3 = [self distanceFromPointA:CGPointMake(self.x3+self.userR/2, self.y3+self.userR/2) toPointB:c.center];
     self.dist3 = dist3;
     self.bestSportImageView3.center = CGPointMake(c.center.x + 25, c.center.y);
@@ -675,7 +675,7 @@ NSInteger indexOfCurrentUser;
 
 - (void) dragUser4Moving: (UIControl *) c withEvent:ev
 {
-    c.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    c.center = [[[ev allTouches] anyObject] locationInView:self.user4Area];
     float dist4 = [self distanceFromPointA:CGPointMake(self.x4+self.userR/2, self.y4+self.userR/2) toPointB:c.center];
     self.dist4 = dist4;
     self.bestSportImageView4.center = CGPointMake(c.center.x + 25, c.center.y);
@@ -684,7 +684,7 @@ NSInteger indexOfCurrentUser;
 
 - (void) dragUser5Moving: (UIControl *) c withEvent:ev
 {
-    c.center = [[[ev allTouches] anyObject] locationInView:self.view];
+    c.center = [[[ev allTouches] anyObject] locationInView:self.user5Area];
     float dist5 = [self distanceFromPointA:CGPointMake(self.x5+self.userR/2, self.y5+self.userR/2) toPointB:c.center];
     self.dist5 = dist5;
     self.bestSportImageView5.center = CGPointMake(c.center.x + 25, c.center.y);
@@ -715,7 +715,7 @@ NSInteger indexOfCurrentUser;
         UIImageView *bombView = [[UIImageView alloc]initWithFrame:self.user1.frame];
         [self.user1 removeFromSuperview];
         [self.bestSportImageView1 removeFromSuperview];
-        [self.view addSubview:bombView];
+        [self.user1Area addSubview:bombView];
         [bombView setAnimationImages:@[[UIImage imageNamed:@"bomb0"],[UIImage imageNamed:@"bomb1"], [UIImage imageNamed:@"bomb2"],[UIImage imageNamed:@"bomb3"],[UIImage imageNamed:@"bomb4"]]];
         [bombView setAnimationRepeatCount:1];
         [bombView setAnimationDuration:0.5];
@@ -769,7 +769,7 @@ NSInteger indexOfCurrentUser;
         UIImageView *bombView = [[UIImageView alloc]initWithFrame:self.user2.frame];
         [self.user2 removeFromSuperview];
         [self.bestSportImageView2 removeFromSuperview];
-        [self.view addSubview:bombView];
+        [self.user2Area addSubview:bombView];
         [bombView setAnimationImages:@[[UIImage imageNamed:@"bomb0"],[UIImage imageNamed:@"bomb1"], [UIImage imageNamed:@"bomb2"],[UIImage imageNamed:@"bomb3"],[UIImage imageNamed:@"bomb4"]]];
         [bombView setAnimationRepeatCount:1];
         [bombView setAnimationDuration:0.5];
@@ -823,7 +823,7 @@ NSInteger indexOfCurrentUser;
         UIImageView *bombView = [[UIImageView alloc]initWithFrame:self.user3.frame];
         [self.user3 removeFromSuperview];
         [self.bestSportImageView3 removeFromSuperview];
-        [self.view addSubview:bombView];
+        [self.user3Area addSubview:bombView];
         [bombView setAnimationImages:@[[UIImage imageNamed:@"bomb0"],[UIImage imageNamed:@"bomb1"], [UIImage imageNamed:@"bomb2"],[UIImage imageNamed:@"bomb3"],[UIImage imageNamed:@"bomb4"]]];
         [bombView setAnimationRepeatCount:1];
         [bombView setAnimationDuration:0.5];
@@ -877,7 +877,7 @@ NSInteger indexOfCurrentUser;
         UIImageView *bombView = [[UIImageView alloc]initWithFrame:self.user4.frame];
         [self.user4 removeFromSuperview];
         [self.bestSportImageView4 removeFromSuperview];
-        [self.view addSubview:bombView];
+        [self.user4Area addSubview:bombView];
         [bombView setAnimationImages:@[[UIImage imageNamed:@"bomb0"],[UIImage imageNamed:@"bomb1"], [UIImage imageNamed:@"bomb2"],[UIImage imageNamed:@"bomb3"],[UIImage imageNamed:@"bomb4"]]];
         [bombView setAnimationRepeatCount:1];
         [bombView setAnimationDuration:0.5];
@@ -933,7 +933,7 @@ NSInteger indexOfCurrentUser;
         UIImageView *bombView = [[UIImageView alloc]initWithFrame:self.user5.frame];
         [self.user5 removeFromSuperview];
         [self.bestSportImageView5 removeFromSuperview];
-        [self.view addSubview:bombView];
+        [self.user5Area addSubview:bombView];
         [bombView setAnimationImages:@[[UIImage imageNamed:@"bomb0"],[UIImage imageNamed:@"bomb1"], [UIImage imageNamed:@"bomb2"],[UIImage imageNamed:@"bomb3"],[UIImage imageNamed:@"bomb4"]]];
         [bombView setAnimationRepeatCount:1];
         [bombView setAnimationDuration:0.5];
@@ -975,60 +975,60 @@ NSInteger indexOfCurrentUser;
 
 -(void)randomUser1Coordinate{
     
-    CGFloat xRange = self.user1Area.frame.size.width;
-    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user1Area.frame.origin.x;
+    CGFloat xRange = self.user1Area.bounds.size.width;
+    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user1Area.bounds.origin.x;
     self.x1 = xValue;
     
-    CGFloat yRange = self.user1Area.frame.size.height;
-    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user1Area.frame.origin.y;
+    CGFloat yRange = self.user1Area.bounds.size.height;
+    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user1Area.bounds.origin.y;
     self.y1 = yValue;
     
 }
 
 -(void)randomUser2Coordinate{
     
-    CGFloat xRange = self.user2Area.frame.size.width;
-    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user2Area.frame.origin.x;
+    CGFloat xRange = self.user2Area.bounds.size.width;
+    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user2Area.bounds.origin.x;
     self.x2 = xValue;
     
-    CGFloat yRange = self.user2Area.frame.size.height;
-    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user2Area.frame.origin.y;
+    CGFloat yRange = self.user2Area.bounds.size.height;
+    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user2Area.bounds.origin.y;
     self.y2 = yValue;
     
 }
 
 -(void)randomUser3Coordinate{
     
-    CGFloat xRange = self.user3Area.frame.size.width;
-    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user3Area.frame.origin.x;
+    CGFloat xRange = self.user3Area.bounds.size.width;
+    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user3Area.bounds.origin.x;
     self.x3 = xValue;
     
-    CGFloat yRange = self.user3Area.frame.size.height;
-    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user3Area.frame.origin.y;
+    CGFloat yRange = self.user3Area.bounds.size.height;
+    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user3Area.bounds.origin.y;
     self.y3 = yValue;
     
 }
 
 -(void)randomUser4Coordinate{
     
-    CGFloat xRange = self.user4Area.frame.size.width;
-    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user4Area.frame.origin.x;
+    CGFloat xRange = self.user4Area.bounds.size.width;
+    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user4Area.bounds.origin.x;
     self.x4 = xValue;
     
-    CGFloat yRange = self.user4Area.frame.size.height;
-    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user4Area.frame.origin.y;
+    CGFloat yRange = self.user4Area.bounds.size.height;
+    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user4Area.bounds.origin.y;
     self.y4 = yValue;
     
 }
 
 -(void)randomUser5Coordinate{
     
-    CGFloat xRange = self.user5Area.frame.size.width;
-    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user5Area.frame.origin.x;
+    CGFloat xRange = self.user5Area.bounds.size.width;
+    CGFloat xValue = arc4random_uniform(xRange - self.userR)+self.user5Area.bounds.origin.x;
     self.x5 = xValue;
     
-    CGFloat yRange = self.user5Area.frame.size.height;
-    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user5Area.frame.origin.y;
+    CGFloat yRange = self.user5Area.bounds.size.height;
+    CGFloat yValue = arc4random_uniform(yRange - self.userR)+self.user5Area.bounds.origin.y;
     self.y5 = yValue;
     
 }
@@ -1037,58 +1037,102 @@ NSInteger indexOfCurrentUser;
  *  add circle view and filter btn
  */
 -(void)addCircleView{
+    
     UIView *circleView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topBtnView.frame), MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT-self.topBtnView.frame.size.height - 60)];
-    //    circleView.backgroundColor = [UIColor purpleColor];
+    circleView.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:circleView];
     self.circleView = circleView;
     self.circleView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesturRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     [self.circleView addGestureRecognizer:tapGesturRecognizer];
     
-    UIView *user1Area = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topBtnView.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-    //    user1Area.backgroundColor = [UIColor redColor];
-    [self.view addSubview:user1Area];
+    
+    UIImageView *radiusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMidX(self.circleView.bounds) -25, CGRectGetMinY(self.circleView.bounds), 50, 50)];
+    radiusImageView.backgroundColor = [UIColor clearColor];
+    radiusImageView.image = [UIImage imageNamed:@"radius"];
+    [self.circleView addSubview:radiusImageView];
+    
+    /**
+     *  黑洞效果
+     */
+    //
+    //    UIImageView *radiusBGImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -40, self.topBtnView.bounds.size.height/2 -40, 80, 80)];
+    //    radiusBGImageView.image = [UIImage imageNamed:@"blackhole"];
+    //    radiusBGImageView.layer.masksToBounds = YES;
+    //    radiusBGImageView.layer.cornerRadius = radiusBGImageView.frame.size.width / 2.0;
+    //    UIImageView *radiusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -30, self.topBtnView.bounds.size.height/2 -30, 60, 60)];
+    //    radiusImageView.image = [UIImage imageNamed:@"blackhole2"];
+    //    radiusImageView.layer.masksToBounds = YES;
+    //    radiusImageView.layer.cornerRadius = radiusImageView.frame.size.width / 2.0;
+    //
+    //    CGFloat angleBG = -M_1_PI;
+    //    CGFloat angle = M_PI;
+    //    [UIView beginAnimations:nil context:nil];
+    //    [UIView setAnimationDuration:50];
+    //    for (int i = 1; i<50; i++) {
+    //        radiusImageView.transform = CGAffineTransformRotate(radiusImageView.transform, angle);
+    //        radiusBGImageView.transform = CGAffineTransformRotate(radiusBGImageView.transform, angleBG);
+    //    }
+    //    [UIView commitAnimations];
+    //
+    //    [self.topBtnView addSubview:radiusBGImageView];
+    //    [self.topBtnView addSubview:radiusImageView];
+    
+    UILabel *topLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMidX(self.circleView.bounds) - 75, CGRectGetMaxY(radiusImageView.frame) + 10, 150, 20)];
+    //    topLabel.text = @"我是距离";
+    topLabel.textColor = [UIColor whiteColor];
+    topLabel.textAlignment = NSTextAlignmentCenter;
+    topLabel.backgroundColor = [UIColor clearColor];
+    [self.circleView addSubview:topLabel];
+    self.radiusLabel = topLabel;
+    self.radiusLabel.text = [NSString stringWithFormat:@"%.0f Miles", self.dist];
+    
+
+    
+    UIView *user1Area = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.radiusLabel.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
+        user1Area.backgroundColor = [UIColor redColor];
+    [self.circleView addSubview:user1Area];
     self.user1Area = user1Area;
     UITapGestureRecognizer *tapGesturRecognizer1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     self.user1Area.userInteractionEnabled = YES;
     [self.user1Area addGestureRecognizer:tapGesturRecognizer1];
     
-    UIView *user2Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/2, CGRectGetMaxY(self.topBtnView.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-    //    user2Area.backgroundColor = [UIColor orangeColor];
-    [self.view addSubview:user2Area];
+    UIView *user2Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/2, CGRectGetMaxY(self.radiusLabel.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
+        user2Area.backgroundColor = [UIColor orangeColor];
+    [self.circleView addSubview:user2Area];
     self.user2Area = user2Area;
     UITapGestureRecognizer *tapGesturRecognizer2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     self.user2Area.userInteractionEnabled = YES;
     [self.user2Area addGestureRecognizer:tapGesturRecognizer2];
     
     UIView *user3Area = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.user1Area.frame), MAIN_SCREEN_WIDTH/2-37.5, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-    //    user3Area.backgroundColor = [UIColor yellowColor];
-    [self.view addSubview:user3Area];
+        user3Area.backgroundColor = [UIColor yellowColor];
+    [self.circleView addSubview:user3Area];
     self.user3Area = user3Area;
     UITapGestureRecognizer *tapGesturRecognizer3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     self.user3Area.userInteractionEnabled = YES;
     [self.user3Area addGestureRecognizer:tapGesturRecognizer3];
     
     UIView *user4Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/2+37.5, CGRectGetMaxY(self.user1Area.frame), MAIN_SCREEN_WIDTH/2-37.5, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3)];
-    //    user4Area.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:user4Area];
+        user4Area.backgroundColor = [UIColor greenColor];
+    [self.circleView addSubview:user4Area];
     self.user4Area = user4Area;
     UITapGestureRecognizer *tapGesturRecognizer4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     self.user4Area.userInteractionEnabled = YES;
     [self.user4Area addGestureRecognizer:tapGesturRecognizer4];
     
-    UIView *user5Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/4, CGRectGetMaxY(self.user3Area.frame), MAIN_SCREEN_WIDTH/2, (MAIN_SCREEN_HEIGHT - STATUS_BAR_HEIGHT - self.topBtnView.bounds.size.height)/3-44)];
-    //    user5Area.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:user5Area];
+    UIView *user5Area = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH/4, CGRectGetMaxY(self.user3Area.frame), MAIN_SCREEN_WIDTH/2, 100)];
+        user5Area.backgroundColor = [UIColor blueColor];
+    [self.circleView addSubview:user5Area];
     self.user5Area = user5Area;
     UITapGestureRecognizer *tapGesturRecognizer5 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCircleView)];
     self.user5Area.userInteractionEnabled = YES;
     [self.user5Area addGestureRecognizer:tapGesturRecognizer5];
     
     
-    UIButton *filterBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.circleView.frame.size.width/2 - 37.5, self.circleView.bounds.size.height/2 - 37.5 + CGRectGetMaxY(self.topBtnView.frame), 75, 75)];
+    UIButton *filterBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.circleView.bounds.size.width/2 - 37.5, self.circleView.bounds.size.height/2 - 37.5 + CGRectGetMaxY(self.topBtnView.frame), 75, 75)];
     [filterBtn setBackgroundImage:[UIImage imageNamed:@"ALL"] forState:UIControlStateNormal];
-    [self.view addSubview:filterBtn];
+    [self.circleView addSubview:filterBtn];
     self.filterBtn = filterBtn;
     [self.filterBtn addTarget:self action:@selector(sportFilterClick) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -1122,66 +1166,38 @@ NSInteger indexOfCurrentUser;
  */
 -(void)addTopView{
     
-    UIView *topBtnView = [[UIView alloc]initWithFrame:CGRectMake(0, 20, MAIN_SCREEN_WIDTH, 140)];
-    //    topBtnView.backgroundColor = [UIColor lightGrayColor];
+    UIView *topBtnView = [[UIView alloc]initWithFrame:CGRectMake(0, 20, MAIN_SCREEN_WIDTH, 53)];
+//        topBtnView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:topBtnView];
     self.topBtnView = topBtnView;
     
-    UIImageView *radiusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -25, self.topBtnView.bounds.size.height/2 -30, 50, 50)];
-    radiusImageView.backgroundColor = [UIColor clearColor];
-    radiusImageView.image = [UIImage imageNamed:@"radius"];
-    [self.topBtnView addSubview:radiusImageView];
+    
+    NSArray *segName = [[NSArray alloc]initWithObjects:@"Discover",@"Nearby", nil];
+    UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:segName];
+    seg.frame = CGRectMake(CGRectGetMidX(self.topBtnView.bounds) - 63, CGRectGetMinY(self.topBtnView.bounds) + 10, 126, 33);
+    seg.selectedSegmentIndex = 1;
+    seg.tintColor = [UIColor colorWithRed:53/255.0 green:183/255.0 blue:162/255.0 alpha:1.0];
+    NSDictionary *attribute = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:53/255.0 green:183/255.0 blue:162/255.0 alpha:1.0] forKey:NSForegroundColorAttributeName];
+    [seg setTitleTextAttributes:attribute forState:UIControlStateNormal];
+    NSDictionary *highlightAttribute = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:242 green:242 blue:242 alpha:1.0] forKey:NSForegroundColorAttributeName];
+    [seg setTitleTextAttributes:highlightAttribute forState:UIControlStateSelected];
+    [seg addTarget:self action:@selector(clickSegSwitch:) forControlEvents:UIControlEventValueChanged];
+    [self.topBtnView addSubview:seg];
+    self.segSwitch = seg;
     
     
-    
-    /**
-     *  黑洞效果
-     */
-    //
-    //    UIImageView *radiusBGImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -40, self.topBtnView.bounds.size.height/2 -40, 80, 80)];
-    //    radiusBGImageView.image = [UIImage imageNamed:@"blackhole"];
-    //    radiusBGImageView.layer.masksToBounds = YES;
-    //    radiusBGImageView.layer.cornerRadius = radiusBGImageView.frame.size.width / 2.0;
-    //    UIImageView *radiusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 -30, self.topBtnView.bounds.size.height/2 -30, 60, 60)];
-    //    radiusImageView.image = [UIImage imageNamed:@"blackhole2"];
-    //    radiusImageView.layer.masksToBounds = YES;
-    //    radiusImageView.layer.cornerRadius = radiusImageView.frame.size.width / 2.0;
-    //
-    //    CGFloat angleBG = -M_1_PI;
-    //    CGFloat angle = M_PI;
-    //    [UIView beginAnimations:nil context:nil];
-    //    [UIView setAnimationDuration:50];
-    //    for (int i = 1; i<50; i++) {
-    //        radiusImageView.transform = CGAffineTransformRotate(radiusImageView.transform, angle);
-    //        radiusBGImageView.transform = CGAffineTransformRotate(radiusBGImageView.transform, angleBG);
-    //    }
-    //    [UIView commitAnimations];
-    //
-    //    [self.topBtnView addSubview:radiusBGImageView];
-    //    [self.topBtnView addSubview:radiusImageView];
-    
-    
-    
-    
-    
-    UILabel *topLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.topBtnView.bounds.size.width/2 - 75, self.topBtnView.bounds.size.height/2 + 30, 150, 20)];
-    topLabel.text = @"我是距离";
-    topLabel.textColor = [UIColor whiteColor];
-    topLabel.textAlignment = NSTextAlignmentCenter;
-    topLabel.backgroundColor = [UIColor clearColor];
-    self.radiusLabel = topLabel;
-    self.radiusLabel.text = [NSString stringWithFormat:@"%.0f Miles", self.dist];
-    [self.topBtnView addSubview:self.radiusLabel];
-    
-    UIButton *refreshBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.topBtnView.frame) - 10 - 35, self.topBtnView.bounds.size.height/2 - 50, 35, 35)];
+    UIButton *refreshBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.topBtnView.bounds) - 15 - 35, CGRectGetMinY(self.topBtnView.bounds) + 10, 35, 35)];
     refreshBtn.backgroundColor = [UIColor clearColor];
     [refreshBtn setImage:[UIImage imageNamed:@"nearbyRefresh"] forState:UIControlStateNormal];
     _isFinishLoad = YES;
     self.refreshBtn = refreshBtn;
     [self.refreshBtn addTarget:self action:@selector(clickRefreshBtn) forControlEvents:UIControlEventTouchUpInside];
-    
     [self.topBtnView addSubview:self.refreshBtn];
     
+}
+
+-(void)clickSegSwitch:(UISegmentedControl *)seg{
+    [self.circleView removeFromSuperview];
 }
 
 -(void)clickRefreshBtn{
