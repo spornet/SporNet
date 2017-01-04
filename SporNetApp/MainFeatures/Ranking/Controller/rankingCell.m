@@ -27,26 +27,34 @@ NSArray *sportPicArray;
 }
 //congigure each cell with the the user information and his ranking.
 -(void)configureCellWithUser:(SNUser*)user Ranking:(NSInteger)ranking {
+    
+    NSLog(@"user count %ld", user.voteNumber);
+
     self.userNameLabel.text = user.name;
     self.userSchoolLabel.text = [user objectForKey:@"school"];
+
+        
+    self.userPopulartyCount.text = [NSString stringWithFormat:@"%ld",user.voteNumber];
+
+    
     [self.userBestSportColorView setBackgroundColor:SPORTSLOT_COLOR_ARRAY[(int)user.sportTimeSlot]];
     AVFile *file = [user objectForKey:@"icon"];
-    if(file == nil) self.userImageView.image = [UIImage imageNamed:@"profile"];
-    else self.userImageView.image = [UIImage imageWithData:[file getData]];
+    self.userImageView.image = [UIImage imageWithData:[file getData]];
     
     self.bestSportImageView.image = sportPicArray[(int)user.bestSport-1];
-    [self.rankLabel removeFromSuperview];
-    if(ranking == 0) self.medalImageView.image = [UIImage imageNamed:@"medalGold"];
-    else if(ranking == 1) self.medalImageView.image = [UIImage imageNamed:@"medalSilver"];
-    else if (ranking == 2) self.medalImageView.image = [UIImage imageNamed:@"medalBronze"];
-    //if user's ranking is out of 3, replace medal image wit rankLabel.
     
-    else {
-        self.rankLabel.text = [NSString stringWithFormat:@"NO.%ld", ranking + 1];
-        self.medalImageView.image = nil;
-        [self.medalImageView addSubview:self.rankLabel];
-        NSLog(@"test github ----lifei");
-    }
+        [self.rankLabel removeFromSuperview];
+        if(ranking == 0) self.medalImageView.image = [UIImage imageNamed:@"medalGold"];
+        else if(ranking == 1) self.medalImageView.image = [UIImage imageNamed:@"medalSilver"];
+        else if (ranking == 2) self.medalImageView.image = [UIImage imageNamed:@"medalBronze"];
+        //if user's ranking is out of 3, replace medal image wit rankLabel.
+        
+        else {
+            self.rankLabel.text = [NSString stringWithFormat:@"NO.%ld", ranking + 1];
+            self.medalImageView.image = nil;
+            [self.medalImageView addSubview:self.rankLabel];
+        }
+    
 }
 
 @end

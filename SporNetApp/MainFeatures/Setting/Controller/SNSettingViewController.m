@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
     
     SettingRowSearchPreference= 0,
     SettingRowChangePassword,
+    SettingRowViewMyTimeLine,
     SettingRowContactUs,
     SettingRowRateUs,
     SettingRowNumber
@@ -134,6 +135,11 @@ typedef NS_ENUM(NSInteger, SettingRow) {
             [self presentViewController:alertController animated:YES completion:nil];
         }
             break;
+        case SettingRowViewMyTimeLine:
+        
+            NSLog(@"View My Timeline");
+            break;
+            
         case SettingRowContactUs:
             if ([MFMailComposeViewController canSendMail]) {
                 [self sendEmailAction]; // 调用发送邮件的代码
@@ -230,7 +236,7 @@ typedef NS_ENUM(NSInteger, SettingRow) {
 //setter for text array
 -(NSArray*)settingTextArray {
     if(_settingTextArray == nil) {
-        _settingTextArray = @[@"Search Preference",@"Change Password", @"Contact Us", @"Rate Us"];
+        _settingTextArray = @[@"Search Preference",@"Change Password", @"View My Timeline", @"Contact Us", @"Rate Us"];
     }
     return _settingTextArray;
 }
