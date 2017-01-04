@@ -15,6 +15,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userSchoolLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *bestSportImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userPopulartyCount;
+
+
 @property(strong) UILabel *rankLabel;
 
 

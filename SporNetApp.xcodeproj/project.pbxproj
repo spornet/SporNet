@@ -78,6 +78,9 @@
 		B8CFCCF01D21CD200006495E /* SNMainFeatureTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */; };
 		B8CFCCF91D2415F20006495E /* MessageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */; };
 		B8CFCCFD1D2416130006495E /* SearchingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */; };
+		B8E9FF381E1AB71000F64546 /* SNFriendsShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E9FF361E1AB71000F64546 /* SNFriendsShareCell.m */; };
+		B8E9FF391E1AB71000F64546 /* SNFriendsShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8E9FF371E1AB71000F64546 /* SNFriendsShareCell.xib */; };
+		B8E9FF401E1C242000F64546 /* FriendsMomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E9FF3F1E1C242000F64546 /* FriendsMomentModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +215,11 @@
 		B8CFCCEF1D21CD200006495E /* SNMainFeatureTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMainFeatureTabController.m; sourceTree = "<group>"; };
 		B8CFCCF81D2415F20006495E /* MessageStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageStoryboard.storyboard; sourceTree = "<group>"; };
 		B8CFCCFC1D2416130006495E /* SearchingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchingStoryboard.storyboard; sourceTree = "<group>"; };
+		B8E9FF351E1AB71000F64546 /* SNFriendsShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFriendsShareCell.h; sourceTree = "<group>"; };
+		B8E9FF361E1AB71000F64546 /* SNFriendsShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNFriendsShareCell.m; sourceTree = "<group>"; };
+		B8E9FF371E1AB71000F64546 /* SNFriendsShareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNFriendsShareCell.xib; sourceTree = "<group>"; };
+		B8E9FF3E1E1C242000F64546 /* FriendsMomentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsMomentModel.h; sourceTree = "<group>"; };
+		B8E9FF3F1E1C242000F64546 /* FriendsMomentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsMomentModel.m; sourceTree = "<group>"; };
 		B8F763871DB5583B0083E3CF /* SporNetApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SporNetApp.entitlements; sourceTree = "<group>"; };
 		D3AFE3E3DCBEC67799741176 /* Pods-SporNetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SporNetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SporNetApp/Pods-SporNetApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -594,6 +602,7 @@
 		B8CFCCF31D21CE640006495E /* SearchNearBy */ = {
 			isa = PBXGroup;
 			children = (
+				B8E9FF3A1E1BF51800F64546 /* FriendsShare */,
 				6D2B32E11D5CCC29009C606D /* SNSearchNearbyMainViewController.h */,
 				6D2B32E21D5CCC29009C606D /* SNSearchNearbyMainViewController.m */,
 				6D2B32EA1D5D1207009C606D /* UserView.xib */,
@@ -630,6 +639,42 @@
 				B86E8B2B1D74838D009EC0D9 /* Controller */,
 			);
 			path = Tag;
+			sourceTree = "<group>";
+		};
+		B8E9FF3A1E1BF51800F64546 /* FriendsShare */ = {
+			isa = PBXGroup;
+			children = (
+				B8E9FF3D1E1BF55800F64546 /* Model */,
+				B8E9FF3C1E1BF54400F64546 /* View */,
+				B8E9FF3B1E1BF53300F64546 /* Controller */,
+			);
+			name = FriendsShare;
+			sourceTree = "<group>";
+		};
+		B8E9FF3B1E1BF53300F64546 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B8E9FF3C1E1BF54400F64546 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B8E9FF351E1AB71000F64546 /* SNFriendsShareCell.h */,
+				B8E9FF361E1AB71000F64546 /* SNFriendsShareCell.m */,
+				B8E9FF371E1AB71000F64546 /* SNFriendsShareCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B8E9FF3D1E1BF55800F64546 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8E9FF3E1E1C242000F64546 /* FriendsMomentModel.h */,
+				B8E9FF3F1E1C242000F64546 /* FriendsMomentModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -748,6 +793,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86E8B441D7483D6009EC0D9 /* TagStoryboard.storyboard in Resources */,
+				B8E9FF391E1AB71000F64546 /* SNFriendsShareCell.xib in Resources */,
 				6DD9D5FB1D37E96000F622F6 /* SNUserProfileViewController.xib in Resources */,
 				6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */,
 				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
@@ -903,6 +949,7 @@
 				6D2B32E91D5D11DF009C606D /* UserView.m in Sources */,
 				6DB762641D711F5000DB92E3 /* SNContactCell.m in Sources */,
 				6DD9D5DC1D37E8E600F622F6 /* SNSettingViewController.m in Sources */,
+				B8E9FF401E1C242000F64546 /* FriendsMomentModel.m in Sources */,
 				6DD9D5FE1D37E96F00F622F6 /* SNUser.m in Sources */,
 				6D2B32E01D5CCC0E009C606D /* WaterView.m in Sources */,
 				6D1CF1B11D661B31008DECC1 /* SNChatModelFrame.m in Sources */,
@@ -911,6 +958,7 @@
 				6D15F93D1D5A977D00B8F011 /* LocalDataManager.m in Sources */,
 				B8CFCCE21D21ADEA0006495E /* AppDelegate.m in Sources */,
 				6DB7625A1D6F507D00DB92E3 /* SNFriendRequestCell.m in Sources */,
+				B8E9FF381E1AB71000F64546 /* SNFriendsShareCell.m in Sources */,
 				6DD9D5DB1D37E8E600F622F6 /* SNPreferenceViewController.m in Sources */,
 				6DD9D5F41D37E95200F622F6 /* SNLoginViewController.m in Sources */,
 				6DD9D5F61D37E95200F622F6 /* SNRegisterViewController.m in Sources */,

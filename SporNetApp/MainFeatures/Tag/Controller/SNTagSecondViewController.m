@@ -77,7 +77,6 @@
         self.updateBtn.enabled = NO;
     }
     
-    
 }
 
 -(void)refresh {
