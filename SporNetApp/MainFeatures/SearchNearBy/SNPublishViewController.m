@@ -11,16 +11,11 @@
 #define ADD_IMAGE [UIImage imageNamed:@"add"]
 
 
-@interface SNPublishViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface SNPublishViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (weak, nonatomic) IBOutlet UIButton *publishBtn;
 @property (weak, nonatomic) IBOutlet UITextView *momentContentTextView;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn1;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn2;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn3;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn4;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn5;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn6;
+@property (weak, nonatomic) IBOutlet UIView *btnView;
 @property (nonatomic, assign)        NSInteger imageBtnTag;
 
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
@@ -45,16 +40,21 @@
 }
 
 - (IBAction)publishBtnClick {
-    
+
+        if ([self checkAllImages]) {
+            //进行存储
+        } else {
+            [ProgressHUD showError:@"Please add image"];
+        }
+        
 }
 
 - (IBAction)imageBtnClick:(UIButton *)sender {
     
-    UIButton *btn = [self.view viewWithTag:sender.tag];
-    UIImage *image = btn.currentImage;
+    UIButton *btn = [self.btnView viewWithTag:sender.tag];
     self.imageBtnTag = sender.tag;
     
-    if ([image isEqual:ADD_IMAGE]) {
+    if ([btn.currentImage isEqual:ADD_IMAGE]) {
         [self presentViewController:self.imagePicker animated:YES completion:nil];
     } else {
         [self presentViewController:self.alert animated:YES completion:nil];
@@ -65,18 +65,23 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
 
-    UIButton *imageBtn = [self.view viewWithTag:self.imageBtnTag];
+    UIButton *imageBtn = [self.btnView viewWithTag:self.imageBtnTag];
     UIImage *pickImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     [imageBtn setImage:pickImage forState:UIControlStateNormal];
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
-//-(BOOL)checkAllImages{
-//    if (self.imageBtn1.imageView ) {
-//        <#statements#>
-//    }
-//}
+-(BOOL)checkAllImages{
+    
+    for (int i = 1; i<7; i++) {
+        UIButton *btn = [self.btnView viewWithTag:i];
+        if (![btn.currentImage isEqual:ADD_IMAGE]) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 #pragma lazy load
 
@@ -100,7 +105,7 @@
             [self presentViewController:self.imagePicker animated:YES completion:nil];
         }]];
         [_alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            UIButton *btn = [self.view viewWithTag:self.imageBtnTag];
+            UIButton *btn = [self.btnView viewWithTag:self.imageBtnTag];
             [btn setImage:ADD_IMAGE forState:UIControlStateNormal];
         }]];
         [_alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){}]];

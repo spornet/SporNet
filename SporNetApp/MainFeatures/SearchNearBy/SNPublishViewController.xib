@@ -8,13 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SNPublishViewController">
             <connections>
+                <outlet property="btnView" destination="MKb-qj-IsC" id="WYZ-nL-KNA"/>
                 <outlet property="cancelBtn" destination="aTY-KL-LDm" id="4sk-v4-l0i"/>
-                <outlet property="imageBtn1" destination="TxR-vh-CTh" id="GOd-bf-4EZ"/>
-                <outlet property="imageBtn2" destination="bxE-UE-XhG" id="0DZ-PQ-BTe"/>
-                <outlet property="imageBtn3" destination="O4y-4t-Sng" id="ZNA-zd-CqF"/>
-                <outlet property="imageBtn4" destination="SPz-vA-qQI" id="Zjl-lG-FnA"/>
-                <outlet property="imageBtn5" destination="Jel-js-SS2" id="NEC-No-WTj"/>
-                <outlet property="imageBtn6" destination="83k-jO-h6g" id="I5S-QK-0HA"/>
                 <outlet property="momentContentTextView" destination="SWc-iJ-zfY" id="zQR-0r-Syk"/>
                 <outlet property="publishBtn" destination="nA9-BM-N6Z" id="0EF-1G-yLN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -62,54 +57,61 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TxR-vh-CTh">
-                    <frame key="frameInset" minX="-34" minY="170" width="200" height="201"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MKb-qj-IsC">
+                    <frame key="frameInset" minX="8" minY="226" width="359" height="272"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="add"/>
-                    <connections>
-                        <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="7cm-RQ-rTV"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxE-UE-XhG">
-                    <frame key="frameInset" minX="137" minY="220" width="100" height="100"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="add"/>
-                    <connections>
-                        <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="Djl-kO-08p"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4y-4t-Sng">
-                    <frame key="frameInset" minX="259" minY="220" width="100" height="100"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="add"/>
-                    <connections>
-                        <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="ey6-SG-nM8"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPz-vA-qQI">
-                    <frame key="frameInset" minX="16" minY="349" width="100" height="100"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="add"/>
-                    <connections>
-                        <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="0eM-i2-rqZ"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jel-js-SS2">
-                    <frame key="frameInset" minX="137" minY="349" width="100" height="100"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="add"/>
-                    <connections>
-                        <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="as8-hu-DoP"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83k-jO-h6g">
-                    <frame key="frameInset" minX="259" minY="349" width="100" height="100"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="add"/>
-                    <connections>
-                        <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="Zha-kv-i2g"/>
-                    </connections>
-                </button>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TxR-vh-CTh">
+                            <frame key="frameInset" minX="8" minY="21" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="add"/>
+                            <connections>
+                                <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="7cm-RQ-rTV"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxE-UE-XhG">
+                            <frame key="frameInset" minX="129" minY="21" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="add"/>
+                            <connections>
+                                <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="Djl-kO-08p"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4y-4t-Sng">
+                            <frame key="frameInset" minX="251" minY="21" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="add"/>
+                            <connections>
+                                <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="ey6-SG-nM8"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPz-vA-qQI">
+                            <frame key="frameInset" minX="8" minY="152" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="add"/>
+                            <connections>
+                                <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="0eM-i2-rqZ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jel-js-SS2">
+                            <frame key="frameInset" minX="129" minY="152" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="add"/>
+                            <connections>
+                                <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="as8-hu-DoP"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83k-jO-h6g">
+                            <frame key="frameInset" minX="251" minY="152" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="add"/>
+                            <connections>
+                                <action selector="imageBtnClick:" destination="-1" eventType="touchUpInside" id="Zha-kv-i2g"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>
