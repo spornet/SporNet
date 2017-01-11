@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A3234131E1EE2E4003D44A2 /* SNMomentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3234121E1EE2E4003D44A2 /* SNMomentManager.m */; };
+		1A7158841E1D8A5800B63755 /* SNPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7158821E1D8A5800B63755 /* SNPublishViewController.m */; };
+		1A7158851E1D8A5800B63755 /* SNPublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A7158831E1D8A5800B63755 /* SNPublishViewController.xib */; };
 		1A95BC2E1D6F46570024B0E4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A95BC2D1D6F46570024B0E4 /* CoreLocation.framework */; };
 		33293B88FCEF722CDA5223B8 /* libPods-SporNetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB217AACAD7FFBAEF73E02 /* libPods-SporNetApp.a */; };
 		6D01ACF91D48FB7300E98E6F /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */; };
@@ -101,6 +104,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A3234111E1EE2E4003D44A2 /* SNMomentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMomentManager.h; sourceTree = "<group>"; };
+		1A3234121E1EE2E4003D44A2 /* SNMomentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNMomentManager.m; sourceTree = "<group>"; };
+		1A7158811E1D8A5800B63755 /* SNPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPublishViewController.h; sourceTree = "<group>"; };
+		1A7158821E1D8A5800B63755 /* SNPublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPublishViewController.m; sourceTree = "<group>"; };
+		1A7158831E1D8A5800B63755 /* SNPublishViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNPublishViewController.xib; sourceTree = "<group>"; };
 		1A95BC2D1D6F46570024B0E4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6D01ACF61D48FB7300E98E6F /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		6D01ACF71D48FB7300E98E6F /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
@@ -654,6 +662,9 @@
 		B8E9FF3B1E1BF53300F64546 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1A7158811E1D8A5800B63755 /* SNPublishViewController.h */,
+				1A7158821E1D8A5800B63755 /* SNPublishViewController.m */,
+				1A7158831E1D8A5800B63755 /* SNPublishViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -673,6 +684,8 @@
 			children = (
 				B8E9FF3E1E1C242000F64546 /* FriendsMomentModel.h */,
 				B8E9FF3F1E1C242000F64546 /* FriendsMomentModel.m */,
+				1A3234111E1EE2E4003D44A2 /* SNMomentManager.h */,
+				1A3234121E1EE2E4003D44A2 /* SNMomentManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -795,6 +808,7 @@
 				B86E8B441D7483D6009EC0D9 /* TagStoryboard.storyboard in Resources */,
 				B8E9FF391E1AB71000F64546 /* SNFriendsShareCell.xib in Resources */,
 				6DD9D5FB1D37E96000F622F6 /* SNUserProfileViewController.xib in Resources */,
+				1A7158851E1D8A5800B63755 /* SNPublishViewController.xib in Resources */,
 				6D0413641D64E23600C0E6EF /* MessageListCell.xib in Resources */,
 				6DD9D5E21D37E8F700F622F6 /* SNSettingViewController.xib in Resources */,
 				6DB762561D6F4DB200DB92E3 /* SNFriendRequestListViewController.xib in Resources */,
@@ -940,6 +954,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A3234131E1EE2E4003D44A2 /* SNMomentManager.m in Sources */,
+				1A7158841E1D8A5800B63755 /* SNPublishViewController.m in Sources */,
 				6D04136D1D64FF6F00C0E6EF /* Conversation.m in Sources */,
 				6DD9D5C81D37E6D700F622F6 /* rankingCell.m in Sources */,
 				6D0413631D64E23600C0E6EF /* MessageListCell.m in Sources */,

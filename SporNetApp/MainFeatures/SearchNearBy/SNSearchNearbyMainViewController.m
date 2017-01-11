@@ -18,13 +18,15 @@
 #import "ProgressHUD.h"
 #import <CoreLocation/CoreLocation.h>
 #import "AVUser.h"
+#import "SNFriendsShareCell.h"
+#import "SNPublishViewController.h"
 
 #define STATUS_BAR_HEIGHT [[UIApplication sharedApplication]statusBarFrame].size.height
 #define MAIN_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define MAIN_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define R ([UIScreen mainScreen].bounds.size.width/2-50)
 
-@interface SNSearchNearbyMainViewController ()<CLLocationManagerDelegate>
+@interface SNSearchNearbyMainViewController ()<CLLocationManagerDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic ) UIButton                         *filterBtnInBlurView;
 @property (weak, nonatomic ) UIButton                         *basketballBtn;
 @property (weak, nonatomic ) UIButton                         *footballBtn;
@@ -37,15 +39,17 @@
 @property (nonatomic       ) BOOL                             isFinishLoad;
 @property (weak, nonatomic ) UIImageView                      *galaxyImageView;
 @property (weak, nonatomic ) UIView                           *topBtnView;
-@property (weak, nonatomic ) UILabel                          *radiusLabel;
-@property (weak, nonatomic ) UIButton                         *refreshBtn;
 @property (weak, nonatomic ) UISegmentedControl               *segSwitch;
+@property (weak, nonatomic ) UIButton                         *refreshBtn;
 @property (weak,nonatomic  ) UIView                           *circleView;
+@property (weak, nonatomic ) UILabel                          *radiusLabel;
 @property (weak, nonatomic ) UIView                           *user1Area;
 @property (weak, nonatomic ) UIView                           *user2Area;
 @property (weak, nonatomic ) UIView                           *user3Area;
 @property (weak, nonatomic ) UIView                           *user4Area;
 @property (weak, nonatomic ) UIView                           *user5Area;
+@property (weak, nonatomic ) UIView                           *momentView;
+@property (weak, nonatomic ) UITableView                      *momentTableView;
 
 @property (weak, nonatomic ) UIButton                         *filterBtn;
 @property (weak, nonatomic ) UIButton                         *user1;
@@ -1137,6 +1141,39 @@ NSInteger indexOfCurrentUser;
     [self.filterBtn addTarget:self action:@selector(sportFilterClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
+//add moment UIView
+-(void)addMomentView{
+    
+    UIView *momentView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topBtnView.frame), MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT-self.topBtnView.frame.size.height - 60)];
+    momentView.backgroundColor = [UIColor brownColor];
+    [self.view addSubview:momentView];
+    self.momentView = momentView;
+    
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(self.momentView.bounds.origin.x, self.momentView.bounds.origin.y, self.momentView.bounds.size.width, self.momentView.bounds.size.height)];
+    [table setDelegate:self];
+    [table setDataSource:self];
+    [self.momentView addSubview:table];
+    self.momentTableView = table;
+    
+    [self.momentTableView registerNib:[UINib nibWithNibName:@"SNFriendsShareCell" bundle:nil] forCellReuseIdentifier:@"FriendsShareCell"];
+
+}
+
+#pragma tableView delegate
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SNFriendsShareCell *cell = [self.momentTableView dequeueReusableCellWithIdentifier:@"FriendsShareCell"];
+    
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 442;
+}
+
 
 //hide or show TabBar
 -(void)tapCircleView{
@@ -1197,36 +1234,74 @@ NSInteger indexOfCurrentUser;
 }
 
 -(void)clickSegSwitch:(UISegmentedControl *)seg{
-    [self.circleView removeFromSuperview];
+    
+    
+    NSInteger index = seg.selectedSegmentIndex;
+    switch (index) {
+        case 0:
+            [self.circleView removeFromSuperview];
+            [self.refreshBtn setImage:[UIImage imageNamed:@"multiMedia"] forState:UIControlStateNormal];
+            self.refreshBtn.enabled = YES;
+            [self addMomentView];
+            
+            break;
+            
+        case 1:
+            [self.momentView removeFromSuperview];
+            [self.refreshBtn setImage:[UIImage imageNamed:@"nearbyRefresh"] forState:UIControlStateNormal];
+            if (indexOfCurrentUser == _allUsers.count) {
+                self.refreshBtn.enabled = NO;
+            }
+            
+            [self addCircleView];
+//            [self fetchUserByLocation];
+//            [self fetchCurrentUsersFromAllUsers];
+            [self creatUserFromCurrentUsers];
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
 -(void)clickRefreshBtn{
-    //    [self 加载数据];
-    [self.user1 removeFromSuperview];
-    [self.user2 removeFromSuperview];
-    [self.user3 removeFromSuperview];
-    [self.user4 removeFromSuperview];
-    [self.user5 removeFromSuperview];
-    [self.bestSportImageView1 removeFromSuperview];
-    [self.bestSportImageView2 removeFromSuperview];
-    [self.bestSportImageView3 removeFromSuperview];
-    [self.bestSportImageView4 removeFromSuperview];
-    [self.bestSportImageView5 removeFromSuperview];
     
-    
-    if (indexOfCurrentUser == _allUsers.count) {
-        [self showLoadView];
-    } else {
-        for(int i = 0; i < 5; i++) {
-            if(indexOfCurrentUser == _allUsers.count) continue;
-            self.currentUsers[i] = self.allUsers[indexOfCurrentUser];
-            NSString *str = [NSString stringWithFormat:@"createUser%dBtn", i + 1];
-            SEL s = NSSelectorFromString(str);
-            [self performSelector:s];
-            indexOfCurrentUser++;
-            [self refreshAnimation];
+    NSInteger index = self.segSwitch.selectedSegmentIndex;
+    if (index) {
+        
+        //    [self 加载数据];
+        [self.user1 removeFromSuperview];
+        [self.user2 removeFromSuperview];
+        [self.user3 removeFromSuperview];
+        [self.user4 removeFromSuperview];
+        [self.user5 removeFromSuperview];
+        [self.bestSportImageView1 removeFromSuperview];
+        [self.bestSportImageView2 removeFromSuperview];
+        [self.bestSportImageView3 removeFromSuperview];
+        [self.bestSportImageView4 removeFromSuperview];
+        [self.bestSportImageView5 removeFromSuperview];
+        
+        if (indexOfCurrentUser == _allUsers.count) {
+            [self showLoadView];
+        } else {
+            for(int i = 0; i < 5; i++) {
+                if(indexOfCurrentUser == _allUsers.count) continue;
+                self.currentUsers[i] = self.allUsers[indexOfCurrentUser];
+                NSString *str = [NSString stringWithFormat:@"createUser%dBtn", i + 1];
+                SEL s = NSSelectorFromString(str);
+                [self performSelector:s];
+                indexOfCurrentUser++;
+                [self refreshAnimation];
+            }
         }
+        
+    } else {
+        SNPublishViewController *publishVc = [[SNPublishViewController alloc]init];
+        [self presentViewController:publishVc animated:YES completion:nil];
+        NSLog(@"publish");
     }
+    
 }
 
 -(void)refreshAnimation{
